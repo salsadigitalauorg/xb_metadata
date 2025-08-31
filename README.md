@@ -21,7 +21,7 @@ This project requires cloning since it includes customized Experience Builder mo
 
 Clone this repository and run the following commands to get started:
 ```shell
-git clone https://github.com/your-org/xb_metadata.git
+git clone git@github.com:salsadigitalauorg/xb_metadata.git
 cd xb_metadata
 ddev start
 ddev composer install
@@ -31,15 +31,19 @@ ddev drush si -y
 ddev drush recipe /var/www/html/recipes/civictheme_xb_demo
 ddev drush cr
 
+# Enable AI modules
+ddev drush en xb_ai ai_agents
+
 # Now log in
 ddev drush user:login xb/xb_page/2/editor
 ```
 Now open the link Drush generated at the end to go right into Experience Builder.
 
-You don't _have_ to use DDEV; any tech stack that supports Drupal should work just fine.
+## AI Provider Setup 🤖
 
-## Issues and Help
+To use the AI-powered features, you'll need to setup an AI provider. Install and configure one of the following modules:
 
-- Issues found in the demo should be submitted at https://github.com/phenaproxima/xb-demo/issues
-- Problems or suggestions for Experience Builder should be submitted at https://www.drupal.org/project/issues/experience_builder
-- Want to chat? [Find us in the #experience-builder channel on Drupal Slack.](https://drupal.slack.com/archives/C072JMEPUS1)
+- **OpenAI Provider**: [ai_provider_openai](https://www.drupal.org/project/ai_provider_openai)
+- **Amazee.io Provider**: [ai_provider_amazeeio](https://www.drupal.org/project/ai_provider_amazeeio)
+
+Follow the documentation for your chosen provider to configure API keys and settings.

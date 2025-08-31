@@ -347,13 +347,6 @@ default:
       component_version: 23755b67bbb90cfa
       inputs: '{"theme":"light","content":"Get in touch","level":2,"font":"heading","align":"left","margin":"medium","modifier_class":"custom-class"}'
     -
-      parent_uuid: b7a7a96b-2276-42db-b497-ba5ffcf7b6bb
-      slot: content
-      uuid: ded7bed0-4370-4186-bb97-2ec6490cf548
-      component_id: block.webform_block
-      component_version: 300e9b7cdec0fec0
-      inputs: '{"webform_id":"contact","default_data":"","redirect":false,"lazy":false,"label":"Webform","label_display":"0"}'
-    -
       uuid: e7e3d59a-a3c2-4b43-9d89-e0cead070895
       component_id: sdc.starshot_demo.starshot-container
       component_version: 05aa6a55c75e8789
