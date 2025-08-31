@@ -1,4 +1,30 @@
-vendor
+# Composer dependencies
+vendor/
+
+# Node.js dependencies
+node_modules/
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Log files
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
 
 # Ignore everything in web by default
 web/*
@@ -15,3 +41,6 @@ web/modules/*
 
 # Track all themes (recursively)
 !web/themes/**
+
+# But ignore node_modules in custom modules
+web/modules/custom/**/node_modules/

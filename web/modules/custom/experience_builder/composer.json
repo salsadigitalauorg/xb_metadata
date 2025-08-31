@@ -1,6 +1,7 @@
 {
     "name": "drupal/experience_builder",
-    "description": "Experience Builder",
+    "description": "Experience Builder (Customized)",
+    "version": "dev-custom",
     "license": "GPL-2.0-or-later",
     "type": "drupal-module",
     "homepage": "https://www.drupal.org/project/experience_builder",
