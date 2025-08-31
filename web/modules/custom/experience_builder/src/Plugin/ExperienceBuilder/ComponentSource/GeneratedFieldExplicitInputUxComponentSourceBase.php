@@ -22,7 +22,6 @@ use Drupal\experience_builder\ComponentSource\ComponentSourceBase;
 use Drupal\experience_builder\ComponentSource\ComponentSourceWithSlotsInterface;
 use Drupal\experience_builder\Entity\Component;
 use Drupal\experience_builder\Entity\Component as ComponentEntity;
-use Drupal\experience_builder\JsonSchemaInterpreter\JsonSchemaType;
 use Drupal\experience_builder\MissingHostEntityException;
 use Drupal\experience_builder\Plugin\Field\FieldType\ComponentTreeItem;
 use Drupal\experience_builder\PropExpressions\Component\ComponentPropExpression;
@@ -110,8 +109,9 @@ abstract class GeneratedFieldExplicitInputUxComponentSourceBase extends Componen
    *   as well as core's component validator.
    * @see \Drupal\Core\Theme\Component\ComponentMetadata
    * @see \Drupal\experience_builder\PropShape\PropShape::getComponentProps()
+   * @todo Remove in https://www.drupal.org/project/experience_builder/issues/3503038
    */
-  abstract protected function getSdcPlugin(): SdcPlugin;
+  abstract public function getSdcPlugin(): SdcPlugin;
 
   /**
    * {@inheritdoc}
@@ -302,7 +302,7 @@ abstract class GeneratedFieldExplicitInputUxComponentSourceBase extends Componen
     foreach ($explicit_input['resolved'] as $prop_name => $value) {
       // Undo what ::clientModelToInput() and ::getExplicitInput() did: restore
       // the `source` to pass the necessary information to the client that
-      // \Drupal\experience_builder\Form\ComponentInputsForm expects (and hence
+      // \Drupal\experience_builder\Form\ComponentInstanceForm expects (and hence
       // also ::buildConfigurationForm()).
       // Note this only changes `source`, not `resolved`, because the `resolved`
       // value must still be what the `DefaultRelativeUrlPropSource` evaluated
@@ -475,7 +475,7 @@ abstract class GeneratedFieldExplicitInputUxComponentSourceBase extends Componen
   /**
    * {@inheritdoc}
    */
-  public function buildConfigurationForm(
+  public function buildComponentInstanceForm(
     array $form,
     FormStateInterface $form_state,
     ?Component $component = NULL,
@@ -489,7 +489,7 @@ abstract class GeneratedFieldExplicitInputUxComponentSourceBase extends Componen
     $component_plugin = $this->getSdcPlugin();
     $component_schema = $component_plugin->metadata->schema ?? [];
 
-    // Allow form alterations specific to XB component inputs forms (currently
+    // Allow form alterations specific to XB component instance forms (currently
     // only "static prop sources").
     $form_state->set('is_xb_static_prop_source', TRUE);
 
@@ -551,20 +551,6 @@ abstract class GeneratedFieldExplicitInputUxComponentSourceBase extends Componen
     }
     $form['#attached']['xb-transforms'] = $transforms;
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function validateConfigurationForm(array &$form, FormStateInterface $form_state): void {
-    // @todo Implementation.
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function submitConfigurationForm(array &$form, FormStateInterface $form_state): void {
-    // @todo Implementation.
   }
 
   /**
@@ -655,14 +641,14 @@ abstract class GeneratedFieldExplicitInputUxComponentSourceBase extends Componen
       // Track those SDC props without a 'resolved' value (because an example
       // value is missing, which is allowed for optional SDC props), because it
       // will still be necessary to generate the necessary 'source' information
-      // for them (to send to ComponentInputsForm).
+      // for them (to send to ComponentInstanceForm).
       else {
         $unpopulated_props_for_default_markup[$prop_name] = NULL;
       }
 
       // Gather the information that the client will pass to the server to
       // generate a form.
-      // @see \Drupal\experience_builder\Form\ComponentInputsForm
+      // @see \Drupal\experience_builder\Form\ComponentInstanceForm
       $field_data[$prop_name] = [
         'required' => in_array($prop_name, $component_plugin->metadata->schema['required'] ?? [], TRUE),
         'jsonSchema' => array_diff_key($prop_shape->resolvedSchema, array_flip(['meta:enum', 'x-translation-context'])),
@@ -867,9 +853,9 @@ abstract class GeneratedFieldExplicitInputUxComponentSourceBase extends Componen
   public function clientModelToInput(string $component_instance_uuid, ComponentEntity $component, array $client_model, ?ConstraintViolationListInterface $violations = NULL): array {
     $props = [];
 
-    $required = $this->getExplicitInputDefinitions()['required'];
+    $required_props = $this->getExplicitInputDefinitions()['required'];
     foreach (($client_model['source'] ?? []) as $prop => $prop_source) {
-      $is_required = in_array($prop, $required, TRUE);
+      $is_required_prop = in_array($prop, $required_props, TRUE);
       // The client should always provide a resolved value when providing a
       // corresponding source but may not.
       $prop_value = $client_model['resolved'][$prop] ?? NULL;
@@ -933,24 +919,25 @@ abstract class GeneratedFieldExplicitInputUxComponentSourceBase extends Componen
         $source = PropSource::parse($prop_source);
         // Make sure we can evaluate this prop source with the passed values.
         // @todo Pass the host entity in https://drupal.org/i/3513590
-        $evaluated = $source->evaluate(NULL, $is_required);
+        $evaluated = $source->evaluate(NULL, $is_required_prop);
 
         // Optional component props that evaluate to NULL can be omitted:
         // storing these would be a waste of storage space.
-        if (!$is_required && $evaluated === NULL) {
+        if (!$is_required_prop && $evaluated === NULL) {
           continue;
         }
 
-        // Required string component props that evaluate to '' must be retained:
-        // while the empty string is NOT considered a valid value, this is the
-        // fallback behavior XB opts for to enhance the user experience: it
-        // allows a component to render even at the point in time where a
-        // Content Author has *emptied* the string input, as they're thinking
-        // about what string they do want.
+        // Required string component props that are completely free-form (so:
+        // without a non-zero `minLength`, without a `format` or `pattern`) that
+        // evaluate to '' must be retained: while the empty string is NOT
+        // considered a valid value, this is the fallback behavior XB opts for
+        // to enhance the user experience: it allows a component to render even
+        // at the point in time where a Content Author has *emptied* the string
+        // input, as they're thinking about what string they do want.
         // ⚠️ This won't work for components whose logic specifically checks for
         // an empty string and refuses to render then.
         // @todo Expand to support multiple-cardinality.
-        if ($required && $evaluated === '' && $this->getExplicitInputDefinitions()['shapes'][$prop]['type'] === JsonSchemaType::STRING->value) {
+        if ($is_required_prop && $evaluated === '' && $this->getExplicitInputDefinitions()['shapes'][$prop] === ['type' => 'string']) {
           // Confirm that *if* this weren't special-cased, that this would
           // indeed enter the next branch, which would cause it to be skipped.
           // @todo Consider adding a new `GracefulDegradationPropSource` to

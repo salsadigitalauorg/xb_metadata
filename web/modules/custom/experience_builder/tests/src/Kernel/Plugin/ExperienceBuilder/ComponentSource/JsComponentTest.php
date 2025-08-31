@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\experience_builder\Kernel\Plugin\ExperienceBuilder\ComponentSource;
 
-// cspell:ignore Tilly anzut nhsy sxnz Umso Dzyawdvr Mafgg Royu Cmsy Pmsg Lgfkq
+// cspell:ignore Tilly anzut nhsy sxnz Umso Dzyawdvr Mafgg Royu Cmsy Pmsg Lgfkq ergmkgy Ptgi Ltxk
 
 use Drupal\Component\Serialization\Json;
 use Drupal\Component\Utility\Crypt;
@@ -202,6 +202,18 @@ final class JsComponentTest extends ComponentSourceTestBase {
           ],
         ],
       ],
+      'js.xb_test_code_components_interactive' => [
+        'prop_field_definitions' => [
+          'name' => [
+            'field_type' => 'string',
+            'field_storage_settings' => [],
+            'field_instance_settings' => [],
+            'field_widget' => 'string_textfield',
+            'default_value' => [0 => ['value' => 'Count']],
+            'expression' => 'ℹ︎string␟value',
+          ],
+        ],
+      ],
       'js.xb_test_code_components_using_drupalsettings_get_site_data' => [
         'prop_field_definitions' => [],
       ],
@@ -254,6 +266,33 @@ final class JsComponentTest extends ComponentSourceTestBase {
           ],
         ],
       ],
+      'js.xb_test_code_components_with_link_prop' => [
+        'prop_field_definitions' => [
+          'link' => [
+            'field_type' => 'link',
+            'field_storage_settings' => [],
+            'field_instance_settings' => [
+              'title' => 0,
+            ],
+            'field_widget' => 'link_default',
+            'default_value' => [
+              [
+                'uri' => '/llamas',
+                'options' => [],
+              ],
+            ],
+            'expression' => 'ℹ︎link␟url',
+          ],
+          'text' => [
+            'field_type' => 'string',
+            'field_storage_settings' => [],
+            'field_instance_settings' => [],
+            'field_widget' => 'string_textfield',
+            'default_value' => [0 => ['value' => 'This is my link']],
+            'expression' => 'ℹ︎string␟value',
+          ],
+        ],
+      ],
       'js.xb_test_code_components_with_no_props' => [
         'prop_field_definitions' => [],
       ],
@@ -273,6 +312,18 @@ final class JsComponentTest extends ComponentSourceTestBase {
             'field_instance_settings' => [],
             'field_widget' => 'string_textfield',
             'default_value' => [0 => ['value' => 'XB']],
+            'expression' => 'ℹ︎string␟value',
+          ],
+        ],
+      ],
+      'js.xb_test_code_components_with_slots' => [
+        'prop_field_definitions' => [
+          'name' => [
+            'field_type' => 'string',
+            'field_storage_settings' => [],
+            'field_instance_settings' => [],
+            'field_widget' => 'string_textfield',
+            'default_value' => [0 => ['value' => 'Name']],
             'expression' => 'ℹ︎string␟value',
           ],
         ],
@@ -380,6 +431,29 @@ final class JsComponentTest extends ComponentSourceTestBase {
           'import_maps' => $default_imports,
         ],
       ],
+      'js.xb_test_code_components_interactive' => [
+        'cacheability' => (clone $default_cacheability)
+          ->setCacheTags([
+            'config:experience_builder.js_component.xb_test_code_components_interactive',
+          ]),
+        'attachments' => [
+          'library' => [
+            'experience_builder/astro_island.xb_test_code_components_interactive',
+            ...$default_libraries,
+          ],
+          'html_head_link' => [
+            ...$default_html_head_links,
+            [
+              [
+                'rel' => 'modulepreload',
+                'fetchpriority' => 'high',
+                'href' => \sprintf('/%s/files/astro-island/ergmkgyMa0HG-_MF_afn4PkfQPtgiRr3e_k_vLtxkCs.js', $site_path),
+              ],
+            ],
+          ],
+          'import_maps' => $default_imports,
+        ],
+      ],
       'js.xb_test_code_components_using_imports' => [
         'cacheability' => (clone $default_cacheability)
           ->setCacheTags([
@@ -458,6 +532,27 @@ final class JsComponentTest extends ComponentSourceTestBase {
           'import_maps' => $default_imports,
         ],
       ],
+      'js.xb_test_code_components_with_link_prop' => [
+        'cacheability' => (clone $default_cacheability)
+          ->setCacheTags(['config:experience_builder.js_component.xb_test_code_components_with_link_prop']),
+        'attachments' => [
+          'library' => [
+            'experience_builder/astro_island.xb_test_code_components_with_link_prop',
+            ...$default_libraries,
+          ],
+          'html_head_link' => [
+            ...$default_html_head_links,
+            [
+              [
+                'rel' => 'modulepreload',
+                'fetchpriority' => 'high',
+                'href' => \sprintf('/%s/files/astro-island/fvdcbYvgbnFGHremAlwsfbIcqUtlrp6B1uNETJtRsbo.js', $site_path),
+              ],
+            ],
+          ],
+          'import_maps' => $default_imports,
+        ],
+      ],
       'js.xb_test_code_components_with_no_props' => [
         'cacheability' => (clone $default_cacheability)
           ->setCacheTags(['config:experience_builder.js_component.xb_test_code_components_with_no_props']),
@@ -494,6 +589,29 @@ final class JsComponentTest extends ComponentSourceTestBase {
                 'rel' => 'modulepreload',
                 'fetchpriority' => 'high',
                 'href' => \sprintf('/%s/files/astro-island/AFWyiY79ad8_Hbz1qqKz97PSpKgNHSYCcwBWz8QRChU.js', $site_path),
+              ],
+            ],
+          ],
+          'import_maps' => $default_imports,
+        ],
+      ],
+      'js.xb_test_code_components_with_slots' => [
+        'cacheability' => (clone $default_cacheability)
+          ->setCacheTags([
+            'config:experience_builder.js_component.xb_test_code_components_with_slots',
+          ]),
+        'attachments' => [
+          'library' => [
+            'experience_builder/astro_island.xb_test_code_components_with_slots',
+            ...$default_libraries,
+          ],
+          'html_head_link' => [
+            ...$default_html_head_links,
+            [
+              [
+                'rel' => 'modulepreload',
+                'fetchpriority' => 'high',
+                'href' => \sprintf('/%s/files/astro-island/8gFwFAotFPDb2BVs6lhX-1X9SQtNYUoW5eN8qV6KM64.js', $site_path),
               ],
             ],
           ],
@@ -604,11 +722,11 @@ final class JsComponentTest extends ComponentSourceTestBase {
 
     $crawler = $this->crawlerForRenderArray($island);
 
-    $element = $crawler->filter('astro-island');
+    $element = $crawler->filter('xb-island');
     self::assertCount(1, $element);
 
     // Note that ::renderComponent adds both xb_uuid and xb_slot_ids props but
-    // they should not be present as props in the astro-island element.
+    // they should not be present as props in the xb-island element.
     // Ternary because empty arrays are encoded as '[]' in Json::encode().
     $json_expected = (empty($expected_component_props)) ? '{}' :
       Json::encode(\array_map(static fn(mixed $value): array => [
@@ -736,6 +854,14 @@ final class JsComponentTest extends ComponentSourceTestBase {
           'options',
         ],
       ],
+      'js.xb_test_code_components_interactive' => [
+        'module' => [
+          'core',
+        ],
+        'config' => [
+          'experience_builder.js_component.xb_test_code_components_interactive',
+        ],
+      ],
       'js.xb_test_code_components_using_drupalsettings_get_site_data' => [
         'config' => [
           'experience_builder.js_component.xb_test_code_components_using_drupalsettings_get_site_data',
@@ -765,6 +891,15 @@ final class JsComponentTest extends ComponentSourceTestBase {
           'experience_builder.js_component.xb_test_code_components_with_enums',
         ],
       ],
+      'js.xb_test_code_components_with_link_prop' => [
+        'module' => [
+          'core',
+          'link',
+        ],
+        'config' => [
+          'experience_builder.js_component.xb_test_code_components_with_link_prop',
+        ],
+      ],
       'js.xb_test_code_components_with_no_props' => [
         'config' => [
           'experience_builder.js_component.xb_test_code_components_with_no_props',
@@ -778,6 +913,14 @@ final class JsComponentTest extends ComponentSourceTestBase {
           'experience_builder.js_component.xb_test_code_components_with_props',
         ],
       ],
+      'js.xb_test_code_components_with_slots' => [
+        'module' => [
+          'core',
+        ],
+        'config' => [
+          'experience_builder.js_component.xb_test_code_components_with_slots',
+        ],
+      ],
     ], $this->callSourceMethodForEach('calculateDependencies', $component_ids));
   }
 
@@ -785,31 +928,23 @@ final class JsComponentTest extends ComponentSourceTestBase {
    * {@inheritdoc}
    */
   public static function providerRenderComponentFailure(): \Generator {
-    $generate_static_prop_source = function (string $field_type, mixed $value): array {
-      return [
-        'sourceType' => "static:field_item:$field_type",
-        'value' => $value,
-        'expression' => (string) new FieldTypePropExpression($field_type, 'value'),
-      ];
-    };
-
     $component_id = JsComponent::componentIdFromJavascriptComponentId('xb_test_code_components_with_props');
     yield "JS Component with valid props, without exception" => [
       'component_id' => $component_id,
       'inputs' => [
-        'age' => $generate_static_prop_source('integer', 19),
-        'name' => $generate_static_prop_source('string', 'Tilly'),
+        'age' => 19,
+        'name' => 'Tilly',
       ],
       'expected_validation_errors' => [],
       'expected_exception' => NULL,
-      'expected_output_selector' => \sprintf('astro-island[uid="%s"][props*="Tilly"][props*="19"]', self::UUID_CRASH_TEST_DUMMY),
+      'expected_output_selector' => \sprintf('xb-island[uid="%s"][props*="Tilly"][props*="19"]', self::UUID_CRASH_TEST_DUMMY),
     ];
 
     yield "JS Component with valid props, JSON encoding exception" => [
       'component_id' => $component_id,
       'inputs' => [
-        'age' => $generate_static_prop_source('integer', 19),
-        'name' => $generate_static_prop_source('string', IslandCastaway::WILSON),
+        'age' => 19,
+        'name' => IslandCastaway::WILSON,
       ],
       'expected_validation_errors' => [],
       'expected_exception' => [
@@ -822,15 +957,19 @@ final class JsComponentTest extends ComponentSourceTestBase {
     yield "JS Component with invalid props, validation error" => [
       'component_id' => $component_id,
       'inputs' => [
-        'age' => $generate_static_prop_source('string', "It's rude to ask"),
-        'name' => $generate_static_prop_source('string', 'Tilly'),
+        'age' => [
+          'sourceType' => "static:field_item:string",
+          'value' => "It's rude to ask",
+          'expression' => (string) new FieldTypePropExpression('string', 'value'),
+        ],
+        'name' => 'Tilly',
       ],
       'expected_validation_errors' => [
         \sprintf('2.inputs.%s.age', self::UUID_CRASH_TEST_DUMMY) => 'String value found, but an integer or an object is required. The provided value is: "It\'s rude to ask".',
       ],
       'expected_exception' => NULL,
       // JsComponents can recover from invalid inputs.
-      'expected_output_selector' => \sprintf('astro-island[uid="%s"]', self::UUID_CRASH_TEST_DUMMY),
+      'expected_output_selector' => \sprintf('xb-island[uid="%s"]', self::UUID_CRASH_TEST_DUMMY),
     ];
 
     yield "JS Component with missing props, validation error" => [
@@ -841,7 +980,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
       ],
       'expected_exception' => NULL,
       // JsComponents can recover from invalid inputs.
-      'expected_output_selector' => \sprintf('astro-island[uid="%s"]', self::UUID_CRASH_TEST_DUMMY),
+      'expected_output_selector' => \sprintf('xb-island[uid="%s"]', self::UUID_CRASH_TEST_DUMMY),
     ];
   }
 
@@ -876,6 +1015,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
         'original' => 'console.log("nested dependency loaded");',
         'compiled' => 'console.log("nested dependency loaded");',
       ],
+      'dataDependencies' => [],
     ]);
     $nested_dependency_js_component->save();
     // Create a dependency component first
@@ -893,6 +1033,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
         'original' => 'console.log("dependency loaded");',
         'compiled' => 'console.log("dependency loaded");',
       ],
+      'dataDependencies' => [],
     ]);
     $dependency_js_component->save();
     $js_component_data = $dependency_js_component->normalizeForClientSide()->values;
@@ -914,6 +1055,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
         'original' => 'console.log("dependency with no css loaded");',
         'compiled' => 'console.log("dependency with no css loaded");',
       ],
+      'dataDependencies' => [],
     ]);
     $dependency_js_component_without_css->save();
 
@@ -939,6 +1081,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
         'original' => 'console.log( "hey" );',
         'compiled' => 'console.log("hey");',
       ],
+      'dataDependencies' => [],
     ]);
     // Add the dependency through client API.
     $js_component_data = $js_component->normalizeForClientSide()->values;
@@ -1060,7 +1203,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
     return [
       'js.xb_test_code_components_captioned_video' => [
         'expected_output_selectors' => [
-          'astro-island[opts*="Captioned video"][props*="bird_vertical"]',
+          'xb-island[opts*="Captioned video"][props*="bird_vertical"]',
           'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
         ],
         'source' => 'Code component',
@@ -1147,9 +1290,41 @@ final class JsComponentTest extends ComponentSourceTestBase {
         ],
         'transforms' => [],
       ],
+      'js.xb_test_code_components_interactive' => [
+        'expected_output_selectors' => [
+          'xb-island[opts*="Interactive"][props*="name"][props*="Count"]',
+          'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
+        ],
+        'source' => 'Code component',
+        'metadata' => [
+          'slots' => [
+            'description' => [
+              'title' => 'Description',
+              'examples' => ['<p>Example description</p>'],
+            ],
+          ],
+        ],
+        'propSources' => [
+          'name' => [
+            'required' => TRUE,
+            'jsonSchema' => [
+              'type' => 'string',
+            ],
+            'sourceType' => 'static:field_item:string',
+            'expression' => 'ℹ︎string␟value',
+            'default_values' => [
+              'source' => [
+                0 => ['value' => 'Count'],
+              ],
+              'resolved' => 'Count',
+            ],
+          ],
+        ],
+        'transforms' => [],
+      ],
       'js.xb_test_code_components_using_drupalsettings_get_site_data' => [
         'expected_output_selectors' => [
-          'astro-island[opts*="Using drupalSettings getSiteData"][props="{}"]',
+          'xb-island[opts*="Using drupalSettings getSiteData"][props="{}"]',
           'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
         ],
         'source' => 'Code component',
@@ -1159,7 +1334,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
       ],
       'js.xb_test_code_components_using_imports' => [
         'expected_output_selectors' => [
-          'astro-island[opts*="using imports"]',
+          'xb-island[opts*="using imports"]',
           'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
         ],
         'source' => 'Code component',
@@ -1169,7 +1344,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
       ],
       'js.xb_test_code_components_vanilla_image' => [
         'expected_output_selectors' => [
-          'astro-island[opts*="Vanilla Image"][props*="placehold.co"]',
+          'xb-island[opts*="Vanilla Image"][props*="placehold.co"]',
           'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
         ],
         'source' => 'Code component',
@@ -1221,7 +1396,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
       ],
       'js.xb_test_code_components_with_enums' => [
         'expected_output_selectors' => [
-          'astro-island[opts*="With enums"][props*="red"]',
+          'xb-island[opts*="With enums"][props*="red"]',
           'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
         ],
         'source' => 'Code component',
@@ -1284,9 +1459,57 @@ final class JsComponentTest extends ComponentSourceTestBase {
         ],
         'transforms' => [],
       ],
+      'js.xb_test_code_components_with_link_prop' => [
+        'expected_output_selectors' => [
+          'xb-island[opts*="My Code Component Link"]',
+          'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
+        ],
+        'source' => 'Code component',
+        'metadata' => ['slots' => []],
+        'propSources' => [
+          'text' => [
+            'required' => FALSE,
+            'jsonSchema' => [
+              'type' => 'string',
+            ],
+            'sourceType' => 'static:field_item:string',
+            'expression' => 'ℹ︎string␟value',
+            'default_values' => [
+              'source' => [
+                0 => ['value' => 'This is my link'],
+              ],
+              'resolved' => 'This is my link',
+            ],
+          ],
+          'link' => [
+            'required' => FALSE,
+            'jsonSchema' => [
+              'type' => 'string',
+              'format' => 'uri-reference',
+            ],
+            'sourceType' => 'static:field_item:link',
+            'expression' => 'ℹ︎link␟url',
+            'sourceTypeSettings' => [
+              'instance' => [
+                'title' => 0,
+              ],
+            ],
+            'default_values' => [
+              'source' => [
+                0 => [
+                  'uri' => '/llamas',
+                  'options' => [],
+                ],
+              ],
+              'resolved' => '/llamas',
+            ],
+          ],
+        ],
+        'transforms' => [],
+      ],
       'js.xb_test_code_components_with_no_props' => [
         'expected_output_selectors' => [
-          'astro-island[opts*="With no props"][props="{}"]',
+          'xb-island[opts*="With no props"][props="{}"]',
           'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
         ],
         'source' => 'Code component',
@@ -1296,7 +1519,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
       ],
       'js.xb_test_code_components_with_props' => [
         'expected_output_selectors' => [
-          'astro-island[opts*="With props"][props*="name"][props*="XB"][props*="age"][props*="40"]',
+          'xb-island[opts*="With props"][props*="name"][props*="XB"][props*="age"][props*="40"]',
           'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
         ],
         'source' => 'Code component',
@@ -1333,6 +1556,38 @@ final class JsComponentTest extends ComponentSourceTestBase {
         ],
         'transforms' => [],
       ],
+      'js.xb_test_code_components_with_slots' => [
+        'expected_output_selectors' => [
+          'xb-island[opts*="With slot"][props*="name"][props*="Name"]',
+          'script[blocking="render"][src*="/ui/lib/astro-hydration/dist/client.js"]',
+        ],
+        'source' => 'Code component',
+        'metadata' => [
+          'slots' => [
+            'description' => [
+              'title' => 'Description',
+              'examples' => ['<p>Example description</p>'],
+            ],
+          ],
+        ],
+        'propSources' => [
+          'name' => [
+            'required' => TRUE,
+            'jsonSchema' => [
+              'type' => 'string',
+            ],
+            'sourceType' => 'static:field_item:string',
+            'expression' => 'ℹ︎string␟value',
+            'default_values' => [
+              'source' => [
+                0 => ['value' => 'Name'],
+              ],
+              'resolved' => 'Name',
+            ],
+          ],
+        ],
+        'transforms' => [],
+      ],
     ];
   }
 
@@ -1358,7 +1613,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
     $autoSave->saveEntity($js_component);
 
     $client_side_info_when_auto_save_exists = $source->getClientSideInfo($component);
-    $this->assertRenderArrayMatchesSelectors($client_side_info_when_auto_save_exists['build'], ['astro-island[opts*="With props - Draft"][props*="name"][props*="XB"][props*="age"][props*="40"]']);
+    $this->assertRenderArrayMatchesSelectors($client_side_info_when_auto_save_exists['build'], ['xb-island[opts*="With props - Draft"][props*="name"][props*="XB"][props*="age"][props*="40"]']);
   }
 
   protected function createAndSaveInUseComponentForFallbackTesting(): ComponentInterface {
@@ -1387,6 +1642,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
         'original' => '.test { display: none; }',
         'compiled' => '.test { display: none; }',
       ],
+      'dataDependencies' => [],
     ]);
     $js_component->enable()->save();
     $component_id = JsComponent::componentIdFromJavascriptComponentId($js_component_id);
@@ -1411,6 +1667,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
         'original' => '.test { display: none; }',
         'compiled' => '.test { display: none; }',
       ],
+      'dataDependencies' => [],
     ]);
     $js_component->enable()->save();
     $component_id = JsComponent::componentIdFromJavascriptComponentId($js_component_id);
@@ -1456,6 +1713,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
         'original' => '.test { display: none; }',
         'compiled' => '.test { display: none; }',
       ],
+      'dataDependencies' => [],
     ]);
     $js_component->enable()->save();
   }
@@ -1484,6 +1742,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
         'original' => '.test { display: none; }',
         'compiled' => '.test { display: none; }',
       ],
+      'dataDependencies' => [],
     ]);
     $violations = $js_component->getTypedData()->validate();
     self::assertCount(0, $violations);
@@ -1606,6 +1865,7 @@ final class JsComponentTest extends ComponentSourceTestBase {
         'original' => '.test { display: none; }',
         'compiled' => '.test { display: none; }',
       ],
+      'dataDependencies' => [],
     ]);
     $js_component->enable()->save();
     $component_id = JsComponent::componentIdFromJavascriptComponentId($js_component_id);

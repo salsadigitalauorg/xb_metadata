@@ -22,6 +22,7 @@ use Drupal\experience_builder\PropSource\StaticPropSource;
 use Drupal\experience_builder\ShapeMatcher\JsonSchemaFieldInstanceMatcher;
 use Drupal\experience_builder\TypedData\BetterEntityDataDefinition;
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\Tests\experience_builder\Kernel\Traits\VfsPublicStreamUrlTrait;
 use Drupal\Tests\experience_builder\Traits\ContribStrictConfigSchemaTestTrait;
 use Drupal\user\Entity\User;
 use JsonSchema\Constraints\Constraint;
@@ -33,6 +34,7 @@ use JsonSchema\Validator;
 class PropShapeRepositoryTest extends KernelTestBase {
 
   use ContribStrictConfigSchemaTestTrait;
+  use VfsPublicStreamUrlTrait;
 
   /**
    * {@inheritdoc}
@@ -146,6 +148,7 @@ class PropShapeRepositoryTest extends KernelTestBase {
       new PropShape(['type' => 'string', 'enum' => ['foo', 'bar']]),
       new PropShape(['type' => 'string', 'enum' => ['full', 'wide', 'normal', 'narrow']]),
       new PropShape(['type' => 'string', 'enum' => ['horizontal', 'vertical']]),
+      new PropShape(['type' => 'string', 'enum' => ['lazy', 'eager']]),
       new PropShape(['type' => 'string', 'enum' => ['moon-stars-fill', 'moon-stars', 'star-fill', 'star', 'stars', 'rocket-fill', 'rocket-takeoff-fill', 'rocket-takeoff', 'rocket']]),
       new PropShape(['type' => 'string', 'enum' => ['power', 'like', 'external']]),
       new PropShape(['type' => 'string', 'enum' => ['prefix', 'suffix']]),
@@ -156,26 +159,26 @@ class PropShapeRepositoryTest extends KernelTestBase {
       new PropShape(['type' => 'string', 'enum' => ['small', 'big', 'huge', 'contains.dots']]),
       new PropShape(['type' => 'string', 'enum' => ['small', 'medium', 'large']]),
       new PropShape(['type' => 'string', 'enum' => ['top', 'bottom', 'start', 'end']]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::DATE->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::DATE_TIME->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::DURATION->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::EMAIL->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::HOSTNAME->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IDN_EMAIL->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IDN_HOSTNAME->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IPV4->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IPV6->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IRI->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IRI_REFERENCE->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::JSON_POINTER->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::REGEX->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::RELATIVE_JSON_POINTER->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::TIME->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::URI->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::URI_REFERENCE->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::URI_TEMPLATE->value]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::URI_TEMPLATE->value, 'x-required-variables' => ['width']]),
-      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::UUID->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Date->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::DateTime->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Duration->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Email->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Hostname->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IdnEmail->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IdnHostname->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Ipv4->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Ipv6->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Iri->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IriReference->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::JsonPointer->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Regex->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::RelativeJsonPointer->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Time->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Uri->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::UriReference->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::UriTemplate->value]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::UriTemplate->value, 'x-required-variables' => ['width']]),
+      new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Uuid->value]),
       new PropShape(['type' => 'string', 'minLength' => 2]),
     ], $unique_prop_shapes);
 
@@ -317,6 +320,17 @@ class PropShapeRepositoryTest extends KernelTestBase {
           'allowed_values_function' => 'experience_builder_load_allowed_values_for_component_prop',
         ],
       ),
+      'type=string&enum[0]=lazy&enum[1]=eager' => new StorablePropShape(
+        shape: new PropShape([
+          'type' => 'string',
+          'enum' => ['lazy', 'eager'],
+        ]),
+        fieldTypeProp: new FieldTypePropExpression('list_string', 'value'),
+        fieldWidget: 'options_select',
+        fieldStorageSettings: [
+          'allowed_values_function' => 'experience_builder_load_allowed_values_for_component_prop',
+        ],
+      ),
       'type=string&enum[0]=moon-stars-fill&enum[1]=moon-stars&enum[2]=star-fill&enum[3]=star&enum[4]=stars&enum[5]=rocket-fill&enum[6]=rocket-takeoff-fill&enum[7]=rocket-takeoff&enum[8]=rocket' => new StorablePropShape(
         shape: new PropShape([
           'type' => 'string',
@@ -417,7 +431,7 @@ class PropShapeRepositoryTest extends KernelTestBase {
         fieldWidget: 'string_textfield',
       ),
       'type=string&format=date' => new StorablePropShape(
-        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::DATE->value]),
+        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Date->value]),
         fieldTypeProp: new FieldTypePropExpression('datetime', 'value'),
         fieldWidget: 'datetime_default',
         fieldStorageSettings: [
@@ -425,7 +439,7 @@ class PropShapeRepositoryTest extends KernelTestBase {
         ],
       ),
       'type=string&format=date-time' => new StorablePropShape(
-        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::DATE_TIME->value]),
+        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::DateTime->value]),
         fieldTypeProp: new FieldTypePropExpression('datetime', 'value'),
         fieldWidget: 'datetime_default',
         fieldStorageSettings: [
@@ -433,29 +447,29 @@ class PropShapeRepositoryTest extends KernelTestBase {
         ],
       ),
       'type=string&format=email' => new StorablePropShape(
-        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::EMAIL->value]),
+        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Email->value]),
         fieldTypeProp: new FieldTypePropExpression('email', 'value'),
         fieldWidget: 'email_default',
       ),
       'type=string&format=idn-email' => new StorablePropShape(
-        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IDN_EMAIL->value]),
+        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IdnEmail->value]),
         fieldTypeProp: new FieldTypePropExpression('email', 'value'),
         fieldWidget: 'email_default',
       ),
       'type=string&format=iri' => new StorablePropShape(
-        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IRI->value]),
+        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Iri->value]),
         fieldTypeProp: new FieldTypePropExpression('link', 'url'),
         fieldInstanceSettings: ['title' => DRUPAL_DISABLED],
         fieldWidget: 'link_default',
       ),
       'type=string&format=iri-reference' => new StorablePropShape(
-        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IRI_REFERENCE->value]),
+        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IriReference->value]),
         fieldTypeProp: new FieldTypePropExpression('link', 'url'),
         fieldInstanceSettings: ['title' => DRUPAL_DISABLED],
         fieldWidget: 'link_default',
       ),
       'type=string&format=uri-reference' => new StorablePropShape(
-        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::URI_REFERENCE->value]),
+        shape: new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::UriReference->value]),
         fieldTypeProp: new FieldTypePropExpression('link', 'url'),
         fieldInstanceSettings: ['title' => DRUPAL_DISABLED],
         fieldWidget: 'link_default',
@@ -605,17 +619,17 @@ class PropShapeRepositoryTest extends KernelTestBase {
       'type=object&$ref=json-schema-definitions://sdc_test_all_props.module/date-range' => new PropShape(['type' => 'object', '$ref' => 'json-schema-definitions://sdc_test_all_props.module/date-range']),
       'type=string&$ref=json-schema-definitions://experience_builder.module/image-uri' => new PropShape(['type' => 'string', '$ref' => 'json-schema-definitions://experience_builder.module/image-uri']),
       'type=object&$ref=json-schema-definitions://experience_builder.module/shoe-icon' => new PropShape(['type' => 'object', '$ref' => 'json-schema-definitions://experience_builder.module/shoe-icon']),
-      'type=string&format=duration' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::DURATION->value]),
-      'type=string&format=hostname' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::HOSTNAME->value]),
-      'type=string&format=idn-hostname' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IDN_HOSTNAME->value]),
-      'type=string&format=ipv4' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IPV4->value]),
-      'type=string&format=ipv6' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IPV6->value]),
-      'type=string&format=json-pointer' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::JSON_POINTER->value]),
-      'type=string&format=regex' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::REGEX->value]),
-      'type=string&format=relative-json-pointer' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::RELATIVE_JSON_POINTER->value]),
-      'type=string&format=time' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::TIME->value]),
-      'type=string&format=uri-template' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::URI_TEMPLATE->value]),
-      'type=string&format=uuid' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::UUID->value]),
+      'type=string&format=duration' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Duration->value]),
+      'type=string&format=hostname' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Hostname->value]),
+      'type=string&format=idn-hostname' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::IdnHostname->value]),
+      'type=string&format=ipv4' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Ipv4->value]),
+      'type=string&format=ipv6' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Ipv6->value]),
+      'type=string&format=json-pointer' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::JsonPointer->value]),
+      'type=string&format=regex' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Regex->value]),
+      'type=string&format=relative-json-pointer' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::RelativeJsonPointer->value]),
+      'type=string&format=time' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Time->value]),
+      'type=string&format=uri-template' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::UriTemplate->value]),
+      'type=string&format=uuid' => new PropShape(['type' => 'string', 'format' => JsonSchemaStringFormat::Uuid->value]),
       // These can't be stored as they have empty values as enum values.
       'type=string&enum[0]=&enum[1]=_blank' => new PropShape([
         'type' => 'string',
@@ -660,7 +674,7 @@ class PropShapeRepositoryTest extends KernelTestBase {
       ]),
       'type=string&format=uri-template&x-required-variables[0]=width' => new PropShape([
         'type' => 'string',
-        'format' => JsonSchemaStringFormat::URI_TEMPLATE->value,
+        'format' => JsonSchemaStringFormat::UriTemplate->value,
         'x-required-variables' => ['width'],
       ]),
     ];
@@ -701,7 +715,7 @@ class PropShapeRepositoryTest extends KernelTestBase {
     // A StaticPropSource is never rendered in an abstract context; it's always
     // rendered for a concrete component's prop. So, this test should do the
     // same.
-    // @see \Drupal\experience_builder\Form\ComponentInputsForm
+    // @see \Drupal\experience_builder\Form\ComponentInstanceForm
     $sdc_manager = \Drupal::service('plugin.manager.sdc');
     $components = $sdc_manager->getAllComponents();
     $some_sdc_prop_for_unique_prop_shape = [];
@@ -714,7 +728,7 @@ class PropShapeRepositoryTest extends KernelTestBase {
           $some_sdc_prop_for_unique_prop_shape[$prop_shape->uniquePropSchemaKey()] = [
             $component_id,
             // Note: on the live site, an older version than the active version
-            // may be used in the ComponentInputsForm, because the Content
+            // may be used in the ComponentInstanceForm, because the Content
             // Author may be editing an ancient component instance. For the
             // purpose of this test, the active version is fine.
             Component::load($component_id)?->getActiveVersion(),

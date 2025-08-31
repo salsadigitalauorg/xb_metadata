@@ -6,17 +6,16 @@ namespace Drupal\experience_builder\Entity;
 
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
-use Drupal\Core\Entity\Attribute\ConfigEntityType;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Config\Entity\ConfigEntityTypeInterface;
+use Drupal\Core\Entity\Attribute\ConfigEntityType;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\Query\QueryInterface;
 use Drupal\Core\File\FileUrlGeneratorInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\experience_builder\AutoSaveEntity;
 use Drupal\experience_builder\ClientSideRepresentation;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\experience_builder\CodeComponentDataProvider;
 use Drupal\experience_builder\EntityHandlers\JavascriptComponentStorage;
 use Drupal\experience_builder\EntityHandlers\VisibleWhenDisabledXbConfigEntityAccessControlHandler;
 use Drupal\experience_builder\Exception\ConstraintViolationException;
@@ -46,14 +45,16 @@ use Symfony\Component\Validator\ConstraintViolation;
     'slots',
     'js',
     'css',
+    'dataDependencies',
   ],
   constraints: [
     'JsComponentHasValidAndSupportedSdcMetadata' => NULL,
   ],
 )]
-final class JavaScriptComponent extends ConfigEntityBase implements XbAssetInterface {
+final class JavaScriptComponent extends ConfigEntityBase implements XbAssetInterface, FolderItemInterface {
 
   use XbAssetLibraryTrait;
+  use ConfigUpdaterAwareEntityTrait;
 
   public const string ENTITY_TYPE_ID = 'js_component';
   public const string ADMIN_PERMISSION = 'administer code components';
@@ -87,6 +88,11 @@ final class JavaScriptComponent extends ConfigEntityBase implements XbAssetInter
   protected ?array $slots = [];
 
   /**
+   * Data dependencies.
+   */
+  protected ?array $dataDependencies;
+
+  /**
    * {@inheritdoc}
    */
   public function id(): string {
@@ -118,6 +124,7 @@ final class JavaScriptComponent extends ConfigEntityBase implements XbAssetInter
         'sourceCodeCss' => $this->css['original'] ?? '',
         'compiledJs' => $this->js['compiled'] ?? '',
         'compiledCss' => $this->css['compiled'] ?? '',
+        'dataDependencies' => $this->dataDependencies,
       ],
       preview: [
         '#markup' => '@todo Make something 🆒 in https://www.drupal.org/project/experience_builder/issues/3498889',
@@ -146,7 +153,15 @@ final class JavaScriptComponent extends ConfigEntityBase implements XbAssetInter
    * @see docs/adr/0005-Keep-the-front-end-simple.md
    */
   public function updateFromClientSide(array $data): void {
-    foreach (array_intersect_key($data, array_flip(['machineName', 'name', 'status', 'required', 'props', 'slots'])) as $key => $value) {
+    foreach (array_intersect_key($data, array_flip([
+      'machineName',
+      'name',
+      'status',
+      'required',
+      'props',
+      'slots',
+      'dataDependencies',
+    ])) as $key => $value) {
       $this->set($key, $value);
     }
 
@@ -293,6 +308,14 @@ final class JavaScriptComponent extends ConfigEntityBase implements XbAssetInter
   /**
    * {@inheritdoc}
    */
+  public function preSave(EntityStorageInterface $storage): void {
+    parent::preSave($storage);
+    static::getConfigUpdater()->updateJavaScriptComponent($this);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function postSave(EntityStorageInterface $storage, $update = TRUE): void {
     parent::postSave($storage, $update);
     // The files generated in XbAssetStorage::doSave() have a content-dependent
@@ -421,7 +444,7 @@ final class JavaScriptComponent extends ConfigEntityBase implements XbAssetInter
    * @see \Drupal\experience_builder\Hook\ComponentSourceHooks::jsSettingsAlter()
    */
   public function getAssetLibraryDependencies(): array {
-    return CodeComponentDataProvider::getRequiredXbDataLibraries($this->getJs());
+    return \array_map(static fn (string $dependency): string => \sprintf('experience_builder/xbData.%s', $dependency), $this->dataDependencies['drupalSettings'] ?? []);
   }
 
 }

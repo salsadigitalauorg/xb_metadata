@@ -14,9 +14,17 @@ xb_ai.csrf_token:
     _method: 'POST'
 
 xb_ai.component_description_settings:
-  path: '/admin/config/system/xb-ai-component-description-settings'
+  path: '/admin/config/ai/xb-ai-component-description-settings'
   defaults:
     _title: 'Xb AI Component Description Settings Form'
     _form: 'Drupal\xb_ai\Form\XbAiComponentDescriptionSettingsForm'
   requirements:
     _permission: 'administer components'
+
+xb_ai.theme_region_settings:
+  path: '/admin/config/ai/xb-ai-theme-region-settings'
+  defaults:
+    _title: 'XB AI Theme Region Settings'
+    _form: 'Drupal\xb_ai\Form\XBAIThemeRegionSettingsForm'
+  requirements:
+    _permission: 'use experience builder ai'

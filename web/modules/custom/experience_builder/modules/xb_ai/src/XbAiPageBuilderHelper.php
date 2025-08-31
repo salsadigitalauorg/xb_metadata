@@ -65,6 +65,111 @@ class XbAiPageBuilderHelper {
   }
 
   /**
+   * Gets a lightweight component catalog for AI planning context.
+   *
+   * Returns minimal component info (id, name, description, group) to enable
+   * intelligent component selection without overwhelming the LLM with detailed
+   * specifications. Provides 90% context reduction (48KB+ → ~5KB).
+   *
+   * @return string
+   *   YAML string containing lightweight component catalog.
+   */
+  public function getComponentLightCatalogForAi(): string {
+    $light_catalog = [];
+    $available_components = $this->getAllComponentsKeyedBySource();
+    
+    foreach ($available_components as $components) {
+      $component_list = isset($components['components']) ? $components['components'] : $components;
+      
+      foreach ($component_list as $component_id => $component_data) {
+        // FILTER: Only include SDC components for Experience Builder
+        if (!str_starts_with($component_id, 'sdc.')) {
+          continue;
+        }
+        
+        $light_catalog[$component_id] = [
+          'id' => $component_data['id'] ?? $component_id,
+          'name' => $component_data['name'] ?? 'Unknown',
+          'description' => $component_data['description'] ?? $component_data['name'] ?? 'No description available',
+          'group' => $component_data['group'] ?? 'miscellaneous',
+        ];
+      }
+    }
+    
+    return Yaml::dump($light_catalog, 4, 2);
+  }
+
+  /**
+   * Gets detailed specifications for specific components on-demand.
+   *
+   * Returns full component definitions (props, slots, enums) for requested
+   * component IDs only. Enables just-in-time context loading for build agents.
+   *
+   * @param array $component_ids
+   *   Array of component IDs to load details for.
+   *
+   * @return array
+   *   Array containing detailed component specifications.
+   *
+   * @throws \Exception
+   *   If any requested component IDs are not found.
+   */
+  public function getComponentDetailsForAi(array $component_ids): array {
+    if (empty($component_ids)) {
+      return [];
+    }
+    
+    // Filter to only SDC components for Experience Builder
+    $sdc_component_ids = array_filter($component_ids, function($id) {
+      return str_starts_with($id, 'sdc.');
+    });
+    
+    // Log warning for non-SDC components that were filtered out
+    $non_sdc_ids = array_diff($component_ids, $sdc_component_ids);
+    if (!empty($non_sdc_ids)) {
+      \Drupal::logger('xb_ai')->warning('Non-SDC components requested and filtered out: @ids', [
+        '@ids' => implode(', ', $non_sdc_ids)
+      ]);
+    }
+    
+    // Use only SDC component IDs for processing
+    $component_ids = $sdc_component_ids;
+    
+    if (empty($component_ids)) {
+      return [];
+    }
+    
+    $component_context = [];
+    $available_components = $this->getAllComponentsKeyedBySource();
+    $all_components = [];
+    
+    // Flatten all components for lookup
+    foreach ($available_components as $components) {
+      $component_list = isset($components['components']) ? $components['components'] : $components;
+      $all_components += $component_list;
+    }
+    
+    $component_details = [];
+    $missing_components = [];
+    
+    foreach ($component_ids as $component_id) {
+      if (isset($all_components[$component_id])) {
+        $component_details[$component_id] = $all_components[$component_id];
+      } else {
+        $missing_components[] = $component_id;
+      }
+    }
+    
+    if (!empty($missing_components)) {
+      throw new \Exception(
+        'The following component IDs were not found: ' . implode(', ', $missing_components)
+      );
+    }
+    
+    return $component_details;
+  }
+
+  /**
    * Converts a YAML string to an array format with calculated nodePaths.
    *
    * @param string $yaml_string
@@ -596,6 +701,157 @@ class XbAiPageBuilderHelper {
       }
     }
     return 0;
+  }
+
+  /**
+   * Gets the region indices from the current layout.
+   *
+   * @param string $current_layout
+   *   The current layout JSON string.
+   *
+   * @return array
+   *   An array with region names as keys and their nodePathPrefix values.
+   */
+  public function getRegionIndex(string $current_layout): array {
+    $layout_array = Json::decode($current_layout);
+    $regions = [];
+
+    if (isset($layout_array['layout']) && is_array($layout_array['layout'])) {
+      foreach ($layout_array['layout'] as $region_name => $region_data) {
+        if (isset($region_data['nodePathPrefix'])) {
+          $regions[$region_name] = $region_data['nodePathPrefix'][0];
+        }
+      }
+    }
+
+    return $regions;
+  }
+
+  /**
+   * Gets the available regions from the current layout along with their descriptions, if configured.
+   *
+   * @param string $current_layout
+   *   The current layout JSON string.
+   *
+   * @return array
+   *   An array with region names as keys and their nodePathPrefix values and descriptions.
+   */
+  public function getAvailableRegions(string $current_layout) : array {
+    $region_index_mapping = $this->getRegionIndex($current_layout);
+    $region_descriptions = $this->configFactory->get('xb_ai.theme_region.settings')->get('region_descriptions') ?? [];
+    $available_regions = [];
+    foreach ($region_index_mapping as $region_name => $region_index) {
+      $available_regions[$region_name] = [
+        'nodePathPrefix' => $region_index,
+        'description' => $region_descriptions[$region_name] ?? '',
+      ];
+    }
+    return $available_regions;
+  }
+
+  /**
+   * Processes the parsed YAML array for UI representation.
+   *
+   * This function processes the yml generated by the template generation agent
+   * and converts it into a JSON structure that can be used in the UI.
+   *
+   * @param array $parsed_array
+   *   The parsed YAML array.
+   * @param string $current_layout
+   *   The current layout of the page.
+   * @param array $reference_nodepath
+   *   The nodepath of the reference component, if any.
+   */
+  public function processTemplateYmlForUi(array $parsed_array, string $current_layout, array $reference_nodepath = []): string {
+    $result = [
+      'operations' => [
+        [
+          'operation' => 'ADD',
+          'components' => [],
+        ],
+      ],
+    ];
+    foreach ($parsed_array as $region => $components) {
+      if (!is_array($components)) {
+        continue;
+      }
+
+      // If reference nodepath is given, calculate the nodepath of other components
+      // based on it.
+      if ($reference_nodepath) {
+        $this->processComponentsBelow($components, $reference_nodepath, $result['operations'][0]['components']);
+      }
+      else {
+        $region_index_mapping = $this->getRegionIndex($current_layout);
+
+        $component_index = 0;
+
+        $region_index = $region_index_mapping[$region] ?? 0;
+
+        foreach ($components as $index => $component) {
+          $this->processComponent($component, $region_index, $index, $result['operations'][0]['components'], $component_index);
+          $component_index++;
+        }
+      }
+    }
+
+    return Json::encode($result);
+  }
+
+  /**
+   * Recursively processes a component and its slots.
+   *
+   * @param array $component
+   *   The component data.
+   * @param int $region_index
+   *   The region index.
+   * @param int $component_index
+   *   The component index in the region.
+   * @param array $components
+   *   The array to store processed components.
+   * @param int $global_index
+   *   The global component index.
+   * @param array $parent_path
+   *   The parent node path.
+   */
+  protected function processComponent(array $component, int $region_index, int $component_index, array &$components, int &$global_index, array $parent_path = []): void {
+    foreach ($component as $component_type => $component_data) {
+      $node_path = empty($parent_path) ? [$region_index, $component_index] : array_merge($parent_path, [$component_index]);
+
+      $component_structure = [
+        'id' => $component_type,
+        'nodePath' => $node_path,
+        'fieldValues' => [],
+      ];
+
+      // Process props if they exist.
+      if (isset($component_data['props'])) {
+        $component_structure['fieldValues'] = $component_data['props'];
+      }
+
+      $components[] = $component_structure;
+      $global_index++;
+
+      // Process slots if they exist.
+      if (isset($component_data['slots'])) {
+        foreach ($component_data['slots'] as $slot_name => $slot_components) {
+          if (!is_array($slot_components)) {
+            continue;
+          }
+
+          foreach ($slot_components as $slot_index => $slot_component) {
+            $this->processComponent(
+              $slot_component,
+              $region_index,
+              $slot_index,
+              $components,
+              $global_index,
+              array_merge($node_path, [array_search($slot_name, array_keys($component_data['slots']))])
+            );
+          }
+        }
+      }
+    }
   }
 
 }

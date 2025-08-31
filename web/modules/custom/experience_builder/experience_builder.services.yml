@@ -62,6 +62,7 @@ services:
   Drupal\experience_builder\Storage\ComponentTreeLoader: {}
   Drupal\experience_builder\CodeComponentDataProvider: {}
   Drupal\experience_builder\Version: {}
+  Drupal\experience_builder\ExperienceBuilderConfigUpdater: ~
 
   # Event subscribers.
   experience_builder.openapi.http_request_validator.subscriber:
@@ -127,6 +128,9 @@ services:
   Drupal\experience_builder\Access\XbUiAccessCheck:
     tags:
       - { name: access_check, applies_to: _xb_ui_access }
+  Drupal\experience_builder\Access\AuthenticationAccessChecker:
+    tags:
+      - { name: access_check, applies_to: _xb_authentication_required }
 
   # Twig.
   Drupal\experience_builder\Extension\XbTwigExtension:
@@ -145,6 +149,7 @@ services:
   Drupal\experience_builder\Controller\ComponentAuditController: {}
   Drupal\experience_builder\Controller\ExperienceBuilderController: {}
   Drupal\experience_builder\Controller\ApiAutoSaveController: {}
+  Drupal\experience_builder\Controller\ApiUiContentTemplateControllers: {}
 
   # Decorators.
   Drupal\experience_builder\Render\ImportMapResponseAttachmentsProcessor:

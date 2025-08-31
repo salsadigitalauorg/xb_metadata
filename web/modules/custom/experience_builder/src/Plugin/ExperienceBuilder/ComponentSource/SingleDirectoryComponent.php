@@ -94,7 +94,7 @@ final class SingleDirectoryComponent extends GeneratedFieldExplicitInputUxCompon
   /**
    * {@inheritdoc}
    */
-  protected function getSdcPlugin(): ComponentPlugin {
+  public function getSdcPlugin(): ComponentPlugin {
     return $this->getComponentPlugin();
   }
 
@@ -219,7 +219,15 @@ final class SingleDirectoryComponent extends GeneratedFieldExplicitInputUxCompon
     assert(is_array($component_plugin->metadata->schema));
     $props = self::getPropsForComponentPlugin($component_plugin);
     assert(is_array($component_plugin->getPluginDefinition()));
-    $status = !(isset($component_plugin->metadata->status) && $component_plugin->metadata->status === 'obsolete');
+    // Disabled if obsolete or flagged with noUi.
+    $status = !(
+      (isset($component_plugin->metadata->noUi) && $component_plugin->metadata->noUi === TRUE)
+      // The above only works on Drupal core >=11.3.
+      // @todo Remove in https://www.drupal.org/i/3537695
+      || ($component_plugin->getPluginDefinition()['noUi'] ?? FALSE)
+      || (isset($component_plugin->metadata->status) && $component_plugin->metadata->status === 'obsolete')
+    );
+
     $settings = [
       'prop_field_definitions' => $props,
     ];
@@ -312,6 +320,7 @@ final class SingleDirectoryComponent extends GeneratedFieldExplicitInputUxCompon
     if (isset($definition['status']) && $definition['status'] === 'obsolete') {
       throw new ComponentDoesNotMeetRequirementsException(['Component has "obsolete" status']);
     }
+
     // Special case exception for 'all-props' SDC.
     // (This is used to develop support for more prop shapes.)
     if ($definition['id'] === 'sdc_test_all_props:all-props') {

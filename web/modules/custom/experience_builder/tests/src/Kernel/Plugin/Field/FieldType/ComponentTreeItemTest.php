@@ -8,6 +8,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\experience_builder\Entity\Component;
 use Drupal\experience_builder\Entity\ComponentInterface;
 use Drupal\experience_builder\Entity\JavaScriptComponent;
+use Drupal\experience_builder\Entity\VersionedConfigEntityBase;
 use Drupal\experience_builder\Plugin\Field\FieldType\ComponentTreeItem;
 use Drupal\experience_builder\Plugin\Field\FieldType\ComponentTreeItemList;
 use Drupal\experience_builder\Plugin\Field\FieldType\ComponentTreeItemListInstantiatorTrait;
@@ -98,11 +99,7 @@ class ComponentTreeItemTest extends KernelTestBase {
     // different versions, and assert that this is A) valid, B) successful.
     $set_values = function (ComponentTreeItemList $item_list) use ($component) {
       $inputs = [
-        'heading' => [
-          'sourceType' => 'static:field_item:string',
-          'value' => 'This is really tricky for a first-timer …',
-          'expression' => 'ℹ︎string␟value',
-        ],
+        'heading' => 'This is really tricky for a first-timer …',
       ];
       $item_list->setValue([
         [
@@ -155,11 +152,7 @@ class ComponentTreeItemTest extends KernelTestBase {
         'uuid' => '947c196f-f108-43fd-a446-03a08100d579',
         'component_id' => 'sdc.xb_test_sdc.props-slots',
         'inputs' => [
-          'heading' => [
-            'sourceType' => 'static:field_item:string',
-            'value' => 'This is really tricky for a first-timer …',
-            'expression' => 'ℹ︎string␟value',
-          ],
+          'heading' => 'This is really tricky for a first-timer …',
         ],
       ],
     ]);
@@ -192,11 +185,7 @@ class ComponentTreeItemTest extends KernelTestBase {
         'uuid' => $root_uuid,
         'component_id' => 'sdc.xb_test_sdc.props-slots',
         'inputs' => [
-          'heading' => [
-            'sourceType' => 'static:field_item:string',
-            'value' => 'This is really tricky for a first-timer …',
-            'expression' => 'ℹ︎string␟value',
-          ],
+          'heading' => 'This is really tricky for a first-timer …',
         ],
       ],
       [
@@ -205,11 +194,7 @@ class ComponentTreeItemTest extends KernelTestBase {
         'uuid' => $child_uuid,
         'component_id' => 'sdc.xb_test_sdc.props-no-slots',
         'inputs' => [
-          'heading' => [
-            'sourceType' => 'static:field_item:string',
-            'value' => '… but eventually it all makes sense. Wished I RTFMd.',
-            'expression' => 'ℹ︎string␟value',
-          ],
+          'heading' => '… but eventually it all makes sense. Wished I RTFMd.',
         ],
       ],
     ]);
@@ -233,11 +218,7 @@ class ComponentTreeItemTest extends KernelTestBase {
         'component_id' => 'sdc.xb_test_sdc.props-slots',
         'component_version' => 'lol',
         'inputs' => [
-          'heading' => [
-            'sourceType' => 'static:field_item:string',
-            'value' => 'This is really tricky for a first-timer …',
-            'expression' => 'ℹ︎string␟value',
-          ],
+          'heading' => 'This is really tricky for a first-timer …',
         ],
       ],
       [
@@ -245,13 +226,9 @@ class ComponentTreeItemTest extends KernelTestBase {
         'slot' => 'the_body',
         'uuid' => $child_uuid,
         'component_id' => 'sdc.xb_test_sdc.props-no-slots',
-        'component_version' => 'hah',
+        'component_version' => VersionedConfigEntityBase::ACTIVE_VERSION,
         'inputs' => [
-          'heading' => [
-            'sourceType' => 'static:field_item:string',
-            'value' => '… but eventually it all makes sense. Wished I RTFMd.',
-            'expression' => 'ℹ︎string␟value',
-          ],
+          'heading' => '… but eventually it all makes sense. Wished I RTFMd.',
         ],
       ],
     ]);
@@ -259,7 +236,7 @@ class ComponentTreeItemTest extends KernelTestBase {
     $violations = $item_list->validate();
     $this->assertSame([
       '0.component_version' => "'lol' is not a version that exists on component config entity 'sdc.xb_test_sdc.props-slots'. Available versions: 'ab4d3ddce315cf64'.",
-      '1.component_version' => "'hah' is not a version that exists on component config entity 'sdc.xb_test_sdc.props-no-slots'. Available versions: '95f4f1d5ee47663b'.",
+      '1.component_version' => "'active' is not a version that exists on component config entity 'sdc.xb_test_sdc.props-no-slots'. Available versions: '95f4f1d5ee47663b'.",
     ], self::violationsToArray($violations));
   }
 
@@ -291,11 +268,7 @@ class ComponentTreeItemTest extends KernelTestBase {
         'uuid' => $root_uuid,
         'component_id' => 'sdc.xb_test_sdc.props-slots',
         'inputs' => [
-          'heading' => [
-            'sourceType' => 'static:field_item:string',
-            'value' => 'This is really tricky for a first-timer …',
-            'expression' => 'ℹ︎string␟value',
-          ],
+          'heading' => 'This is really tricky for a first-timer …',
         ],
       ],
       [
@@ -304,27 +277,15 @@ class ComponentTreeItemTest extends KernelTestBase {
         'uuid' => $child_uuid,
         'component_id' => 'sdc.xb_test_sdc.props-no-slots',
         'inputs' => [
-          'heading' => [
-            'sourceType' => 'static:field_item:string',
-            'value' => '… but eventually it all makes sense. Wished I RTFMd.',
-            'expression' => 'ℹ︎string␟value',
-          ],
+          'heading' => '… but eventually it all makes sense. Wished I RTFMd.',
         ],
       ],
       [
         'uuid' => $js_uuid,
         'component_id' => $js_component_id,
         'inputs' => [
-          'name' => [
-            'sourceType' => 'static:field_item:string',
-            'value' => 'Mad Dog Morgan',
-            'expression' => 'ℹ︎string␟value',
-          ],
-          'age' => [
-            'sourceType' => 'static:field_item:integer',
-            'value' => '35',
-            'expression' => 'ℹ︎integer␟value',
-          ],
+          'name' => 'Mad Dog Morgan',
+          'age' => '35',
         ],
       ],
     ]);
@@ -380,21 +341,9 @@ class ComponentTreeItemTest extends KernelTestBase {
       'uuid' => '85fe2843-acac-4f17-b17b-0eeaa648ea2f',
       'component_id' => $js_component_id,
       'inputs' => [
-        'name' => [
-          'sourceType' => 'static:field_item:string',
-          'value' => 'Mad Dog Morgan',
-          'expression' => 'ℹ︎string␟value',
-        ],
-        'real_name' => [
-          'sourceType' => 'static:field_item:string',
-          'value' => 'John Owen',
-          'expression' => 'ℹ︎string␟value',
-        ],
-        'age' => [
-          'sourceType' => 'static:field_item:integer',
-          'value' => '35',
-          'expression' => 'ℹ︎integer␟value',
-        ],
+        'name' => 'Mad Dog Morgan',
+        'real_name' => 'John Owen',
+        'age' => '35',
       ],
     ]);
 
@@ -467,11 +416,7 @@ class ComponentTreeItemTest extends KernelTestBase {
               'uuid' => $uuid->generate(),
               'component_id' => 'sdc.xb_test_sdc.my-cta',
               'inputs' => [
-                'text' => [
-                  'sourceType' => 'static:field_item:string',
-                  'value' => 'hello, world!',
-                  'expression' => 'ℹ︎string␟value',
-                ],
+                'text' => 'hello, world!',
                 'href' => [
                   'sourceType' => 'static:field_item:uri',
                   'value' => 'https://drupal.org',

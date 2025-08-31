@@ -33,3 +33,15 @@ component_source_entry:
     data:
       type: text
       label: 'YAML string of components'
+
+xb_ai.theme_region.settings:
+  type: config_object
+  label: 'XB AI Theme Region Settings'
+  mapping:
+    region_descriptions:
+      type: mapping
+      label: 'Region Descriptions'
+      mapping:
+        '*':
+          type: text
+          label: 'Description'

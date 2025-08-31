@@ -8,6 +8,7 @@ use Drupal\Core\Access\CsrfRequestHeaderAccessCheck;
 use Drupal\Core\Access\CsrfTokenGenerator;
 use Drupal\Core\Cache\CacheableJsonResponse;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\Core\Http\Exception\CacheableAccessDeniedHttpException;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Session\SessionConfigurationInterface;
@@ -26,6 +27,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\block\Traits\BlockCreationTrait;
 use Drupal\Tests\experience_builder\Kernel\Traits\RequestTrait;
+use Drupal\Tests\experience_builder\Kernel\Traits\VfsPublicStreamUrlTrait;
 use Drupal\Tests\experience_builder\TestSite\XBTestSetup;
 use Drupal\Tests\experience_builder\Traits\AutoSaveManagerTestTrait;
 use Drupal\Tests\experience_builder\Traits\AutoSaveRequestTestTrait;
@@ -54,6 +56,7 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
   use BlockCreationTrait;
   use RequestTrait;
   use XBFieldTrait;
+  use VfsPublicStreamUrlTrait;
 
   /**
    * {@inheritdoc}
@@ -63,6 +66,7 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
     'path_alias',
     'path',
     'test_user_config',
+    'xb_force_publish_error',
   ];
 
   /**
@@ -166,6 +170,7 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
           'original' => '.test { display: none; }',
           'compiled' => '.test{display:none;}',
         ],
+        'dataDependencies' => [],
       ]
     );
     $this->assertSame(SAVED_NEW, $code_component->save());
@@ -376,6 +381,7 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
           'original' => '.test { display: none; }',
           'compiled' => '.test{display:none;}',
         ],
+        'dataDependencies' => [],
       ]
     );
     $this->assertSame(SAVED_NEW, $code_component->save());
@@ -464,6 +470,7 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
   public function testPost(bool $authorized, bool $withGlobal, ?string $expected_403_message): void {
     $this->setUpImages();
     $this->assertSiteHomepage('/user/login');
+    $this->container->get(ModuleInstallerInterface::class)->install(['xb_test_validation']);
     $entity_type_manager = $this->container->get('entity_type.manager');
     $code_component_storage = $entity_type_manager->getStorage(JavaScriptComponent::ENTITY_TYPE_ID);
     $library_storage = $entity_type_manager->getStorage(AssetLibrary::ENTITY_TYPE_ID);
@@ -531,6 +538,7 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
         'original' => '.test { display: none; }',
         'compiled' => '.test{display:none;}',
       ],
+      'dataDependencies' => [],
     ]);
     $this->assertSame(SAVED_NEW, $code_component->save());
 
@@ -609,6 +617,15 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
           'style' => 'flared',
           'element' => 'h3',
           'text' => '',
+        ],
+      ],
+      [
+        'uuid' => 'af42c3b3-6d62-4ea8-ad07-670c7b9ccf75',
+        'component_id' => 'sdc.xb_test_sdc.heading',
+        'component_version' => '9616e3c4ab9b4fce',
+        'inputs' => [
+          // Missing input for required `element` prop.
+          'text' => 'Crumbling castle',
         ],
       ],
     ]);
@@ -754,6 +771,19 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
       ],
     ];
     $errors[] = [
+      'detail' => 'The property element is required.',
+      'source' => [
+        'pointer' => 'model.af42c3b3-6d62-4ea8-ad07-670c7b9ccf75.element',
+      ],
+      'meta' => [
+        'entity_type' => 'node',
+        'entity_id' => $node2->id(),
+        // The label should not be updated if model validation failed.
+        'label' => $node2_original_title,
+        ApiAutoSaveController::AUTO_SAVE_KEY => $autoSave->getAutoSaveKey($node2),
+      ],
+    ];
+    $errors[] = [
       'detail' => 'This value should not be null.',
       'source' => [
         'pointer' => 'css.original',
@@ -791,6 +821,7 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
 
     // Fix the errors.
     $validClientJson['model'][self::TEST_HEADING_UUID]['resolved']['style'] = 'primary';
+    $validClientJson['model']['af42c3b3-6d62-4ea8-ad07-670c7b9ccf75']['resolved']['element'] = 'h3';
     // Auto-save node 2 with only the heading.
     unset($validClientJson['model'][self::TEST_IMAGE_UUID]);
     unset($validClientJson['layout'][0]['components'][1]);
@@ -947,6 +978,73 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
     // Ensure that after the nodes have been published their auto-save data is
     // removed.
     $this->assertNoAutoSaveData();
+
+    // Now save both nodes with the same titles and expect to fail. To avoid
+    // affecting other tests the validator will only be applied to if the title
+    // contains the string 'unique!'.
+    // @see \Drupal\xb_test_validation\Plugin\Validation\Constraint\UniqueTitleConstraintValidator
+    $node1_auto_save_key = 'node:' . $node1->id() . ':en';
+    $node1->set('title', 'I am not unique!');
+    $autoSave->saveEntity($node1);
+    $node2_auto_save_key = 'node:' . $node2->id() . ':en';
+    $node2->set('title', 'I am not unique!');
+    // Remove the invalid prop set above.
+    $node2->set('field_xb_demo', []);
+    $autoSave->saveEntity($node2);
+    $auto_save_data = $this->getAutoSaveStatesFromServer();
+    $response = $this->makePublishAllRequest([
+      $node1_auto_save_key => $auto_save_data[$node1_auto_save_key],
+      $node2_auto_save_key => $auto_save_data[$node2_auto_save_key],
+    ]);
+    $decoded = self::decodeResponse($response);
+    $this->assertSame(
+      [
+        'errors' => [
+          [
+            'detail' => 'A content item with Title <em class="placeholder">I am not unique!</em> already exists.',
+            'source' => [
+              'pointer' => 'title',
+            ],
+          ],
+        ],
+      ],
+      $decoded,
+    );
+
+    // All should be good now.
+    $autoSave->saveEntity($node1->set('title', 'I am unique!'));
+    $autoSave->saveEntity($node2->set('title', 'I am different!'));
+    $auto_save_data = $this->getAutoSaveStatesFromServer();
+    $response = $this->makePublishAllRequest([
+      $node1_auto_save_key => $auto_save_data[$node1_auto_save_key],
+      $node2_auto_save_key => $auto_save_data[$node2_auto_save_key],
+    ]);
+    $this->assertSame(['message' => 'Successfully published 2 items.'], self::decodeResponse($response));
+
+    $autoSave->saveEntity($node1->set('title', 'cause exception'));
+    $autoSave->saveEntity($node2->set('title', 'this will be fine'));
+    $auto_save_data = $this->getAutoSaveStatesFromServer();
+    $response = $this->makePublishAllRequest([
+      $node1_auto_save_key => $auto_save_data[$node1_auto_save_key],
+      $node2_auto_save_key => $auto_save_data[$node2_auto_save_key],
+    ]);
+    $decoded = self::decodeResponse($response);
+    $this->assertSame([
+      'errors' => [
+        [
+          'detail' => 'Forced exception for testing purposes.',
+          'source' => [
+            'pointer' => 'error',
+          ],
+          'meta' => [
+            'entity_type' => 'node',
+            'entity_id' => $node1->id(),
+            'label' => 'cause exception',
+            ApiAutoSaveController::AUTO_SAVE_KEY => $autoSave->getAutoSaveKey($node1),
+          ],
+        ],
+      ],
+    ], $decoded);
   }
 
   /**
@@ -1116,6 +1214,7 @@ final class ApiAutoSaveControllerTest extends KernelTestBase {
         'original' => '.test { display: none; }',
         'compiled' => '.test{display:none;}',
       ],
+      'dataDependencies' => [],
     ]);
     self::assertCount(0, $code_component->getTypedData()->validate());
     $this->assertSame(SAVED_NEW, $code_component->save());

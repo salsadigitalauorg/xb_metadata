@@ -2,13 +2,132 @@
 
 describe('Publish review functionality', () => {
   beforeEach(() => {
-    cy.drupalXbInstall(['xb_test_article_fields', 'xb_test_invalid_field']);
+    cy.drupalXbInstall([
+      'xb_test_article_fields',
+      'xb_test_invalid_field',
+      'xb_force_publish_error',
+    ]);
     cy.drupalSession();
     cy.drupalLogin('xbUser', 'xbUser');
   });
 
   afterEach(() => {
     cy.drupalUninstall();
+  });
+
+  it('Handles non-validation publish errors', () => {
+    cy.loadURLandWaitForXBLoaded({ url: 'xb/xb_page/2' });
+    cy.findByLabelText('Title').type('{selectall}{del}');
+    cy.findByLabelText('Title').type('cause exception');
+    cy.get('[data-testid="xb-publish-review"]:not([disabled])', {
+      timeout: 20000,
+    }).should('exist');
+
+    cy.publishAllPendingChanges(['cause exception'], false);
+    cy.get('[data-testid="error-details"] h4').should(
+      'have.text',
+      'cause exception',
+    );
+    cy.get('[data-testid="publish-error-detail"]').should(
+      'include.text',
+      'Forced exception for testing purposes.',
+    );
+    cy.get('button', { timeout: 20000 })
+      .contains(`Publish 1 selected`, { timeout: 20000 })
+      .should('exist');
+  });
+
+  it('Has links to the corresponding entity in errors', () => {
+    const entityData = [];
+    const paths = [{ path: 'xb/xb_page/2' }, { path: 'xb/node/2' }];
+    paths.forEach(({ path }) => {
+      cy.loadURLandWaitForXBLoaded({ url: path });
+      cy.openLibraryPanel();
+      cy.get('.primaryPanelContent').findByText('Hero').click();
+      cy.findByLabelText('Heading').type('{selectall}{del}');
+      cy.findByLabelText('Heading').type('Z');
+      cy.waitForElementContentInIframe('.my-hero__heading', 'Z');
+      cy.window().then((win) => {
+        entityData.push({
+          title: win.document.querySelector(
+            '[data-testid="xb-navigation-button"]',
+          ).textContent,
+          componentId: win.document
+            .querySelector(
+              '[data-xb-component-id="sdc.xb_test_sdc.my-hero"][data-xb-uuid]',
+            )
+            .getAttribute('data-xb-uuid'),
+          path,
+        });
+        if (entityData.length === paths.length) {
+          cy.intercept('POST', '**/xb/api/v0/auto-saves/publish', {
+            statusCode: 422,
+            body: {
+              errors: [
+                {
+                  detail:
+                    'We really dislike the following thing you typed: "Z".',
+                  source: {
+                    pointer: `model.${entityData[0].componentId}.heading`,
+                  },
+                  meta: {
+                    entity_type: entityData[0].path.split('/')[1],
+                    entity_id: '2',
+                    label: entityData[0].title,
+                    api_auto_save_key: `${entityData[0].path.split('/')[1]}:2:en`,
+                  },
+                  entityLabel: entityData[0].title,
+                },
+                {
+                  detail:
+                    'We really dislike the following thing you typed: "Z".',
+                  source: {
+                    pointer: `model.${entityData[1].componentId}.heading`,
+                  },
+                  meta: {
+                    entity_type: entityData[1].path.split('/')[1],
+                    entity_id: '2',
+                    label: entityData[1].title,
+                    api_auto_save_key: `${entityData[1].path.split('/')[1]}:2:en`,
+                  },
+                  entityLabel: entityData[1].title,
+                },
+              ],
+            },
+          }).as('publishRequest');
+        }
+      });
+    });
+
+    cy.loadURLandWaitForXBLoaded({ url: 'xb/xb_page/1', clearAutoSave: false });
+    cy.findByText('Review 2 changes').should('exist');
+    cy.publishAllPendingChanges(['I am an empty node', 'Empty Page'], false);
+    cy.get('[data-testid="error-details"]').then(($errors) => {
+      $errors.each((i, element) => {
+        const title = element.querySelector('h4').textContent;
+        const href = element
+          .querySelector('[data-testid="publish-error-detail"] a')
+          .getAttribute('href');
+        const data = entityData.filter((item) => item.title === title);
+        expect(data).to.have.length(1);
+        expect(
+          href.endsWith(
+            `/${data[0].path}/editor/component/${data[0].componentId}`,
+          ),
+        ).to.be.true;
+      });
+    });
+    // Alter the link so it opens in the current tab.
+    cy.get('[data-testid="publish-error-detail"] a').invoke(
+      'attr',
+      'target',
+      '_self',
+    );
+    // Confirm clicking the link opens the UI of the erroring entity and the
+    // component with the error is selected.
+    cy.get('[data-testid="publish-error-detail"] a').first().click();
+    cy.waitForElementContentInIframe('.my-hero__heading', 'Z');
+    cy.findByLabelText('Heading').should('exist');
   });
 
   it(

@@ -191,6 +191,37 @@ experience_builder.js_component.*:
     css:
       type: experience_builder.compilable_code
       label: 'CSS'
+    dataDependencies:
+      type: mapping
+      label: 'Data dependencies'
+      mapping:
+        urls:
+          # Should be omitted when there's no URL data dependencies.
+          requiredKey: false
+          type: sequence
+          constraints:
+            # There must be >=1 dependency; otherwise the key should be omitted.
+            NotBlank: ~
+          sequence:
+            type: uri
+            label: 'URLs fetched by the component'
+        drupalSettings:
+          # Should be omitted when there's no drupalSettings data dependencies.
+          requiredKey: false
+          type: sequence
+          constraints:
+            # There must be >=1 dependency; otherwise the key should be omitted.
+            NotBlank: ~
+          sequence:
+            type: string
+            label: 'XB Drupal settings needed by the component'
+            constraints:
+              Choice:
+                - v0.branding
+                - v0.breadcrumbs
+                - v0.pageTitle
+                - v0.jsonapiSettings
+                - v0.baseUrl
 
 experience_builder.page_region.*:
   type: config_entity
@@ -375,6 +406,7 @@ experience_builder.component_source_settings.sdc:
     prop_field_definitions:
       constraints:
         KeyForEverySdcProp: "%parent.%parent.%parent.%parent.source_local_id"
+        NotNullValueForEveryRequiredSdcProp: '%parent.%parent.%parent.%parent.source_local_id'
 
 # Every ComponentSource plugin MUST define two config schema types:
 # 1. One for the ComponentSource-specific per-Component config entity local/intra-source ID: typically a plugin ID or a
@@ -475,10 +507,14 @@ experience_builder.generated_field_explicit_input_ux:
           # The default value must be retrievable
           expression:
             type: string
-            label: ''
-            constraints: { }
-            # @todo Add `StructuredDataPropExpression` validation constraint that fails if StructuredDataPropExpression::fromString() fails
-            # StructuredDataPropExpression: [field_type]
+            label: 'The expression that contains the field evaluation instructions'
+            constraints:
+              ValidStructuredDataPropExpression:
+                choices:
+                  - FieldTypePropExpression
+                  - FieldTypeObjectPropsExpression
+                  - ReferenceFieldTypePropExpression
+                message: 'The expression is valid, but not one of the allowed types: %choices.'
 
 experience_builder.component_source_local_id.js:
   type: experience_builder.component_source_local_id.*
@@ -682,6 +718,9 @@ experience_builder.content_template.*.*.*:
         PluginExists:
           manager: entity_type.manager
           interface: Drupal\Core\Entity\ContentEntityInterface
+        # @todo Update this in https://www.drupal.org/project/experience_builder/issues/3518272
+        Choice:
+          - node
     content_entity_type_bundle:
       type: string
       label: 'Bundle'
@@ -811,3 +850,41 @@ experience_builder.staged_config_update.*:
             label: 'Input'
             constraints:
               NotBlank: [ ]
+
+experience_builder.folder.*:
+  type: config_entity
+  constraints:
+    FullyValidatable: ~
+  mapping:
+    name:
+      type: required_label
+      label: 'Name'
+      constraints:
+        UniqueNamePerFolderTypeConstraint:
+          id: '%parent.uuid'
+          configEntityTypeId: '%parent.configEntityTypeId'
+    configEntityTypeId:
+      type: string
+      label: 'Folder type'
+      constraints:
+        # Accept only config entity types that implement FolderItemInterface.
+        PluginExists:
+          manager: entity_type.manager
+          interface: Drupal\experience_builder\Entity\FolderItemInterface
+    weight:
+      type: weight
+      label: 'Weight'
+    items:
+      type: sequence
+      orderby: value
+      sequence:
+        type: string
+        label: 'Folder items IDs'
+        constraints:
+          BetterConfigExists:
+            prefix: 'experience_builder.[%parent.%parent.configEntityTypeId].'
+          OneFolderPerItemLimitConstraint:
+            id: '%parent.%parent.uuid'
+            configEntityTypeId: '%parent.%parent.configEntityTypeId'
+      constraints:
+        Unique: ~

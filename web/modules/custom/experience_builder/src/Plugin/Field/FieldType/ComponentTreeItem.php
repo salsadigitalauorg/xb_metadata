@@ -21,7 +21,7 @@ use Drupal\Core\TypedData\DataReferenceInterface;
 use Drupal\Core\TypedData\DataReferenceTargetDefinition;
 use Drupal\experience_builder\Entity\Component;
 use Drupal\experience_builder\Entity\ComponentInterface;
-use Drupal\experience_builder\Entity\VersionedConfigEntityBase;
+use Drupal\experience_builder\MissingComponentInputsException;
 use Drupal\experience_builder\Plugin\DataType\ConfigEntityVersionAdapter;
 use Drupal\experience_builder\PropSource\ContentAwareDependentInterface;
 use Symfony\Component\Validator\ConstraintViolation;
@@ -361,6 +361,13 @@ class ComponentTreeItem extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
+  public static function mainPropertyName() {
+    return NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function isEmpty() {
     // If either `uuid` or `inputs` is set, consider this not empty
     return $this->get('uuid')->getValue() === NULL || $this->get('inputs')->getValue() === NULL;
@@ -446,12 +453,6 @@ class ComponentTreeItem extends FieldItemBase {
       }
       if (\array_key_exists('component_version', $values) && $this->getComponent()?->getLoadedVersion() !== $values['component_version']) {
         $this->onChange('component_version', FALSE);
-      }
-      if (\array_key_exists('component_version', $values) && $values['component_version'] === VersionedConfigEntityBase::ACTIVE_VERSION && $component = $this->getComponent()) {
-        // Replace 'active' with the current active version. This allows passing
-        // 'active' as the version without needing to know the specific version
-        // ID.
-        $this->writePropertyValue('component_version', $component->getActiveVersion());
       }
     }
 
@@ -655,7 +656,12 @@ class ComponentTreeItem extends FieldItemBase {
       return;
     }
     // Allow component source plugins to normalize the stored data.
-    $inputs = $this->getInputs();
+    try {
+      $inputs = $this->getInputs();
+    }
+    catch (\UnexpectedValueException | MissingComponentInputsException) {
+      $inputs = NULL;
+    }
     if ($inputs !== NULL) {
       $inputs = $source->optimizeExplicitInput($inputs);
       $this->setInput($inputs);

@@ -41,7 +41,6 @@ use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media\Plugin\media\Source\VideoFile;
 use Symfony\Component\Validator\Constraints\Hostname;
 use Symfony\Component\Validator\Constraints\Ip;
-use Symfony\Component\Validator\Constraints\NotEqualTo;
 
 /**
  * @file
@@ -68,8 +67,8 @@ class ShapeMatchingHooks {
     // \Drupal\Core\Validation\ConstraintManager::registerDefinitions() for
     // unknown reasons. Do it defensively, to not break when this changes.
     if (!isset($definitions['Hostname'])) {
-      // @see \Drupal\experience_builder\JsonSchemaInterpreter\JsonSchemaStringFormat::HOSTNAME
-      // @see \Drupal\experience_builder\JsonSchemaInterpreter\JsonSchemaStringFormat::IDN_HOSTNAME
+      // @see \Drupal\experience_builder\JsonSchemaInterpreter\JsonSchemaStringFormat::Hostname
+      // @see \Drupal\experience_builder\JsonSchemaInterpreter\JsonSchemaStringFormat::IdnHostname
       $definitions['Hostname'] = [
         'label' => 'Hostname',
         'class' => Hostname::class,
@@ -77,22 +76,16 @@ class ShapeMatchingHooks {
         'provider' => 'core',
         'id' => 'Hostname',
       ];
-      // @see \Drupal\experience_builder\JsonSchemaInterpreter\JsonSchemaStringFormat::IPV4
-      // @see \Drupal\experience_builder\JsonSchemaInterpreter\JsonSchemaStringFormat::IPV6
+    }
+    if (!isset($definitions['Ip'])) {
+      // @see \Drupal\experience_builder\JsonSchemaInterpreter\JsonSchemaStringFormat::Ipv4
+      // @see \Drupal\experience_builder\JsonSchemaInterpreter\JsonSchemaStringFormat::Ipv6
       $definitions['Ip'] = [
         'label' => 'IP address',
         'class' => Ip::class,
         'type' => ['string'],
         'provider' => 'core',
         'id' => 'Ip',
-      ];
-      // @see `type: experience_builder.page_region.*`
-      $definitions['NotEqualTo'] = [
-        'label' => 'Not equal to',
-        'class' => NotEqualTo::class,
-        'type' => ['string'],
-        'provider' => 'core',
-        'id' => 'NotEqualTo',
       ];
     }
   }
@@ -160,8 +153,8 @@ class ShapeMatchingHooks {
     ];
     if (in_array($format->id(), $protected_formats, TRUE)) {
       return match($operation) {
-        // It is guaranteed that these text formats/editors are available only for
-        // XB's component inputs form.
+        // It is guaranteed that these text formats/editors are available only
+        // for XB's component instance form.
         // @see \Drupal\filter\Element\TextFormat::processFormats()
         // @see \Drupal\experience_builder\Hook\ReduxIntegratedFieldWidgetsHooks::processTextFormat()
         'use' => AccessResult::allowed()->addCacheableDependency($format),

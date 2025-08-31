@@ -16,6 +16,11 @@ class XbAiTempStore {
   public const CURRENT_LAYOUT_KEY = 'current_layout';
 
   /**
+   * Storage key for landing page plan data.
+   */
+  public const LANDING_PAGE_PLAN_KEY = 'landing_page_plan';
+
+  /**
    * The private tempstore object.
    *
    * @var \Drupal\Core\TempStore\PrivateTempStore

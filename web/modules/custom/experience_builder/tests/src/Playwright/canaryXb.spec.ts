@@ -1,12 +1,22 @@
 import { expect } from '@playwright/test';
 import { test } from './fixtures/DrupalSite';
+import { Drupal } from './objects/Drupal';
 
 /**
  * Tests installing Experience Builder.
  */
 test.describe('Canary XB', () => {
-  test('Setup test site with Experience Builder', async ({ page, drupal }) => {
-    await drupal.setupXBTestSite();
+  test.beforeAll(
+    'Setup test site with Experience Builder',
+    async ({ browser, drupalSite }) => {
+      const page = await browser.newPage();
+      const drupal: Drupal = new Drupal({ page, drupalSite });
+      await drupal.setupXBTestSite();
+      await page.close();
+    },
+  );
+
+  test('Setup test site with Experience Builder', async ({ page }) => {
     await page.goto('/first');
     await expect(
       page
@@ -82,5 +92,24 @@ test.describe('Canary XB', () => {
     await expect(layerPanelElement).toContainText('Two Column');
     await expect(layerPanelElement).toContainText('Column One');
     await expect(layerPanelElement).toContainText('Column Two');
+  });
+
+  test('Component can be deleted', async ({ page, drupal, xBEditor }) => {
+    await drupal.loginAsAdmin();
+    await page.goto('/first');
+    await xBEditor.goToEditor();
+    // Delete the image that uses an adapted source.
+    await xBEditor.clickPreviewComponent('sdc.xb_test_sdc.image');
+    await page.keyboard.press('Delete');
+    await page
+      .locator(
+        '#xbPreviewOverlay [data-xb-component-id="sdc.xb_test_sdc.image"]',
+      )
+      .waitFor({ state: 'detached' });
+    await expect(
+      page.locator(
+        '#xbPreviewOverlay [data-xb-component-id="sdc.xb_test_sdc.image"]',
+      ),
+    ).toHaveCount(0);
   });
 });

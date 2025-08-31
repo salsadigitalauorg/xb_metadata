@@ -161,6 +161,16 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
 
     $matches = [];
     $components = $sdc_manager->getAllComponents();
+    // Shape matching is only ever relevant to SDCs that may appear in the UI,
+    // and hence also in XB. Omit SDCs with `noUi: true`.
+    $components = array_filter(
+      $components,
+      fn (Component $c) => (property_exists($c->metadata, 'noUi') && $c->metadata->noUi === FALSE)
+        // The above only works on Drupal core >=11.3.
+        // @todo Remove in https://www.drupal.org/i/3537695
+        // @phpstan-ignore-next-line offsetAccess.nonOffsetAccessible
+        || ($c->getPluginDefinition()['noUi'] ?? FALSE) === FALSE,
+    );
     // Ensure the consistent sorting that ComponentPluginManager should have
     // already guaranteed.
     $components = array_combine(
@@ -289,6 +299,32 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         'media_library',
       ],
       'expected' => [
+        'REQUIRED, type=integer' => [
+          'SDC props' => [
+            '⿲xb_test_sdc:card-with-remote-image␟width',
+            '⿲xb_test_sdc:card-with-remote-image␟height',
+          ],
+          'static prop source' => 'ℹ︎integer␟value',
+          'instances' => [],
+          'adapter_matches_field_type' => [
+            'day_count' => [
+              'oldest' => 'ℹ︎datetime␟value',
+              'newest' => 'ℹ︎datetime␟value',
+            ],
+          ],
+          'adapter_matches_instance' => [
+            'day_count' => [
+              'oldest' => [
+                'ℹ︎␜entity:node:foo␝field_event_duration␞␟end_value',
+                'ℹ︎␜entity:node:foo␝field_event_duration␞␟value',
+              ],
+              'newest' => [
+                'ℹ︎␜entity:node:foo␝field_event_duration␞␟end_value',
+                'ℹ︎␜entity:node:foo␝field_event_duration␞␟value',
+              ],
+            ],
+          ],
+        ],
         'REQUIRED, type=integer&$ref=json-schema-definitions://experience_builder.module/column-width' => [
           'SDC props' => [
             '⿲xb_test_sdc:two_column␟width',
@@ -300,6 +336,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'REQUIRED, type=object&$ref=json-schema-definitions://experience_builder.module/image' => [
           'SDC props' => [
+            '⿲xb_test_sdc:card␟image',
             '⿲xb_test_sdc:image␟image',
             '⿲xb_test_sdc:image-srcset-candidate-template-uri␟image',
           ],
@@ -342,6 +379,13 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         'REQUIRED, type=string' => [
           'SDC props' => [
             '⿲sdc_test_all_props:all-props␟test_REQUIRED_string',
+            '⿲xb_test_sdc:attributes␟not_attributes',
+            '⿲xb_test_sdc:card-with-local-image␟src',
+            '⿲xb_test_sdc:card-with-local-image␟alt',
+            '⿲xb_test_sdc:card-with-remote-image␟src',
+            '⿲xb_test_sdc:card-with-remote-image␟alt',
+            '⿲xb_test_sdc:card-with-stream-wrapper-image␟src',
+            '⿲xb_test_sdc:card-with-stream-wrapper-image␟alt',
             '⿲xb_test_sdc:heading␟text',
             '⿲xb_test_sdc:my-hero␟heading',
             '⿲xb_test_sdc:shoe_details␟summary',
@@ -416,6 +460,16 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
           'adapter_matches_field_type' => [],
           'adapter_matches_instance' => [],
         ],
+        'REQUIRED, type=string&enum[0]=lazy&enum[1]=eager' => [
+          'SDC props' => [
+            '⿲xb_test_sdc:card␟loading',
+            '⿲xb_test_sdc:card-with-local-image␟loading',
+          ],
+          'static prop source' => 'ℹ︎list_string␟value',
+          'instances' => [],
+          'adapter_matches_field_type' => [],
+          'adapter_matches_instance' => [],
+        ],
         'REQUIRED, type=string&enum[0]=moon-stars-fill&enum[1]=moon-stars&enum[2]=star-fill&enum[3]=star&enum[4]=stars&enum[5]=rocket-fill&enum[6]=rocket-takeoff-fill&enum[7]=rocket-takeoff&enum[8]=rocket' => [
           'SDC props' => [
             '⿲xb_test_sdc:shoe_icon␟name',
@@ -444,6 +498,26 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
           'adapter_matches_instance' => [],
         ],
         'REQUIRED, type=string&format=uri' => [
+          'SDC props' => [
+            '⿲sdc_test_all_props:all-props␟test_REQUIRED_string_format_uri',
+          ],
+          'static prop source' => 'ℹ︎link␟url',
+          'instances' => [
+            // @todo This includes relative URLs, fix in https://www.drupal.org/project/experience_builder/issues/3542895
+            'ℹ︎␜entity:file␝uri␞␟url',
+            'ℹ︎␜entity:file␝uri␞␟value',
+            'ℹ︎␜entity:media:baby_videos␝field_media_video_file␞␟entity␜␜entity:file␝uri␞␟url',
+            'ℹ︎␜entity:media:baby_videos␝field_media_video_file␞␟entity␜␜entity:file␝uri␞␟value',
+            'ℹ︎␜entity:media:vacation_videos␝field_media_video_file_1␞␟entity␜␜entity:file␝uri␞␟url',
+            'ℹ︎␜entity:media:vacation_videos␝field_media_video_file_1␞␟entity␜␜entity:file␝uri␞␟value',
+            'ℹ︎␜entity:node:foo␝field_silly_image␞␟entity␜␜entity:file␝uri␞␟url',
+            'ℹ︎␜entity:node:foo␝field_silly_image␞␟entity␜␜entity:file␝uri␞␟value',
+            'ℹ︎␜entity:node:foo␝field_silly_image␞␟src_with_alternate_widths',
+          ],
+          'adapter_matches_field_type' => [],
+          'adapter_matches_instance' => [],
+        ],
+        'REQUIRED, type=string&format=uri-reference' => [
           'SDC props' => [
             '⿲xb_test_sdc:my-hero␟cta1href',
           ],
@@ -948,6 +1022,19 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         'optional, type=string' => [
           'SDC props' => [
             '⿲sdc_test_all_props:all-props␟test_string',
+            '⿲xb_test_sdc:card␟heading',
+            '⿲xb_test_sdc:card␟content',
+            '⿲xb_test_sdc:card␟footer',
+            '⿲xb_test_sdc:card␟sizes',
+            '⿲xb_test_sdc:card-with-local-image␟heading',
+            '⿲xb_test_sdc:card-with-local-image␟content',
+            '⿲xb_test_sdc:card-with-local-image␟footer',
+            '⿲xb_test_sdc:card-with-remote-image␟heading',
+            '⿲xb_test_sdc:card-with-remote-image␟content',
+            '⿲xb_test_sdc:card-with-remote-image␟footer',
+            '⿲xb_test_sdc:card-with-stream-wrapper-image␟heading',
+            '⿲xb_test_sdc:card-with-stream-wrapper-image␟content',
+            '⿲xb_test_sdc:card-with-stream-wrapper-image␟footer',
             '⿲xb_test_sdc:my-hero␟subheading',
             '⿲xb_test_sdc:my-hero␟cta1',
             '⿲xb_test_sdc:my-hero␟cta2',
@@ -987,7 +1074,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&$ref=json-schema-definitions://experience_builder.module/image-uri' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::URI->value . '_image',
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Uri->value . '_image',
           ],
           'static prop source' => NULL,
           'instances' => [
@@ -1108,6 +1195,16 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
           'adapter_matches_field_type' => [],
           'adapter_matches_instance' => [],
         ],
+        'optional, type=string&enum[0]=lazy&enum[1]=eager' => [
+          'SDC props' => [
+            '⿲xb_test_sdc:card-with-remote-image␟loading',
+            '⿲xb_test_sdc:card-with-stream-wrapper-image␟loading',
+          ],
+          'static prop source' => 'ℹ︎list_string␟value',
+          'instances' => [],
+          'adapter_matches_field_type' => [],
+          'adapter_matches_instance' => [],
+        ],
         'optional, type=string&enum[0]=prefix&enum[1]=suffix' => [
           'SDC props' => [
             '⿲xb_test_sdc:shoe_button␟icon_position',
@@ -1137,7 +1234,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=date' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::DATE->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Date->value,
           ],
           'static prop source' => 'ℹ︎datetime␟value',
           'instances' => [
@@ -1157,7 +1254,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=date-time' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::DATE_TIME->value),
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::DateTime->value),
           ],
           'static prop source' => 'ℹ︎datetime␟value',
           'instances' => [
@@ -1169,7 +1266,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=duration' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::DURATION->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Duration->value,
           ],
           // @todo No field type in Drupal core uses \Drupal\Core\TypedData\Plugin\DataType\DurationIso8601.
           'static prop source' => NULL,
@@ -1179,7 +1276,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=email' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::EMAIL->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Email->value,
           ],
           'static prop source' => 'ℹ︎email␟value',
           'instances' => [
@@ -1209,7 +1306,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=hostname' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::HOSTNAME->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Hostname->value,
           ],
           // @todo adapter from `type: string, format=uri`?
           'static prop source' => NULL,
@@ -1219,7 +1316,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=idn-email' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::IDN_EMAIL->value),
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::IdnEmail->value),
           ],
           'static prop source' => 'ℹ︎email␟value',
           'instances' => [
@@ -1249,7 +1346,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=idn-hostname' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::IDN_HOSTNAME->value),
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::IdnHostname->value),
           ],
           // phpcs:disable
           // @todo adapter from `type: string, format=uri`?
@@ -1266,7 +1363,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         // @todo Update \Drupal\sdc\Component\ComponentValidator to disallow this — does not make sense for presenting information?
         'optional, type=string&format=ipv4' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::IPV4->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Ipv4->value,
           ],
           'static prop source' => NULL,
           'instances' => [],
@@ -1276,7 +1373,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         // @todo Update \Drupal\sdc\Component\ComponentValidator to disallow this — does not make sense for presenting information?
         'optional, type=string&format=ipv6' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::IPV6->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Ipv6->value,
           ],
           'static prop source' => NULL,
           'instances' => [],
@@ -1285,7 +1382,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=iri' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::IRI->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Iri->value,
           ],
           'static prop source' => 'ℹ︎link␟url',
           'instances' => [
@@ -1312,7 +1409,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=iri-reference' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::IRI_REFERENCE->value),
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::IriReference->value),
           ],
           'static prop source' => 'ℹ︎link␟url',
           'instances' => [
@@ -1340,7 +1437,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         // @todo Update \Drupal\sdc\Component\ComponentValidator to disallow this — does not make sense for presenting information?
         'optional, type=string&format=json-pointer' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::JSON_POINTER->value),
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::JsonPointer->value),
           ],
           'static prop source' => NULL,
           'instances' => [],
@@ -1350,7 +1447,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         // @todo Update \Drupal\sdc\Component\ComponentValidator to disallow this — does not make sense for presenting information?
         'optional, type=string&format=regex' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::REGEX->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Regex->value,
           ],
           'static prop source' => NULL,
           'instances' => [],
@@ -1360,7 +1457,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         // @todo Update \Drupal\sdc\Component\ComponentValidator to disallow this — does not make sense for presenting information?
         'optional, type=string&format=relative-json-pointer' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::RELATIVE_JSON_POINTER->value),
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::RelativeJsonPointer->value),
           ],
           'static prop source' => NULL,
           'instances' => [],
@@ -1369,7 +1466,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=time' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::TIME->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Time->value,
           ],
           // @todo Adapter for @FieldType=timestamp -> `type:string,format=time`, @FieldType=datetime -> `type:string,format=time`
           'static prop source' => NULL,
@@ -1379,7 +1476,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=uri' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::URI->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Uri->value,
           ],
           'static prop source' => 'ℹ︎link␟url',
           'instances' => [
@@ -1406,7 +1503,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=uri-reference' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::URI_REFERENCE->value),
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::UriReference->value),
           ],
           'static prop source' => 'ℹ︎link␟url',
           'instances' => [
@@ -1434,7 +1531,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         // @todo Update \Drupal\sdc\Component\ComponentValidator to disallow this — does not make sense for presenting information?
         'optional, type=string&format=uri-template' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::URI_TEMPLATE->value),
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . str_replace('-', '_', JsonSchemaStringFormat::UriTemplate->value),
           ],
           'static prop source' => NULL,
           'instances' => [],
@@ -1458,7 +1555,7 @@ class PropShapeToFieldInstanceTest extends KernelTestBase {
         ],
         'optional, type=string&format=uuid' => [
           'SDC props' => [
-            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::UUID->value,
+            '⿲sdc_test_all_props:all-props␟test_string_format_' . JsonSchemaStringFormat::Uuid->value,
           ],
           'static prop source' => NULL,
           'instances' => [

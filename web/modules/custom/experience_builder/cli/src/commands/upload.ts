@@ -34,7 +34,7 @@ interface UploadOptions {
 export function uploadCommand(program: Command): void {
   program
     .command('upload')
-    .description('Upload components to Experience Builder')
+    .description('build and upload local components and global CSS assets')
     .option('--client-id <id>', 'Client ID')
     .option('--client-secret <secret>', 'Client Secret')
     .option('--site-url <url>', 'Site URL')
@@ -153,8 +153,11 @@ async function getBuildAndUploadResults(
     const message = 'All component builds failed.';
     p.note(chalk.red(message));
   }
-  let spinner: any;
-  spinner = p.spinner();
+  const spinner: {
+    start: (msg?: string) => void;
+    stop: (msg?: string, code?: number) => void;
+    message: (msg?: string) => void;
+  } = p.spinner();
   spinner.start('Uploading components');
 
   // Only upload the successfully built components.
@@ -174,6 +177,9 @@ async function getBuildAndUploadResults(
       // Process all component files
       const { sourceCodeJs, compiledJs, sourceCodeCss, compiledCss, metadata } =
         await processComponentFiles(dir);
+      if (!metadata) {
+        throw new Error('Invalid metadata file');
+      }
 
       const machineName =
         buildResult.itemName ||
@@ -184,7 +190,7 @@ async function getBuildAndUploadResults(
       //   without relying on yml metadata.
       const importedJsComponents = metadata.importedJsComponents || [];
 
-      const componentPayload = createComponentPayload({
+      const componentPayloadArg = {
         metadata,
         machineName,
         componentName,
@@ -193,7 +199,8 @@ async function getBuildAndUploadResults(
         sourceCodeCss,
         compiledCss,
         importedJsComponents,
-      });
+      };
+      const componentPayload = createComponentPayload(componentPayloadArg);
 
       // Check if component exists already
       let componentExists = false;
@@ -201,16 +208,48 @@ async function getBuildAndUploadResults(
       try {
         await apiService.getComponent(machineName);
         componentExists = true;
-      } catch (error) {
+      } catch {
         // Component does not exist, will create new.
       }
 
-      // Create or update the component
-      if (componentExists) {
-        await apiService.updateComponent(machineName, componentPayload);
-      } else {
-        await apiService.createComponent(componentPayload);
+      try {
+        // Create or update the component
+        if (componentExists) {
+          await apiService.updateComponent(machineName, componentPayload, true);
+        } else {
+          await apiService.createComponent(componentPayload, true);
+        }
+      } catch (error) {
+        // If the error is a 422 and specifies dataDependencies as the problem,
+        // it might be due to running a version of XB that does not yet support
+        // this property. Remove dataDependencies from the payload and make
+        // another attempts.
+        if (
+          error.status === 422 &&
+          error?.response?.data?.errors?.[0]?.source?.pointer ===
+            'dataDependencies'
+        ) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { dataDependencies, ...remainingPayload } = componentPayload;
+          if (componentExists) {
+            await apiService.updateComponent(machineName, remainingPayload);
+          } else {
+            await apiService.createComponent(remainingPayload);
+          }
+        } else {
+          // If we are here the create/update failed and is not a 422 related to
+          // dataDependencies.
+          // Make another attempt to create/update without the 2nd argument so
+          // the error is in the format expected by the catch statement that
+          // summarizes the success (or lack thereof) of this operation.
+          if (componentExists) {
+            await apiService.updateComponent(machineName, componentPayload);
+          } else {
+            await apiService.createComponent(componentPayload);
+          }
+        }
       }
+
       results.push({
         itemName: componentName,
         success: true,

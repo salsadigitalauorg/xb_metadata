@@ -17,7 +17,6 @@ use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\experience_builder\Entity\Page;
-use Drupal\pathauto\PathAutoState;
 
 /**
  * @file
@@ -107,16 +106,6 @@ final class PageHooks {
       return AccessResult::neutral()->addCacheableDependency($system_config);
     }
     return AccessResult::neutral();
-  }
-
-  /**
-   * Implements hook_xb_page_presave().
-   */
-  #[Hook('xb_page_presave')]
-  public function ensurePathautoSkipped(Page $page): void {
-    if ($this->moduleHandler->moduleExists('pathauto')) {
-      $page->get('path')->first()->set('pathauto', PathautoState::SKIP);
-    }
   }
 
 }

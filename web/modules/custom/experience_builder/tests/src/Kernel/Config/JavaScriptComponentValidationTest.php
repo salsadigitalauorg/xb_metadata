@@ -28,6 +28,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
     // XB's dependencies (the subset that is needed for these tests).
     'file',
     'image',
+    'link',
     'options',
   ];
 
@@ -80,6 +81,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
         'original' => '.test { display: none; }',
         'compiled' => '.test{display:none;}',
       ],
+      'dataDependencies' => [],
     ];
     JavaScriptComponent::create([...$javascript_component_base, 'machineName' => 'other'])->save();
     $this->entity = JavaScriptComponent::create([
@@ -314,6 +316,35 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
   }
 
   /**
+   * Tests `type: string` `format: …` validation edge cases.
+   *
+   * @testWith [{"format": "uri-reference"}, "https://example.com", null]
+   *           [{"format": "uri-reference"}, "ftp://example.com", null]
+   *           [{"format": "uri-reference"}, "/node/1", null]
+   *           [{"format": "uri-reference"}, "bunny.jpg", null]
+   *           [{"format": "uri"}, "https://example.com", null]
+   *           [{"format": "uri"}, "ftp://example.com", null]
+   *           [{"format": "uri"}, "/node/1", "Invalid URL format"]
+   *           [{"format": "uri"}, "bunny.jpg", "Invalid URL format"]
+   *
+   * @todo Expand this test coverage in https://www.drupal.org/project/experience_builder/issues/3542890 — this shows what is allowed by the two choices offered by the UI.
+   */
+  public function testStringFormatPropDefinition(array $string_definition, string $example, ?string $validation_error): void {
+    $this->entity->set('props', [
+      'beep' => [
+        'type' => 'string',
+        'title' => 'A meaningful title, but irrelevant in this test',
+        ...$string_definition,
+        'examples' => [$example],
+      ],
+    ]);
+    $expected_validation_errors = is_null($validation_error)
+      ? []
+      : ['' => 'Prop "beep" has invalid example value: [] ' . $validation_error];
+    $this->assertValidationErrors($expected_validation_errors);
+  }
+
+  /**
    * Tests `type: object` validation and edge cases.
    *
    * (Cannot be tested generically, like `string`, `integer` and `number`.)
@@ -351,8 +382,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
       ],
     ]);
     $this->assertValidationErrors([
-      '' => 'Prop "some_object" has invalid example value: [src] The property src is required
-[] Does not have a value in the enumeration [null]',
+      '' => 'Prop "some_object" has invalid example value: [src] The property src is required',
       'props.some_object.enum.0' => 'This value should not be null.',
       'props.some_object.examples.0' => [
         'This value should not be blank.',
@@ -395,6 +425,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [
           'js.compiled' => 'This value should not be null.',
@@ -431,6 +462,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [
           '' => 'Unable to find class/interface "unknown" specified in the prop "mixed_up_prop" for the component "experience_builder:test-unknown-prop-type".',
@@ -455,6 +487,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [],
       ],
@@ -497,6 +530,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [],
       ],
@@ -523,6 +557,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [
           // ⚠️ SDC does not complain about this!
@@ -549,6 +584,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [],
       ],
@@ -582,6 +618,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [],
       ],
@@ -612,6 +649,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [],
       ],
@@ -630,6 +668,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '',
             'compiled' => '',
           ],
+          'dataDependencies' => [],
         ],
         [],
       ],
@@ -661,6 +700,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [],
       ],
@@ -687,6 +727,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [
           '' => 'Prop "image" is required, but does not have example value',
@@ -712,6 +753,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [],
       ],
@@ -743,6 +785,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [
           '' => 'Prop "image" is of type "object" without a $ref, which is not supported',
@@ -781,6 +824,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [
           '' => "Prop \"image\" has invalid example value: [text] The property text is required\n[element] The property element is required",
@@ -819,6 +863,7 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
             'original' => '.test { display: none; }',
             'compiled' => '.test{display:none;}',
           ],
+          'dataDependencies' => [],
         ],
         [],
       ],
@@ -881,6 +926,20 @@ class JavaScriptComponentValidationTest extends BetterConfigEntityValidationTest
     $this->assertValidationErrors([
       '' => 'The component "experience_builder:test" declared [test-slot] both as a prop and as a slot. Make sure to use different names.',
     ]);
+  }
+
+  /**
+   * @testWith [{}, []]
+   *           [{"something": []}, {"dataDependencies.something": "'something' is not a supported key."}]
+   *           [{"drupalSettings": []}, {"dataDependencies.drupalSettings": "This value should not be blank."}]
+   *           [{"drupalSettings": ["v0.pageTitle", "foo"]}, {"dataDependencies.drupalSettings.1": "The value you selected is not a valid choice."}]
+   *           [{"drupalSettings": ["v0.pageTitle", "v0.branding"]}, []]
+   *           [{"urls": []}, {"dataDependencies.urls": "This value should not be blank."}]
+   *           [{"urls": ["https://www.drupal.org/jsonapi"]}, []]
+   */
+  public function testDataDependencies(array $test, array $expected_errors): void {
+    $this->entity->set('dataDependencies', $test);
+    $this->assertValidationErrors($expected_errors);
   }
 
   protected function assertValidationErrors(array $expected_messages): void {

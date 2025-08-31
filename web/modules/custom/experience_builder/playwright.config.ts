@@ -10,10 +10,10 @@ export default defineConfig({
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  /* Retry */
+  retries: 2,
   /* Maximum failures */
-  maxFailures: 1,
+  maxFailures: 0,
   /* Parallel test workers, leave undefined for automatic */
   workers: undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -24,10 +24,13 @@ export default defineConfig({
   ],
   /* https://playwright.dev/docs/test-timeouts */
   timeout: 120_000,
+  expect: { timeout: 10_000 },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: process.env.DRUPAL_TEST_BASE_URL,
+    /* https://playwright.dev/docs/api/class-testoptions#test-options-ignore-https-errors */
+    ignoreHTTPSErrors: true,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     /* Take screenshot automatically on test failure */
@@ -42,7 +45,7 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: /global\.setup\.ts/,
+      testMatch: /_global\.setup\.ts/,
     },
 
     {
@@ -50,7 +53,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         deviceScaleFactor: 1,
-        /* Making the browser window/viewport much bigger avoids weird issues like the UI covering up part of the preview canvas etc. */
+        /* Making the browser window/viewport much bigger avoids weird issues like the UI covering up part of the editor frame etc. */
         viewport: { width: 2560, height: 1440 },
       },
       dependencies: ['setup'],

@@ -1,5 +1,6 @@
 import { test } from './fixtures/DrupalSite';
 import { expect } from '@playwright/test';
+import { Drupal } from './objects/Drupal';
 
 /**
  * This test suite checks that the Experience Builder UI shows/hides UI interface based on the permissions of users
@@ -7,13 +8,23 @@ import { expect } from '@playwright/test';
  * then it checks that a user with minimal permissions can still access the UI but with limited functionality.
  */
 test.describe('XB UI Permissions', () => {
+  test.beforeAll(
+    'Setup test site with Experience Builder',
+    async ({ browser, drupalSite }) => {
+      const page = await browser.newPage();
+      const drupal: Drupal = new Drupal({ page, drupalSite });
+      await drupal.installModules(['experience_builder']);
+      await drupal.applyRecipe(`core/recipes/image_media_type`);
+      await drupal.setupXBTestSite();
+      await page.close();
+    },
+  );
+
   test('User with admin permissions can load XB UI and see lots of buttons', async ({
     page,
     drupal,
     xBEditor,
   }) => {
-    // Create a role with no permissions
-    await drupal.setupXBTestSite();
     await drupal.loginAsAdmin();
     await page.goto('/first');
     await xBEditor.goToEditor();
@@ -57,19 +68,23 @@ test.describe('XB UI Permissions', () => {
     await expect(
       primaryPanel.getByRole('button', { name: 'Add new' }),
     ).toBeVisible();
-    await expect(
-      primaryPanel.getByRole('button', { name: 'Code' }),
-    ).toBeAttached();
 
     // Make a change to the page
     await expect(page.getByText('No changes')).toBeAttached();
-    await page.getByText('Hero').first().click();
+
+    await page
+      .locator('[aria-label="Draggable component Hero"]')
+      .first()
+      .click();
+    await page.waitForTimeout(500);
     await expect(page.getByLabel('Sub-heading')).toBeAttached();
     await page.getByLabel('Sub-heading').fill('New Heading');
+    await expect(page.getByLabel('Sub-heading')).toHaveValue('New Heading');
     await page.getByText('Review 1 change').click();
     await page.getByTestId('xb-publish-review-select-all').click();
     await expect(page.getByText('Publish 1 selected')).toBeAttached();
   });
+
   test('User with no XB permissions can load XB UI', async ({
     page,
     drupal,

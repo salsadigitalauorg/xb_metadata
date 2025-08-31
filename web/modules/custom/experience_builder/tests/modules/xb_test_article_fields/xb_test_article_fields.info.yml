@@ -20,8 +20,3 @@ dependencies:
   - drupal:ckeditor5
   - drupal:text
   - drupal:taxonomy
-
-# Information added by Drupal.org packaging script on 2025-07-30
-version: '0.7.3-alpha1'
-project: 'experience_builder'
-datestamp: 1753882094
