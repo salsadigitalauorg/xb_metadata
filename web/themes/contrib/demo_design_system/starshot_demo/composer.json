@@ -1,0 +1,20 @@
+{
+    "name": "civictheme/starshot_demo",
+    "description": "The Starshot Demo Design System theme",
+    "type": "drupal-theme",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.2",
+        "drupal/default_content": "^2"
+    },
+    "extra": {
+        "civictheme": {
+            "version": "1.0.0",
+            "homepage": "https://github.com/civictheme/civictheme",
+            "support": {
+                "issues": "https://github.com/civictheme/monorepo-drupal/issues",
+                "source": "https://github.com/civictheme/monorepo-drupal"
+            }
+        }
+    }
+}

@@ -1,0 +1,98 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Grid
+
+status: obsolete
+
+group: Base
+
+props:
+
+  type: object
+  # required:
+  #   - items
+
+  properties:
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #items:
+    #type: array
+    #title: Items
+    #description: Array of column items.
+
+    row_element:
+      type: string
+      title: Row element
+      description: Row element.
+      default: div
+      examples:
+        - div
+
+    row_class:
+      type: string
+      title: Row class
+      description: "Optional row class override. Defaults to 'row'."
+      examples:
+        - row
+
+    row_attributes:
+      type: string
+      title: Row attributes
+      description: Additional row attributes.
+      examples:
+        - 'custom-class'
+
+    column_element:
+      type: string
+      title: Column element
+      description: "Column element. Defaults to 'div'."
+      default: div
+      examples:
+        - div
+
+    column_class:
+      type: string
+      title: Column class
+      description: "Optional column class override. Defaults to 'col'."
+      examples:
+        - col
+
+    column_attributes:
+      type: string
+      title: Column attributes
+      description: Additional column attributes.
+      examples:
+        - 'custom-class'
+
+    use_container:
+      type: boolean
+      title: Whether to use container or not.
+      examples:
+        - true
+
+    is_fluid:
+      type: boolean
+      title: "Whether the grid is fluid or not. Defaults to false."
+      default: false
+      examples:
+        - false
+
+    template_column_count:
+      type: integer
+      title: Template column count
+      description: "Number of columns in the row. Defaults to 12."
+      default: 12
+      examples:
+        - 12
+
+    fill_width:
+      type: boolean
+      title: "Stretch hanging items to the full width of the row."
+      examples:
+        - true
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

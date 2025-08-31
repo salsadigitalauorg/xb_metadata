@@ -1,0 +1,158 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Campaign
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'Boring placeholder'
+          width: 600
+          height: 400
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #tags:
+    #type: array
+    #title: Tags
+    #description: Array of tags.
+    #items:
+    #type: string
+    #examples:
+    #- ['Tag1', 'Tag2']
+
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - Campaign heading which runs across two or three lines
+
+    date:
+      type: string
+      title: Date
+      description: Date.
+      examples:
+        - '26 Aug 2024'
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: Content.
+      examples:
+        - 'Join us for a special event with exciting activities and offers.'
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #links:
+    #type: array
+    #title: Links
+    #description: 'Array of link objects containing:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #kind:
+    #type: string
+    #title: Kind
+    #description: 'Button kind: submit, reset, button, link.'
+    #default: button
+    #enum:
+    #- submit
+    #- reset
+    #- button
+    #- link
+    #examples:
+    #- link
+    #
+    #type:
+    #type: string
+    #title: Type
+    #description: 'Button type: primary, secondary, tertiary.'
+    #default: null
+    #enum:
+    #- primary
+    #- secondary
+    #- tertiary
+    #examples:
+    #- primary
+    #
+    #text:
+    #type: string
+    #title: Text
+    #description: Button text.
+    #examples:
+    #- Learn More
+    #
+    #url:
+    #type: string
+    #title: Url
+    #description: URL for the link button.
+    #examples:
+    #- 'https://example.com/signup'
+    #
+    #is_new_window:
+    #type: boolean
+    #title: Open in a new window or not.
+    #examples:
+    #- false
+    #
+    #is_external:
+    #type: boolean
+    #title: If link is external or not.
+    #examples:
+    #- false
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - top
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-campaign-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

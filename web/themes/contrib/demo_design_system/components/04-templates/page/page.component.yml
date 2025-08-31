@@ -1,0 +1,41 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Page
+
+status: obsolete
+
+group: Templates
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+# @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+#links:
+#type: array
+#title: Links
+#description: Array of links.
+#
+#items:
+#type: array
+#title: Items
+#description: Array of alternative links.
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

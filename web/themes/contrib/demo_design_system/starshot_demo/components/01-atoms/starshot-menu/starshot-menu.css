@@ -1,0 +1,30 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  width: 100%;
+  margin: 0;
+}
+.ct-menu .ct-link {
+  color: #12285f;
+}
+.ct-menu .ct-link:hover, .ct-menu .ct-link:visited, .ct-menu .ct-link:hover:visited {
+  color: #12285f;
+}
+.ct-menu .ct-link:hover {
+  text-decoration: underline;
+}
+
+.starshot-header-panel .ct-menu {
+  flex-direction: row;
+}
+.starshot-header-panel .ct-menu .ct-link {
+  text-transform: uppercase;
+}

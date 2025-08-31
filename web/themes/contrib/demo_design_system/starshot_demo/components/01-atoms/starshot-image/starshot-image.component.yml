@@ -1,0 +1,22 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Image
+
+status: experimental
+
+group: Atom
+
+props:
+
+  type: object
+
+  properties:
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: '/themes/contrib/demo_design_system/assets/images/drupal_placeholder_image_1.jpg'
+          alt: 'Starshot placeholder image'
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'Placeholder image'

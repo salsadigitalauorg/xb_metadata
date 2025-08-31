@@ -1,0 +1,49 @@
+name: 'Experience Builder Test Site'
+description: 'Site for running tests against.'
+type: 'XB'
+install:
+  - stark
+  - experience_builder
+  - xb_test_code_components
+  - xb_test_sdc
+  - xb_dev_standard
+config:
+  # Loose config imports because the code components in `xb_test_code_components` contain UUIDs, which are used to
+  # generate corresponding assets on disk with predictable names.
+  # @todo Change to `strict: true` after core bug https://www.drupal.org/project/drupal/issues/3532271 is fixed.
+  strict: false
+  import:
+    experience_builder: '*'
+    system:
+      # This menu must exist so it can be exposed as a block component and used in our
+      # default content.
+      - system.menu.admin
+    # This module provides code component (JavaScriptComponent) config entities used by default content.
+    # TRICKY: just like all other types of components, code components get associated Component config
+    # entities. To provide a stable target for the default content (a predictable component_version), even
+    # after additional modules are installed that affects the Component config entities `prop_field_definitions`,
+    # but this Recipe does control what gets installed, so it is predictable. Installing modules that alter
+    # which field types are used to populate code component props would cause the component versions to change,
+    # but even that shouldn't break the default content included in this Recipe, because it'll just be pointing
+    # to "old" Component config entity versions.
+    xb_test_code_components: '*'
+    # For the `field_xb_demo` field instance, populated by the default content in this recipe.
+    xb_dev_standard:
+      - field.storage.node.field_xb_demo
+      - field.field.node.article.field_xb_demo
+  actions:
+    system.site:
+      simpleConfigUpdate:
+        page.front: /homepage
+        name: 'Drupal'
+    # @see \xb_dev_standard_install()
+    core.entity_view_display.node.article.default:
+      setComponent:
+        name: field_tags
+        options:
+          type: experience_builder_naive_render_sdc_tree
+          label: hidden
+          settings: {}
+          third_party_settings: {}
+          weight: -2
+          region: content

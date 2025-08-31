@@ -1,0 +1,61 @@
+name: Starshot Demo
+type: theme
+base theme: civictheme
+description: 'The Starshot Demo Design System theme'
+core_version_requirement: ^9 || ^10 || ^11
+
+dependencies:
+  - default_content:default_content
+
+regions:
+  header: 'Header'
+  banner: 'Banner'
+  highlighted: 'Highlighted'
+  content: 'Content'
+  footer: 'Footer'
+  hidden: 'Hidden'
+
+features:
+  - favicon
+
+# Override libraries to point to the sub-theme assets.
+# @note It is advised to preserve civictheme/* libraries overrides in sub-themes
+# to allow CivicTheme to additionally process libraries on behalf of sub-themes.
+libraries-override:
+  civictheme/global:
+    css:
+      theme:
+        dist/civictheme.css: dist/styles.css
+    js:
+      dist/civictheme.js: dist/scripts.js
+
+  civictheme/css-variables:
+    css:
+      theme:
+        dist/civictheme.variables.css: dist/styles.variables.css
+
+ckeditor5-stylesheets:
+  - dist/styles.editor.css
+  - dist/styles.variables.css
+  # Using colors from the Color Selector is not supported until the issue
+  # below is resolved.
+  # @see https://www.drupal.org/project/drupal/issues/3406959
+  # - /sites/default/files/css-variables.starshot_demo.css
+
+components:
+  namespaces:
+    base:
+      - components/00-base
+    atoms:
+      - components/01-atoms
+    molecules:
+      - components/02-molecules
+    organisms:
+      - components/03-organisms
+    templates:
+      - components/04-templates
+
+# Information added by Drupal.org packaging script on 2025-07-15
+version: '1.0.6'
+project: 'demo_design_system'
+datestamp: 1752543831

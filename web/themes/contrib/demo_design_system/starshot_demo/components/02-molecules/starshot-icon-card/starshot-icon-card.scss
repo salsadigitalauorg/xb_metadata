@@ -1,0 +1,28 @@
+.starshot-icon-card {
+  &__image {
+    margin-bottom: 15px;
+    max-width: 91px;
+
+    @include ct-breakpoint(m) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__title {
+    @include ct-typography('starshot-testimonial-card-title');
+
+    color: #12285f;
+    margin-bottom: 5px;
+
+    @include ct-breakpoint(m) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__summary {
+    @include ct-typography('starshot-testimonial-card-summary');
+
+    color: ct-color-light('body-4');
+    margin: 0;
+  }
+}

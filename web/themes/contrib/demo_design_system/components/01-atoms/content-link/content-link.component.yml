@@ -1,0 +1,66 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Content link
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+    #required:
+    #- text
+    #- url
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    text:
+      type: string
+      title: Text
+      description: Button text.
+      examples:
+        - Link text
+
+    url:
+      type: string
+      title: Url
+      description: URL.
+      examples:
+        - 'http://example.com'
+
+    title:
+      type: string
+      title: Title
+      description: Defines the title of a link.
+      examples:
+        - Link title
+
+    is_new_window:
+      type: boolean
+      title: Open in a new window.
+      examples:
+        - false
+
+    is_external:
+      type: boolean
+      title: Link is external.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

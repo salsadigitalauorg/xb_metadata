@@ -1,0 +1,8 @@
+uuid: d1f9b1d0-bbb3-4154-965d-3b1b1357cbcc
+langcode: en
+status: true
+dependencies: {  }
+id: starshot-demo-social-media
+label: 'Starshot Demo Social Media Menu'
+description: 'Starshot demo social media links'
+locked: false

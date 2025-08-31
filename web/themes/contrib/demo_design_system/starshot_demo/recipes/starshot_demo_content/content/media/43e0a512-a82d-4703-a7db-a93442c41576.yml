@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 43e0a512-a82d-4703-a7db-a93442c41576
+  bundle: image
+  default_langcode: en
+  depends:
+    73eab3d3-8aa4-435b-9701-e3baf2a2dd77: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: temp_starshot_footer.png
+  created:
+    -
+      value: 1741575877
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  field_media_image:
+    -
+      entity: 73eab3d3-8aa4-435b-9701-e3baf2a2dd77
+      alt: 'Temp SDDS footer'
+      title: ''
+      width: 3444
+      height: 1280

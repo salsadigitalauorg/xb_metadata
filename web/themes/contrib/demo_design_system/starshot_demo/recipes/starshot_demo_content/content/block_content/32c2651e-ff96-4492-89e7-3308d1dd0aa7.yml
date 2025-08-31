@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 32c2651e-ff96-4492-89e7-3308d1dd0aa7
+  bundle: basic
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'Temp Header'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  body:
+    -
+      value: '<img src="/themes/contrib/demo_design_system/starshot_demo/assets/starshot/temp_starshot_header.png" width="3424" height="260">'
+      format: full_html
+      summary: ''

@@ -1,0 +1,114 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Single filter
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    # - items
+    #   - text
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Title for filters.
+      default: 'Filter results by:'
+      examples:
+        - 'Filter results by:'
+
+    form_attributes:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Form attributes
+      description: Form attributes. If empty - the form will not be printed.
+      examples:
+        - 'method="post" action="/search-results"'
+
+    form_hidden_fields:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Form hidden fields
+      description: Form hidden fields.
+      examples:
+        - '<input type="hidden" name="token" value="abc123">'
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #items:
+    #type: array
+    #title: Items
+    #description: 'Filter links:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #size:
+    #type: string
+    #title: Size
+    #description: 'Size: large, regular, small. Defaults to regular.'
+    #default: regular
+    #enum:
+    #- large
+    #- regular
+    #- small
+    #examples:
+    #- regular
+
+    submit_text:
+      type: string
+      title: Submit text
+      description: Text on the submit button.
+      default: Apply filter
+      examples:
+        - Apply filter
+
+    reset_text:
+      type: string
+      title: Reset text
+      description: Text on the reset button.
+      default: Clear all
+      examples:
+        - Clear all
+
+    is_multiple:
+      type: boolean
+      title: Allow to select multiple filter values.
+      examples:
+        - false
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

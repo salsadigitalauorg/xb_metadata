@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 637e1a81-ed30-4192-960d-8cf3804b8990
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: starshot_11.png
+  uri:
+    -
+      value: 'public://2025-03/starshot_11.png'
+      url: /sites/default/files/2025-03/starshot_11.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 389574
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741360357

@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 46aa06f9-fab7-4787-b412-550d9a0ca36a
+  bundle: image
+  default_langcode: en
+  depends:
+    a13069f0-e5e8-4738-9aa9-2ab6167a9cbf: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: starshot_7.png
+  created:
+    -
+      value: 1741358419
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: a13069f0-e5e8-4738-9aa9-2ab6167a9cbf
+      alt: Nestle
+      title: ''
+      width: 317
+      height: 83

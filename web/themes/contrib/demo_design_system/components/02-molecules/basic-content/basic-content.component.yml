@@ -1,0 +1,68 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Basic content
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- content
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: Content.
+      examples:
+        - >
+          <h1>Heading 1</h1>
+          <p>Sample paragraph with <a href="https://example.com">a link</a> and
+          some text.</p>
+          <blockquote>A sample blockquote.</blockquote>
+
+    is_contained:
+      type: boolean
+      title: Contained or not.
+      default: false
+      examples:
+        - false
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - both
+
+    with_background:
+      type: boolean
+      title: With background or not.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

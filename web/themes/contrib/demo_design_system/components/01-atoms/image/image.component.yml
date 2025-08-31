@@ -1,0 +1,45 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+# @todo this image could be done like the XB image with nesting.
+
+name: CT Image
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+    #required:
+    #- url
+
+  properties:
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: '/themes/contrib/demo_design_system/assets/images/drupal_placeholder_image_1.jpg'
+          alt: 'Starshot placeholder image'
+
+    width:
+      type: string
+      title: Width
+      description: Width.
+      examples:
+        - '600px'
+
+    height:
+      type: string
+      title: Height
+      description: Height.
+      examples:
+        - '400px'
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

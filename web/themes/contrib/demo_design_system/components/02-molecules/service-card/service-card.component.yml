@@ -1,0 +1,91 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Service card
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- title
+    # - links
+    #   - text
+    #   - url
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The text of card title.
+      examples:
+        - Services category title across one or two lines
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #links:
+    #type: array
+    #title: Links
+    #description: 'Links array:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #text:
+    #type: string
+    #title: Text
+    #description: Link text.
+    #examples:
+    #- Example link text
+    #
+    #url:
+    #type: string
+    #title: Url
+    #description: URL.
+    #examples:
+    #- https://example.com
+    #
+    #is_new_window:
+    #type: boolean
+    #title: Open in a new window.
+    #examples:
+    #- false
+    #
+    #is_external:
+    #type: boolean
+    #title: Link is external.
+    #examples:
+    #- true
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

@@ -1,0 +1,38 @@
+.story-welcome {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Drupal brand color.
+  background-color: ct-color-light('drupal-brand');
+
+  a {
+    color: ct-color-light('body-3');
+  }
+
+  a:hover {
+    color: ct-color-light('highlight');
+  }
+}
+
+.story-welcome__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .ct-logo {
+    margin-bottom: 2em;
+
+    .ct-logo__image {
+      max-height: 5em;
+    }
+  }
+
+  .ct-paragraph {
+    margin-top: 2em;
+    max-width: 50em;
+  }
+}

@@ -1,0 +1,214 @@
+{% if show_hero %}
+  {% embed '@organisms/old-starshot-banner/old-starshot-banner.twig' with {
+    theme: theme,
+    title: 'Build the Open Web with Drupal',
+    featured_image: {url: 'assets/backgrounds/starshot_demo_banner.png', alt: 'Featured image alt text'},
+  } only %}
+    {% block content %}
+      {% include '@atoms/old-starshot-paragraph/old-starshot-paragraph.twig' with {
+        theme: theme,
+        display: 'large',
+        content: 'Drupal is the open-source CMS that helps you deliver ambitious, elegant, and performant digital experiences at scale.',
+      } only %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}
+
+{% if show_icons %}
+  {% embed '@base/old-starshot-container/old-starshot-container.twig' with {constrain: true} %}
+    {% block content %}
+      {% include '@atoms/old-starshot-heading/old-starshot-heading.twig' with {
+        theme: theme,
+        level: 2,
+        display: 'drupal-4',
+        align: 'center',
+        content: 'Build Outside The Box',
+      } only %}
+      {% embed '@base/starshot-three-col/starshot-three-col.twig' %}
+        {% block column_one %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            theme: theme,
+            title: 'Easy-To-Use Tooling',
+            summary: 'Enables users to take advantage of Drupal\'s powerful technical architecture more easily than ever before.',
+            display: 'centered',
+            image: {url: 'assets/starshot/starshot_1.png', alt: ''},
+          } only %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            theme: theme,
+            title: 'Continuous innovation',
+            summary: 'Powerful new features delivered continuously keep Drupal at the cutting edge of the web.',
+            display: 'centered',
+            image: {url: 'assets/starshot/starshot_2.png', alt: ''},
+          } only %}
+        {% endblock %}
+        {% block column_three %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            theme: theme,
+            title: 'Seamless Upgrades',
+            summary: 'Drupal\'s commitment to easy upgrades in the future means never having to worry about a major re-platforming to stay up to date.',
+            display: 'centered',
+            image: {url: 'assets/starshot/starshot_3.png', alt: ''},
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}
+
+{% if show_case_study %}
+  {% include '@organisms/old-starshot-case-study/old-starshot-case-study.twig' with {
+    theme: theme,
+    title: 'The Power of Drupal',
+    featured_image: { url: './assets/starshot/tesla_car.png', alt: 'Tesla car image alt text' },
+    description: 'Learn why Drupal powers one in 40 websites in the world including sites from Tesla, Pfizer and NBC.',
+    data_panel: {
+      image: {
+        url: 'assets/starshot/tesla_logo.png',
+        alt: 'Data panel image alt text',
+      },
+      description: 'Tesla believes the faster the world stops relying on fossil fuels and moves towards a zero-emission future, the better.',
+      link: {
+        text: 'Learn more',
+        url: '/',
+      },
+      panels: [
+        {
+          amount: '+1',
+          sub: 'k',
+          description: 'Commits in the last week',
+        },
+        {
+          amount: '+123',
+          sub: 'k',
+          description: 'Users actively contributing',
+        },
+        {
+          amount: '+3',
+          sub: 'k',
+          description: 'Comments in the last week',
+        },
+      ],
+    }
+  } only %}
+{% endif %}
+
+{% if show_nav_cards %}
+  {% embed '@base/old-starshot-container/old-starshot-container.twig' with {constrain: true, background_url: 'assets/starshot/background_1.png'} %}
+    {% block content %}
+      {% embed '@base/starshot-one-col/starshot-one-col.twig' %}
+        {% block column_one %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            theme: theme,
+            title: 'Ready to try Drupal?',
+            summary: 'With robust content management tools, sophisticated APIs for multichannel publishing, and a track record of continuous innovation - Drupal is the best digital experience platform(DXP) on the web, proudly open source.',
+            link: {text: 'Learn more', url: '/'},
+            background: 'background-5',
+            display: 'horizontal',
+          } only %}
+        {% endblock %}
+      {% endembed %}
+      {% embed '@base/starshot-three-col/starshot-three-col.twig' %}
+        {% block column_one %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            theme: theme,
+            title: 'Download Drupal',
+            summary: 'Drupal is a powerful framework that has inspired a new generation of digital experiences.',
+            link: {text: 'Download Drupal', url: '/'},
+            background: 'background-2',
+          } only %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            theme: theme,
+            title: 'Developer\'s Guide',
+            summary: 'Drupal is a powerful framework that has inspired a new generation of digital experiences.',
+            link: {text: 'Download Drupal', url: '/'},
+            background: 'background-3',
+          } only %}
+        {% endblock %}
+        {% block column_three %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            theme: theme,
+            title: 'Drupal Quickstart',
+            summary: 'Drupal is a powerful framework that has inspired a new generation of digital experiences.',
+            link: {text: 'Download Drupal', url: '/'},
+            background: 'background-4',
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}
+
+{% if show_resources %}
+  {% embed '@base/old-starshot-container/old-starshot-container.twig' with {constrain: true} %}
+    {% block content %}
+      {% include '@atoms/old-starshot-heading/old-starshot-heading.twig' with {
+        theme: theme,
+        level: 2,
+        display: 'drupal-2',
+        content: 'Explore Webinars, Articles, Guides and More',
+      } only %}
+      {% include '@atoms/old-starshot-paragraph/old-starshot-paragraph.twig' with {
+        theme: theme,
+        display: 'large',
+        color: 'body-2',
+        content: 'Learn about Drupal\'s technical benefits and upgrading',
+      } only %}
+      {% embed '@base/starshot-three-col/starshot-three-col.twig' %}
+        {% block column_one %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            title: 'Demo 1',
+            display: 'overlay',
+            image: {url: 'assets/starshot/starshot_4.png'},
+            tags: [{icon: 'education-book', content: 'Blogs'}],
+          } only %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            title: 'Demo 2',
+            display: 'overlay',
+            image: {url: 'assets/starshot/starshot_4.png'},
+            tags: [{icon: 'education-book', content: 'Blogs'}],
+          } only %}
+        {% endblock %}
+        {% block column_three %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            title: 'Demo 3',
+            display: 'overlay',
+            image: {url: 'assets/starshot/starshot_4.png'},
+            tags: [{icon: 'education-book', content: 'Blogs'}],
+          } only %}
+        {% endblock %}
+      {% endembed %}
+      {% embed '@base/starshot-three-col/starshot-three-col.twig' %}
+        {% block column_one %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            title: 'Demo 4',
+            display: 'overlay',
+            image: {url: 'assets/starshot/starshot_4.png'},
+            tags: [{icon: 'education-book', content: 'Blogs'}],
+          } only %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            title: 'Demo 5',
+            display: 'overlay',
+            image: {url: 'assets/starshot/starshot_4.png'},
+            tags: [{icon: 'education-book', content: 'Blogs'}],
+          } only %}
+        {% endblock %}
+        {% block column_three %}
+          {% include '@molecules/old-starshot-card/old-starshot-card.twig' with {
+            title: 'Demo 6',
+            display: 'overlay',
+            image: {url: 'assets/starshot/starshot_4.png'},
+            tags: [{icon: 'education-book', content: 'Blogs'}],
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}

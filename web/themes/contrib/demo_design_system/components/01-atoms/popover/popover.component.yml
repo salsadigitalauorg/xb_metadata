@@ -1,0 +1,81 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Popover
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+  # required:
+  #   - content
+  #   - trigger
+  #     - text
+
+  properties:
+    trigger:
+      type: object
+      title: Trigger
+      description: 'Trigger link object:'
+
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Text.
+          examples:
+            - Click me
+
+        url:
+          type: string
+          title: Url
+          description: Optional URL.
+          examples:
+            - https://example.com
+
+        is_new_window:
+          type: boolean
+          title: Open link in a new window.
+          examples:
+            - false
+
+        is_external:
+          type: boolean
+          title: Link is external or not.
+          examples:
+            - false
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: Content of popover panel.
+      examples:
+        - 'Sample content here'
+
+    group:
+      type: string
+      title: Group
+      description: Group name.
+      examples:
+        - 'sample-group'
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

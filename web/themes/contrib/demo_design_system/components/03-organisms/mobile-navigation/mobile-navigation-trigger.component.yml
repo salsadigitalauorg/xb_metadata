@@ -1,0 +1,42 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Mobile navigation trigger
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'theme: light, dark.'
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    text:
+      type: string
+      title: Text
+      description: Button text.
+      examples:
+        - Button text
+
+    icon:
+      type: string
+      title: Icon
+      description: Icon symbol name.
+      default: bars
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

@@ -1,0 +1,107 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-starshot-statistic-card--align-center {
+  text-align: center;
+}
+.ct-starshot-statistic-card__top {
+  white-space: nowrap;
+  margin-bottom: 8px;
+  display: block;
+}
+@media (min-width: 0) {
+  .ct-starshot-statistic-card__number {
+    font-size: 3.875rem;
+    line-height: 3.75rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-statistic-card__number {
+    font-size: 3.125rem;
+    line-height: 3.125rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-statistic-card__number {
+    font-size: 6.25rem;
+    line-height: 6.25rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 0) {
+  .ct-starshot-statistic-card__suffix {
+    font-size: 1.875rem;
+    line-height: 2.875rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-statistic-card__suffix {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-statistic-card__suffix {
+    font-size: 1.875rem;
+    line-height: 2.875rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+}
+.ct-starshot-statistic-card__description {
+  display: block;
+  margin: 0 auto;
+}
+@media (min-width: 0) {
+  .ct-starshot-statistic-card__description {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-statistic-card__description {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-statistic-card__description {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+}
+.ct-starshot-statistic-card.ct-theme-light .ct-starshot-statistic-card__number,
+.ct-starshot-statistic-card.ct-theme-light .ct-starshot-statistic-card__suffix,
+.ct-starshot-statistic-card.ct-theme-light .ct-starshot-statistic-card__description {
+  color: var(--ct-starshot-statistic-card-light-text-color);
+}
+.ct-starshot-statistic-card.ct-theme-dark .ct-starshot-statistic-card__number,
+.ct-starshot-statistic-card.ct-theme-dark .ct-starshot-statistic-card__suffix,
+.ct-starshot-statistic-card.ct-theme-dark .ct-starshot-statistic-card__description {
+  color: var(--ct-starshot-statistic-card-dark-text-color);
+}

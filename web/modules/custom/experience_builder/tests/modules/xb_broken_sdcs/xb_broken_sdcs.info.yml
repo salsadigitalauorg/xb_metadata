@@ -1,0 +1,9 @@
+name: XB Broken SDCs
+description: 'Nothing but busted SDCs here folks'
+type: module
+package: Testing
+
+# Information added by Drupal.org packaging script on 2025-07-30
+version: '0.7.3-alpha1'
+project: 'experience_builder'
+datestamp: 1753882094

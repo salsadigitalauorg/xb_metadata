@@ -1,0 +1,98 @@
+@import '../../../node_modules/@splidejs/splide/dist/css/splide-core.min';
+
+.ct-starshot-slider {
+  $root: &;
+
+  .splide__slide.is-active {
+    #{$root}__card-inner {
+      box-shadow: -12px 12px 0 ct-color-light('background-5');
+
+      @include ct-breakpoint(m) {
+        box-shadow: -18px 18px 0 ct-color-light('background-5');
+      }
+    }
+  }
+
+  .splide__pagination {
+    display: flex;
+    gap: 12px;
+
+    @include ct-breakpoint(xxl) {
+      gap: 16px;
+    }
+
+    @include ct-breakpoint(xxl) {
+      gap: 24px;
+    }
+  }
+
+  .splide__arrows {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+    padding: 0 12px;
+
+    @include ct-breakpoint(l) {
+      margin-top: 36px;
+      gap: 16px;
+    }
+
+    @include ct-breakpoint(xxl) {
+      margin-top: 72px;
+      gap: 24px;
+    }
+  }
+
+  .splide__arrow {
+    position: relative;
+    transform: none;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+
+    svg {
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+
+      @include ct-breakpoint(l) {
+        width: 20px;
+        height: 20px;
+      }
+
+      @include ct-breakpoint(xxl) {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  }
+
+  .splide__pagination__page {
+    width: 16px;
+    height: 16px;
+    background: transparent;
+    border: 2px solid ct-color-light('border-1');
+    border-radius: 100%;
+    cursor: pointer;
+
+    &.is-active {
+      background: ct-color-light('background-5');
+      border: 0;
+    }
+
+    @include ct-breakpoint(l) {
+      width: 20px;
+      height: 20px;
+      border-width: 2px;
+    }
+
+    @include ct-breakpoint(xxl) {
+      width: 24px;
+      height: 24px;
+      border-width: 4px;
+    }
+  }
+}

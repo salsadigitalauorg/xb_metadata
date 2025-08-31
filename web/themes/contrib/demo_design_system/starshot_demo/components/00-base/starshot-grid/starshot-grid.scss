@@ -1,0 +1,114 @@
+@mixin starshot-grid-apply-xb {
+  @content;
+
+  // Testing a fix to retain gap when using experience builder.
+  & > .xb--sortable-list {
+    @content;
+  }
+}
+
+.starshot-grid {
+  $root: &;
+
+  --gap: 40px;
+
+  & .ct-starshot-container {
+    flex-grow: 1;
+  }
+
+  @include starshot-grid-apply-xb {
+    display: flex;
+    gap: var(--gap);
+    width: 100%;
+  }
+
+  &--gap-none {
+    --gap: 0;
+  }
+
+  &--gap-small {
+    --gap: 16px;
+  }
+
+  &--gap-medium {
+    --gap: 32px;
+  }
+
+  &--gap-large {
+    --gap: 64px;
+  }
+
+  &--vertical-top {
+    @include starshot-grid-apply-xb {
+      align-items: flex-start;
+    }
+  }
+
+  &--vertical-center {
+    @include starshot-grid-apply-xb {
+      align-items: center;
+    }
+  }
+
+  &--vertical-bottom {
+    @include starshot-grid-apply-xb {
+      align-items: flex-end;
+    }
+  }
+
+  &--wrap-wrap {
+    @include starshot-grid-apply-xb {
+      flex-wrap: wrap;
+    }
+  }
+
+  &--wrap-nowrap {
+    @include starshot-grid-apply-xb {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &--horizontal-left {
+    @include starshot-grid-apply-xb {
+      justify-content: flex-start;
+    }
+  }
+
+  &--horizontal-center {
+    @include starshot-grid-apply-xb {
+      justify-content: center;
+    }
+  }
+
+  &--horizontal-right {
+    @include starshot-grid-apply-xb {
+      justify-content: flex-end;
+    }
+  }
+
+  &--horizontal-space-between {
+    @include starshot-grid-apply-xb {
+      justify-content: space-between;
+    }
+  }
+
+  &--direction-across {
+    @include starshot-grid-apply-xb {
+      flex-direction: row;
+    }
+  }
+
+  &--direction-down {
+    @include starshot-grid-apply-xb {
+      flex-direction: column;
+    }
+  }
+
+  &--last-to-end > :last-child {
+    margin-inline-start: auto;
+  }
+
+  div:empty {
+    display: none;
+  }
+}

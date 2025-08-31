@@ -1,0 +1,69 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Old Starshot Paragraph
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+    #required:
+    #- content
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: The description's content.
+      examples:
+        - 'This is a paragraph of text that provides a brief overview.'
+
+    color:
+      type: string
+      title: Color
+      description: 'Color: body, body-2, body-3'
+      default: body
+      enum:
+        - body
+        - body-2
+        - body-3
+      examples:
+        - body
+
+    display:
+      type: string
+      title: Display
+      description: 'Size: regular, large'
+      default: regular
+      enum:
+        - regular
+        - large
+      examples:
+        - regular
+
+    allow_html:
+      type: boolean
+      title: Allow HTML in text.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

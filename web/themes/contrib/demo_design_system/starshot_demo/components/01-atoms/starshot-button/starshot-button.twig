@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Starshot Paragraph component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - text: [string] Text
+ * - url: [string] The button's content.
+ * - display: [string] Display: primary, secondary, tertiary, link, link-alt.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set display_class = 'starshot-button--%s'|format(display|default('primary')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, color_class, display_class, modifier_class|default('')) %}
+
+<div class="starshot-button {{ modifier_class }}">
+  <a href="{{ url }}">{{ text }}</a>
+</div>

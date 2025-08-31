@@ -1,0 +1,69 @@
+//
+// Starshot heading component.
+//
+
+.ct-starshot-heading {
+  $root: &;
+
+  margin: 0;
+
+  &--font-heading {
+    @include ct-typography('starshot-heading');
+  }
+
+  &--font-heading-2 {
+    @include ct-typography('starshot-heading-2');
+  }
+
+  &--font-heading-3 {
+    @include ct-typography('starshot-heading-3');
+  }
+
+  &--font-heading-4 {
+    @include ct-typography('starshot-heading-4');
+  }
+
+  &--font-heading-5 {
+    @include ct-typography('starshot-heading-5');
+  }
+
+  &--font-heading-6 {
+    @include ct-typography('starshot-heading-6');
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--margin-medium {
+    margin-bottom: 20px;
+
+    @include ct-breakpoint(xxl) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &--margin-large {
+    margin-bottom: 48px;
+
+    @include ct-breakpoint(l) {
+      margin-bottom: 48px;
+    }
+
+    @include ct-breakpoint(xxl) {
+      margin-bottom: 75px;
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, text, color);
+  }
+}

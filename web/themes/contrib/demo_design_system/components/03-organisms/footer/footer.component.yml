@@ -1,0 +1,88 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Footer
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    # @fixme use schema image.
+    background_image:
+      type: string
+      title: Background image
+      description: Background inline image displayed behind content.
+      examples:
+        - 'https://placehold.co/600x400.png'
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top1:
+    title: Content top1
+    description: Content slot.
+    examples:
+      - '<p>content_top1</p>'
+
+  content_top2:
+    title: Content top2
+    description: Content slot.
+    examples:
+      - '<p>content_top2</p>'
+
+  content_middle1:
+    title: Content middle1
+    description: Content slot.
+    examples:
+      - '<p>content_middle1</p>'
+
+  content_middle2:
+    title: Content middle2
+    description: Content slot.
+    examples:
+      - '<p>content_middle2</p>'
+
+  content_middle3:
+    title: Content middle3
+    description: Content slot.
+    examples:
+      - '<p>content_middle3</p>'
+
+  content_middle4:
+    title: Content middle4
+    description: Content slot.
+    examples:
+      - '<p>content_middle4</p>'
+
+  content_bottom1:
+    title: Content bottom1
+    description: Content slot.
+    examples:
+      - '<p>content_bottom1</p>'
+
+  content_bottom2:
+    title: Content bottom2
+    description: Content slot.
+    examples:
+      - '<p>content_bottom2</p>'

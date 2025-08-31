@@ -1,0 +1,2249 @@
+#file: noinspection YAMLSchemaValidation
+# ^ To suppress false positive validation errors in PhpStorm.
+
+# For readability and to prevent needless merge conflicts, follow all possible
+# conventions in the official OpenAPI specification and documentation, including
+# the order of fixed fields like paths and components, spacing, and quoting of
+# strings. Pay attention to the rest of the file for any other conventions. Use
+# one of the automated formatters in the resources below.
+#
+# Tip: Use https://editor-next.swagger.io/ for real-time, in-browser feedback.
+#
+# Resources:
+# - https://spec.openapis.org/oas/v3.1.0.html - Official specification.
+# - https://learn.openapis.org/specification/ - Official documentation.
+# - https://swagger.io/docs/specification/ - Alternative documentation.
+# - https://www.jetbrains.com/help/idea/openapi.html - PhpStorm features.
+# - https://codifyformatter.org/yaml-formatter,
+#   https://onlineyamltools.com/prettify-yaml - YAML formatters that follow the
+#   official OpenAPI conventions. They are functionally identical. Warning: They
+#   also strip comments and blank lines. Review diffs carefully to avoid losing
+#   any.
+
+openapi: 3.1.0
+
+info:
+  title: Experience Builder
+  description: API Spec for Experience Builder
+  version: 0.x
+
+# @see https://spec.openapis.org/oas/v3.1.0.html#paths-object
+# @see https://spec.openapis.org/oas/v3.1.0.html#path-item-object
+paths:
+  /xb/api/v0/auto-saves/css/js_component/{configEntityId}:
+    description: Get draft CSS for a given component
+    get:
+      description: Get draft CSS for a given component
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Draft CSS for the component
+          content:
+            text/css:
+              example: '.large {font-size: 3rem;}'
+  /xb/api/v0/auto-saves/css/xb_asset_library/{configEntityId}:
+    description: Get draft CSS for given asset library
+    get:
+      description: Get draft CSS for given asset library
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Draft CSS for the library
+          content:
+            text/css:
+              example: '.large {font-size: 3rem;}'
+  /xb/api/v0/auto-saves/js/js_component/{configEntityId}:
+    description: Get draft JS for a given component
+    get:
+      description: Get draft JS for a given component
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Draft JS for the component
+          content:
+            text/javascript:
+              example: 'console.log("hey");'
+  /xb/api/v0/auto-saves/js/xb_asset_library/{configEntityId}:
+    description: Get draft JS for given asset library
+    get:
+      description: Get draft JS for given asset library
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Draft JS for the library
+          content:
+            text/javascript:
+              example: 'console.log("hey");'
+  /xb/api/v0/auto-saves/pending:
+    description: TODO
+    get:
+      description: TODO
+      responses:
+        '200':
+          description: All current auto-save entries
+          content:
+            application/json:
+              examples:
+                multipleEntries:
+                  value:
+                    node:1:en:
+                      owner:
+                        name: Garrett Bobby Ferguson, Jr
+                        avatar: /sites/default/files/user-pictures/garrett.jpg
+                        uri: /user/12
+                        id: 12
+                      updated: 1732763679
+                      entity_type: node
+                      langcode: en
+                      data_hash: 4711efecf75d2d1a
+                      entity_id: 1
+                      label: Home page
+                    xb_asset_library:global:
+                      owner:
+                        name: Gracie Dog
+                        avatar: /sites/default/files/user-pictures/good-dog.jpg
+                        uri: /user/13
+                        id: 13
+                      updated: 1732763680
+                      entity_type: xb_asset_library
+                      langcode: NULL
+                      data_hash: 4711efecf75d2d1b
+                      entity_id: global
+                      label: Global asset library
+                    js_component:hero:
+                      owner:
+                        name: Mark Scout
+                        avatar: /sites/default/files/user-pictures/severed.jpg
+                        uri: /user/16
+                        id: 16
+                      updated: 1732763680
+                      entity_type: js_component
+                      langcode: NULL
+                      data_hash: 4711efecf75d2d1b
+                      entity_id: hero
+                      label: Hero component
+                    segment:test_segment:
+                      owner:
+                        name: Mark Scout
+                        avatar: /sites/default/files/user-pictures/severed.jpg
+                        uri: /user/16
+                        id: 16
+                      updated: 1732763680
+                      entity_type: test_segment
+                      langcode: NULL
+                      data_hash: a95cf01fd2e9c59e
+                      entity_id: test_segment
+                      label: Test segment
+
+              schema:
+                $ref: '#/components/schemas/AutoSaveCollection'
+  /xb/api/v0/auto-saves/publish:
+    description: TODO
+    post:
+      description: TODO
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishAllRequest'
+      responses:
+        '200':
+          description: Successful publish
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    title: Success message
+                    examples:
+                      - Successfully published 3 items
+        '204':
+          description: No items to publish
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    title: Status message
+                    examples:
+                      - No items to publish
+        '422':
+          $ref: '#/components/responses/ClientErrorResponse'
+  /xb/api/v0/auto-saves/{entityTypeId}/{entityId}:
+    description:  Interact with an auto-save entry for a particular entity
+    parameters:
+      - $ref: '#/components/parameters/entityTypeId'
+      - name: entityId
+        in: path
+        required: true
+        description: The entity ID
+        schema:
+          oneOf:
+            - type: string
+            - type: integer
+        examples:
+          contentEntity:
+            value: 42
+          configEntity:
+            value: my-super-component
+    delete:
+      description: Deletes an auto-save entry
+      responses:
+        '204':
+          description: Auto-save entry deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    title: Status message
+                    examples:
+                      - Auto-save data deleted successfully.
+        '404':
+          description: Auto-save entry not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    title: Error message
+                    examples:
+                      - No auto-save data found for this entity.
+  /xb/api/v0/config/auto-save/{entityTypeId}/{configEntityId}:
+    description: Auto-save endpoints
+    get:
+      description: Gets an auto-save state
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Individual auto-save state
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      description: Updates an auto-save state
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      requestBody:
+        description: Updates individual auto-save state
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '400':
+          description: Empty auto-save state.
+        '422':
+          description: Invalid auto-save state.
+        '200':
+          description: Auto-save state updated successfully.
+        '409':
+          description: >
+            The layout could not be updated because the entity
+            was modified by another user since the last time
+            it was loaded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message indicating the conflict.
+  /xb/api/v0/config/component:
+    description: TODO
+    get:
+      description: TODO
+      responses:
+        '200':
+          description: All available components
+          content:
+            application/json:
+              examples:
+                singleAvailableComponent:
+                  value:
+                    'sdc_test:my-cta':
+                      id: 'sdc_test:my-cta'
+                      name: Call to Action
+                      source: Module component
+                      category: Buttons
+                      library: extension_components
+                      metadata:
+                        path: >-
+                          core/modules/system/tests/modules/sdc_test/components/my-cta
+                        documentation: >-
+                          No documentation found. Add a README.md in your
+                          component directory.
+                        status: stable
+                        machineName: my-cta
+                        name: Call to Action
+                        group: All Components
+                        schema:
+                          type: object
+                          required:
+                            - text
+                          properties:
+                            text:
+                              type:
+                                - string
+                                - object
+                              title: Title
+                              description: The title for the cta
+                              examples:
+                                - Press
+                                - Submit now
+                            href:
+                              type:
+                                - string
+                                - object
+                              title: URL
+                              format: uri
+                            target:
+                              type:
+                                - string
+                                - object
+                              title: Target
+                              enum:
+                                - ''
+                                - _blank
+                            attributes:
+                              type:
+                                - Drupal\Core\Template\Attribute
+                                - object
+                              name: Attributes
+                          additionalProperties: false
+                      description: Call to action link.
+                      mandatorySchemas: true
+                      slots: []
+              schema:
+                type: object
+                minProperties: 1
+                # @todo Validate the property keys match the
+                #   '^\\[a-zA-Z0-9_-]:[a-zA-Z0-9_-]$' pattern in
+                #    https://drupal.org/i/3506543.
+                # @see \Drupal\Core\Plugin\Component::$machineName
+                additionalProperties:
+                  $ref: '#/components/schemas/Component'
+  /xb/api/v0/config/js_component:
+    get:
+      description: Collection of Code Components
+      responses:
+        '200':
+          description: Collection of Code Components
+          content:
+            application/json:
+              schema:
+                type: object
+                minProperties: 0
+                # @todo Validate the property keys match the '^\\[a-zA-Z0-9_-]$'
+                #   pattern in https://drupal.org/i/3506543.
+                additionalProperties:
+                  $ref: '#/components/schemas/CodeComponent'
+    post:
+      description: TODO
+      requestBody:
+        description: Create new Code Component
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCodeComponent'
+            examples:
+              a simple js component with no slots or props, and no imports:
+                machineName: test_component
+                name: Test Component
+                status: FALSE
+                props: []
+                slots: []
+                sourceCodeJs: 'console.log("Test");'
+                sourceCodeCss: '.test{ display:none; }'
+                compiledJs: 'console.log("Test");'
+                compiledCss: '.test{display:none;}'
+                importedJsComponents: []
+      responses:
+        '201':
+          description: Successful creation of individual Code Component
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeComponent'
+        '403':
+          description: Access denied response.
+          $ref: '#/components/responses/AuthenticationErrorResponse'
+        '409':
+          description: Code Component with same ID already exists.
+          $ref: '#/components/responses/ClientErrorResponse'
+        '422':
+          description: Validation errors exist
+          $ref: '#/components/responses/ClientErrorResponse'
+  /xb/api/v0/config/js_component/{configEntityId}:
+    description: Code Component endpoints
+    delete:
+      description: Deletes Code Component
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '204':
+          description: Deleted individual Code Component
+        '403':
+          description: Access denied response.
+          $ref: '#/components/responses/AuthenticationErrorResponse'
+    get:
+      description: Gets Code Component
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Individual Code Component
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeComponent'
+        '403':
+          description: Access denied response.
+          $ref: '#/components/responses/AuthenticationErrorResponse'
+    patch:
+      description: Updates Code Component
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      requestBody:
+        description: Updates individual Code Component
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CodeComponent'
+      responses:
+        '200':
+          description: Updated individual Code Component
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeComponent'
+        '403':
+          description: Access denied response.
+          $ref: '#/components/responses/AuthenticationErrorResponse'
+  /xb/api/v0/config/pattern:
+    description: TODO
+    get:
+      description: TODO
+      responses:
+        '200':
+          description: Collection of Patterns
+          content:
+            application/json:
+              schema:
+                type: object
+                minProperties: 0
+                # @todo Validate the property keys match the '^\\[a-zA-Z0-9_-]$'
+                #  pattern in https://drupal.org/i/3506543.
+                additionalProperties:
+                  $ref: '#/components/schemas/PatternPreview'
+    post:
+      description: TODO
+      requestBody:
+        description: Create new Pattern.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPattern'
+            examples:
+              example with one pattern:
+                name: Pattern
+                layout:
+                  -
+                    uuid: 0b755464-281c-4487-82a0-ece34a9b1121
+                    nodeType: component
+                    type: sdc.xb_test_sdc.my-section@05bd00d2c481f924
+                    slots: [ ]
+                model:
+                  0b755464-281c-4487-82a0-ece34a9b1121:
+                    resolved:
+                      text:
+                        value: >-
+                          Our mission is to deliver the best products and
+                          services to our customers. We strive to exceed
+                          expectations and continuously improve our offerings.
+                    source:
+                      text:
+                        sourceType: static:field_item:string,
+                        expression: 'ℹ︎string␟value'
+      responses:
+        '201':
+          description: Successful save of Pattern
+          content:
+            application/json:
+              examples:
+                myPattern:
+                  value:
+                    layoutModel:
+                      layout:
+                        - uuid: 0b755464-281c-4487-82a0-ece34a9b1121
+                          nodeType: component
+                          type: sdc.xb_test_sdc.my-section
+                          slots: []
+                      model:
+                        0b755464-281c-4487-82a0-ece34a9b1121:
+                          text: >-
+                            Our mission is to deliver the best products and
+                            services to our customers. We strive to exceed
+                            expectations and continuously improve our offerings.
+                    name: Pattern
+                    id: pattern
+                    default_markup: >-
+                      <!-- xb-start-0b755464-281c-4487-82a0-ece34a9b1121 --><div
+                      class="my-section__wrapper">
+                        <div class="my-section__content-wrapper">
+                          <h2 class="my-section__h2">Our Mission</h2>
+                          <p class="my-section__paragraph">
+                            <!-- xb-prop-start-text -->Our mission is to deliver the best products and services to our customers. We strive to exceed expectations and continuously improve our offerings.<!-- xb-prop-end-text -->
+                          </p>
+                          <p class="my-section__paragraph">
+                            Join us on our journey to innovation and excellence. Your satisfaction is our priority.
+                          </p>
+                        </div>
+                        <div class="my-section__image-wrapper">
+                          <img alt="Placeholder Image" class="my-section__img" width="500" height="500">
+                        </div>
+                      </div> <!-- xb-end-0b755464-281c-4487-82a0-ece34a9b1121
+                      -->
+                    css: >
+                      <link rel="stylesheet" media="all"
+                      href="/sites/default/files/css/css.css" />
+                    js_header: ''
+                    js_footer: ''
+              schema:
+                $ref: '#/components/schemas/PatternPreview'
+        '409':
+          description: Pattern with same ID already exists.
+          $ref: '#/components/responses/ClientErrorResponse'
+        '422':
+          description: Validation errors exist
+          $ref: '#/components/responses/ClientErrorResponse'
+  '/xb/api/v0/config/pattern/{configEntityId}':
+    description: TODO
+    get:
+      description: TODO
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Individual Pattern
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatternPreview'
+    patch:
+      description: TODO
+      requestBody:
+        description: Update specific Pattern.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pattern'
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Individual Pattern
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatternPreview'
+    delete:
+      description: Deletes a Pattern.
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '204':
+          description: Deleted individual Pattern.
+  /xb/api/v0/config/segment:
+    description: Endpoint for managing Personalization Segments.
+    get:
+      description: Retrieves all available Personalization Segments.
+      responses:
+        '200':
+          description: All available Personalization Segments
+          content:
+            application/json:
+              schema:
+                type: object
+                minProperties: 0
+                # @todo Validate the property keys match the '^\\[a-zA-Z0-9_-]$'
+                #  pattern in https://drupal.org/i/3506543.
+                additionalProperties:
+                  $ref: '#/components/schemas/Segment'
+              examples:
+                default_segment:
+                  value:
+                    default_segment:
+                      id: "default_segment"
+                      label: "Default Segment"
+                      rules:
+                        utm_parameters:
+                          id: "utm_parameters"
+                          parameters:
+                            -
+                              "key": "utm_source"
+                              "value": "my-source-id"
+                              "matching": "exact"
+                            -
+                              "key": "utm_campaign"
+                              "value": "HALLOWEEN"
+                              "matching": "starts_with"
+                          negate: false
+                          all: true
+    post:
+      description: Creates a new Personalization Segment.
+      requestBody:
+        description: Creates a new Personalization Segment.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Segment'
+            examples:
+              new_segment:
+                id: "new_segment"
+                label: "My new Segment"
+                description: "<p>My new Segment description</p>"
+                rules:
+                  utm_parameters:
+                    id: "utm_parameters"
+                    parameters:
+                      -
+                        "key": "utm_source"
+                        "value": "my-source-id"
+                        "matching": "exact"
+                      -
+                        "key": "utm_campaign"
+                        "value": "HALLOWEEN"
+                        "matching": "starts_with"
+                    negate: false
+                    all: true
+      responses:
+        '201':
+          description: Created entity successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Segment'
+              examples:
+                new_segment:
+                  value:
+                    id: "new_segment"
+                    label: "My new Segment"
+                    rules:
+                      utm_parameters:
+                        id: "utm_parameters"
+                        parameters:
+                          -
+                            "key": "utm_source"
+                            "value": "my-source-id"
+                            "matching": "exact"
+                          -
+                            "key": "utm_campaign"
+                            "value": "HALLOWEEN"
+                            "matching": "starts_with"
+                        negate: false
+                        all: true
+        '409':
+          description: Personalization Segment with same ID already exists.
+          $ref: '#/components/responses/ClientErrorResponse'
+        '422':
+          description: Validation errors exist
+          $ref: '#/components/responses/ClientErrorResponse'
+  '/xb/api/v0/config/segment/{configEntityId}':
+    description: Endpoint for managing a specific Personalization Segment.
+    get:
+      description: Retrieves details of a specific Personalization Segment.
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Individual Personalization Segment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Segment'
+              examples:
+                example:
+                  id: "new_segment"
+                  label: "My new Segment"
+                  rules:
+                    utm_parameters:
+                      id: "utm_parameters"
+                      parameters:
+                        -
+                          "key": "utm_source"
+                          "value": "my-source-id"
+                          "matching": "exact"
+                        -
+                          "key": "utm_campaign"
+                          "value": "HALLOWEEN"
+                          "matching": "starts_with"
+                      negate: false
+                      all: true
+    patch:
+      description: Updates a specific Asset Library.
+      requestBody:
+        description: Update specific Asset Library.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Segment'
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Individual Personalization Segment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Segment'
+    delete:
+      description: Deletes a Personalization Segment.
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '204':
+          description: Deleted individual Personalization Segment
+  /xb/api/v0/config/xb_asset_library:
+    description: Endpoint for managing asset libraries.
+    get:
+      description: Retrieves all available asset libraries.
+      responses:
+        '200':
+          description: All available asset libraries
+          content:
+            application/json:
+              schema:
+                type: object
+                minProperties: 0
+                # @todo Validate the property keys match the '^\\[a-zA-Z0-9_-]$'
+                #  pattern in https://drupal.org/i/3506543.
+                additionalProperties:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Asset library ID
+                    label:
+                      type: string
+                      description: Human-readable label
+                    css:
+                      type: object
+                      description: CSS
+                      nullable: true
+                      properties:
+                        original:
+                          type: string
+                          description: Original CSS as entered by the human author
+                        compiled:
+                          type: string
+                          description: Compiled CSS code, compiled from the original
+                    js:
+                      type: object
+                      description: JS
+                      nullable: true
+                      properties:
+                        original:
+                          type: string
+                          description: Original JS as entered by the human author
+                        compiled:
+                          type: string
+                          description: Compiled JS code, compiled from the original
+              examples:
+                global_asset_library:
+                  value:
+                    - id: "global"
+                      label: "Global Asset Library"
+                      css:
+                        original: "body { background-color: #fff; }"
+                        compiled: "body{background-color:#fff}"
+                      js:
+                        original: "console.log('Hello, world!');"
+                        compiled: "console.log('Hello, world!');"
+    post:
+      description: Creates a new Asset Library.
+      requestBody:
+        description: Creates a new Asset Library.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewAssetLibrary'
+            examples:
+              example of a global library:
+                id: "global"
+                label: "Global Asset Library"
+                css:
+                  original: "body { background-color: #fff; }"
+                  compiled: "body{background-color:#fff}"
+                js:
+                  original: "console.log('Hello, world!');"
+                  compiled: "console.log('Hello, world!');"
+      responses:
+        '201':
+          description: Created entity successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetLibrary'
+              examples:
+                singleAssetLibrary:
+                  value:
+                    id: "global"
+                    label: "Global Asset Library"
+                    css:
+                      original: "body { background-color: #fff; }"
+                      compiled: "body{background-color:#fff}"
+                    js:
+                      original: "console.log('Hello, world!');"
+                      compiled: "console.log('Hello, world!');"
+        '409':
+          description: Asset Library with same ID already exists.
+          $ref: '#/components/responses/ClientErrorResponse'
+        '422':
+          description: Validation errors exist
+          $ref: '#/components/responses/ClientErrorResponse'
+  '/xb/api/v0/config/xb_asset_library/{configEntityId}':
+    description: Endpoint for managing a specific asset library.
+    get:
+      description: Retrieves details of a specific asset library.
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Individual Asset Library
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetLibrary'
+              examples:
+                singleAssetLibrary:
+                  value:
+                    id: "global"
+                    label: "Global Asset Library"
+                    css:
+                      original: "body { background-color: #fff; }"
+                      compiled: "body{background-color:#fff}"
+                    js:
+                      original: "console.log('Hello, world!');"
+                      compiled: "console.log('Hello, world!');"
+    patch:
+      description: Updates a specific Asset Library.
+      requestBody:
+        description: Update specific Asset Library.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetLibrary'
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '200':
+          description: Individual Asset Library
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetLibrary'
+    delete:
+      description: Deletes an Asset Library.
+      parameters:
+        - $ref: '#/components/parameters/configEntityId'
+      responses:
+        '204':
+          description: Deleted individual Asset Library
+  '/xb/api/v0/content/xb_page/{entityId}':
+    description: Endpoint for deleting content entities.
+    delete:
+      description: Deletes a content entity.
+      parameters:
+        - $ref: '#/components/parameters/entityId'
+      responses:
+        '204':
+          description: Content deleted successfully
+  '/xb/api/v0/content/{entity_type}':
+    get:
+      description: Provides api for page listing.
+      parameters:
+        - in: query
+          name: search
+          required: false
+          description: Search term to filter content by title
+          schema:
+            type: string
+          examples:
+            Find content with title 'My page':
+              value: 'My page'
+            Search for marketing update content:
+              value: 'Marketing update'
+      responses:
+        200:
+          description: Page list generated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                minProperties: 0
+                # @todo Validate the property keys match the '^[0-9]$' pattern
+                #   in https://drupal.org/i/3506543.
+                additionalProperties:
+                  type: object
+                  required:
+                    - id
+                    - title
+                    - status
+                    - path
+                    - autoSaveLabel
+                    - autoSavePath
+                    - internalPath
+                    - links
+                  properties:
+                    id:
+                      type: integer
+                      description: The page ID.
+                    title:
+                      type: string
+                      description: The page title.
+                    status:
+                      type: boolean
+                      description: The page status.
+                    autoSaveLabel:
+                      type: string
+                      nullable: true
+                      description: The auto-save title.
+                    autoSavePath:
+                      type: string
+                      nullable: true
+                      description: The auto-save path.
+                    internalPath:
+                      type: string
+                      description: The internal path for the page.
+                    links:
+                      type: object
+                      description: The operation links.
+                      additionalProperties:
+                        type: string
+                      examples:
+                        edit-form: /xb/xb_page/3
+              examples:
+                pageList:
+                  value:
+                    '1':
+                      id: 1
+                      title: Home
+                      status: true
+                      path: /home
+                      autoSaveLabel: Homer
+                      autoSavePath: /updated-path
+                      links:
+                        edit-form: /xb/xb_page/1
+                    '2':
+                      id: 2
+                      title: About
+                      status: false
+                      path: /about
+                      autoSaveLabel: About who?
+                      autoSavePath: /page/1
+                      links:
+                        edit-form: /xb/xb_page/2
+    post:
+      description: Create content for a specific entity type
+      parameters:
+        - name: entity_type
+          in: path
+          required: true
+          description: The entity type
+          schema:
+            type: string
+      requestBody:
+        description: Optional entity ID for duplication
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity_id:
+                  type: string
+                  description: The ID of the entity to duplicate (optional)
+      responses:
+        '201':
+          description: Created entity successfully
+          content:
+            application/json:
+              examples:
+                newContentEntity:
+                  value:
+                    entity_type: xb_page
+                    id: 123
+              schema:
+                type: object
+                required:
+                  - entity_type
+                  - entity_id
+                properties:
+                  entity_type:
+                    type: string
+                    description: The entity type ID
+                    examples:
+                      - xb_page
+                  entity_id:
+                    type: string
+                    description: The id of created content entity
+                    examples:
+                      - '42'
+        '404':
+          description: Entity not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Cannot find entity to duplicate.
+  '/xb/api/v0/form/component-instance/{entityTypeId}/{entityId}':
+    description: TODO
+    parameters:
+      - $ref: '#/components/parameters/entityTypeId'
+      - $ref: '#/components/parameters/entityId'
+    patch:
+      description: TODO
+      responses:
+        '200':
+          description: Component inputs form
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - html
+                  - css
+                  - js
+                  - settings
+                  - transforms
+                properties:
+                  html:
+                    type: string
+                    description: HTML originating from a Drupal render array.
+                  css:
+                    type: array
+                    description: >-
+                      Stringified CSS info structured for use by `add_css` AJAX
+                      command
+                  js:
+                    type: object
+                    description: >-
+                      Stringified JS info structured for use by `add_js` AJAX
+                      command
+                  settings:
+                    type: object
+                    description: >-
+                      Stringified settings info structured for use by `settings`
+                      AJAX command
+                  transforms:
+                    type: object
+                    description: Component transforms keyed by prop name.
+                    example:
+                      text:
+                        mainPropertyName: { }
+                      href:
+                        mainPropertyName:
+                          name: uri
+    post:
+      description: TODO
+      parameters:
+        # @see \Drupal\Core\Form\FormBuilderInterface::AJAX_FORM_REQUEST
+        # @see \Drupal\Core\Form\EventSubscriber\FormAjaxSubscriber
+        # @see \Drupal\Core\EventSubscriber\AjaxResponseSubscriber
+        - in: query
+          name: ajax_form
+          required: true
+          schema:
+            type: integer
+            enum:
+              - 1
+        # @see \Drupal\experience_builder\Render\MainContent\XBTemplateRenderer
+        - in: query
+          name: _wrapper_format
+          required: true
+          schema:
+            type: string
+            enum:
+              - xb_template
+              - drupal_ajax
+      responses:
+        '200':
+          description: AJAX updates
+          content:
+            application/json:
+              schema:
+                type: object
+                description: A Drupal AJAX response.
+  '/xb/api/v0/form/content-entity/{entityTypeId}/{entityId}':
+    description: TODO
+    get:
+      description: Fetches the entity form with the "default" form mode
+      parameters:
+        - $ref: '#/components/parameters/entityTypeId'
+        - $ref: '#/components/parameters/entityId'
+      responses:
+        '200':
+          $ref: '#/components/responses/FormResponse'
+    post:
+      description: AJAX updates for this form.
+      parameters:
+        # @see \Drupal\Core\Form\FormBuilderInterface::AJAX_FORM_REQUEST
+        # @see \Drupal\Core\Form\EventSubscriber\FormAjaxSubscriber
+        # @see \Drupal\Core\EventSubscriber\AjaxResponseSubscriber
+        - in: query
+          name: ajax_form
+          required: true
+          schema:
+            type: integer
+            enum:
+              - 1
+        # @see \Drupal\experience_builder\Render\MainContent\XBTemplateRenderer
+        - in: query
+          name: _wrapper_format
+          required: true
+          schema:
+            type: string
+            enum:
+              - xb_template
+              - drupal_ajax
+      responses:
+        '200':
+          description: AJAX updates
+          content:
+            application/json:
+              schema:
+                type: object
+                description: A Drupal AJAX response.
+  '/xb/api/v0/form/content-entity/{entityTypeId}/{entityId}/{entityFormMode}':
+    description: Fetches the entity form with the specified form mode
+    get:
+      parameters:
+        - $ref: '#/components/parameters/entityTypeId'
+        - $ref: '#/components/parameters/entityId'
+        - name: entityFormMode
+          in: path
+          required: true
+          description: The entity form mode of the form to retrieve
+          schema:
+            type: string
+          example: default
+      responses:
+        '200':
+          $ref: '#/components/responses/FormResponse'
+    post:
+      description: AJAX updates for this form.
+      parameters:
+        # @see \Drupal\Core\Form\FormBuilderInterface::AJAX_FORM_REQUEST
+        # @see \Drupal\Core\Form\EventSubscriber\FormAjaxSubscriber
+        # @see \Drupal\Core\EventSubscriber\AjaxResponseSubscriber
+        - in: query
+          name: ajax_form
+          required: true
+          schema:
+            type: integer
+            enum:
+              - 1
+        # @see \Drupal\experience_builder\Render\MainContent\XBTemplateRenderer
+        - in: query
+          name: _wrapper_format
+          required: true
+          schema:
+            type: string
+            enum:
+              - xb_template
+              - drupal_ajax
+      responses:
+        '200':
+          description: AJAX updates
+          content:
+            application/json:
+              schema:
+                type: object
+                description: A Drupal AJAX response.
+  '/xb/api/v0/layout/{entityTypeId}/{entityId}':
+    description: TODO
+    get:
+      description: TODO
+      parameters:
+        - $ref: '#/components/parameters/entityTypeId'
+        - $ref: '#/components/parameters/entityId'
+      responses:
+        '200':
+          description: "The layout that the current user is allowed to edit: regions not editable by the current user are omitted."
+          content:
+            application/json:
+              examples:
+                emptyComponentTree:
+                  value:
+                    html: '<html>The preview would be here</html>'
+                    layout:
+                      - nodeType: region
+                        name: content
+                        components: []
+                    model: {}
+                    entity_form_fields: {}
+                    isNew: true
+                    isPublished: false
+                componentTreeWithRootLevelOnly:
+                  value:
+                    html: '<html>The preview would be here</html>'
+                    layout:
+                      - nodeType: region
+                        name: header
+                        components: []
+                      - nodeType: region
+                        name: content
+                        components:
+                          - nodeType: component
+                            uuid: f0f03e3b-08e6-4f57-9f06-8f68d347d98f
+                            type: 'experience_builder:druplicon'
+                            name: null
+                          - nodeType: component
+                            uuid: bce8d97e-8d44-4609-adc3-5e1015342b49
+                            type: 'sdc_test:my-cta'
+                            name: 'Content Creator-provided optional label for this component instance'
+                    model:
+                      bce8d97e-8d44-4609-adc3-5e1015342b49:
+                        resolved:
+                          text: 'hello, world!'
+                          href: 'https://drupal.org'
+                        name: My Test CTA Component
+                        source:
+                          text:
+                            sourceType: static:field_item:string,
+                            expression: 'ℹ︎string␟value'
+                          href:
+                            sourceType: static:field_item:uri,
+                            expression: 'ℹ︎uri␟value'
+                    entity_form_fields:
+                      changed: '1734481105'
+                      'body[0][summary]': ''
+                      'body[0][value]': ''
+                      'body[0][format]': basic_html
+                      'comment[0][status]': '2'
+                      'created[0][value][date]': '2024-12-18'
+                      'created[0][value][time]': '00:18:25'
+                      'field_hero[0][target_id]': '1'
+                      'field_hero[0][alt]': A man walks a border collie along a beach.
+                      'field_hero[0][title]': ''
+                      'field_hero[0][width]': '207'
+                      'field_hero[0][height]': '475'
+                      'field_hero[0][fids][0]': '1'
+                      'field_hero[0][display]': '0'
+                      'field_hero[0][description]': ''
+                      'field_hero[0][upload]': ''
+                      'field_image[0][display]': '0'
+                      'field_image[0][description]': ''
+                      'field_image[0][upload]': ''
+                      'field_image[0][alt]': ''
+                      'field_image[0][title]': ''
+                      'path[0][alias]': ''
+                      'path[0][source]': /node/1
+                      'path[0][langcode]': en
+                      'promote[value]': '1'
+                      'status[value]': '1'
+                      'sticky[value]': '0'
+                      'title[0][value]': XB Needs This For The Time Being
+                      'uid[0][target_id]': Anonymous (0)
+                      'langcode[0][value]': en
+                      'revision_log[0][value]': ''
+                    isNew: false
+                    isPublished: true
+              schema:
+                type: object
+                required:
+                  - layout
+                  - model
+                  - entity_form_fields
+                  - isNew
+                  - isPublished
+                  - html
+                properties:
+                  html:
+                    type: string
+                    description: HTML preview of the layout
+                  layout:
+                    type: array
+                    description: Layout regions
+                    items:
+                      type: object
+                      schema:
+                        $ref: '#/components/schemas/LayoutSlot'
+                  model:
+                    $ref: '#/components/schemas/Model'
+                  entity_form_fields:
+                    type: object
+                    description: Entity field values that the user has edit access to.
+                  isNew:
+                    type: boolean
+                    # @see \Drupal\experience_builder\Controller\ApiLayoutController::contentEntityIsConsideredNew()
+                    # @see https://www.drupal.org/project/experience_builder/issues/3505118#comment-15982801
+                    description: Whether the edited content entity is considered new.
+                  isPublished:
+                    type: boolean
+                    # @see \Drupal\Core\Entity\EntityPublishedInterface
+                    # @see https://www.drupal.org/project/experience_builder/issues/3505118#comment-15982801
+                    description: Whether the edited content entity is marked as published.
+        '403':
+          description: Access denied response.
+          $ref: '#/components/responses/AuthenticationErrorResponse'
+    patch:
+      description: >
+        Update a single component and return a preview as well
+        as the updated model, entity_fields and layout. The
+        new layout is stored as an auto-save entry (until such
+        time as it is published)
+      parameters:
+        - $ref: '#/components/parameters/entityTypeId'
+        - $ref: '#/components/parameters/entityId'
+      requestBody:
+        $ref: '#/components/requestBodies/PatchLayout'
+      responses:
+        '200':
+          description: Stored new values and generated preview successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - html
+                  - entity_form_fields
+                  - model
+                  - layout
+                  - autoSaves
+                properties:
+                  html:
+                    type: string
+                    description: The HTML preview.
+                  layout:
+                    type: array
+                    description: Layout regions
+                    items:
+                      type: object
+                      schema:
+                        $ref: '#/components/schemas/LayoutSlot'
+                  model:
+                    $ref: '#/components/schemas/Model'
+                  entity_form_fields:
+                    type: object
+                    description: The full entity data.
+                  autoSaves:
+                    type: object
+                    description: Auto-saved entries with hash values for concurrency control
+        '403':
+          description: Access denied response.
+          $ref: '#/components/responses/AuthenticationErrorResponse'
+        '409':
+          description: >
+            The layout could not be updated because the entity
+            was modified by another user since the last time
+            it was loaded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message indicating the conflict.
+    post:
+      description: >
+        Update the layout, model or entity field values
+        and return a preview as well. The new layout is
+        stored as an auto-save entry (until such time as
+        it is published)
+      parameters:
+        - $ref: '#/components/parameters/entityTypeId'
+        - $ref: '#/components/parameters/entityId'
+      requestBody:
+        $ref: '#/components/requestBodies/Layout'
+      responses:
+        '200':
+          description: Stored new values and generated preview successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - html
+                  - autoSaves
+                properties:
+                  html:
+                    type: string
+                    description: The HTML preview.
+                  autoSaves:
+                    type: object
+                    description: Auto-saved entries with hash values for concurrency control
+        '403':
+          description: Access denied response.
+          $ref: '#/components/responses/AuthenticationErrorResponse'
+        '409':
+          description: >
+            The layout could not be updated because the entity
+            was modified by another user since the last time
+            it was loaded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error message indicating the conflict.
+  /xb/api/v0/log-error:
+    description: TODO
+    post:
+      description: TODO
+      requestBody:
+        description: Log an error message with a specified log level.
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+                - level
+              properties:
+                message:
+                  type: string
+                  description: The error message to log.
+                level:
+                  type: string
+                  description: The severity level of the log.
+                  enum:
+                    - emergency
+                    - alert
+                    - critical
+                    - error
+                    - warning
+                    - notice
+                    - info
+                    - debug
+      responses:
+        '200':
+          description: Error logged successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    examples:
+                      - Error logged successfully
+                    description: The success message returned after logging the error.
+        '400':
+          description: Invalid request payload
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Error description
+  /xb/api/v0/staged-update/auto-save:
+    description: Auto-save endpoints for staged config updates.
+    post:
+      description: Creates an auto-save entry for a staged config update.
+      requestBody:
+        description: Creates auto-save entry for config entity
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  schema:
+                    $ref: '#/components/schemas/StagedConfigUpdate'
+                clientInstanceId:
+                  type: string
+                  description: Client instance ID for the auto-save entry
+            examples:
+              stagedConfigUpdate:
+                value:
+                  data:
+                    id: "xb_set_homepage"
+                    label: "Change the site name"
+                    target: "system.site"
+                    actions:
+                      - name: "simpleConfigUpdate"
+                        input:
+                          name: "My awesome site"
+      responses:
+        '201':
+          description: Auto-save entry created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request - missing data or clientInstanceId
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    examples:
+                      - Missing data
+                      - Missing clientInstanceId
+# @see https://spec.openapis.org/oas/v3.1.0.html#components-object
+components:
+  # @see https://spec.openapis.org/oas/v3.1.0.html#schema-object
+  schemas:
+    # Update ensure required and optional properties are present in
+    #    https://drupal.org/i/3507427.
+    Component:
+      title: Component
+      type: object
+      required:
+        - name
+        - id
+        - category
+        - default_markup
+        - library
+        - version
+      properties:
+        name:
+          type: string
+          description: The component name
+        id:
+          type: string
+          description: The component id
+        version:
+          type: string
+          description: Active version ID
+        category:
+          type: string
+          description: The component category
+        library:
+          type: string
+          description: Library ID
+          enum:
+            # Provided by Experience Builder
+            - elements
+            # Provided by Modules
+            - extension_components
+            # Blocks
+            - dynamic_components
+            # SDCs from the Active Theme + JavaScript Code Components
+            - primary_components
+        # @see \Drupal\Core\Theme\Component\ComponentMetadata
+        metadata:
+          type: object
+          description: SDC metadata
+        propSources:
+          type: object
+          description: the StaticPropSources to use for each SDC prop
+          # Keys are props for this SDC. Only required SDC props are required here.
+          additionalProperties:
+            type: object
+            required:
+              - sourceType
+              - expression
+              - required
+            properties:
+              sourceType:
+                type: string
+              expression:
+                type: string
+              required:
+                type: boolean
+              default_values:
+                type: object
+                additionalProperties: false
+                required:
+                  - source
+                  - resolved
+                properties:
+                  # The (raw) values for this StaticPropSource. (A Drupal field type data structure.)
+                  # An array of `type: field.value.*` config schema-compliant objects.
+                  source:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+                  # The resolved values for this StaticPropSource, ready to be passed in to a component instance.
+                  # - When cardinality = 1, this will be a scalar or an object.
+                  # - When cardinality >1, this will be an array of scalars or objects.
+                  resolved:
+                    type:
+                      - array
+                      - string
+                      - integer
+                      - number
+                      - boolean
+                      - object
+        default_markup:
+          type: string
+          description: "without providing user input, this is what Component's markup would look like — used to preview the Component prior to placing it"
+        dynamic_prop_source_candidates:
+          type: object
+          description: the DynamicPropSources that match each
+    CodeComponent:
+      title: Code Component
+      type: object
+      properties:
+        machineName:
+          type: string
+          description: Machine name
+        name:
+          type: string
+          description: Human-readable code component label
+        required:
+          type: array
+          items:
+            type: string
+        props:
+          type: object
+          # @todo Uncomment this in a follow-up MR in https://www.drupal.org/i/3503377
+          # $ref: 'https://json-schema.org/draft-04/schema'
+        slots:
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - title
+            properties:
+              title:
+                type: string
+                label: Title
+              description:
+                type: string
+                label: Description
+              examples:
+                type: array
+                items:
+                  type: string
+        status:
+          type: boolean
+        sourceCodeJs:
+          type: string
+        sourceCodeCss:
+          type: string
+        compiledJs:
+          type: string
+        compiledCss:
+          type: string
+    NewCodeComponent:
+      type: object
+      allOf:
+        - required:
+            - name
+            - machineName
+            - status
+            - importedJsComponents
+        - $ref: '#/components/schemas/CodeComponent'
+        - properties:
+            # `importedJsComponents` will be required if `sourceCodeJs` or
+            # `compiledJs` is provided.
+            # @see \Drupal\experience_builder\Entity\JavaScriptComponent::updateFromClientSide()
+            # OpenAPI 3 does not support conditional requirements.
+            # @see https://github.com/OAI/OpenAPI-Specification/issues/256#issuecomment-1908868607
+            importedJsComponents:
+              type: array
+              items:
+                type: string
+    LayoutComponent:
+      title: LayoutComponent
+      type: object
+      required:
+        - nodeType
+        - uuid
+        - type
+        - slots
+      additionalProperties: false
+      properties:
+        nodeType:
+          type: string
+          enum:
+            - component
+          description: The layout node type
+        uuid:
+          type: string
+          description: The UUID of the component instance
+        type:
+          type: string
+          # @todo Replace the hardcoded list of allowed component types (ComponentSource plugins) with `[a-z_]+` when contrib/custom component sources are supported.
+          pattern: "^(sdc|js|block)+\\.[^:]+$"
+        name:
+          type: string
+          # Either omit, or specify a non-empty string.
+          minLength: 1
+          nullable: true
+          description: The (optional) name of the component instance
+        slots:
+          type: array
+          description: Array of slots
+          items:
+            $ref: '#/components/schemas/LayoutSlot'
+    LayoutSlot:
+      title: LayoutSlot
+      type: object
+      required:
+        - nodeType
+        - name
+        - components
+      additionalProperties: false
+      properties:
+        nodeType:
+          type: string
+          enum:
+            - region
+            - slot
+          description: The layout node type
+        id:
+          type: string
+          description: A unique identifier for the slot
+        name:
+          type: string
+          description: The name of the slot
+        components:
+          type: array
+          description: Array of components
+          items:
+            $ref: '#/components/schemas/LayoutComponent'
+    LayoutPreview:
+      title: LayoutPreview
+      type: object
+      # @todo Require 'entity_form_fields' in https://drupal.org/i/3495752.
+      required:
+        - layout
+        - model
+        - autoSaves
+        - clientInstanceId
+      additionalProperties: false
+      properties:
+        layout:
+          type: array
+          description: Layout regions
+          items:
+            type: object
+            schema:
+              $ref: '#/components/schemas/LayoutSlot'
+        model:
+          $ref: '#/components/schemas/Model'
+        autoSaves:
+          type: object
+          description: Auto-saved entries with hash values for concurrency control
+        clientInstanceId:
+          type: string
+          description: Client instance ID for the layout preview
+        entity_form_fields:
+          type: object
+        isNew:
+          type: boolean
+        isPublished:
+          type: boolean
+    AutoSaveEntry:
+      title: Auto Save Entry
+      type: object
+      additionalProperties: false
+      required:
+        - owner
+        - updated
+        - langcode
+        - label
+        - entity_type
+        - entity_id
+        - data_hash
+      properties:
+        owner:
+          type: object
+          title: Owner details
+          description: Details of the last user to save the entry
+          additionalProperties: false
+          required:
+            - name
+            - avatar
+            - uri
+            - id
+          examples:
+            - Logged in user:
+                name: 'Garrett Bobby Ferguson, Jr'
+                avatar: /sites/default/files/user-pictures/garrett.jpg
+                uri: /user/12
+                id: 12
+          properties:
+            name:
+              type: string
+              title: User's name
+            avatar:
+              type: string
+              format: uri
+              nullable: true
+              title: URL to user's avatar picture
+            uri:
+              type: string
+              format: uri
+              nullable: true
+              title: URL to user's profile page
+            id:
+              type: integer
+              title: User ID
+        updated:
+          type: integer
+          title: Updated timestamp
+          description: Unix timestamp for auto-save entry last updated time
+          examples:
+            - 1732763679
+        entity_type:
+          type: string
+          title: Entity Type ID
+          examples:
+            - node
+        langcode:
+          type: string
+          title: Language code
+          nullable: true
+          examples:
+            - en
+        data_hash:
+          type: string
+          title: Hash of the item's data
+          examples:
+            - 4711efecf75d2d1a
+        entity_id:
+          type:
+            - string
+            - integer
+          title: Entity ID
+          description: ID of the entity
+          examples:
+            - 3
+        label:
+          type: string
+          title: Entity label
+          description: Label of the entity
+          examples:
+            - Home page
+    AutoSaveCollection:
+      type: object
+      # @todo Add key validation for the format in {entity_type}:{entity_id}:{langcode} https://drupal.org/i/3506543.
+      additionalProperties:
+        $ref: '#/components/schemas/AutoSaveEntry'
+    PublishAllRequest:
+      type: object
+      # @todo Add key validation for the format in {entity_type}:{entity_id}:{langcode} https://drupal.org/i/3506543.
+      additionalProperties:
+        type: object
+        title: Entries to publish
+        description: >
+          The body should be an object with keys that match unpublished
+          entries and a data-hash property for each item.
+        properties:
+          data_hash:
+            type: string
+            title: Expected hash for this item
+    AssetLibrary:
+      title: Asset Library
+      type: object
+      properties:
+        id:
+          type: string
+          description: Asset library ID
+        label:
+          type: string
+          description: Human-readable label
+        css:
+          type: object
+          description: CSS
+          nullable: true
+          required:
+            - original
+            - compiled
+          additionalProperties: false
+          properties:
+            original:
+              type: string
+              description: Original CSS as entered by the human author
+            compiled:
+              type: string
+              description: Compiled CSS code, compiled from the original
+        js:
+          type: object
+          description: JS
+          nullable: true
+          properties:
+            original:
+              type: string
+              description: Original JS as entered by the human author
+            compiled:
+              type: string
+              description: Compiled JS code, compiled from the original
+    NewAssetLibrary:
+      type: object
+      allOf:
+        - required:
+            - id
+            - label
+        - $ref: '#/components/schemas/AssetLibrary'
+    SegmentationRule:
+      title: Segmentation Rule
+      type: object
+      # Each rule (condition plugin) may have additional settings; these are the minimum.
+      additionalProperties: true
+      required:
+        - id
+        - negate
+      properties:
+        id:
+          type: string
+          description: The Segmentation Rule plugin ID
+        negate:
+          type: boolean
+          description: Flag if the Segmentation Rule is negated.
+    Segment:
+      title: Segment
+      type: object
+      required:
+        # We only require id, as we want to allow partial updates with PATCH.
+        # Complete constraint-based validation will happen on entity validation.
+        - id
+      properties:
+        id:
+          type: string
+          description: Personalization Segment ID
+        label:
+          type: string
+          description: Human-readable label
+        description:
+          type: string
+          description: Human-readable description
+          nullable: true
+        status:
+          type: boolean
+        rules:
+          type: object
+          description: Segmentation Rules
+          nullable: false
+          additionalProperties:
+            type: object
+            allOf:
+              - $ref: '#/components/schemas/SegmentationRule'
+    Error:
+      type: object
+      required:
+        - detail
+        - source
+      properties:
+        detail:
+          type: string
+          title: Error description
+          examples:
+            - I can't let you do that Dave
+        source:
+          type: object
+          required:
+            - pointer
+          properties:
+            pointer:
+              type: string
+              title: Pointer/path to source of error
+              examples:
+                - title.0.value
+        code:
+          type: integer
+          title: Error code
+          examples:
+            - 1
+        meta:
+          type: object
+          required:
+            - entity_type
+            - entity_id
+            - entity_label
+            - auto_save_key
+          properties:
+            entity_type:
+              type: string
+              examples:
+                - node
+              title: Entity Type ID
+            entity_id:
+              type:
+                - string
+                - integer
+              examples:
+                - 3
+              title: Entity ID
+            label:
+              type: string
+              examples:
+                - Spring sale now on
+              title: Item label
+            auto_save_key:
+              type: string
+              examples:
+                - 'node:4:en'
+              title: The corresponding key in the pending changes API
+          additionalProperties: false
+    Model:
+      title: model
+      type: object
+    PatternPreview:
+      title: 'Pattern with generated ID and preview metadata (default markup + CSS + JS)'
+      description: '@see \Drupal\experience_builder\Controller\ApiConfigControllers::normalizePattern()'
+      type: object
+      required:
+        - layoutModel
+        - name
+        - id
+        - default_markup
+        - css
+        - js_header
+        - js_footer
+      additionalProperties: false
+      properties:
+        layoutModel:
+          type: object
+          properties:
+            layout:
+              type: array
+              items:
+                $ref: '#/components/schemas/LayoutComponent'
+              minItems: 1
+            model:
+              $ref: '#/components/schemas/Model'
+          additionalProperties: false
+        name:
+          type: string
+          description: Human-readable Pattern label
+        id:
+          type: string
+          description: The ID (possibly auto-generated from the given name).
+        default_markup:
+          type: string
+        css:
+          type: string
+        js_header:
+          type: string
+        js_footer:
+          type: string
+    Pattern:
+      title: Pattern
+      description: '@see \Drupal\experience_builder\Controller\ApiConfigControllers::denormalizePattern()'
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID — if none is provided, this will be auto-generated from the given name.
+        name:
+          type: string
+          description: Human-readable Pattern label
+        layout:
+          type: array
+          items:
+            $ref: '#/components/schemas/LayoutComponent'
+          minItems: 1
+        model:
+          $ref: '#/components/schemas/Model'
+      additionalProperties: false
+    NewPattern:
+      type: object
+      allOf:
+        - required:
+            - name
+            - layout
+            - model
+        - $ref: '#/components/schemas/Pattern'
+    StagedConfigUpdate:
+      title: Staged Config Update
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - label
+        - target
+        - actions
+      properties:
+        id:
+          type: string
+          description: The staged config update ID.
+          example: 'xb_set_homepage'
+        label:
+          type: string
+          description: Human-readable label for the staged config update.
+        target:
+          type: string
+          description: The staged config update target.
+        actions:
+          type: array
+          description: The staged config update actions.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The action name.
+              input:
+                type: object
+                description: The action input.
+  # @see https://spec.openapis.org/oas/v3.1.0.html#response-object
+  responses:
+    FormResponse:
+      description: The form
+      content:
+        application/json:
+          examples:
+            arbitraryForm:
+              value:
+                html: <form></form>
+          schema:
+            type: object
+            required:
+              - html
+            properties:
+              html:
+                type: string
+    ClientErrorResponse:
+      description: Errors in response to the client's request.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - errors
+            properties:
+              errors:
+                type: array
+                description: Error items
+                items:
+                  type: object
+                  schema:
+                    $ref: '#/components/schemas/Error'
+    AuthenticationErrorResponse:
+      description: Access denied response.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - errors
+            properties:
+              errors:
+                type: array
+                description: Error items
+                items:
+                  type: object
+                  schema:
+                    $ref: '#/components/schemas/Error'
+  # @see https://spec.openapis.org/oas/v3.1.0.html#parameter-object
+  parameters:
+    entityTypeId:
+      name: entityTypeId
+      in: path
+      required: true
+      description: The entity type ID
+      schema:
+        type: string
+      example: node
+    entityId:
+      name: entityId
+      in: path
+      required: true
+      description: The entity ID
+      schema:
+        type: integer
+      examples:
+        arbitraryEntityId:
+          value: 42
+    configEntityId:
+      name: configEntityId
+      in: path
+      required: true
+      description: Config entity ID
+      schema:
+        type: string
+      examples:
+        arbitraryEntityId:
+          value: hopefully_meaningful_name
+  # @see https://spec.openapis.org/oas/v3.1.0.html#header-object
+  requestBodies:
+    Layout:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LayoutPreview'
+    PatchLayout:
+      content:
+        application/json:
+          examples:
+            componentWithPropSources:
+              value:
+                componentInstanceUuid: bce8d97e-8d44-4609-adc3-5e1015342b49
+                componentType: 'sdc_test:my-cta'
+                model:
+                  resolved:
+                    text: 'hello, world!'
+                    href: 'https://drupal.org'
+                  source:
+                    text:
+                      sourceType: static:field_item:string,
+                      expression: 'ℹ︎string␟value'
+                    href:
+                      sourceType: static:field_item:uri,
+                      expression: 'ℹ︎uri␟value'
+          schema:
+            title: Patch layout
+            type: object
+            required:
+              - componentInstanceUuid
+              - componentType
+              - model
+              - autoSaves
+              - clientInstanceId
+            additionalProperties: false
+            properties:
+              model:
+                title: Model
+                description: New model values (client-side terminology) aka inputs (server-side terminology) for the updated component instance
+                type: object
+                required:
+                  - resolved
+                additionalProperties: false
+                properties:
+                  resolved:
+                    type: object
+                    title: Resolved model/input values, keyed by input names
+                  source:
+                    type: object
+                    title: Optional source values in the case of a component type that uses prop sources.
+              componentInstanceUuid:
+                type: string
+                description: The UUID of the component instance to update
+              componentType:
+                type: string
+                description: The component type (Component config entity ID) of the updated component instance
+              autoSaves:
+                type: object
+                description: Auto-saved entries with hash values for concurrency control
+              clientInstanceId:
+                type: string
+                description: Client instance ID for the layout preview
+

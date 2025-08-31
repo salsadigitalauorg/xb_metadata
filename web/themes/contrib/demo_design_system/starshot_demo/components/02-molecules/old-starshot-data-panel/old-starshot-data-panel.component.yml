@@ -1,0 +1,89 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Old Starshot Data Panel
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    description:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Description
+      description: Data panel description.
+      examples:
+        - Some description
+
+    # @fixme comment out for now
+    # link:
+    #   type: object
+    #   title: Link
+    #   description: 'Link object:'
+    #   properties: {}
+
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'placeholder'
+          width: 600
+          height: 400
+
+
+        # @fixme comment out for now
+        #panels:
+        #type: array
+        #title: Panels
+        #description: 'Panels array:'
+        #items:
+        #type: object
+        ##
+        #properties:
+        #content:
+        #type: string
+        #title: Content
+        #description: The description's content.
+        #
+        #color:
+        #type: string
+        #title: Color
+        #description: 'Color: body, body-2, body-3'
+        #default: body
+        #enum:
+        #- body
+        #- body-2
+        #- body-3
+        #
+        #display:
+        #type: string
+        #title: Display
+        #description: 'Size: regular, large'
+        #default: regular
+        #enum:
+        #- regular
+        #- large
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

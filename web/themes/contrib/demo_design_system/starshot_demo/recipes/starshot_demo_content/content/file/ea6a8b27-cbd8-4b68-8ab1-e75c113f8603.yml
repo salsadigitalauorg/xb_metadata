@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ea6a8b27-cbd8-4b68-8ab1-e75c113f8603
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: temp_starshot_header.png
+  uri:
+    -
+      value: 'public://2025-03/temp_starshot_header.png'
+      url: /sites/default/files/2025-03/temp_starshot_header.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 51537
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741575863

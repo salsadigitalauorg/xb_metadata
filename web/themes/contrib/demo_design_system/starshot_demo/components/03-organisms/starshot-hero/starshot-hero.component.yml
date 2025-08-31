@@ -1,0 +1,71 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Hero
+
+status: experimental
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - Create ambitious experiences that scale
+
+    #@todo remove this if it'll be done with slot
+    #summary:
+    #type: string
+    #$ref: json-schema-definitions://experience_builder.module/textarea
+    #title: Summary
+    #description: Text summary.
+    #examples:
+    #- Drupal is a fully composable CMS that allows you to design a digital
+    #experience around your vision.
+
+    design:
+      type: string
+      title: Design
+      description: 'Design: light, green, blue, lavender, blue-stripe.'
+      enum:
+        - light
+        - green
+        - blue
+        - lavender
+        - blue-stripe
+      default: blue-stripe
+      examples:
+        - blue-stripe
+
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/starshot_5.png'
+          alt: 'Person with blue jacket and Drupal logo in background'
+        - src: '/themes/contrib/demo_design_system/assets/images/drupal_placeholder_image_1.jpg'
+          alt: 'Starshot placeholder image'
+
+    padding:
+      type: string
+      title: Top padding style
+      enum:
+        - default
+        - header
+      default: default
+      examples:
+        - default
+
+slots:
+
+  content:
+    title: Content
+    description: Hero content.
+      #examples:
+      #- '<p>content</p>'

@@ -1,0 +1,112 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.starshot-cta {
+  background-image: url("../../../assets/starshot/background_2.png");
+  background-size: cover;
+}
+.ct-starshot-case-study + .starshot-cta {
+  margin-top: -74px;
+  padding-top: 74px;
+  z-index: -1;
+}
+@media (min-width: 1280px) {
+  .ct-starshot-case-study + .starshot-cta {
+    margin-top: -174px;
+    padding-top: 174px;
+  }
+}
+.starshot-cta__inner {
+  max-width: 1608px;
+  margin: auto;
+  padding: 60px 1.5rem;
+}
+@media (min-width: 1440px) {
+  .starshot-cta__inner {
+    padding: 120px 1rem;
+  }
+}
+.starshot-cta__2col {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .starshot-cta__2col {
+    flex-direction: row;
+  }
+}
+.starshot-cta__left {
+  flex-basis: 100%;
+}
+@media (min-width: 768px) {
+  .starshot-cta__left {
+    flex-basis: 50%;
+  }
+}
+@media (min-width: 1280px) {
+  .starshot-cta__left {
+    flex-basis: 45%;
+  }
+}
+.starshot-cta__right {
+  flex-basis: 100%;
+}
+@media (min-width: 768px) {
+  .starshot-cta__right {
+    flex-basis: 50%;
+  }
+}
+@media (min-width: 1280px) {
+  .starshot-cta__right {
+    flex-basis: 40%;
+  }
+}
+.starshot-cta__left h2 {
+  color: var(--ct-color-light-heading-4);
+  margin-top: 0;
+}
+@media (min-width: 0) {
+  .starshot-cta__left h2 {
+    font-size: 3.125rem;
+    line-height: 3.4375rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+}
+@media (min-width: 992px) {
+  .starshot-cta__left h2 {
+    font-size: 3.125rem;
+    line-height: 3.4375rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+}
+@media (min-width: 1440px) {
+  .starshot-cta__left h2 {
+    font-size: 6.25rem;
+    line-height: 6.875rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 700;
+    letter-spacing: -2.25px;
+  }
+}
+.starshot-cta__left h2 em {
+  font-style: normal;
+  color: var(--ct-color-light-highlight);
+}
+.starshot-cta__right-content {
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+}
+.starshot-cta__right-content > .xb--sortable-list {
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+}

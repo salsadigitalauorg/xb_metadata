@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 4873352a-9cf0-4a81-a258-08c208854767
+  bundle: image
+  default_langcode: en
+  depends:
+    ea6a8b27-cbd8-4b68-8ab1-e75c113f8603: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: temp_starshot_header.png
+  created:
+    -
+      value: 1741575847
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  field_media_image:
+    -
+      entity: ea6a8b27-cbd8-4b68-8ab1-e75c113f8603
+      alt: 'Temp SDDS header'
+      title: ''
+      width: 3424
+      height: 260

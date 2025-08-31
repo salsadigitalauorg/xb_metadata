@@ -1,0 +1,11 @@
+name: XB Entity Test
+description: 'Test hooks for test entities'
+type: module
+package: Testing
+dependencies:
+  - experience_builder:experience_builder
+
+# Information added by Drupal.org packaging script on 2025-07-30
+version: '0.7.3-alpha1'
+project: 'experience_builder'
+datestamp: 1753882094

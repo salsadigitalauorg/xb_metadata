@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8adeb0f7-88bb-4e66-bb55-8f51f0b0cfdd
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: listing_1.png
+  uri:
+    -
+      value: 'public://2025-03/listing_1.png'
+      url: /sites/default/files/2025-03/listing_1.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 4661
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741358151

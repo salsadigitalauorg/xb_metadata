@@ -1,0 +1,131 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Callout
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Title text.
+      examples:
+        - 'Important Announcement'
+        - 'Callout title from knob'
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: Content text.
+      examples:
+        - 'This is a critical message that needs to be emphasized.'
+        - 'Here is some callout content from the knob.'
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #links:
+    #type: array
+    #title: Links
+    #description: 'Array of link objects containing:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #kind:
+    #type: string
+    #title: Kind
+    #description: 'Button kind: submit, reset, button, link.'
+    #default: button
+    #enum:
+    #- submit
+    #- reset
+    #- button
+    #- link
+    #examples:
+    #- link
+    #
+    #type:
+    #type: string
+    #title: Type
+    #description: 'Button type: primary, secondary, tertiary.'
+    #default: null
+    #enum:
+    #- primary
+    #- secondary
+    #- tertiary
+    #examples:
+    #- primary
+    #
+    #text:
+    #type: string
+    #title: Text
+    #description: Button text.
+    #examples:
+    #[
+    #- 'Read More',
+    #- 'Get Started'
+    #]
+    #
+    #url:
+    #type: string
+    #title: Url
+    #description: URL for the link button.
+    #examples:
+    #- 'https://example.com'
+    #
+    #is_new_window:
+    #type: boolean
+    #title: Open in a new window or not.
+    #examples:
+    #- true
+    #
+    #is_external:
+    #type: boolean
+    #title: If link is external or not.
+    #examples:
+    #- false
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - both
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.

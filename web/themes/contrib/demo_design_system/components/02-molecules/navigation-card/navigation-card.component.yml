@@ -1,0 +1,185 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Navigation card
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- title
+
+  properties:
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'Boring placeholder'
+          width: 600
+          height: 400
+
+    image_as_icon:
+      type: boolean
+      title: Show image as an icon.
+      examples:
+        - false
+
+    icon:
+      type: string
+      title: Icon
+      description: Icon name.
+      enum:
+        - account
+        - approve
+        - bars
+        - bullet
+        - call
+        - cancel
+        - checked
+        - calendar-1
+        - calendar-2
+        - close
+        - close-outline
+        - down-arrow-1
+        - down-arrow-2
+        - down-arrow-large
+        - download
+        - download-file
+        - exclamation-mark-1
+        - exclamation-mark-2
+        - exclamation-mark-3
+        - eye
+        - facebook
+        - help
+        - image
+        - information-mark
+        - instagram
+        - left-arrow
+        - left-arrow-outline
+        - linkedin
+        - magnifier
+        - map
+        - megaphone
+        - message
+        - mortarboard
+        - newspaper
+        - pdf-file
+        - progress
+        - right-arrow-1
+        - right-arrow-2
+        - select-box
+        - share
+        - square
+        - to-do
+        - twitter
+        - up-arrow
+        - up-arrow-large
+        - upper-arrow
+        - upper-right-arrow
+        - watch
+        - word-file
+        - x
+        - youtube
+      examples:
+        - 'right-arrow'
+
+    title:
+      type: string
+      title: Title
+      description: The text of card title.
+      examples:
+        - Navigation card heading which runs across two or three lines
+
+    summary:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Summary
+      description: Summary of the card.
+      examples:
+        - "Bring to the table win-win survival strategies to ensure proactive
+          domination. At the end of the day, going forward, a new normal that
+          has evolved from generation X is on the runway heading towards a
+          streamlined cloud solution. User generated content in real-time will
+          have multiple touchpoints for offshoring."
+
+          #link:
+          #type: object
+          #title: Link
+          #description: 'Link object:'
+          #
+          #properties:
+          #text:
+          #type: string
+          #title: Text
+          #description: Text.
+          #examples:
+          #- Read more
+          #
+          #url:
+          #type: string
+          #title: Url
+          #description: URL.
+          #examples:
+          #- 'https://example.com'
+          #
+          #is_new_window:
+          #type: boolean
+          #title: Open link in a new window.
+          #examples:
+          #- false
+          #
+          #is_external:
+          #type: boolean
+          #title: Link is external or not.
+          #examples:
+          #- false
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'navigation-card--featured'
+        - 'navigation-card--highlighted'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  image_over:
+    title: Image over
+    description: Content slot for image over.
+    examples:
+      - '<p>image_over</p>'
+
+  content_middle:
+    title: Content middle
+    description: Content slot.
+    examples:
+      - '<p>content_middle</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

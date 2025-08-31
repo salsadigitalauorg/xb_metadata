@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Starshot Four Column component.
+ *
+ * Variables:
+ * - column_one: [string] First column slot.
+ * - column_two: [string] Second column slot.
+ * - column_three: [string] Third column slot.
+ * - column_four: [string] Fourth column slot.
+ * - gap: [string] Gap: none, small, medium, large.
+ * - vertical: [string] Vertical: top, center, bottom.
+ */
+#}
+
+{% set column_one %}
+  {% block column_one %}
+  {% endblock %}
+{% endset %}
+
+{% set column_two %}
+  {% block column_two %}
+  {% endblock %}
+{% endset %}
+
+{% set column_three %}
+  {% block column_three %}
+  {% endblock %}
+{% endset %}
+
+{% set column_four %}
+  {% block column_four %}
+  {% endblock %}
+{% endset %}
+
+{% include '@base/starshot-grid/starshot-grid.twig' with {
+  gap: gap,
+  vertical: vertical,
+  horizontal: 'left',
+  col: 'four',
+  wrap: 'wrap',
+  column_one: column_one,
+  column_two: column_two,
+  column_three: column_three,
+  column_four: column_four,
+} only %}

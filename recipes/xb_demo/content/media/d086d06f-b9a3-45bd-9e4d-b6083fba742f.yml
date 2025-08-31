@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: d086d06f-b9a3-45bd-9e4d-b6083fba742f
+  bundle: image
+  default_langcode: en
+  depends:
+    5545a32d-d944-488c-80c2-73535fb8e2c5: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Header 4'
+  created:
+    -
+      value: 1741781961
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 5545a32d-d944-488c-80c2-73535fb8e2c5
+      alt: 'Header 4'
+      title: ''
+      width: 1041
+      height: 924

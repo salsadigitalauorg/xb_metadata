@@ -1,0 +1,62 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-old-starshot-case-study {
+  position: relative;
+}
+.ct-old-starshot-case-study__inner {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  padding: 2.5rem 0;
+}
+@media (min-width: 1280px) {
+  .ct-old-starshot-case-study__inner {
+    padding: 5rem;
+  }
+}
+@media print {
+  .ct-old-starshot-case-study__inner {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
+}
+.ct-old-starshot-case-study__featured-image__section {
+  position: relative;
+}
+@media (min-width: 1280px) {
+  .ct-old-starshot-case-study__featured-image__section {
+    padding-bottom: 30%;
+  }
+}
+.ct-old-starshot-case-study__featured-image__wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+@media (min-width: 1280px) {
+  .ct-old-starshot-case-study__featured-image__wrapper {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
+.ct-old-starshot-case-study__title {
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-case-study__title {
+    margin-bottom: 1.5rem;
+  }
+}
+.ct-old-starshot-case-study.ct-theme-light {
+  background-color: var(--ct-old-starshot-case-study-light-background-color);
+}
+.ct-old-starshot-case-study.ct-theme-dark {
+  background-color: var(--ct-old-starshot-case-study-dark-background-color);
+}

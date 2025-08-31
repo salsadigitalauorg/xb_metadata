@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Starshot Columns component.
+ *
+ * Variables:
+ * - gap: [string] Gap: none, small, medium, large.
+ * - vertical: [string] Vertical: top, center, bottom.
+ * - horizontal: [string] Horizontal: left, center, right, space-between.
+ * - direction: [string] Horizontal: across, down.
+ * - alignment: [string] alignment: left, right, center, right-on-last.
+ * - cols: [string] Columns: one, two, three, four.
+ * - wrap: [boolean] Wrap: wrap, nowrap.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set gap_class = 'starshot-columns--gap-%s'|format(gap|default('none')) %}
+{% set col_class = 'starshot-columns--col-%s'|format(cols|default('none')) %}
+{% set alignment_class = 'starshot-columns--alignment-%s'|format(alignment|default('none')) %}
+{% set modifier_class = '%s %s %s %s'|format(gap_class, col_class, alignment_class, modifier_class|default('')) %}
+{% set columns = { 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'none': 0 } %}
+{% set col_count = columns[cols] %}
+
+<div class="starshot-columns {{ modifier_class }}">
+  {% if col_count > 0 %}
+    <div>
+      {%- block column_one %}
+        {{- column_one -}}
+      {% endblock -%}
+    </div>
+  {% endif %}
+  {% if col_count > 1 %}
+    <div>
+      {%- block column_two %}
+        {{- column_two -}}
+      {% endblock -%}
+    </div>
+  {% endif %}
+  {% if col_count > 2 %}
+    <div>
+      {%- block column_three %}
+        {{- column_three -}}
+      {% endblock -%}
+    </div>
+  {% endif %}
+  {% if col_count > 3 %}
+    <div>
+      {%- block column_four %}
+        {{- column_four -}}
+      {% endblock -%}
+    </div>
+  {% endif %}
+</div>

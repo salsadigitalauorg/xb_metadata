@@ -1,0 +1,35 @@
+.ct-starshot-testimonial-card {
+  $root: &;
+
+  &__image {
+    margin-bottom: 15px;
+    max-width: 91px;
+
+    @include ct-breakpoint(m) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__title {
+    @include ct-typography('starshot-testimonial-card-title');
+
+    margin-bottom: 5px;
+
+    @include ct-breakpoint(m) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__summary {
+    @include ct-typography('starshot-testimonial-card-summary');
+
+    margin: 0;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__title,
+    #{$root}__summary {
+      @include ct-component-property($root, $theme, text, color);
+    }
+  }
+}

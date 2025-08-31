@@ -1,0 +1,52 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Slide Card
+
+status: experimental
+
+group: Molecules
+
+props:
+
+  type: object
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The card title.
+      examples:
+        - 'Ambitious websites made easy'
+        - 'User-centric experiences'
+        - 'Lower cost of ownership'
+        - 'Limitless flexibility'
+        - 'Enterprise-grade tooling'
+
+    url:
+      type: string
+      title: URL
+      description: The title url.
+      examples:
+        - 'https://drupal.org'
+
+    color:
+      type: string
+      title: Dot color
+      description: The dot color.
+      enum:
+        - red
+        - green
+        - blue
+      default: red
+      examples:
+        - red
+
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: The image on the top.
+      examples:
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/starshot_8.png'
+          alt: 'Person standing with tablet'
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/starshot_9.png'
+          alt: 'Three people grouped looking at laptop'

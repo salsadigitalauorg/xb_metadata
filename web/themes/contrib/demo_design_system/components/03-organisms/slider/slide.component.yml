@@ -1,0 +1,165 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Slide
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  # @fixme fix image object
+  properties:
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'Boring placeholder'
+          width: 600
+          height: 400
+
+    image_position:
+      type: string
+      title: Image position
+      description: 'Image position: left, right.'
+      enum:
+        - left
+        - right
+      examples:
+        - left
+# @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+# @todo add examples when fixing this
+#tags:
+#type: array
+#title: Tags
+#description: Array of tags.
+#items:
+#type: string
+
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - Slide title
+
+    date:
+      type: string
+      title: Date
+      description: Start date and time.
+      examples:
+        - '20 Jan 2023 11:00'
+
+    date_iso:
+      type: string
+      title: Date iso
+      description: Start date and time in ISO format.
+      examples:
+        - '2023-01-20T11:00:00Z'
+
+    date_end:
+      type: string
+      title: Date end
+      description: Optional end date and time.
+      examples:
+        - '20 Jan 2023 11:00'
+
+    date_end_iso:
+      type: string
+      title: Date end iso
+      description: Optional end date and time in ISO format.
+      examples:
+        - '2023-01-20T11:00:00Z'
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: Content text.
+      examples:
+        - 'Slider content here'
+
+        # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+        # @todo add examples when fixing this.
+        #links:
+        #type: array
+        #title: Links
+        #description: 'Array of link objects with the properties:'
+        #items:
+        #type: object
+        #
+        #properties:
+        #kind:
+        #type: string
+        #title: Kind
+        #description: 'Button kind: submit, reset, button, link.'
+        #default: button
+        #enum:
+        #- submit
+        #- reset
+        #- button
+        #- link
+        #
+        #type:
+        #type: string
+        #title: Type
+        #description: 'Button type: primary, secondary, tertiary.'
+        #default: null
+        #enum:
+        #- primary
+        #- secondary
+        #- tertiary
+        #
+        #text:
+        #type: string
+        #title: Text
+        #description: Button text.
+        #
+        #url:
+        #type: string
+        #title: Url
+        #description: URL for the link button.
+        #
+        #is_new_window:
+        #type: boolean
+        #title: Open in a new window or not.
+        #
+        #is_external:
+        #type: boolean
+        #title: If link is external or not.
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

@@ -1,0 +1,38 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Mobile navigation close
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    text:
+      type: string
+      title: Text
+      description: Text for the button.
+      default: Close
+      examples:
+        - Close
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

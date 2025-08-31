@@ -1,0 +1,179 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT List
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - List title
+
+    link_above:
+      type: object
+      title: Link above
+      description: 'Link object:'
+
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Text.
+          examples:
+            - 'View more'
+
+        url:
+          type: string
+          title: Url
+          description: URL.
+          examples:
+            - 'http://www.example.com'
+
+        is_new_window:
+          type: boolean
+          title: Open link in a new window.
+          examples:
+            - false
+
+        is_external:
+          type: boolean
+          title: Link is external or not.
+          examples:
+            - false
+
+    filters:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Filters
+      description: Exposed filters.
+      examples:
+        - '<div class="filter">Filter content</div>'
+
+    results_count:
+      type: string
+      title: Results count
+      description: Results count.
+      examples:
+        - 'Showing 6 of 20'
+
+    rows_above:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Rows above
+      description: Content above rows.
+      examples:
+        - '<p>Example content above rows</p>'
+
+    rows:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Rows
+      description: Rows content.
+      examples:
+        - '<div class="row">Row content</div>'
+
+    rows_below:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Rows below
+      description: Content below rows.
+      examples:
+        - '<p>Example content below rows</p>'
+
+    empty:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Empty
+      description: Empty results content.
+      examples:
+        - '<p>No results found</p>'
+
+    link_below:
+      type: object
+      title: Link below
+      description: 'Link object:'
+
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Text.
+          examples:
+            - 'View more'
+
+        url:
+          type: string
+          title: Url
+          description: URL.
+          examples:
+            - 'http://www.example.com'
+
+        is_new_window:
+          type: boolean
+          title: Open link in a new window.
+          examples:
+            - false
+
+        is_external:
+          type: boolean
+          title: Link is external or not.
+          examples:
+            - false
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - top
+
+    with_background:
+      type: boolean
+      title: With background or not.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  pagination:
+    title: Pagination
+    description: Pagination slot.
+    examples:
+      - '<p>pagination</p>'
+
+  footer:
+    title: Footer
+    description: Footer slot.
+    examples:
+      - '<p>footer</p>'

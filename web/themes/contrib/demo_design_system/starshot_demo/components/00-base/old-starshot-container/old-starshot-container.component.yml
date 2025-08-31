@@ -1,0 +1,68 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Old Container
+
+status: obsolete
+
+group: Base
+
+props:
+
+  type: object
+
+  properties:
+    background_url:
+      type: string
+      title: The background image URL.
+      enum:
+        - '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/background_1.png'
+        - '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/background_2.png'
+      default: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/background_2.png'
+      examples:
+        - '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/background_2.png'
+
+    constrain:
+      type: boolean
+      title: To constrain with a container class, or edge-to-edge.
+      examples:
+        - true
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Margin vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      default: both
+      examples:
+        - both
+
+    vertical_spacing_inner:
+      type: string
+      title: Vertical spacing inner
+      description: 'Padding vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      default: both
+      examples:
+        - both
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content:
+    type: string
+    title: Content
+    description: Content slot.
+    #examples:
+    #  - '<strong>sample html content</strong>'

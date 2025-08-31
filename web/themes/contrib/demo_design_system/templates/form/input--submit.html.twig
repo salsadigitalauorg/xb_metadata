@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a 'submit' input.
+ */
+#}
+
+{% include "@atoms/button/button.twig" with {
+  theme: theme,
+  type: type,
+  kind: 'submit',
+  text: value,
+  attributes: attributes,
+  modifier_class: modifier_class,
+} only %}

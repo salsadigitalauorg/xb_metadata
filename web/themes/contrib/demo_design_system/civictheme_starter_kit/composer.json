@@ -1,0 +1,9 @@
+{
+    "name": "civictheme/civictheme_starter_kit",
+    "description": "CivicTheme Starter Kit description.",
+    "type": "drupal-theme",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.2"
+    }
+}

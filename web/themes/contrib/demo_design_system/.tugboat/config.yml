@@ -1,0 +1,63 @@
+services:
+  php:
+    # Specify the version of Drupal you wish to use for Tugboat below.
+    image: tugboatqa/drupal:11
+    default: true
+    http: false
+    depends: mysql
+    commands:
+      update:
+        # Run various commands from the drupal/recommended-project root.
+        - |
+          set -eux
+
+          rm -Rf $DRUPAL_COMPOSER_ROOT
+          composer create phenaproxima/xb-demo --stability=dev $DRUPAL_COMPOSER_ROOT
+
+          # This is an environment variable we added in the Dockerfile that
+          # provides the path to Drupal composer root (not the web root).
+          cd $DRUPAL_COMPOSER_ROOT
+
+          composer config repositories.tugboat path $TUGBOAT_ROOT
+          composer require drupal/demo_design_system:dev-main
+
+          # Install Drupal on the site.
+          rm -f $DRUPAL_DOCROOT/sites/default/settings.php
+          php -d memory_limit=-1 \
+            vendor/bin/drush.php \
+            --yes \
+            --db-url=mysql://tugboat:tugboat@mysql:3306/tugboat \
+            --site-name="Live preview for ${TUGBOAT_PREVIEW_NAME}" \
+            --account-pass=admin \
+            site:install drupal_cms_installer
+
+          # Require settings.local.php increase CLI memory limit, add trusted
+          # host patterns, and allow for enabling hidden xb_dev_standard module.
+          echo "require_once '$TUGBOAT_ROOT/.tugboat/settings.local.php';" >> $DRUPAL_DOCROOT/sites/default/settings.php
+
+          # Set up the files directory permissions.
+          mkdir -p $DRUPAL_DOCROOT/sites/default/files
+          chgrp -R www-data $DRUPAL_DOCROOT/sites/default/files
+          chmod 2775 $DRUPAL_DOCROOT/sites/default/files
+          chmod -R g+w $DRUPAL_DOCROOT/sites/default/files
+
+      build:
+        # Update Drupal core composer packages and run any Drupal updates.
+        - |
+          set -eux
+          cd $DRUPAL_COMPOSER_ROOT
+          composer install --optimize-autoloader
+          # Update packages and dependencies.
+          composer update --with-all-dependencies drupal/demo_design_system
+          # Run Drupal updates
+          vendor/bin/drush --yes updb
+          vendor/bin/drush cache:rebuild
+
+        # Ensure web user can access theme files.
+        - chgrp -R www-data .
+
+        # Warm Drupal caches
+        - 'curl --silent --header "Host: $TUGBOAT_DEFAULT_SERVICE_URL_HOST" http://localhost > /dev/null'
+
+  mysql:
+    image: tugboatqa/mariadb

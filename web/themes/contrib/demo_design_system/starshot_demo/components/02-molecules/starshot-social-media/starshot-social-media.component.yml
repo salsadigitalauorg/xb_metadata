@@ -1,0 +1,27 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+
+name: Social Media
+status: experimental
+group: Molecules
+description: Container for social media icons
+
+props:
+
+  type: object
+
+  properties:
+    hover_animation:
+      type: string
+      title: On hover animation
+      description: 'Select the animation style'
+      enum:
+        - scale
+        - rotate
+      default: scale
+      examples:
+        - scale
+
+slots:
+
+  social_media_icons:
+    title: Social Media Icons

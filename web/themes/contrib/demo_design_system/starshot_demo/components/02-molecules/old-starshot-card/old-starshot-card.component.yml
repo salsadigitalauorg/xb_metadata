@@ -1,0 +1,161 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Old Starshot Card
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- title
+
+  properties:
+    # @todo implement dark theme
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    display:
+      type: string
+      title: Display
+      description: 'Card display: vertical, horizontal, centered, overlay.'
+      default: vertical
+      enum:
+        - vertical
+        - horizontal
+        - centered
+        - overlay
+      examples:
+        - vertical
+
+    title:
+      type: string
+      title: Title
+      description: Card title.
+      examples:
+        - Card title
+
+    summary:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Summary
+      description: Card summary.
+      examples:
+        - 'Lorem ipsum eiusmod dolore consectetur pariatur ut esse sunt sit.'
+
+    # @fixme in XB, this is a string.
+    # we can add explicit, link_text, link_href, etc. to support this
+    #link:
+    #type: object
+    #title: Link
+    #description: 'Link object:'
+    #properties: {}
+
+    background:
+      type: string
+      title: Background
+      description: URL for the background image.
+      default: 'background-2'
+      enum:
+        - 'background-1'
+        - 'background-2'
+        - 'background-3'
+        - 'background-4'
+        - 'background-5'
+        - 'background-6'
+      examples:
+        - 'background-2'
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #tags:
+    #type: array
+    #title: Tags
+    #description: 'Tags array:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #type:
+    #type: string
+    #title: Type
+    #description: 'Type: primary, secondary, tertiary, drupal'
+    #default: drupal
+    #enum:
+    #- primary
+    #- secondary
+    #- tertiary
+    #- drupal
+    # examples:
+    #   - drupal
+    #
+    #content:
+    #type: string
+    #title: Content
+    #description: Content.
+    # examples:
+    #   - Blogs
+    #
+    #icon:
+    #type: string
+    #title: Icon
+    #description: Icon name.
+    # examples:
+    #   - education-book
+    #
+    #icon_placement:
+    #type: string
+    #title: Icon placement
+    #description: 'Icon position: before, after.'
+    #default: before
+    #enum:
+    #- before
+    #- after
+    # examples:
+    #   - before
+    #
+    #url:
+    #type: string
+    #title: Url
+    #description: Optional URL to convert to a link.
+    # examples:
+    #   - https://example.com
+    #
+    #is_new_window:
+    #type: boolean
+    #title: Open in a new window. Only if url is provided.
+    # examples:
+    #   - false
+    #
+    #is_external:
+    #type: boolean
+    #title: Link is external.
+    # examples:
+    #   - false
+    #
+
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'placeholder'
+          width: 600
+          height: 400
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

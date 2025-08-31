@@ -1,0 +1,93 @@
+{#
+  /**
+   * @file
+   * Old Starshot case study component.
+   *
+   * Variables:
+   * - theme: [string] Theme: light, dark.
+   * - title: [string] Title.
+   * - description: [string] Description.
+   * - featured_image: [object] Featured image object:
+   *   - url: [string] Source.
+   *   - alt: [string] Alt text.
+   * - data_panel: [object] Data panel object:
+   *   - image: [object] Data panel image object:
+   *     - url: [string] Source.
+   *     - alt: [string] Alt text.
+   *   - description: [string] Data panel description.
+   *   - link: [object] Data panel link object:
+   *     - text: [string] Text.
+   *     - url: [string] Link.
+   *   - panels: [array] Data panels array:
+   *     - amount: [string] Amount.
+   *     - sub: [string] Sub/Unit of the amount.
+   *     - description: [string] Description.
+   * - modifier_class: [string] Additional classes.
+   * - attributes: [string] Case study attributes.
+   */
+  #}
+
+  {% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+  {% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+  {% if title is not empty or content is not empty %}
+    <div class="ct-old-starshot-case-study {{ modifier_class -}}" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
+      <div class="ct-old-starshot-case-study__wrapper">
+        <div class="ct-old-starshot-case-study__inner">
+          <div class="container">
+            <div class="row">
+              <div class="{% if description is not empty %}col-xxs-12 col-xl-6 col-xxl-8{% else %}col-xxs-12{% endif %}">
+                {% if title is not empty %}
+                  {%- block title %}
+                    {% include '@atoms/old-starshot-heading/old-starshot-heading.twig' with {
+                      theme: theme,
+                      level: 2,
+                      display: 'drupal-8',
+                      modifier_class: 'ct-old-starshot-case-study__title',
+                      content: title,
+                    } only %}
+                  {% endblock -%}
+                {% endif %}
+              </div>
+              {% if description is not empty %}
+                <div class="col-xxs-12 col-xl-6 col-xxl-4">
+                  {% include '@atoms/old-starshot-paragraph/old-starshot-paragraph.twig' with {
+                    theme: theme,
+                    content: description,
+                    color: 'body-2',
+                    display: 'large',
+                    modifier_class: 'ct-old-starshot-case-study__description',
+                  } only %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% block featured_image %}
+          <div class="ct-old-starshot-case-study__featured-image__section">
+            {% if featured_image is not empty %}
+              <div class="ct-old-starshot-case-study__featured-image__wrapper">
+                {% include '@atoms/image/image.twig' with {
+                  theme: theme,
+                  url: featured_image.src,
+                  alt: featured_image.alt,
+                  modifier_class: 'ct-old-starshot-case-study__featured-image',
+                } only %}
+              </div>
+            {% endif %}
+          </div>
+        {% endblock %}
+        {% block data_panel %}
+          {% if data_panel is not empty %}
+            {% include '@molecules/old-starshot-data-panel/old-starshot-data-panel.twig' with {
+              theme: theme,
+              image: data_panel.image,
+              description: data_panel.description,
+              link: data_panel.link,
+              panels: data_panel.panels
+            } only %}
+          {% endif %}
+        {% endblock %}
+      </div>
+    </div>
+  {% endif %}

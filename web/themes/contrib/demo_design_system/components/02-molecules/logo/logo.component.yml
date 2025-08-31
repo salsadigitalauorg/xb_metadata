@@ -1,0 +1,95 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Logo
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- logos
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    type:
+      type: string
+      title: Type
+      description: 'Type:'
+      default: default
+      examples:
+        - default
+
+    logos:
+      type: object
+      title: Logos
+      description: 'Object with "primary" and "secondary" keys:'
+      # @todo figure out if this is correct.
+      examples:
+        [
+          {
+            primary: {
+              mobile: {
+                url: 'https://example.com/primary-mobile.png',
+                alt: 'Primary logo mobile alt text',
+              },
+              desktop: {
+                url: 'https://example.com/primary-desktop.png',
+                alt: 'Primary logo desktop alt text',
+              },
+            },
+            secondary: {
+              mobile: {
+                url: 'https://example.com/secondary-mobile.png',
+                alt: 'Secondary logo mobile alt text',
+              },
+              desktop: {
+                url: 'https://example.com/secondary-desktop.png',
+                alt: 'Secondary logo desktop alt text',
+              },
+            },
+          }
+        ]
+
+      properties:
+        breakpoint:
+          type: object
+          title: Breakpoint
+          description: 'Object with "mobile" and "desktop" keys:'
+          examples:
+            - 'mobile'
+            - 'desktop'
+
+    url:
+      type: string
+      title: Url
+      description: Optional URL that wraps the logo.
+      examples:
+        - 'https://example.com'
+
+    title:
+      type: string
+      title: Title
+      description: Optional logo title attribute.
+      default: Click to go to the homepage
+      examples:
+        - Click to go to the homepage
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

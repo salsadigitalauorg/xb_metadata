@@ -1,0 +1,280 @@
+//
+// Starshot card component.
+//
+// stylelint-disable value-no-vendor-prefix
+
+.ct-old-starshot-card {
+  $root: &;
+
+  border-radius: ct-particle(2.5);
+  overflow: hidden;
+  page-break-inside: avoid;
+
+  // Backgrounds
+  &--none {
+    border-radius: 0 !important;
+  }
+
+  // Displays
+  &--vertical {
+    #{$root}__wrapper {
+      padding: ct-spacing(4);
+
+      @include ct-breakpoint(l) {
+        padding: ct-spacing(5);
+      }
+    }
+
+    #{$root}__tags {
+      margin-bottom: ct-spacing(3);
+    }
+
+    #{$root}__title {
+      @include ct-typography('heading-drupal-6');
+
+      margin-bottom: ct-spacing(2);
+    }
+
+    #{$root}__content {
+      display: flex;
+      flex-direction: column;
+      gap: ct-spacing(4);
+    }
+
+    #{$root}__summary {
+      @include ct-typography('body-regular-drupal');
+
+      margin-bottom: ct-spacing(4);
+    }
+
+    #{$root}__image {
+      img {
+        max-height: ct-particle(64);
+      }
+    }
+  }
+
+  &--horizontal {
+    #{$root}__wrapper {
+      padding: ct-spacing(4);
+
+      @include ct-breakpoint(l) {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: ct-spacing(4);
+        padding: ct-spacing(7);
+      }
+    }
+
+    #{$root}__title {
+      @include ct-typography('heading-drupal-7');
+
+      margin-bottom: ct-spacing(2);
+
+      @include ct-breakpoint(l) {
+        width: 50%;
+        margin-bottom: 0;
+      }
+    }
+
+    #{$root}__content {
+      display: flex;
+      flex-direction: column;
+      gap: ct-spacing(4);
+
+      @include ct-breakpoint(l) {
+        width: 50%;
+      }
+    }
+
+    #{$root}__summary {
+      @include ct-typography('body-regular-drupal');
+
+      margin-bottom: ct-spacing(2);
+    }
+
+    #{$root}__link {
+      width: 100%;
+      text-align: center;
+
+      @include ct-breakpoint(l) {
+        width: auto;
+      }
+    }
+
+    #{$root}__image {
+      img {
+        max-height: ct-particle(64);
+      }
+    }
+  }
+
+  &--centered {
+    #{$root}__wrapper {
+      padding: ct-spacing(4);
+    }
+
+    #{$root}__tags {
+      margin-bottom: ct-spacing(3);
+      display: flex;
+      justify-content: center;
+    }
+
+    #{$root}__title {
+      @include ct-typography('heading-drupal-5');
+
+      text-align: center;
+      margin-bottom: ct-spacing(3);
+    }
+
+    #{$root}__summary {
+      @include ct-typography('body-large-drupal');
+
+      text-align: center;
+      margin-bottom: ct-spacing(2);
+    }
+
+    #{$root}__link-wrapper {
+      text-align: center;
+    }
+
+    #{$root}__image {
+      img {
+        max-height: ct-particle(64);
+      }
+    }
+  }
+
+  &--overlay {
+    position: relative;
+    border-radius: ct-spacing(3.75);
+
+    #{$root}__wrapper {
+      padding: ct-spacing(3);
+      z-index: 2;
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: ct-spacing(2);
+      min-height: ct-particle(50);
+    }
+
+    #{$root}__image {
+      border-radius: ct-spacing(3.75) !important;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+
+      &::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        background-image: linear-gradient(to bottom, #fff0 30.19%, #0d375fff);
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 100%;
+      }
+    }
+
+    #{$root}__tags {
+      margin-bottom: auto;
+    }
+
+    #{$root}__title {
+      @include ct-typography('heading-drupal-3');
+
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    #{$root}__summary {
+      @include ct-typography('body-large-drupal');
+    }
+
+    #{$root}__content {
+      display: flex;
+      flex-direction: column;
+      gap: ct-spacing(2);
+    }
+  }
+
+  // Elements
+  &__image {
+    text-align: center;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__wrapper {
+    width: 100%;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: ct-spacing(1);
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    $backgrounds: none, background, background-2, background-3, background-4, background-5, background-6;
+
+    @each $background in $backgrounds {
+      &#{$root}--#{$background} {
+        @include ct-component-property($root, $theme, background, $background, background-color);
+
+        #{$root}__title {
+          @include ct-component-property($root, $theme, background, $background, title, color);
+        }
+
+        #{$root}__summary {
+          @include ct-component-property($root, $theme, background, $background, summary, color);
+        }
+
+        &#{$root}--vertical {
+          #{$root}__link {
+            @include ct-component-property($root, $theme, background, $background, vertical-link, color);
+            @include ct-component-property($root, $theme, background, $background, vertical-link, border-color);
+
+            &:focus-visible,
+            &:hover,
+            &:active {
+              @include ct-component-property($root, $theme, background, $background, vertical-link-hover, border-color);
+            }
+          }
+        }
+      }
+    }
+
+    &#{$root}--overlay-image {
+      #{$root}__title {
+        @include ct-component-property($root, $theme, overlay-image, title, color);
+      }
+
+      #{$root}__summary {
+        @include ct-component-property($root, $theme, overlay-image, summary, color);
+      }
+    }
+  }
+}

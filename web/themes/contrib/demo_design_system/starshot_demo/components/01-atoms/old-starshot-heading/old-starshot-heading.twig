@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Starshot Heading component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content: [string] Heading content.
+ * - level: [string] Semantic level: 1, 2, 3, 4, 5, 6.
+ * - display: [string] Font style of heading: drupal-2, drupal-3, drupal-4, drupal-5, drupal-6, drupal-7, drupal-8.
+ * - align: [string] Heading alignment: left, right, center.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set display_class = 'ct-old-starshot-heading--%s'|format(display) %}
+{% set align_class = 'ct-old-starshot-heading--%s'|format(align|default('left')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, display_class, align_class, modifier_class|default('')) %}
+
+{% set level = level|default('2') %}
+
+{% if content %}
+  <h{{ level }} class="ct-old-starshot-heading {{ modifier_class -}}" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
+    {{- content|raw -}}
+  </h{{ level }}>
+{% endif %}

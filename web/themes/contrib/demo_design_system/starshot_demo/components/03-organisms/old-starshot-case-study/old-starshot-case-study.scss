@@ -1,0 +1,60 @@
+//
+// Old Starshot case study component.
+//
+
+.ct-old-starshot-case-study {
+  $root: &;
+
+  position: relative;
+
+  &__inner {
+    @include ct-background();
+
+    position: relative;
+    padding: ct-spacing(5) 0;
+
+    @include ct-breakpoint(xl) {
+      padding: ct-spacing(10);
+    }
+
+    @include ct-print() {
+      padding-top: ct-spacing(2);
+      padding-bottom: ct-spacing(3);
+    }
+  }
+
+  &__featured-image {
+    &__section {
+      position: relative;
+
+      @include ct-breakpoint(xl) {
+        padding-bottom: 30%;
+      }
+    }
+
+    &__wrapper {
+      @include ct-image-fit();
+
+      @include ct-breakpoint(xl) {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+      }
+    }
+  }
+
+  &__title {
+    margin-bottom: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(3);
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+  }
+}

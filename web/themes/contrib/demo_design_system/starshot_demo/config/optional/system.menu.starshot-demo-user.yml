@@ -1,0 +1,8 @@
+uuid: 601cd98b-bf89-40f1-bd72-6cd62090850b
+langcode: en
+status: true
+dependencies: {  }
+id: starshot-demo-user
+label: 'Starshot Demo User Menu'
+description: 'Starshot demo user menu links'
+locked: false

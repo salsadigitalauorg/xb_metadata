@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Starshot Slide Card component.
+ *
+ * Variables:
+ * - title: [string] Title.
+ * - url: [string] URL.
+ * - color: [string] Color: green, blue
+ * - image: [object] Image object:
+ *   - src: [string] Image URL.
+ *   - alt: [string] Image alt text.
+ */
+#}
+
+{% if color == 'green' %}
+  {% set stroke = '#397618' %}
+{% elseif color == 'blue' %}
+  {% set stroke = '#006AA9' %}
+{% else %}
+  {% set stroke = '#ff0000' %}
+{% endif %}
+
+{% if image and image.src %}
+  <div class="ct-starshot-slide-card">
+    <div class="ct-starshot-slide-card__inner">
+      <div class="ct-starshot-slide-card__header">
+        <svg width="193" height="49" viewBox="0 0 193 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25.4428 42C35.6284 42 43.8855 34.165 43.8855 24.5C43.8855 14.835 35.6284 7 25.4428 7C15.2571 7 7 14.835 7 24.5C7 34.165 15.2571 42 25.4428 42Z" stroke="{{ stroke }}" stroke-width="12.5075" stroke-miterlimit="10"></path>
+          <path d="M96.4428 42C106.628 42 114.886 34.165 114.886 24.5C114.886 14.835 106.628 7 96.4428 7C86.2571 7 78 14.835 78 24.5C78 34.165 86.2571 42 96.4428 42Z" stroke="{{ stroke }}" stroke-width="12.5075" stroke-miterlimit="10"></path>
+          <path d="M167.443 42C177.628 42 185.886 34.165 185.886 24.5C185.886 14.835 177.628 7 167.443 7C157.257 7 149 14.835 149 24.5C149 34.165 157.257 42 167.443 42Z" stroke="{{ stroke }}" stroke-width="12.5075" stroke-miterlimit="10"></path>
+        </svg>
+      </div>
+      <img class="ct-starshot-slide-card__image" src="{{ image.src }}" alt="{{ image.alt }}" />
+    </div>
+    <a class="ct-starshot-slide-card__link" href="{{ url }}">{{ title }}</a>
+  </div>
+{% endif %}

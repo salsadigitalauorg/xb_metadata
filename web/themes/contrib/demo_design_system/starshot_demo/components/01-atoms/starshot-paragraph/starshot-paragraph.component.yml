@@ -1,0 +1,55 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Paragraph
+
+status: experimental
+
+group: Atoms
+
+props:
+
+  type: object
+    #required:
+    #- content
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      contentMediaType: text/html
+      x-formatting-context: block
+      title: Content
+      description: Paragraph text.
+      examples:
+        - Easily create the digital experiences you want with Drupal.
+
+    #display:
+      # @todo make this work better
+      #type: string
+      #title: Style
+      #description: 'Size: regular, large, strong.'
+      #default: regular
+      #enum:
+        #- regular
+        #- large
+        #- strong
+      #examples:
+        #- regular
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

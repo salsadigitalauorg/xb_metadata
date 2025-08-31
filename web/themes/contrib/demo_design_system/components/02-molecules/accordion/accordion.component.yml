@@ -1,0 +1,91 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Accordion
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+  # required:
+  #   - panels
+
+  properties:
+    expand_all:
+      type: boolean
+      title: Expand all panels or not.
+      examples:
+        - false
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #panels:
+    #type: array
+    #title: Panels
+    #description: 'Array of panels:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #content:
+    #type: string
+    #title: Content
+    #description: The description's content.
+    #examples:
+    #- 'Accordion content 1 <a href="https://example.com">Example link</a>'
+    #
+    #allow_html:
+    #type: boolean
+    #title: Allow HTML in text.
+    #examples:
+    #- true
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    with_background:
+      type: boolean
+      title: With background or not.
+      examples:
+        - false
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - both
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

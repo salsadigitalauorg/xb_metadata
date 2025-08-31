@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation for Automated list.
+ */
+#}
+{% extends '@organisms/list/list.twig' %}
+
+{% block rows %}
+  {% if rows -%}
+    {{ rows }}
+  {% endif %}
+{% endblock %}

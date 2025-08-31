@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 73eab3d3-8aa4-435b-9701-e3baf2a2dd77
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: temp_starshot_footer.png
+  uri:
+    -
+      value: 'public://2025-03/temp_starshot_footer.png'
+      url: /sites/default/files/2025-03/temp_starshot_footer.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 959780
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741575887

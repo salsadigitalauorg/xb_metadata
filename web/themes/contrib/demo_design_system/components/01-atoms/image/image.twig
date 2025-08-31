@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Image component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - url: [string] URL of the image.
+ * - alt: [string] Alternate text of the image.
+ * - width: [string] Width.
+ * - height: [string] Height.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+
+{% if image and image.src %}
+  <img src="{{ image.src }}" alt="{{ image.alt }}"
+  class="ct-image {{ modifier_class -}}"
+  {% if width is not empty %}width="{{ width }}"{% endif %}
+  {% if height is not empty %}height="{{ height }}"{% endif %}
+  {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}
+  />
+{% endif %}

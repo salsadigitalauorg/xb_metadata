@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 6c314d91-a016-4631-bc10-d2f2e898ef1a
+  bundle: image
+  default_langcode: en
+  depends:
+    264e7c9c-674b-49a1-bc9c-a1e6899918cc: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: starshot_9.png
+  created:
+    -
+      value: 1741360331
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: 264e7c9c-674b-49a1-bc9c-a1e6899918cc
+      alt: 'Slide 2'
+      title: ''
+      width: 437
+      height: 547

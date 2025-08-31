@@ -1,0 +1,352 @@
+{% set base_path = base_path|default('.') %}
+{% if show_hero %}
+  {% embed '@organisms/starshot-hero/starshot-hero.twig' with {
+    title: 'Create ambitious experiences that scale',
+    summary: 'Drupal is a fully composable CMS that allows you to design a digital experience around your vision.',
+    design: 'blue-stripe',
+    top_padding: 'small',
+    image: {
+      src: base_path ~ '/assets/starshot/starshot_5.png',
+      alt: '',
+    },
+    base_path: base_path,
+  } only %}
+    {% block above %}
+      {% embed '@atoms/starshot-header-panel/starshot-header-panel.twig' with { style: 'desktop' } %}
+        {% block column_one %}
+          {% embed '@base/starshot-grid/starshot-grid.twig' with { vertical: 'center', gap: 'medium', wrap: 'nowrap', base_path: base_path } only %}
+            {% block content %}
+              {% include '@atoms/starshot-image/starshot-image.twig' with {
+                image: {
+                  src: base_path ~ '/assets/logos/drupal_icon.png',
+                  alt: ''
+                }
+              } only %}
+              {% include '@atoms/starshot-menu/starshot-menu.twig' with {
+                items: [
+                  { title: "Platform", url: "/" },
+                  { title: "Solutions", url: "/" },
+                  { title: "Develop", url: "/" },
+                  { title: "Download", url: "/" },
+                  { title: "Get Support", url: "/" },
+                  { title: "Connect", url: "/" },
+                  { title: "Support Drupal", url: "/" },
+                ]
+              } only %}
+            {% endblock %}
+          {% endembed %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@atoms/starshot-button/starshot-button.twig' with {
+            display: 'tertiary',
+            text: 'Get started',
+            url: '/',
+          } only %}
+        {% endblock %}
+      {% endembed %}
+      {% embed '@atoms/starshot-header-panel/starshot-header-panel.twig' with { style: 'mobile' } %}
+        {% block column_one %}
+          {% embed '@base/starshot-grid/starshot-grid.twig' with { vertical: 'center', gap: 'medium', wrap: 'nowrap', base_path: base_path } only %}
+            {% block content %}
+              {% include '@atoms/starshot-image/starshot-image.twig' with {
+                image: {
+                  src: base_path ~ '/assets/logos/drupal_icon.png',
+                  alt: ''
+                }
+              } only %}
+            {% endblock %}
+          {% endembed %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@atoms/starshot-button/starshot-button.twig' with {
+            display: 'link',
+            text: 'Menu',
+            url: '/',
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+    {% block content %}
+      {% include '@atoms/starshot-button/starshot-button.twig' with {
+        text: 'Learn more',
+        url: '/',
+      } only %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}
+{% if show_listing_testimonial %}
+  {% embed '@base/starshot-container/starshot-container.twig' with {
+    design: 'light',
+    constrain: true,
+    side_padding: true,
+    spacing: 'large',
+    gap: 'medium',
+    base_path: base_path,
+  } only %}
+    {% block content %}
+      {% include '@atoms/starshot-heading/starshot-heading.twig' with {
+        content: 'Flexible by design',
+        level: 2,
+        margin: 'large',
+      } only %}
+      {% embed '@base/starshot-grid/starshot-grid.twig' with { vertical: 'top', gap: 'small', col: 'four', base_path: base_path } %}
+        {% block column_one %}
+          {% include '@molecules/starshot-testimonial-card/starshot-testimonial-card.twig' with {
+            title: 'User-centric experiences',
+            summary: 'Create compelling content on more  devices than ever. With tools to build versatile, structured content and integrate with a wide array of digital marketing channels.',
+            image: { src: base_path ~ '/assets/starshot/listing_1.png', alt: '' },
+          } only %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@molecules/starshot-testimonial-card/starshot-testimonial-card.twig' with {
+            title: 'Lower cost of ownership',
+            summary: 'With no vendor lock-in and low-code/no-code options available, marketers can independently drive your digital strategy and publishing workflows.',
+            image: { src: base_path ~ '/assets/starshot/listing_2.png', alt: '' },
+          } only %}
+        {% endblock %}
+        {% block column_three %}
+          {% include '@molecules/starshot-testimonial-card/starshot-testimonial-card.twig' with {
+            title: 'Limitless flexibility',
+            summary: 'A fully composable, API-first platform that allows you to design around your vision and your user needs. A global network of open source contributors continuously develops and innovates on core features.',
+            image: { src: base_path ~ '/assets/starshot/listing_3.png', alt: '' },
+          } only %}
+        {% endblock %}
+        {% block column_four %}
+          {% include '@molecules/starshot-testimonial-card/starshot-testimonial-card.twig' with {
+            title: 'Enterprise-grade tooling',
+            summary: 'The most accessible, secure open-source DXP available. It adheres to industry standard privacy and security standards and checks all the boxes for your IT team.',
+            image: { src: base_path ~ '/assets/starshot/listing_4.png', alt: '' },
+          } only %}
+        {% endblock %}
+      {% endembed %}
+      {% include '@molecules/starshot-testimonial/starshot-testimonial.twig' with {
+        quote: 'For our 1,000+ websites, one of the benefits of Drupal is that accessibility compliance are already covered.',
+        cite: 'Joyce Peralta, Manager, Digital Communications at McGill University',
+        image: { src: base_path ~ '/assets/starshot/testimonial_avatar.png', alt: 'Testimonial avatar' },
+      } only %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}
+{% if show_case_study %}
+  {% embed '@organisms/starshot-case-study/starshot-case-study.twig' with {
+    title: 'Learn why 1 in 8 enterprise websites runs on Drupal',
+    image: {
+      src: base_path ~ '/assets/starshot/starshot_6.png',
+      alt: '',
+    }
+  } %}
+    {% block content %}
+      {% include '@atoms/starshot-image/starshot-image.twig' with {
+        image: {
+          src: base_path ~ '/assets/starshot/starshot_7.png',
+          alt: '',
+        },
+      } only %}
+      {% include '@atoms/starshot-paragraph/starshot-paragraph.twig' with {
+        content: 'Nestlé leveraged Drupal to simplify, standardize, and centralize its global digital properties.',
+        display: 'large',
+      } %}
+      {% embed '@base/starshot-grid/starshot-grid.twig' with { vertical: 'top', gap: 'small', col: 'two' } %}
+        {% block column_one %}
+          {% include '@molecules/starshot-statistic-card/starshot-statistic-card.twig' with {
+            number: '60%',
+            description: 'of sites built on shared codebase',
+          } %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@molecules/starshot-statistic-card/starshot-statistic-card.twig' with {
+            number: '90%',
+            description: 'of sites built with Drupal',
+          } %}
+        {% endblock %}
+      {% endembed %}
+      {% include '@atoms/starshot-button/starshot-button.twig' with {
+        text: 'Learn more',
+        url: '/',
+      } %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}
+{% if show_cta %}
+  {% embed '@organisms/starshot-cta/starshot-cta.twig' with {
+    title: 'Start your <em>Drupal</em> journey',
+  } %}
+    {% block cta_content %}
+      {% include '@atoms/starshot-paragraph/starshot-paragraph.twig' with {
+        content: 'Get your website up and running faster.<br> <strong>Drupal CMS</strong> gives you the tools to bring your digital ambitions to life without restricting your creativity.',
+      } %}
+      {% embed '@base/starshot-grid/starshot-grid.twig' with { vertical: 'center', gap: 'medium', col: 'none' } %}
+        {% block column_one %}
+          {% include '@atoms/starshot-button/starshot-button.twig' with {
+            text: 'Get started',
+            url: '/',
+            display: 'secondary',
+          } %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@atoms/starshot-button/starshot-button.twig' with {
+            text: 'Learn More about Drupal CMS',
+            url: '/',
+            display: 'link',
+          } %}
+        {% endblock %}
+      {% endembed %}
+      {% include '@atoms/starshot-paragraph/starshot-paragraph.twig' with {
+        content: 'Drupal Core provides the base features you rely on and allows you to start building from scratch.',
+      } %}
+      {% include '@atoms/starshot-button/starshot-button.twig' with {
+        text: 'Download Drupal Core',
+        url: '/',
+        display: 'link',
+      } %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}
+{% if show_feature_slide %}
+  {% embed '@base/starshot-container/starshot-container.twig' with {
+    design: 'blue',
+    gap: 'medium',
+    spacing: 'x-large',
+    side_padding: false,
+    base_path: base_path,
+  } only %}
+    {% block content %}
+      {% embed '@base/starshot-container/starshot-container.twig' with {
+        constrain: true,
+        side_padding: true,
+        gap: 'medium',
+      } only %}
+        {% block content %}
+          {% include '@atoms/starshot-heading/starshot-heading.twig' with {
+            content: 'Explore & Learn',
+            level: 2,
+          } only %}
+          {% embed '@base/starshot-grid/starshot-grid.twig' with { vertical: 'center', gap: 'small', horizontal: 'space-between' } %}
+            {% block column_one %}
+              {% include '@atoms/starshot-paragraph/starshot-paragraph.twig' with {
+                content: 'Webinars, Videos, Article, Guides and more',
+                display: 'strong',
+              } %}
+            {% endblock %}
+            {% block column_two %}
+              {% embed '@base/starshot-grid/starshot-grid.twig' with { vertical: 'center', gap: 'small', horizontal: 'space-between' } %}
+                {% block content %}
+                  {% include '@atoms/starshot-button/starshot-button.twig' with {
+                    text: 'Blogs',
+                    url: '/',
+                    display: 'link-alt',
+                  } %}
+                  {% include '@atoms/starshot-button/starshot-button.twig' with {
+                    text: 'Tutorials',
+                    url: '/',
+                    display: 'link-alt',
+                  } %}
+                  {% include '@atoms/starshot-button/starshot-button.twig' with {
+                    text: 'Talk/Session',
+                    url: '/',
+                    display: 'link-alt',
+                  } %}
+                  {% include '@atoms/starshot-button/starshot-button.twig' with {
+                    text: 'Free Training',
+                    url: '/',
+                    display: 'link-alt',
+                  } %}
+                {% endblock %}
+              {% endembed %}
+            {% endblock %}
+          {% endembed %}
+        {% endblock %}
+      {% endembed %}
+      {% embed '@molecules/starshot-slider/starshot-slider.twig' with { slide_count: 4, base_path: base_path } only %}
+        {% block slide_one %}
+          {% include '@molecules/starshot-slide-card/starshot-slide-card.twig' with {
+            image: { src: base_path ~ '/assets/starshot/starshot_8.png', alt: '' },
+            url: '/',
+            title: 'Blog Title Nostrud aliqua.',
+            color: 'green',
+          } only %}
+        {% endblock %}
+        {% block slide_two %}
+          {% include '@molecules/starshot-slide-card/starshot-slide-card.twig' with {
+            image: { src: base_path ~ '/assets/starshot/starshot_9.png', alt: '' },
+            url: '/',
+            title: 'Blog Title Dolore excepteur qui eu.',
+            color: 'blue',
+          } only %}
+        {% endblock %}
+        {% block slide_three %}
+          {% include '@molecules/starshot-slide-card/starshot-slide-card.twig' with {
+            image: { src: base_path ~ '/assets/starshot/starshot_10.png', alt: '' },
+            url: '/',
+            title: 'Blog Title Aliqua et veniam pariatur ut.',
+            color: 'green',
+          } only %}
+        {% endblock %}
+        {% block slide_four %}
+          {% include '@molecules/starshot-slide-card/starshot-slide-card.twig' with {
+            image: { src: base_path ~ '/assets/starshot/starshot_11.png', alt: '' },
+            url: '/',
+            title: 'Blog Title Ut aliquip nulla et.',
+            color: 'blue',
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}
+{% if show_stats %}
+  {% embed '@base/starshot-container/starshot-container.twig' with {
+    design: 'green',
+    image: { src: base_path ~ '/assets/starshot/starshot_13.png', alt: '' },
+    constrain: true,
+    side_padding: true,
+    spacing: 'xx-large',
+    gap: 'medium',
+  } only %}
+    {% block content %}
+      {% include '@atoms/starshot-heading/starshot-heading.twig' with {
+        content: 'Open source means no vendor lock-in',
+        theme: 'dark',
+        level: 2,
+        font: 'heading-2',
+      } only %}
+      {% embed '@base/starshot-grid/starshot-grid.twig' with { vertical: 'top', gap: 'small', col: 'four' } %}
+        {% block column_one %}
+          {% include '@molecules/starshot-statistic-card/starshot-statistic-card.twig' with {
+            number: '+100',
+            description: 'Drupal Certified Partners provide global support',
+            theme: 'dark',
+            align: 'center',
+          } %}
+        {% endblock %}
+        {% block column_two %}
+          {% include '@molecules/starshot-statistic-card/starshot-statistic-card.twig' with {
+            number: '+10',
+            suffix: 'k',
+            description: 'Support base of Drupal professionals',
+            theme: 'dark',
+            align: 'center',
+          } %}
+        {% endblock %}
+        {% block column_three %}
+          {% include '@molecules/starshot-statistic-card/starshot-statistic-card.twig' with {
+            number: '50',
+            suffix:  '%',
+            description: 'Half of Fortune 500 companies use Drupal',
+            theme: 'dark',
+            align: 'center',
+          } %}
+        {% endblock %}
+        {% block column_four %}
+          {% include '@molecules/starshot-statistic-card/starshot-statistic-card.twig' with {
+            number: '+500',
+            suffix: 'k',
+            description: 'Websites currently use Drupal',
+            theme: 'dark',
+            align: 'center',
+          } %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}

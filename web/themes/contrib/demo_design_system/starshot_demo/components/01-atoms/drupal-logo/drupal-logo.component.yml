@@ -1,0 +1,39 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: Drupal Logo
+description: The Drupal logo displayed as an SVG.
+status: stable
+props:
+  type: object
+  required:
+    - variant
+    - color
+    - size
+  properties:
+    variant:
+      type: string
+      title: Variant
+      description: The variant of the Drupal logo to display.
+      enum:
+        - Horizontal
+        - Vertical
+        - Drop icon
+      examples: [Horizontal]
+    color:
+      type: string
+      title: Color
+      description: The color of the Drupal logo.
+      enum:
+        - Drupal Blue
+        - Drupal Navy
+        - White
+        - Black
+      examples: [Drupal Blue]
+    size:
+      type: string
+      title: Size
+      description: The size of the Drupal logo.
+      enum:
+        - Default
+        - Full Width
+        - Full Height
+      examples: [Default]

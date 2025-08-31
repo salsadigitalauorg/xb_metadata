@@ -1,0 +1,31 @@
+.ct-menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  width: 100%;
+  margin: 0;
+
+  .ct-link {
+    color: #12285f;
+
+    &:hover,
+    &:visited,
+    &:hover:visited {
+      color: #12285f;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.starshot-header-panel .ct-menu {
+  flex-direction: row;
+  .ct-link {
+    text-transform: uppercase;
+  }
+}

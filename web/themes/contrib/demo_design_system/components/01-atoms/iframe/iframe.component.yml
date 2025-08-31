@@ -1,0 +1,59 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Iframe
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+    #required:
+    #- url
+
+  properties:
+    url:
+      type: string
+      title: Url
+      description: URL for the iframe src.
+      examples:
+        - https://www.openstreetmap.org/export/embed.html?bbox=144.1910129785538%2C-38.33563928918572%2C146.0037571191788%2C-37.37170047141492&amp;layer=mapnik
+
+    width:
+      type: integer
+      title: Width
+      description: Optional width of the iframe.
+      examples:
+        - 500
+
+    height:
+      type: integer
+      title: Height
+      description: Optional height of the iframe.
+      examples:
+        - 300
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - both
+
+    with_background:
+      type: boolean
+      title: With background or not.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

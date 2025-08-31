@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8273892b-94c6-4026-a9aa-f037d52f8103
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: temp_starshot_contributors.png
+  uri:
+    -
+      value: 'public://2025-03/temp_starshot_contributors.png'
+      url: /sites/default/files/2025-03/temp_starshot_contributors.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 725848
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741575313

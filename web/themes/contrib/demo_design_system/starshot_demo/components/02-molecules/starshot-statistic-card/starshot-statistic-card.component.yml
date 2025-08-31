@@ -1,0 +1,57 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Stats Card
+
+status: experimental
+
+group: Molecules
+
+props:
+
+  type: object
+
+  properties:
+
+    theme:
+      type: string
+      title: Theme
+      description: "Theme: light, dark."
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    # @fixme if it's a string and '50' is used then it it won't work.
+    # @see https://www.drupal.org/project/experience_builder/issues/3472176
+    number:
+      type: integer
+      title: Number
+      description: The number.
+      examples:
+        - 90
+        - 10
+        - 50
+        - 500
+
+    suffix:
+      type: string
+      title: Number suffix
+      description: 'The suffix text following the number, e.g. %'
+      examples:
+        - '%'
+        - 'k'
+        - ''
+
+    description:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Description
+      description: The description of the stats.
+      examples:
+        - 'of sites built with Drupal'
+        - 'Drupal Certified Partners provide global support'
+        - 'Support base of Drupal professionals'
+        - 'Half of Fortune 500 companies use Drupal'
+        - 'Websites currently use Drupal'

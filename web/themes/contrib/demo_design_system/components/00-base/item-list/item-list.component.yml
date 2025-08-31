@@ -1,0 +1,56 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Item list
+
+status: obsolete
+
+group: Base
+
+props:
+
+  type: object
+  # required:
+  #   - items
+
+  properties:
+    direction:
+      type: string
+      title: Direction
+      description: 'Direction: horizontal, vertical. Defaults to horizontal.'
+      default: horizontal
+      enum:
+        - horizontal
+        - vertical
+      examples:
+        - horizontal
+
+    size:
+      type: string
+      title: Size
+      description: 'Size: large, regular, small. Defaults to regular.'
+      default: regular
+      enum:
+        - large
+        - regular
+        - small
+      examples:
+        - regular
+
+    no_gap:
+      type: boolean
+      title: Render without gaps.
+      examples:
+        - false
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #items:
+    #type: array
+    #title: Items
+    #description: Items array
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

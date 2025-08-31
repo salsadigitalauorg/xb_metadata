@@ -1,0 +1,14 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-skip-link__link {
+  display: inline-block;
+  margin: 1rem 1.5rem;
+}
+.ct-skip-link.ct-theme-light {
+  background-color: var(--ct-skip-link-light-background-color);
+}
+.ct-skip-link.ct-theme-dark {
+  background-color: var(--ct-skip-link-dark-background-color);
+}

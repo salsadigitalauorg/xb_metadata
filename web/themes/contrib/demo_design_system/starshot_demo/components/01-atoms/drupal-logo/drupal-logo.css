@@ -1,0 +1,44 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+@charset "UTF-8";
+.drupal-logo {
+  display: block;
+}
+
+.drupal-logo--color-drupal-blue {
+  fill: #009cde;
+}
+
+.drupal-logo--color-drupal-navy {
+  fill: #12285f;
+}
+
+.drupal-logo--color-white {
+  fill: #fff;
+}
+
+.drupal-logo--color-black {
+  fill: #000;
+}
+
+.drupal-logo--size-default {
+  width: 150px; /* Size used in Drupal.org's header. */
+  height: auto;
+}
+
+.drupal-logo--size-default.drupal-logo--variant-drop-icon {
+  width: 60px; /* Size used in Drupal.org's header — only for the icon part. */
+  height: auto;
+}
+
+.drupal-logo--size-full-width {
+  width: 100%;
+  height: auto;
+}
+
+.drupal-logo--size-full-height {
+  width: auto;
+  height: 100%;
+}

@@ -1,0 +1,311 @@
+//
+// Custom base variables overrides.
+//
+// CivicTheme variables can be found in
+// <path/to/civictheme>/components/00-base/_variables.base.scss
+//
+// Variables values in this file cannot be based on any variables
+// in _variables.base.scss
+//
+// stylelint-disable scss/dollar-variable-pattern
+
+// Example to override existing CivicTheme's palette color and define
+// custom colors, which will automatically appear in Storybook.
+
+$ct-colors-brands: (
+  'light': (
+    'brand1': #006aa9,
+    'brand2': #f8f9fc,
+    'brand3': #009cde,
+  ),
+  'dark': (
+    'brand1': #fff,
+    'brand2': #0d375f,
+    'brand3': #009cde,
+  )
+);
+
+// Example to override existing CivicTheme's palette color variants.
+$ct-colors: (
+  'light': (
+    'heading': #002a44,
+    'heading-2': #fff,
+    'heading-3': #064771,
+    'heading-4': #12285f,
+    'body': #333,
+    'body-2': #064771,
+    'body-3': #fff,
+    'body-4': #12285f,
+    'background-light': #fefeff,
+    'background': #f8f9fc,
+    'background-dark': #c6c7ca,
+    'background-2': #ffc423,
+    'background-3': #f46351,
+    'background-4': #ccbaf4,
+    'background-5': #12285f,
+    'background-6': #ccedf9,
+    'background-7': #fff,
+    'border-light': #babbbd,
+    'border': #636465,
+    'border-dark': #191919,
+    'border-1': #12285f,
+    'border-2': #162c63,
+    'interaction-text': #fefefe,
+    'interaction-text-2': #064771,
+    'interaction-background': #006aa9,
+    'interaction-background-2': #fff,
+    'interaction-background-3': #064771,
+    'interaction-hover-text': #fefefe,
+    'interaction-hover-background': #004065,
+    'interaction-focus': #8b5cd7,
+    'highlight': #009cde,
+    'information': #007cbf,
+    'warning': #c95100,
+    'error': #ce3836,
+    'success': #008482,
+    'drupal-brand': #006aa9,
+  ),
+  'dark': (
+    'heading': #fff,
+    'heading-2': #fff,
+    'heading-3': #fff,
+    'heading-4': #fff,
+    'body': #fff,
+    'body-2': #fff,
+    'body-3': #fff,
+    'body-4': #fff,
+    'background-light': #194167,
+    'background': #0d375f,
+    'background-dark': #092743,
+    'background-2': #f00,
+    'background-3': #f00,
+    'background-4': #f00,
+    'background-5': #f00,
+    'background-6': #f00,
+    'background-7': #f00,
+    'border-light': #aab9c7,
+    'border': #254b6f,
+    'border-dark': #092743,
+    'border-1': #12285f,
+    'border-2': #162c63,
+    'interaction-text': #0d375f,
+    'interaction-text-2': #f00,
+    'interaction-background': #fff,
+    'interaction-background-2': #f00,
+    'interaction-background-3': #f00,
+    'interaction-hover-text': #092743,
+    'interaction-hover-background': #f2f2f2,
+    'interaction-focus': #8b5cd7,
+    'highlight': #009cde,
+    'information': #4cc4fc,
+    'warning': #e38444,
+    'error': #e85653,
+    'success': #12b0ae,
+    'drupal-brand': #006aa9,
+  )
+);
+$ct-fonts: (
+  'primary': (
+    'family': '"Noto Sans", sans-serif',
+    'types': (
+      (
+        'uri': 'https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap',
+      ),
+    ),
+  ),
+  'secondary': (
+    'family': '"Ubuntu", sans-serif',
+    'types': (
+      (
+        'uri': 'https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap',
+      ),
+    ),
+  ),
+  'tertiary': (
+    'family': '"Ubuntu Mono", monospace',
+    'types': (
+      (
+        'uri': 'https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap',
+      ),
+    ),
+  ),
+  'quaternary': (
+    'family': '"ZT Gatha", sans-serif',
+    'types': (
+      (
+        'weight': 600,
+        'uri': (
+          '#{$ct-assets-directory}fonts/ZTGatha/ZTGatha-SemiBold.woff2',
+        ),
+      ),
+      (
+        'weight': 700,
+        'uri': (
+          '#{$ct-assets-directory}fonts/ZTGatha/ZTGatha-Bold.woff2',
+        ),
+      ),
+    ),
+  ),
+);
+$ct-typography: (
+  // Headings.
+  'heading-drupal-2': (
+    'xxs': (82px, 82px, 'regular', 'primary', -8.2px),
+    'm': (170px, 181.5px, 'regular', 'primary', -17px),
+  ),
+  'heading-drupal-3': (
+    'xxs': (20px, 26px, 'regular', 'secondary', 0.2px),
+    'm': (26px, 36px, 'regular', 'secondary', 0.26px),
+  ),
+  'heading-drupal-4': (
+    'xxs': (42px, 57px, 'regular', 'primary', -0.84px),
+    'm': (56px, 76px, 'regular', 'primary', -1.12px),
+  ),
+  'heading-drupal-5': (
+    'xxs': (20px, 27px, 600, 'primary', -0.2px),
+    'm': (26px, 36px, 600, 'primary', -0.26px),
+  ),
+  'heading-drupal-6': (
+    'xxs': (32px, 42px, 700, 'primary', 0.16px),
+    'm': (40px, 54px, 700, 'primary', 0.2px),
+  ),
+  'heading-drupal-7': (
+    'xxs': (62px, 60px, 700, 'primary', -3.72px),
+    'm': (100px, 100px, 700, 'primary', -6px),
+  ),
+  'heading-drupal-8': (
+    'xxs': (100px, 90px, 600, 'primary', -10px),
+    'm': (180px, 181px, 600, 'primary', -18px),
+  ),
+  'body-regular-drupal': (
+    'xxs': (16px, 23px, 400, 'primary', 0.08px),
+    'm': (24px, 33px, 400, 'primary', -0.12px),
+  ),
+  'body-large-drupal': (
+    'xxs': (18px, 29px, 300, 'primary', -0.15px),
+    'm': (24px, 44px, 300, 'primary', -0.12px),
+  ),
+  'body-large': (
+    'xxs': (19px, 34.2px, 300, 'primary', -0.12px),
+  ),
+  'label-drupal': (
+    'xxs': (18px, 18px, 400, 'tertiary', 0.36px),
+  ),
+  'label-drupal-2': (
+    'xxs': (18px, 30px, 400, 'tertiary', 0.36px),
+  ),
+  'label-drupal-3': (
+    'xxs': (62px, 60px, 500, 'secondary', -3.72px),
+    'm': (100px, 100px, 500, 'secondary', -6.5px),
+  ),
+  'starshot-heading': (
+    'xxs': (50px, 55px, 700, 'quaternary', -1px),
+    'l': (50px, 55px, 700, 'quaternary', -1px),
+    'xxl': (100px, 110px, 700, 'quaternary', -2.25px),
+  ),
+  'starshot-heading-2': (
+    'xxs': (32px, 38px, 700, 'quaternary', 0),
+    'l': (32px, 38px, 700, 'quaternary', 0),
+    'xxl': (64px, 76px, 700, 'quaternary', 0),
+  ),
+  'starshot-heading-3': (
+    'xxs': (25px, 30px, 600, 'quaternary', 0),
+    'l': (25px, 30px, 600, 'quaternary', 0),
+    'xxl': (50px, 60px, 600, 'quaternary', 0),
+  ),
+  'starshot-heading-4': (
+    'xxs': (20px, 25px,500, 'quaternary', 0),
+    'l': (20px, 25px, 500, 'quaternary', 0),
+    'xxl': (40px, 50px, 500, 'quaternary', 0),
+  ),
+  'starshot-heading-5': (
+    'xxs': (18px, 23px, 400, 'quaternary', 0),
+    'l': (18px, 23px, 400, 'quaternary', 0),
+    'xxl': (32px, 46px, 400, 'quaternary', 0),
+  ),
+  'starshot-heading-6': (
+    'xxs': (16px, 21px, 300, 'quaternary', 0),
+    'l': (16px, 21px, 300, 'quaternary', 0),
+    'xxl': (32px, 42px, 300, 'quaternary', 0),
+  ),
+  'starshot-button': (
+    'xxs': (20px, 24px, 600, 'primary', 0),
+    'l': (16px, 24px, 600, 'primary', 0),
+    'xxl': (20px, 24px, 600, 'primary', 0),
+  ),
+  'starshot-hero-title': (
+    'xxs': (52px, 50px, 700, 'quaternary', -1.5px),
+    'l': (35px, 40px, 700, 'quaternary', -1px),
+    'xxl': (90px, 99px, 700, 'quaternary', -2.249px),
+  ),
+  'starshot-hero-description': (
+    'xxs': (26px, 36px, 700, 'primary', -0.5px),
+    'l': (16px, (16px * 1.2), 700, 'primary', -0.25px),
+    'xxl': (35px, 44px, 700, 'primary', -0.5px),
+  ),
+  'starshot-testimonial-card-title': (
+    'xxs': (24px, 33px, 'bold', 'primary'),
+    'l': (16px, 22px, 700, 'primary', 0),
+    'xxl': (26px, 36.4px, 700, 'primary', 0),
+  ),
+  'starshot-testimonial-card-summary': (
+    'xxs': (18px, 29px, 300, 'primary'),
+    'l': (16px, 22px, 300, 'primary', 0),
+    'xxl': (20px, 36px, 300, 'primary', 0),
+  ),
+  'starshot-testimonial-quote-quotation': (
+    'xxs': (32px, 42px, 700, 'primary', 0),
+    'l': (20px, 24px, 700, 'primary', 0),
+    'xxl': (40px, 48px, 700, 'primary', 0),
+  ),
+  'starshot-testimonial-quote-citation': (
+    'xxs': (16px, 28px, 400, 'primary', 0),
+    'l': (16px, 18px, 400, 'primary', 0),
+    'xxl': (24px, 28px, 400, 'primary', 0),
+  ),
+  'starshot-case-study-description': (
+    'xxs': (26px, 36px, 300, 'primary', 0),
+    'l': (16px, 24px, 300, 'primary', 0),
+    'xxl': (32px, 52px, 300, 'primary', 0),
+  ),
+  'starshot-cta-description': (
+    'xxs': (18px, 29px, 300, 'primary', -0.499px),
+    'l': (16px, 28px, 300, 'primary', -0.499px),
+    'xxl': (24px, 44px, 300, 'primary', -0.499px),
+  ),
+  'starshot-feature-cards-subtitle': (
+    'xxs': (20px, 24px, 600, 'primary', -0.5px),
+    'l': (16px, 28px, 600, 'primary', -0.5px),
+    'xxl': (24px, 44px, 600, 'primary', -0.5px),
+  ),
+  'starshot-feature-cards-links': (
+    'xxs': (20px, 24px, 400, 'primary', 0),
+    'l': (16px, 28px, 400, 'primary', 0),
+    'xxl': (24px, 44px, 400, 'primary', 0),
+  ),
+  'starshot-feature-cards-card-title': (
+    'xxs': (20px, 30px, 600, 'primary', -1px),
+    'l': (16px, 20px, 600, 'primary', 0),
+    'xxl': (26px, 36px, 600, 'primary', -1px),
+  ),
+  'starshot-stats-stat-title': (
+    'xxs': (62px, 60px, 600, 'primary', 0),
+    'l': (50px, 50px, 600, 'primary', 0),
+    'xxl': (100px, 100px, 600, 'primary', 0),
+  ),
+  'starshot-stats-stat-small-title': (
+    'xxs': (30px, 46px, 600, 'primary', 0.3px),
+    'l': (16px, 24px, 600, 'primary', 0),
+    'xxl': (30px, 46px, 600, 'primary', 0.3px),
+  ),
+  'starshot-stats-stat-description': (
+    'xxs': (20px, 30px, 400, 'primary', -0.5px),
+    'l': (16px, 20px, 400, 'primary', 0),
+    'xxl': (20px, 30px, 400, 'primary', -0.5px),
+  ),
+  'starshot-block-content-paragraph': (
+    'xxs': (18px, 29px, 300, 'quaternary'),
+    'l': (16px, 22px, 300, 'quaternary', 0),
+    'xxl': (18px, 36px, 300, 'quaternary', 0),
+  ),
+);

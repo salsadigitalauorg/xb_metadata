@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 4c50577e-4ed9-450a-888c-4bf68e17464e
+  bundle: image
+  default_langcode: en
+  depends:
+    27cfe536-2098-4eca-ba99-47ea5205fc0c: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: testimonial_avatar.png
+  created:
+    -
+      value: 1741460152
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: 27cfe536-2098-4eca-ba99-47ea5205fc0c
+      alt: 'Awesome drupalist'
+      title: ''
+      width: 289
+      height: 264

@@ -1,0 +1,87 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Slider
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+    #required:
+    #- slides
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Slider title.
+      examples:
+        - Slider title
+
+    slides:
+      type: string
+      title: Slides
+      description: Slides.
+
+    previous_label:
+      type: string
+      title: Previous label
+      description: Text for previous button.
+      default: Previous
+      examples:
+        - Previous
+
+    next_label:
+      type: string
+      title: Next label
+      description: Text for next button.
+      default: Next
+      examples:
+        - Next
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - both
+
+    with_background:
+      type: boolean
+      title: With background or not.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.

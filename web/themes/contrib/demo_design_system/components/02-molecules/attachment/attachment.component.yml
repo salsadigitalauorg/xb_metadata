@@ -1,0 +1,101 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Attachment
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+  # required:
+  #   - files
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: attachment title.
+      examples:
+        - Attachments
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: attachment content.
+      examples:
+        - This is a sample attachment content.
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array
+    #files:
+    #type: array
+    #title: Files
+    #description: 'Array of files containing:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #symbol:
+    #type: string
+    #title: Symbol
+    #description: Required icon name.
+    #examples:
+    #- word-file
+    #
+    #size:
+    #type: string
+    #title: Size
+    #description: Optional icon size.
+    #examples:
+    #- 42.88 KB
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - both
+
+    with_background:
+      type: boolean
+      title: With background or not.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

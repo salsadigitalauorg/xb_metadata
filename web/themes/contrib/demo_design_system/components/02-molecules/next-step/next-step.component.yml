@@ -1,0 +1,104 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Next step
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- title
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - Next steps title from knob
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: Content.
+      examples:
+        - Short summary explaining why this link is relevant.
+
+    link:
+      type: object
+      title: Link
+      description: 'Link:'
+
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Link text.
+          examples:
+            - Sign up
+
+        url:
+          type: string
+          title: Url
+          description: Link URL.
+          examples:
+            - 'https://example.com'
+
+        is_new_window:
+          type: boolean
+          title: Open link in the new window.
+          examples:
+            - true
+
+        is_external:
+          type: boolean
+          title: Link is external.
+          examples:
+            - true
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - both
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

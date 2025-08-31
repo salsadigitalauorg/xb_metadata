@@ -1,0 +1,38 @@
+{
+    "description": "This default cspell configuration for contrib projects is based on core/.cspell.json. See https://project.pages.drupalcode.org/gitlab_templates/jobs/cspell/ for more details.",
+    "language": "en-US",
+    "allowCompoundWords": false,
+    "globRoot": ".",
+    "minWordLength": 4,
+    "ignorePaths": [
+      "dictionary.txt",
+      "ui/tests/fixtures/layout-default.json",
+      "CODEOWNERS",
+      "modules/same_page_preview/**",
+      "modules/xb_vite/**",
+      "docs/diagrams/**",
+      "ui/src/local_packages/**",
+      "scripts/tag-release.sh",
+      "tests/fixtures/recipes/test_site/content/user/**",
+      "tests/modules/xb_test_extension/ui/dist/**",
+      "tests/modules/xb_test_semi_coupled/semicoupled_app/dist/**",
+      "js/astro-bundles/**",
+      "js/assets/**",
+      "playwright-report/**",
+      "test-results/**"
+    ],
+    "ignoreRegExpList": [
+      "ℹ\uFE0E.*"
+    ],
+    "dictionaries": ["drupal", "companies", "fonts", "html", "php", "softwareTerms", "experience_builder"],
+    "dictionaryDefinitions": [
+      { "name": "experience_builder", "path": "./dictionary.txt"}
+    ],
+    "words": [],
+    "flagWords": [
+      "e-mail",
+      "grey",
+      "queuing"
+    ]
+}
+

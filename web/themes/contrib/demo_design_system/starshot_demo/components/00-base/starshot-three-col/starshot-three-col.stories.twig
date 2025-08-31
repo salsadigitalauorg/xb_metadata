@@ -1,0 +1,19 @@
+{% embed '@base/starshot-three-col/starshot-three-col.twig' %}
+  {% if show_column_one %}
+    {% block column_one %}
+      <div class="story-placeholder">Column 1</div>
+    {% endblock %}
+  {% endif %}
+
+  {% if show_column_two %}
+    {% block column_two %}
+      <div class="story-placeholder">Column 2</div>
+    {% endblock %}
+  {% endif %}
+
+  {% if show_column_three %}
+    {% block column_three %}
+      <div class="story-placeholder">Column 3</div>
+    {% endblock %}
+  {% endif %}
+{% endembed %}

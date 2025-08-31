@@ -1,0 +1,123 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-tag {
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 0.0625rem;
+  display: inline-block;
+  text-decoration: none;
+}
+@media (min-width: 0) {
+  .ct-tag {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.1px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-tag {
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+.ct-tag:hover {
+  text-decoration: none;
+}
+.ct-tag--active, .ct-tag:active {
+  text-decoration: none;
+}
+.ct-tag:focus-visible {
+  text-decoration: none;
+}
+.ct-tag--icon-before .ct-icon {
+  margin-right: 0.125rem;
+}
+@media (min-width: 0) {
+  .ct-tag--icon-before .ct-icon {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .ct-tag--icon-before .ct-icon {
+    font-size: 1rem;
+  }
+}
+.ct-tag--icon-after .ct-icon {
+  margin-left: 0.125rem;
+}
+@media (min-width: 0) {
+  .ct-tag--icon-after .ct-icon {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .ct-tag--icon-after .ct-icon {
+    font-size: 1rem;
+  }
+}
+.ct-tag.ct-tag--primary {
+  padding: 0.25rem 0.5rem;
+}
+.ct-tag.ct-tag--secondary {
+  padding: 0.25rem 0.5rem;
+}
+.ct-tag.ct-tag--drupal {
+  padding: 0.625rem 1.4375rem;
+  border-radius: 6.25rem;
+}
+@media (min-width: 0) {
+  .ct-tag.ct-tag--drupal {
+    font-size: 1.125rem;
+    line-height: 1.125rem;
+    font-family: "Ubuntu Mono", monospace;
+    font-weight: 400;
+    letter-spacing: 0.36px;
+  }
+}
+.ct-tag.ct-theme-light.ct-tag--primary {
+  background-color: var(--ct-tag-light-primary-background-color);
+  border-color: var(--ct-tag-light-primary-border-color);
+  color: var(--ct-tag-light-primary-color);
+}
+.ct-tag.ct-theme-light.ct-tag--secondary {
+  background-color: var(--ct-tag-light-secondary-background-color);
+  border-color: var(--ct-tag-light-secondary-border-color);
+  color: var(--ct-tag-light-secondary-color);
+}
+.ct-tag.ct-theme-light.ct-tag--tertiary {
+  background-color: var(--ct-tag-light-tertiary-background-color);
+  border-color: var(--ct-tag-light-tertiary-border-color);
+  color: var(--ct-tag-light-tertiary-color);
+}
+.ct-tag.ct-theme-light.ct-tag--drupal {
+  background-color: var(--ct-tag-light-drupal-background-color);
+  border-color: var(--ct-tag-light-drupal-border-color);
+  color: var(--ct-tag-light-drupal-color);
+}
+.ct-tag.ct-theme-dark.ct-tag--primary {
+  background-color: var(--ct-tag-dark-primary-background-color);
+  border-color: var(--ct-tag-dark-primary-border-color);
+  color: var(--ct-tag-dark-primary-color);
+}
+.ct-tag.ct-theme-dark.ct-tag--secondary {
+  background-color: var(--ct-tag-dark-secondary-background-color);
+  border-color: var(--ct-tag-dark-secondary-border-color);
+  color: var(--ct-tag-dark-secondary-color);
+}
+.ct-tag.ct-theme-dark.ct-tag--tertiary {
+  background-color: var(--ct-tag-dark-tertiary-background-color);
+  border-color: var(--ct-tag-dark-tertiary-border-color);
+  color: var(--ct-tag-dark-tertiary-color);
+}
+.ct-tag.ct-theme-dark.ct-tag--drupal {
+  background-color: var(--ct-tag-dark-drupal-background-color);
+  border-color: var(--ct-tag-dark-drupal-border-color);
+  color: var(--ct-tag-dark-drupal-color);
+}

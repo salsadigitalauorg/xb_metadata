@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Starshot Statistic Card component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - number: [string] Stats number.
+ * - suffix: [string] Suffix after stats number.
+ * - description: [string] Stats description.
+ * - align: [string] Align: left, center.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set align_class = 'ct-starshot-statistic-card--align-%s'|format(align|default('left')) %}
+{% set modifier_class = '%s %s %s'|format(theme_class, align_class, modifier_class|default('')) %}
+
+{% if number or suffix or description %}
+  <div class="ct-starshot-statistic-card {{ modifier_class -}}">
+    <span class="ct-starshot-statistic-card__top">
+      <span class="ct-starshot-statistic-card__number">{% if number %}{{ number }}{% endif %}</span>
+      <span class="ct-starshot-statistic-card__suffix">{% if suffix %}{{ suffix }}{% endif %}</span>
+    </span>
+    <span class="ct-starshot-statistic-card__description">{% if description %}{{ description }}{% endif %}</span>
+  </div>
+{% endif %}

@@ -1,0 +1,80 @@
+.starshot-columns {
+  $root: &;
+
+  --gap: 40px;
+  --span: 1;
+  --cols: 1;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+
+  &:not(#{$root}--col-none):not(#{$root}--gap-none) {
+
+    &>div {
+      width: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols) * var(--span) + var(--gap) * (var(--span) - 1));
+    }
+  }
+
+  &--gap-none {
+
+    &>div {
+      width: calc(100% / var(--cols));
+    }
+    --gap: 0;
+  }
+
+  &--gap-small {
+    --gap: 16px;
+  }
+
+  &--gap-medium {
+    --gap: 32px;
+  }
+
+  &--gap-large {
+    --gap: 64px;
+  }
+
+  &--col-two {
+    @include ct-breakpoint(m) {
+      --cols: 2;
+    }
+  }
+
+  &--col-three {
+    @include ct-breakpoint(m) {
+      --cols: 3;
+    }
+  }
+
+  &--col-four {
+    @include ct-breakpoint(s) {
+      --cols: 2;
+    }
+
+    @include ct-breakpoint(l) {
+      --cols: 4;
+    }
+  }
+
+  &--alignment {
+    &-right {
+      div {
+        text-align: right;
+      }
+    }
+
+    &-center {
+      div {
+        text-align: center;
+      }
+    }
+
+    &-right-on-last {
+      & > div:last-child {
+        text-align: right;
+      }
+    }
+  }
+}

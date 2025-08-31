@@ -1,0 +1,71 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-old-starshot-banner {
+  position: relative;
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-banner .ct-old-starshot-banner__wrapper {
+    padding: 0 5rem;
+  }
+}
+.ct-old-starshot-banner .ct-old-starshot-banner__inner {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  padding-top: 1.5rem;
+  padding-bottom: 5rem;
+  display: flex;
+  flex-direction: column-reverse;
+}
+@media (min-width: 992px) {
+  .ct-old-starshot-banner .ct-old-starshot-banner__inner {
+    flex-direction: row;
+  }
+}
+@media print {
+  .ct-old-starshot-banner .ct-old-starshot-banner__inner {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
+}
+.ct-old-starshot-banner .ct-old-starshot-banner__featured-image__wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+@media (min-width: 992px) {
+  .ct-old-starshot-banner .ct-old-starshot-banner__featured-image__wrapper {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+  }
+}
+@media (min-width: 992px) {
+  .ct-old-starshot-banner .ct-old-starshot-banner__featured-image__wrapper {
+    width: 50%;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-old-starshot-banner .ct-old-starshot-banner__featured-image__wrapper {
+    width: 60%;
+  }
+}
+.ct-old-starshot-banner .ct-old-starshot-banner__title {
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-banner .ct-old-starshot-banner__title {
+    margin-bottom: 1.5rem;
+  }
+}
+.ct-old-starshot-banner.ct-theme-light .ct-old-starshot-banner__wrapper {
+  background-color: var(--ct-old-starshot-banner-light-background-color);
+}
+.ct-old-starshot-banner.ct-theme-dark .ct-old-starshot-banner__wrapper {
+  background-color: var(--ct-old-starshot-banner-dark-background-color);
+}

@@ -1,0 +1,20 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Contributors
+
+status: experimental
+
+group: Molecule
+
+props:
+
+  type: object
+
+  properties:
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/temp_starshot_contributors.png'
+          alt: 'Starshot contributors placeholder image'

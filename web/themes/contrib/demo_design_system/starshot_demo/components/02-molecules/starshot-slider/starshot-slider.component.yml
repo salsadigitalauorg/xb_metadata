@@ -1,0 +1,92 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Slider
+
+status: experimental
+
+group: Molecules
+
+props:
+
+  type: object
+  properties:
+    slide_count:
+      type: integer
+      title: Slide count
+      description: 'Number of slides: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.'
+      default: 2
+      enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+      examples:
+        - 2
+
+slots:
+
+  slide_one:
+    title: Slide One
+    description: Slide content.
+    examples:
+      - Add slide here
+
+  slide_two:
+    title: Slide Two
+    description: Slide content.
+    examples:
+      - Add slide here
+
+  slide_three:
+    title: Slide Three
+    description: Slide content.
+    examples:
+      - Add slide here
+
+  slide_four:
+    title: Slide Four
+    description: Slide content.
+    examples:
+      - Add slide here
+
+  slide_five:
+    title: Slide Five
+    description: Slide content.
+    examples:
+      - Add slide here
+
+  slide_six:
+    title: Slide Six
+    description: Slide content.
+    examples:
+      - Add slide here
+
+  slide_seven:
+    title: Slide Seven
+    description: Slide content.
+    examples:
+      - Add slide here
+
+  slide_eight:
+    title: Slide Eight
+    description: Slide content.
+    examples:
+      - Add slide here
+
+  slide_nine:
+    title: Slide Nine
+    description: Slide content.
+    examples:
+      - Add slide here
+
+  slide_ten:
+    title: Slide Ten
+    description: Slide content.
+    examples:
+      - Add slide here

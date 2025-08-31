@@ -1,0 +1,27 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CTA
+
+status: experimental
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - 'Start your <em>Drupal</em> journey'
+
+slots:
+
+  cta_content:
+    title: Content
+    description: CTA content.
+      #examples:
+      #- '<p>content</p>'

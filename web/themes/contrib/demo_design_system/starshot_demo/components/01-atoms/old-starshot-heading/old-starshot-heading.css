@@ -1,0 +1,149 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-old-starshot-heading {
+  margin: 0;
+  margin-bottom: 2rem;
+}
+@media (min-width: 0) {
+  .ct-old-starshot-heading--drupal-2 {
+    font-size: 5.125rem;
+    line-height: 5.125rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: -8.2px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-heading--drupal-2 {
+    font-size: 10.625rem;
+    line-height: 11.34375rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: -17px;
+  }
+}
+@media (min-width: 0) {
+  .ct-old-starshot-heading--drupal-3 {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-heading--drupal-3 {
+    font-size: 1.625rem;
+    line-height: 2.25rem;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.26px;
+  }
+}
+@media (min-width: 0) {
+  .ct-old-starshot-heading--drupal-4 {
+    font-size: 2.625rem;
+    line-height: 3.5625rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.84px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-heading--drupal-4 {
+    font-size: 3.5rem;
+    line-height: 4.75rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: -1.12px;
+  }
+}
+@media (min-width: 0) {
+  .ct-old-starshot-heading--drupal-5 {
+    font-size: 1.25rem;
+    line-height: 1.6875rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-heading--drupal-5 {
+    font-size: 1.625rem;
+    line-height: 2.25rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.26px;
+  }
+}
+@media (min-width: 0) {
+  .ct-old-starshot-heading--drupal-6 {
+    font-size: 2rem;
+    line-height: 2.625rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.16px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-heading--drupal-6 {
+    font-size: 2.5rem;
+    line-height: 3.375rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+}
+@media (min-width: 0) {
+  .ct-old-starshot-heading--drupal-7 {
+    font-size: 3.875rem;
+    line-height: 3.75rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 700;
+    letter-spacing: -3.72px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-heading--drupal-7 {
+    font-size: 6.25rem;
+    line-height: 6.25rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 700;
+    letter-spacing: -6px;
+  }
+}
+@media (min-width: 0) {
+  .ct-old-starshot-heading--drupal-8 {
+    font-size: 6.25rem;
+    line-height: 5.625rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: -10px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-heading--drupal-8 {
+    font-size: 11.25rem;
+    line-height: 11.3125rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: -18px;
+  }
+}
+.ct-old-starshot-heading--left {
+  text-align: left;
+}
+.ct-old-starshot-heading--center {
+  text-align: center;
+}
+.ct-old-starshot-heading--right {
+  text-align: right;
+}
+.ct-old-starshot-heading.ct-theme-light {
+  color: var(--ct-old-starshot-heading-light-text-color);
+}
+.ct-old-starshot-heading.ct-theme-dark {
+  color: var(--ct-old-starshot-heading-dark-text-color);
+}

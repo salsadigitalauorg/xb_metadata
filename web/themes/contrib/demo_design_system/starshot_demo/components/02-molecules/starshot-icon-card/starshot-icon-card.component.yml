@@ -1,0 +1,65 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+# @todo starshot-testimonial-card-title to starshot-icon-card-title in scss
+# @todo starshot-testimonial-card-summary to starshot-icon-card-summary in scss
+
+name: Icon Card
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+
+  properties:
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: The image on the top.
+      examples:
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/listing_1.png'
+          alt: 'Person icon'
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/listing_2.png'
+          alt: 'Connection icon'
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/listing_3.png'
+          alt: 'Drag icon'
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/listing_4.png'
+          alt: 'Building icon'
+
+    title:
+      type: string
+      title: Title
+      description: The card title.
+      examples:
+        - 'User-centric experiences'
+        - 'Lower cost of ownership'
+        - 'Limitless flexibility'
+        - 'Enterprise-grade tooling'
+
+    summary:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Summary
+      description: The card summary.
+      examples:
+        - 'Create compelling content on more  devices than ever. With tools to build versatile, structured content and integrate with a wide array of digital marketing channels.'
+        - 'With no vendor lock-in and low-code/no-code options available, marketers can independently drive your digital strategy and publishing workflows.'
+        - 'A fully composable, API-first platform that allows you to design around your vision and your user needs. A global network of open source contributors continuously develops and innovates on core features.'
+        - 'The most accessible, secure open-source DXP available. It adheres to industry standard privacy and security standards and checks all the boxes for your IT team.'
+
+    #background:
+    #type: string
+    #title: Background
+    #description: Color for the background.
+    #default: none
+    #enum:
+    #- 'background-1'
+    #- 'background-2'
+    #- 'background-3'
+    #- 'background-4'
+    #- 'background-5'
+    #- 'background-6'
+    #examples:
+    #- 'background-2'

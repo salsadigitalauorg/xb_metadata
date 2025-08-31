@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Starshot temp contributors component.
+ *
+ * Variables:
+ * - image: [object]
+ *   - src: [string] Image source.
+ *   - alt: [string] Image alternative text.
+ */
+#}
+
+{% if image and image.src %}
+  <div class="ct-starshot-image">
+    <img src="{{ image.src }}" alt="{{ image.alt }}" />
+  </div>
+{% endif %}

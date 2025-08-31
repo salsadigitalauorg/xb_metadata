@@ -1,0 +1,115 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Promo
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Title text.
+      examples:
+        - Sign up for industry news and updates from CivicTheme
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: Content.
+      examples:
+        - 'Stay updated with the latest news and updates from CivicTheme.'
+
+    is_contained:
+      type: boolean
+      title: Contained or not.
+      default: false
+      examples:
+        - false
+
+    link:
+      type: object
+      title: Link
+      description: 'Link:'
+
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Link text.
+          examples:
+            - Sign up
+
+        url:
+          type: string
+          title: Url
+          description: Link URL.
+          examples:
+            - 'https://example.com'
+
+        is_new_window:
+          type: boolean
+          title: Open link in the new window.
+          examples:
+            - true
+
+        is_external:
+          type: boolean
+          title: Link is external.
+          examples:
+            - true
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - both
+
+    with_background:
+      type: boolean
+      title: With background or not.
+      examples:
+        - true
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

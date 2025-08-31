@@ -1,0 +1,159 @@
+//
+// Custom components variables overrides.
+//
+// CivicTheme variables can be found in
+// <path/to/civictheme>/components/00-base/_variables.components.scss
+//
+// stylelint-disable scss/dollar-variable-pattern
+
+//
+// Old Starshot banner.
+//
+$ct-old-starshot-banner-featured-image-width: 50% !default;
+$ct-old-starshot-banner-featured-image-width-xxl: 60% !default;
+$ct-old-starshot-banner-light-background-color: ct-color-light('background-6') !default;
+$ct-old-starshot-banner-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Old Starshot card.
+//
+$ct-old-starshot-card-light-overlay-image-title-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-light-overlay-image-summary-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-light-background-none-background-color: transparent !default;
+$ct-old-starshot-card-light-background-none-title-color: ct-color-light('heading-3') !default;
+$ct-old-starshot-card-light-background-none-summary-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-none-vertical-link-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-none-vertical-link-border-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-none-vertical-link-hover-border-color: transparent !default;
+$ct-old-starshot-card-light-background-background-background-color: ct-color-light('background') !default;
+$ct-old-starshot-card-light-background-background-title-color: ct-color-light('heading-4') !default;
+$ct-old-starshot-card-light-background-background-summary-color: ct-color-light('body') !default;
+$ct-old-starshot-card-light-background-background-vertical-link-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-vertical-link-border-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-none-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-light-background-background-2-background-color: ct-color-light('background-2') !default;
+$ct-old-starshot-card-light-background-background-2-title-color: ct-color-light('heading-4') !default;
+$ct-old-starshot-card-light-background-background-2-summary-color: ct-color-light('body') !default;
+$ct-old-starshot-card-light-background-background-2-vertical-link-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-2-vertical-link-border-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-2-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-none-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-light-background-background-3-background-color: ct-color-light('background-3') !default;
+$ct-old-starshot-card-light-background-background-3-title-color: ct-color-light('heading-4') !default;
+$ct-old-starshot-card-light-background-background-3-summary-color: ct-color-light('body') !default;
+$ct-old-starshot-card-light-background-background-3-vertical-link-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-3-vertical-link-border-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-3-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-none-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-light-background-background-4-background-color: ct-color-light('background-4') !default;
+$ct-old-starshot-card-light-background-background-4-title-color: ct-color-light('heading-4') !default;
+$ct-old-starshot-card-light-background-background-4-summary-color: ct-color-light('body') !default;
+$ct-old-starshot-card-light-background-background-4-vertical-link-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-4-vertical-link-border-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-4-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-none-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-light-background-background-5-background-color: ct-color-light('background-5') !default;
+$ct-old-starshot-card-light-background-background-5-title-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-light-background-background-5-summary-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-light-background-background-5-vertical-link-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-light-background-background-5-vertical-link-border-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-light-background-background-5-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-none-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-light-background-background-6-background-color: ct-color-light('background-6') !default;
+$ct-old-starshot-card-light-background-background-6-title-color: ct-color-light('heading-4') !default;
+$ct-old-starshot-card-light-background-background-6-summary-color: ct-color-light('body') !default;
+$ct-old-starshot-card-light-background-background-6-vertical-link-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-6-vertical-link-border-color: ct-color-light('body-2') !default;
+$ct-old-starshot-card-light-background-background-6-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-none-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-dark-overlay-image-title-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-dark-overlay-image-summary-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-dark-background-none-background-color: $ct-old-starshot-card-light-background-none-background-color !default;
+$ct-old-starshot-card-dark-background-none-title-color: ct-color-dark('heading') !default;
+$ct-old-starshot-card-dark-background-none-summary-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-dark-background-none-vertical-link-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-dark-background-none-vertical-link-border-color: ct-color-dark('body') !default;
+$ct-old-starshot-card-dark-background-none-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-none-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-dark-background-background-background-color: $ct-old-starshot-card-light-background-background-background-color !default;
+$ct-old-starshot-card-dark-background-background-title-color: $ct-old-starshot-card-light-background-background-title-color !default;
+$ct-old-starshot-card-dark-background-background-summary-color: $ct-old-starshot-card-light-background-background-summary-color !default;
+$ct-old-starshot-card-dark-background-background-vertical-link-color: $ct-old-starshot-card-light-background-background-vertical-link-color !default;
+$ct-old-starshot-card-dark-background-background-vertical-link-border-color: $ct-old-starshot-card-light-background-background-vertical-link-border-color !default;
+$ct-old-starshot-card-dark-background-background-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-background-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-dark-background-background-2-background-color: $ct-old-starshot-card-light-background-background-2-background-color !default;
+$ct-old-starshot-card-dark-background-background-2-title-color: $ct-old-starshot-card-light-background-background-2-title-color !default;
+$ct-old-starshot-card-dark-background-background-2-summary-color: $ct-old-starshot-card-light-background-background-2-summary-color !default;
+$ct-old-starshot-card-dark-background-background-2-vertical-link-color: $ct-old-starshot-card-light-background-background-2-vertical-link-color !default;
+$ct-old-starshot-card-dark-background-background-2-vertical-link-border-color: $ct-old-starshot-card-light-background-background-2-vertical-link-border-color !default;
+$ct-old-starshot-card-dark-background-background-2-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-background-2-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-dark-background-background-3-background-color: $ct-old-starshot-card-light-background-background-3-background-color !default;
+$ct-old-starshot-card-dark-background-background-3-title-color: $ct-old-starshot-card-light-background-background-3-title-color !default;
+$ct-old-starshot-card-dark-background-background-3-summary-color: $ct-old-starshot-card-light-background-background-3-summary-color !default;
+$ct-old-starshot-card-dark-background-background-3-vertical-link-color: $ct-old-starshot-card-light-background-background-3-vertical-link-color !default;
+$ct-old-starshot-card-dark-background-background-3-vertical-link-border-color: $ct-old-starshot-card-light-background-background-3-vertical-link-border-color !default;
+$ct-old-starshot-card-dark-background-background-3-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-background-3-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-dark-background-background-4-background-color: $ct-old-starshot-card-light-background-background-4-background-color !default;
+$ct-old-starshot-card-dark-background-background-4-title-color: $ct-old-starshot-card-light-background-background-4-title-color !default;
+$ct-old-starshot-card-dark-background-background-4-summary-color: $ct-old-starshot-card-light-background-background-4-summary-color !default;
+$ct-old-starshot-card-dark-background-background-4-vertical-link-color: $ct-old-starshot-card-light-background-background-4-vertical-link-color !default;
+$ct-old-starshot-card-dark-background-background-4-vertical-link-border-color: $ct-old-starshot-card-light-background-background-4-vertical-link-border-color !default;
+$ct-old-starshot-card-dark-background-background-4-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-background-4-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-dark-background-background-5-background-color: $ct-old-starshot-card-light-background-background-5-background-color !default;
+$ct-old-starshot-card-dark-background-background-5-title-color: $ct-old-starshot-card-light-background-background-5-title-color !default;
+$ct-old-starshot-card-dark-background-background-5-summary-color: $ct-old-starshot-card-light-background-background-5-summary-color !default;
+$ct-old-starshot-card-dark-background-background-5-vertical-link-color: $ct-old-starshot-card-light-background-background-5-vertical-link-color !default;
+$ct-old-starshot-card-dark-background-background-5-vertical-link-border-color: $ct-old-starshot-card-light-background-background-5-vertical-link-border-color !default;
+$ct-old-starshot-card-dark-background-background-5-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-background-5-vertical-link-hover-border-color !default;
+$ct-old-starshot-card-dark-background-background-6-background-color: $ct-old-starshot-card-light-background-background-6-background-color !default;
+$ct-old-starshot-card-dark-background-background-6-title-color: $ct-old-starshot-card-light-background-background-6-title-color !default;
+$ct-old-starshot-card-dark-background-background-6-summary-color: $ct-old-starshot-card-light-background-background-6-summary-color !default;
+$ct-old-starshot-card-dark-background-background-6-vertical-link-color: $ct-old-starshot-card-light-background-background-6-vertical-link-color !default;
+$ct-old-starshot-card-dark-background-background-6-vertical-link-border-color: $ct-old-starshot-card-light-background-background-6-vertical-link-border-color !default;
+$ct-old-starshot-card-dark-background-background-6-vertical-link-hover-border-color: $ct-old-starshot-card-light-background-background-6-vertical-link-hover-border-color !default;
+
+//
+// Old Starshot heading.
+//
+$ct-old-starshot-heading-light-text-color: ct-color-light('heading-3');
+$ct-old-starshot-heading-dark-text-color: ct-color-dark('heading-3');
+
+//
+// Old Starshot paragraph.
+//
+$ct-old-starshot-paragraph-light-color-body-text-color: ct-color-light('body');
+$ct-old-starshot-paragraph-dark-color-body-text-color: ct-color-dark('body');
+$ct-old-starshot-paragraph-light-color-body-2-text-color: ct-color-light('body-2');
+$ct-old-starshot-paragraph-dark-color-body-2-text-color: ct-color-dark('body-2');
+$ct-old-starshot-paragraph-light-color-body-3-text-color: ct-color-light('body-3');
+$ct-old-starshot-paragraph-dark-color-body-3-text-color: ct-color-dark('body-3');
+
+//
+// Old Starshot data panel.
+//
+$ct-old-starshot-data-panel-dark-background-color: ct-color-dark('background') !default;
+$ct-old-starshot-data-panel-light-color: ct-color-light('body-2') !default;
+$ct-old-starshot-data-panel-dark-color: ct-color-dark('body') !default;
+
+//
+// Old Starshot case study.
+//
+$ct-old-starshot-case-study-dark-background-color: ct-color-dark('background') !default;
+
+//
+// Starshot paragraph.
+//
+$ct-starshot-paragraph-light-text-color: ct-color-light('body-4');
+$ct-starshot-paragraph-dark-text-color: ct-color-dark('body-4');
+
+//
+// Starshot statistics card.
+//
+$ct-starshot-statistic-card-light-text-color: ct-color-light('body-4');
+$ct-starshot-statistic-card-dark-text-color: ct-color-dark('body-4');
+
+//
+// Starshot heading.
+//
+$ct-starshot-heading-light-text-color: ct-color-light('heading-4');
+$ct-starshot-heading-dark-text-color: ct-color-dark('heading-4');
+
+//
+// Starshot testimonial card.
+//
+$ct-starshot-testimonial-card-light-text-color: ct-color-light('body-4');
+$ct-starshot-testimonial-card-dark-text-color: ct-color-dark('body-4');

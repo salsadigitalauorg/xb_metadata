@@ -1,0 +1,98 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Video
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+  # required:
+  #   - sources
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    title:
+      type: string
+      title: Title
+      description: Title of the video.
+      examples:
+        - Sample Video title
+
+    has_controls:
+      type: boolean
+      title: If video should have controls.
+      examples:
+        - true
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #sources:
+    #type: array
+    #title: Sources
+    #description: 'Array of sources:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #url:
+    #type: string
+    #title: Url
+    #description: URL of the source.
+    #
+    #type:
+    #type: string
+    #title: Type
+    #description: Type name like 'video/mp4'.
+    #examples:
+    #- [
+    #{ "url": "https://example.com/video.mp4", "type": "video/mp4" },
+    #{ "url": "https://example.com/video.webm", "type": "video/webm" }
+    #]
+
+    poster:
+      type: string
+      title: Poster
+      description: Optional URL of the video poster image.
+      examples:
+        - 'https://example.com/poster.jpg'
+
+    width:
+      type: string
+      title: Width
+      description: Optional width of the video.
+      examples:
+        - 640px
+
+    height:
+      type: string
+      title: Height
+      description: Optional height of the video.
+      examples:
+        - 360px
+
+    fallback_text:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Fallback text
+      description: Message for browsers not supporting HTML5 video.
+      examples:
+        - 'Your browser doesn’t support HTML5 video tag.'
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-video-class'

@@ -1,0 +1,52 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Tooltip
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    symbol:
+      type: string
+      title: Symbol
+      description: Symbol to use. Defaults to 'userinterface_informationmark'.
+      examples:
+        - 'userinterface_informationmark'
+
+    text:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Text
+      description: Text to display within the popup.
+      examples:
+        - Sample text
+
+    title:
+      type: string
+      title: Title
+      description: Text used within the button title and for screen readers.
+      examples:
+        - Toggle tooltip display
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

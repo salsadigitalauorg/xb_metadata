@@ -1,0 +1,18 @@
+vendor
+
+# Ignore everything in web by default
+web/*
+
+# Allow modules and themes directories (structure)
+!web/modules/
+!web/themes/
+
+# Ignore all module content by default
+web/modules/*
+
+# Allow custom modules directory (structure)
+!web/modules/custom/
+
+# Track all themes (recursively)
+!web/themes/**
+

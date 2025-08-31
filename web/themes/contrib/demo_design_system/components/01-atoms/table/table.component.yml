@@ -1,0 +1,87 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Table
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+  # required:
+  #   - header
+  #   - rows
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    caption:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Caption
+      description: Table caption.
+      examples:
+        - Table caption Sed porttitor lectus nibh. Curabitur aliquet quam id
+
+    caption_position:
+      type: string
+      title: Caption position
+      description: 'The position of caption: before, after'
+      enum:
+        - before
+        - after
+      examples:
+        - before
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #header:
+    #type: array
+    #title: Header
+    #description: Array of header cells.
+    #examples:
+    #- [ 'Header 1', 'Header 2', 'Header 3', 'Header 4' ]
+    #
+    #rows:
+    #type: array
+    #title: Rows
+    #description: Array of rows.
+    #examples:
+    #- [
+    #[ '<a class="ct-link ct-theme-light" href="#" title="Row 1 with link">Row 1 with link</a>', 'Description summary on odd row with vertical spacing', 'Another column', 'One more column column' ],
+    #[ '<a class="ct-link ct-theme-light" href="#" title="Row 1 with link">Row 2 with link</a>', 'Description summary on even row', 'Another column', 'One more column column' ],
+    #[ '<a class="ct-link ct-theme-light" href="#" title="Row 1 with link">Row 3 with link</a>', 'Description summary on odd row with vertical spacing', 'Another column', 'One more column column' ],
+    #[ '<a class="ct-link ct-theme-light" href="#" title="Row 1 with link">Row 5 with link</a>', 'Description summary on even row', 'Another column', 'One more column column' ],
+    #[ 'Row 5 without a link', 'Description summary on odd row with vertical spacing', 'Another column', 'One more column column' ],
+    #[ 'Row 6 with larger amount of content', '<p>Paragraph 1 of row 6. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p><p>Paragraph 2 of row 6. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p>Paragraph 3 of row 6. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p><p>Paragraph 4 of row 6. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 'Another column', 'One more column column' ],
+    #[ 'Row 7 with small amount of content', '<p>Paragraph 1 of row 7. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>', 'Another column', 'One more column column' ]
+    #]
+    #
+    #footer:
+    #type: array
+    #title: Footer
+    #description: Array of footer cells.
+    #examples:
+    #- [ 'Footer 1', 'Footer 2', 'Footer 3', 'Footer 4' ]
+
+    is_striped:
+      type: boolean
+      title: Flag to show as striped.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

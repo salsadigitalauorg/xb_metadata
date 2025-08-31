@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Starshot Testimonial component.
+ *
+ * Variables:
+ * - quote: [string] Quote on top.
+ * - cite: [string] Citation under quote.
+ * - image: [object] Image on right.
+ *   - src: [string] Url.
+ *   - alt: [string] Alt.
+ */
+#}
+
+{% if quote or cite or image.src %}
+  <div class="starshot-listing-testimonial__testimonial">
+    {% block content %}
+      <div class="starshot-testimonial">
+        {% if quote %}
+          <p class="starshot-testimonial__quote">
+            “{{ quote|striptags('<strong><em><ul><ol><li><a><u>')|raw }}”
+          </p>
+        {% endif %}
+        {% if cite %}
+          <p class="starshot-testimonial__cite">
+            — {{ cite }}
+          </p>
+        {% endif %}
+        {% if image and image.src %}
+          <div class="starshot-testimonial__avatar">
+            <img src="{{ image.src }}" alt="{{ image.alt }}" />
+          </div>
+        {% endif %}
+      </div>
+    {% endblock %}
+  </div>
+{% endif %}

@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display status messages.
+ */
+#}
+{% for type, messages in message_list %}
+  {% for message in messages %}
+    {% include '@organisms/message/message.twig' with {
+      title: status_headings[type] ? status_headings[type] : type|capitalize,
+      description: message,
+      type: type == 'status' ? 'information' : type,
+    } only %}
+  {% endfor %}
+{% endfor %}

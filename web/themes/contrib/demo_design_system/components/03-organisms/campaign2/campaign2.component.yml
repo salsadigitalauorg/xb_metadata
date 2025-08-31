@@ -1,0 +1,30 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Testing title with image
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - Title which runs across two or three lines
+
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: https://placehold.co/600x400.png
+          alt: 'placeholder'
+          width: 600
+          height: 400

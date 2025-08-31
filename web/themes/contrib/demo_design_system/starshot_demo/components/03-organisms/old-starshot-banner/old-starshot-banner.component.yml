@@ -1,0 +1,55 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Old Starshot Banner
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - Build the Open Web with Drupal
+
+    featured_image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Featured image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'placeholder'
+          width: 600
+          height: 400
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content:
+    title: Content
+    description: Content slot.
+      #examples:
+      #- '<p>content</p>'

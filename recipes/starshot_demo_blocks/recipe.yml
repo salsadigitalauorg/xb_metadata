@@ -1,0 +1,8 @@
+name: 'XB Demo Blocks'
+description: 'Provides content blocks for the XB demo. Must be applied before the xb_demo recipe.'
+type: 'Demo'
+recipes:
+  - core/recipes/basic_block_type
+  - core/recipes/basic_html_format_editor
+  - core/recipes/full_html_format_editor
+  - core/recipes/image_media_type

@@ -1,0 +1,133 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Event card
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+
+  properties:
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'Boring placeholder'
+          width: 600
+          height: 400
+
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - 'Annual Tech Conference 2023'
+
+    summary:
+      type: string
+      title: Summary
+      description: Summary.
+      examples:
+        - 'Join us for a day of insightful discussions and networking.'
+        - 'This event will cover the latest trends in technology.'
+
+    date:
+      type: string
+      title: Date
+      description: Start date and time.
+      examples:
+        - '20 Jan 2023 11:00'
+
+    date_iso:
+      type: string
+      title: Date iso
+      description: Start date and time in ISO format.
+      examples:
+        - '2023-01-20T11:00:00Z'
+
+    date_end:
+      type: string
+      title: Date end
+      description: Optional end date and time.
+      examples:
+        - '21 Jan 2023 15:00'
+        - '10 Feb 2024 17:00'
+
+    date_end_iso:
+      type: string
+      title: Date end iso
+      description: Optional end date and time in ISO format.
+      examples:
+        - '2023-01-21T15:00:00Z'
+        - '2024-02-10T17:00:00Z'
+
+    location:
+      type: string
+      title: Location
+      description: Location.
+      examples:
+        - 'Suburb, State – 16:00–17:00'
+        - 'Online Event'
+
+          # @fixme comment link out for now
+          #link:
+          #type: object
+          #title: Link
+          #description: Optional link.
+          #
+          #properties:
+          #url:
+          #type: string
+          #title: Url
+          #description: URL.
+          #examples:
+          #- 'https://example.com/event-details'
+          #- 'https://eventsite.com/register'
+
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #tags:
+    #type: array
+    #title: Tags
+    #description: Array of tags.
+    #items:
+    #type: string
+    #examples:
+    #[
+    #- 'Technology',
+    #- 'Conference',
+    #- 'Networking',
+    #]
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+
+  image_over:
+    title: Image over
+    description: Content slot for image over.
+
+  content_middle:
+    title: Content middle
+    description: Content slot.
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot for bottom of Card.

@@ -1,0 +1,44 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.starshot-social-media-item .starshot-icon {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  background-color: #12285F;
+  transition: transform 0.3s;
+}
+.starshot-social-media-item:hover .starshot-icon {
+  background-color: aquamarine;
+}
+.starshot-social-media.scale .starshot-social-media-item:hover .starshot-icon {
+  transform: scale(1.5);
+}
+.starshot-social-media.rotate .starshot-social-media-item:hover .starshot-icon {
+  transform: rotate(25deg);
+}
+
+.ph--facebook {
+  mask-image: url("/themes/contrib/demo_design_system/starshot_demo/components/02-molecules/starshot-social-media-icon/icons/facebook-logo.svg");
+}
+
+.ph--youtube {
+  mask-image: url("/themes/contrib/demo_design_system/starshot_demo/components/02-molecules/starshot-social-media-icon/icons/youtube-logo.svg");
+}
+
+.ph--mastodon {
+  mask-image: url("/themes/contrib/demo_design_system/starshot_demo/components/02-molecules/starshot-social-media-icon/icons/mastodon-logo.svg");
+}
+
+.ph--linkedin {
+  mask-image: url("/themes/contrib/demo_design_system/starshot_demo/components/02-molecules/starshot-social-media-icon/icons/linkedin-logo.svg");
+}
+
+.ph--instagram {
+  mask-image: url("/themes/contrib/demo_design_system/starshot_demo/components/02-molecules/starshot-social-media-icon/icons/instagram-logo.svg");
+}
+
+.ph--x {
+  mask-image: url("/themes/contrib/demo_design_system/starshot_demo/components/02-molecules/starshot-social-media-icon/icons/x-logo.svg");
+}

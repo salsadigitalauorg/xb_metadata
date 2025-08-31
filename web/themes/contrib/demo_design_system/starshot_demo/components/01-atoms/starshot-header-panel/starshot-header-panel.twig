@@ -1,0 +1,24 @@
+{% set modifier_class = '' %}
+
+{% if breakpoint_display is not empty %}
+  {% if breakpoint_display == 'desktop' %}
+    {% set modifier_class = 'hide-xs show-l' %}
+  {% elseif breakpoint_display == 'mobile' %}
+    {% set modifier_class = 'hide-l' %}
+  {% endif %}
+{% endif %}
+
+<div class="starshot-header-panel {{ modifier_class }}">
+  <div class="starshot-header-panel__inner">
+    <div class="starshot-header-panel__col-1">
+      {% block column_one %}
+        {{ column_one }}
+      {% endblock %}
+    </div>
+    <div class="starshot-header-panel__col-2">
+      {% block column_two %}
+        {{ column_two }}
+      {% endblock %}
+    </div>
+  </div>
+</div>

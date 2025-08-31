@@ -1,0 +1,57 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Field description
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+    #required:
+    #- content
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: The description's content.
+      examples:
+        - Field message content sample.
+
+    size:
+      type: string
+      title: Size
+      description: 'Label size: large, regular.'
+      default: regular
+      enum:
+        - large
+        - regular
+      examples:
+        - regular
+
+    allow_html:
+      type: boolean
+      title: Allow HTML in text.
+      examples:
+        - true
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

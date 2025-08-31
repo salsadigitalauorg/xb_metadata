@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Starshot CTA component.
+ *
+ * Variables:
+ * - title: [string] Title.
+ * - cta_content: [string] Content HTML or slot.
+ */
+#}
+
+<div class="starshot-cta">
+  <div class="starshot-cta__inner">
+    <div class="starshot-cta__2col">
+      <div class="starshot-cta__left">
+        {% if title %}
+          <h2>{{ title|raw }}</h2>
+        {% endif %}
+      </div>
+      <div class="starshot-cta__right">
+        <div class="starshot-cta__right-content">
+          {% block cta_content %}
+            {{ cta_content|raw }}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

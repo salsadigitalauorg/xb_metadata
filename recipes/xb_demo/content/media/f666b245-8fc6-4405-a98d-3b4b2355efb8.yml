@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: f666b245-8fc6-4405-a98d-3b4b2355efb8
+  bundle: image
+  default_langcode: en
+  depends:
+    637e1a81-ed30-4192-960d-8cf3804b8990: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: starshot_11.png
+  created:
+    -
+      value: 1741360357
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: 637e1a81-ed30-4192-960d-8cf3804b8990
+      alt: 'Slide 4'
+      title: ''
+      width: 437
+      height: 547

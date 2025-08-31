@@ -1,0 +1,34 @@
+//
+// Starshot paragraph component.
+//
+
+.ct-starshot-paragraph {
+  $root: &;
+
+  margin: 0;
+
+  &--regular {
+    @include ct-typography('starshot-cta-description');
+  }
+
+  &--large {
+    @include ct-typography('starshot-case-study-description');
+  }
+
+  &--strong {
+    @include ct-typography('starshot-feature-cards-subtitle');
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, text, color);
+  }
+
+  // Hacking link colors.
+  // @todo use includes instead.
+  &.ct-theme-dark a {
+    color: var(--ct-starshot-paragraph-dark-text-color);
+  }
+  &.ct-theme-light a {
+    color: var(--ct-starshot-paragraph-light-text-color);
+  }
+}

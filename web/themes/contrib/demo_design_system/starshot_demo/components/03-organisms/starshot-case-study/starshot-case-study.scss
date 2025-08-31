@@ -1,0 +1,106 @@
+.ct-starshot-case-study {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 74px;
+
+  @include ct-breakpoint(l) {
+    padding-bottom: 87px;
+  }
+
+  @include ct-breakpoint(xxl) {
+    padding-bottom: 174px;
+  }
+
+  &__background {
+    background-color: ct-color-light('background-4');
+    padding-top: 60px;
+    padding-bottom: 60px;
+
+    @include ct-breakpoint(xxl) {
+      padding-top: 141px;
+      padding-bottom: 15%;
+    }
+  }
+
+  &__inner {
+    max-width: 1608px;
+    margin: auto;
+    padding: 0 ct-spacing(3);
+
+    @include ct-breakpoint(xxl) {
+      padding: 0 ct-spacing(2);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include ct-breakpoint(l) {
+      max-width: calc(50% - 156px);
+    }
+
+    // Testing a fix to retain gap when using experience builder.
+    & > .xb--sortable-list {
+      display: flex;
+      gap: 32px;
+      flex-direction: column;
+    }
+  }
+
+  h2 {
+    @include ct-typography('starshot-heading');
+
+    color: ct-color-light('heading-4');
+    margin-top: 0;
+    margin-bottom: 48px;
+
+    @include ct-breakpoint(m) {
+      margin-bottom: 73px;
+    }
+  }
+
+  &__logo {
+    max-width: 100%;
+  }
+
+  &__image {
+    position: relative;
+    bottom: 0;
+    right: -24px;
+    max-width: 1186px;
+    margin-top: 64px;
+    margin-bottom: -135px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include ct-breakpoint(l) {
+      position: absolute;
+      bottom: 0;
+      left: calc(50% - 156px + 60px);
+      margin: 0;
+      right: unset;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      display: inline-block;
+      background-image: url('/themes/contrib/demo_design_system/starshot_demo/assets/starshot/starshot_banner_frame.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 105%;
+      height: 104%;
+      left: -4.9%;
+      top: -3.9%;
+    }
+  }
+
+  &__image-element {
+    border-radius: 5%;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}

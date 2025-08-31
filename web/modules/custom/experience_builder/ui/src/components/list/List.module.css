@@ -1,0 +1,23 @@
+.listContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.componentPreviewTooltipContent {
+  transform-origin: var(--radix-tooltip-content-transform-origin);
+  animation: slide-from-left-and-fade-in 200ms ease-out;
+}
+
+@keyframes slide-from-left-and-fade-in {
+  from {
+    transform: translateX(-24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

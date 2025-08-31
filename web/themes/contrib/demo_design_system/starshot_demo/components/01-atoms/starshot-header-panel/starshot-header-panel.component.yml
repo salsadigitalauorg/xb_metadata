@@ -1,0 +1,41 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Header Panel
+
+status: experimental
+
+group: Atoms
+
+props:
+
+  type: object
+
+  properties:
+
+    breakpoint_display:
+      type: string
+      title: 'Show header on'
+      description: 'Show header on desktop, mobile or both'
+      enum:
+        - both
+        - desktop
+        - mobile
+      default: both
+      examples:
+        - both
+
+slots:
+
+  column_one:
+    title: Column one
+    description: First column slot.
+    # @fixme if no examples, component does not show up.
+    examples:
+      - Slot
+
+  column_two:
+    title: Column two
+    description: Second column slot.
+    # @fixme if no examples, component does not show up.
+    examples:
+      - Slot

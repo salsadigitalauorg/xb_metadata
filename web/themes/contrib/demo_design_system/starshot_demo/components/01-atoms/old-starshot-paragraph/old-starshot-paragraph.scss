@@ -1,0 +1,27 @@
+//
+// Starshot paragraph component.
+//
+
+.ct-old-starshot-paragraph {
+  $root: &;
+
+  margin-bottom: ct-spacing(4);
+
+  &--regular {
+    @include ct-typography('body-regular-drupal');
+  }
+
+  &--large {
+    @include ct-typography('body-large-drupal');
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    $colors: body, body-2, body-3;
+
+    @each $color in $colors {
+      &#{$root}--#{$color} {
+        @include ct-component-property($root, $theme, color, $color, text, color);
+      }
+    }
+  }
+}

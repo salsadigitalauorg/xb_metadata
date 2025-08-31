@@ -1,0 +1,91 @@
+<div class="ct-starshot-slider">
+  <div class="splide">
+    <div class="splide__track">
+      <ul class="splide__list">
+        {% if slide_count >= 1 %}
+          <li class="splide__slide">
+            {% block slide_one %}
+              {{ slide_one }}
+            {% endblock %}
+          </li>
+        {% endif %}
+        {% if slide_count >= 2 %}
+          <li class="splide__slide">
+            {% block slide_two %}
+              {{ slide_two }}
+            {% endblock %}
+          </li>
+        {% endif %}
+        {% if slide_count >= 3 %}
+          <li class="splide__slide">
+            {% block slide_three %}
+              {{ slide_three }}
+            {% endblock %}
+          </li>
+        {% endif %}
+        {% if slide_count >= 4 %}
+          <li class="splide__slide">
+            {% block slide_four %}
+              {{ slide_four }}
+            {% endblock %}
+          </li>
+        {% endif %}
+        {% if slide_count >= 5 %}
+          <li class="splide__slide">
+            {% block slide_five %}
+              {{ slide_five }}
+            {% endblock %}
+          </li>
+        {% endif %}
+        {% if slide_count >= 6 %}
+          <li class="splide__slide">
+            {% block slide_six %}
+              {{ slide_six }}
+            {% endblock %}
+          </li>
+        {% endif %}
+        {% if slide_count >= 7 %}
+          <li class="splide__slide">
+            {% block slide_seven %}
+              {{ slide_seven }}
+            {% endblock %}
+          </li>
+        {% endif %}
+        {% if slide_count >= 8 %}
+          <li class="splide__slide">
+            {% block slide_eight %}
+              {{ slide_eight }}
+            {% endblock %}
+          </li>
+        {% endif %}
+        {% if slide_count >= 9 %}
+          <li class="splide__slide">
+            {% block slide_nine %}
+              {{ slide_nine }}
+            {% endblock %}
+          </li>
+        {% endif %}
+        {% if slide_count >= 10 %}
+          <li class="splide__slide">
+            {% block slide_ten %}
+              {{ slide_ten }}
+            {% endblock %}
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="splide__arrows">
+      <button class="splide__arrow splide__arrow--prev" aria-label="Previous">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.24375 21.75L20.0551 33.5614C21.0037 34.5099 20.9969 36.0499 20.04 36.99V36.99C19.095 37.9184 17.5783 37.9117 16.6416 36.9749L0.708839 21.0422C-0.234928 20.0984 -0.234926 18.5683 0.708841 17.6245L16.6416 1.69173C17.5783 0.755001 19.095 0.748292 20.04 1.6767V1.6767C20.9969 2.61679 21.0037 4.15675 20.0551 5.10528L8.24375 16.9167H35.25C36.5847 16.9167 37.6667 17.9986 37.6667 19.3333V19.3333C37.6667 20.668 36.5847 21.75 35.25 21.75H8.24375Z" fill="#12285F"></path>
+        </svg>
+      </button>
+      <div class="splide__pagination"></div>
+      <button class="splide__arrow splide__arrow--next" aria-label="Next">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M29.4229 21.75L17.6115 33.5614C16.663 34.5099 16.6698 36.0499 17.6267 36.99V36.99C18.5716 37.9184 20.0883 37.9117 21.025 36.9749L36.9578 21.0422C37.9016 20.0984 37.9016 18.5683 36.9578 17.6245L21.025 1.69173C20.0883 0.755001 18.5716 0.748292 17.6267 1.6767V1.6767C16.6698 2.61679 16.663 4.15675 17.6115 5.10528L29.4229 16.9167H2.41662C1.08194 16.9167 -4.19617e-05 17.9986 -4.19617e-05 19.3333V19.3333C-4.19617e-05 20.668 1.08194 21.75 2.41662 21.75H29.4229Z" fill="#12285F"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

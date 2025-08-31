@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 84d58fd1-980a-49f0-8c6e-691aee95b89a
+  bundle: image
+  default_langcode: en
+  depends:
+    fb10e0f6-8f81-4fe8-bc8b-7450ff271c48: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: starshot_10.png
+  created:
+    -
+      value: 1741360343
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: fb10e0f6-8f81-4fe8-bc8b-7450ff271c48
+      alt: 'Slide 3'
+      title: ''
+      width: 437
+      height: 547

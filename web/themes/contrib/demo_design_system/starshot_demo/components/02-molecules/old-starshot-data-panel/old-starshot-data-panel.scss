@@ -1,0 +1,81 @@
+//
+// Old Starshot data panel component.
+//
+
+.ct-old-starshot-data-panel {
+  $root: &;
+
+  position: relative;
+
+  &__wrapper {
+    padding: ct-spacing(5) 0;
+
+    @include ct-breakpoint(m) {
+      padding: ct-spacing(10);
+    }
+  }
+
+  &__row {
+    align-items: center;
+  }
+
+  &__image {
+    margin-bottom: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(3);
+    }
+
+    .ct-image {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__description {
+    @include ct-typography('body-large-drupal');
+  }
+
+  &__link {
+    width: 100%;
+    text-align: center;
+    margin-top: ct-spacing(1);
+
+    @include ct-breakpoint(l) {
+      width: auto;
+    }
+  }
+
+  &__stats {
+    align-content: center;
+
+    &__description {
+      @include ct-typography('label-drupal-2');
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    &__number {
+      display: flex;
+      align-items: baseline;
+    }
+
+    &__amount {
+      @include ct-typography('label-drupal-3');
+    }
+
+    &__sub {
+      @include ct-typography('heading-drupal-3');
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, background-color);
+    @include ct-component-property($root, $theme, color);
+  }
+}

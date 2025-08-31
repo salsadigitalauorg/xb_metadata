@@ -1,0 +1,51 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Button
+
+status: experimental
+
+group: Atoms
+
+props:
+
+  type: object
+
+  properties:
+    # @todo update theme so it works.
+    #theme:
+    #type: string
+    #title: Theme
+    #description: 'Theme: light, dark.'
+    #default: light
+    #enum:
+    #- light
+    #- dark
+    #examples:
+    #- light
+
+    text:
+      type: string
+      title: Text
+      description: Button text.
+      examples:
+        - Learn more
+
+    url:
+      type: string
+      title: Url
+      description: URL for the link button.
+      examples:
+        - 'https://drupal.org'
+
+    display:
+      type: string
+      title: Style
+      description: Button style.
+      enum:
+        - primary
+        - secondary
+        - tertiary
+        - link
+        - link-alt
+      examples:
+        - primary

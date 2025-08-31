@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: ad6accf5-d6a0-428e-b1ec-1f21dfaee851
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 5810c1618ec81f75b0fbdbf547e0e2fd.jpeg
+  uri:
+    -
+      value: 'public://2025-03/5810c1618ec81f75b0fbdbf547e0e2fd.jpeg'
+      url: /sites/default/files/2025-03/5810c1618ec81f75b0fbdbf547e0e2fd.jpeg
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 282423
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741782139

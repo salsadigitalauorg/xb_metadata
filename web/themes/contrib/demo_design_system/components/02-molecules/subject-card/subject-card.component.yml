@@ -1,0 +1,97 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Subject card
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- title
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'Boring placeholder'
+          width: 600
+          height: 400
+
+    title:
+      type: string
+      title: Title
+      description: Card title.
+      examples:
+        - 'Subject card title which runs across two or three lines'
+
+          #link:
+          #type: object
+          #title: Link
+          #description: 'Link object:'
+          #required:
+          #- url
+          #
+          #properties:
+          #text:
+          #type: string
+          #title: Text
+          #description: Text.
+          #examples:
+          #- 'Learn more'
+          #
+          #url:
+          #type: string
+          #title: Url
+          #description: URL.
+          #examples:
+          #- 'https://example.com'
+          #
+          #is_new_window:
+          #type: boolean
+          #title: Open link in a new window.
+          #examples:
+          #- false
+          #
+          #is_external:
+          #type: boolean
+          #title: Link is external or not.
+          #examples:
+          #- false
+
+    is_external:
+      type: boolean
+      title: Link is external.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  image_over:
+    title: Image over
+    description: Content slot.
+    examples:
+      - '<p>image_over</p>'

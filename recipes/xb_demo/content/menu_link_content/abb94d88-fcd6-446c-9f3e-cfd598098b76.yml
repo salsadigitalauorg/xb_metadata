@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: abb94d88-fcd6-446c-9f3e-cfd598098b76
+  bundle: menu_link_content
+  default_langcode: en
+default:
+  enabled:
+    -
+      value: true
+  title:
+    -
+      value: 'Support Drupal'
+  menu_name:
+    -
+      value: starshot-demo-main
+  link:
+    -
+      uri: 'https://www.drupal.org/association'
+      title: ''
+      options: {  }
+  external:
+    -
+      value: false
+  rediscover:
+    -
+      value: false
+  weight:
+    -
+      value: -43
+  expanded:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true

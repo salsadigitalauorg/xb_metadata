@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 79687ac3-a83f-4a09-9850-aab4e84e17b3
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: 'Header-image (6).png'
+  uri:
+    -
+      value: 'public://2025-03/Header-image (6).png'
+      url: /sites/default/files/2025-03/Header-image%20%286%29.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 563959
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741781993

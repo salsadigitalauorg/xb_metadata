@@ -1,0 +1,205 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-starshot-heading {
+  margin: 0;
+}
+@media (min-width: 0) {
+  .ct-starshot-heading--font-heading {
+    font-size: 3.125rem;
+    line-height: 3.4375rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-heading--font-heading {
+    font-size: 3.125rem;
+    line-height: 3.4375rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-heading--font-heading {
+    font-size: 6.25rem;
+    line-height: 6.875rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 700;
+    letter-spacing: -2.25px;
+  }
+}
+@media (min-width: 0) {
+  .ct-starshot-heading--font-heading-2 {
+    font-size: 2rem;
+    line-height: 2.375rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-heading--font-heading-2 {
+    font-size: 2rem;
+    line-height: 2.375rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-heading--font-heading-2 {
+    font-size: 4rem;
+    line-height: 4.75rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 0) {
+  .ct-starshot-heading--font-heading-3 {
+    font-size: 1.5625rem;
+    line-height: 1.875rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-heading--font-heading-3 {
+    font-size: 1.5625rem;
+    line-height: 1.875rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-heading--font-heading-3 {
+    font-size: 3.125rem;
+    line-height: 3.75rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 0) {
+  .ct-starshot-heading--font-heading-4 {
+    font-size: 1.25rem;
+    line-height: 1.5625rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-heading--font-heading-4 {
+    font-size: 1.25rem;
+    line-height: 1.5625rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-heading--font-heading-4 {
+    font-size: 2.5rem;
+    line-height: 3.125rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 0) {
+  .ct-starshot-heading--font-heading-5 {
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-heading--font-heading-5 {
+    font-size: 1.125rem;
+    line-height: 1.4375rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-heading--font-heading-5 {
+    font-size: 2rem;
+    line-height: 2.875rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 0) {
+  .ct-starshot-heading--font-heading-6 {
+    font-size: 1rem;
+    line-height: 1.3125rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-heading--font-heading-6 {
+    font-size: 1rem;
+    line-height: 1.3125rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-heading--font-heading-6 {
+    font-size: 2rem;
+    line-height: 2.625rem;
+    font-family: "ZT Gatha", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0;
+  }
+}
+.ct-starshot-heading--left {
+  text-align: left;
+}
+.ct-starshot-heading--center {
+  text-align: center;
+}
+.ct-starshot-heading--right {
+  text-align: right;
+}
+.ct-starshot-heading--margin-medium {
+  margin-bottom: 20px;
+}
+@media (min-width: 1440px) {
+  .ct-starshot-heading--margin-medium {
+    margin-bottom: 40px;
+  }
+}
+.ct-starshot-heading--margin-large {
+  margin-bottom: 48px;
+}
+@media (min-width: 992px) {
+  .ct-starshot-heading--margin-large {
+    margin-bottom: 48px;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-heading--margin-large {
+    margin-bottom: 75px;
+  }
+}
+.ct-starshot-heading.ct-theme-light {
+  color: var(--ct-starshot-heading-light-text-color);
+}
+.ct-starshot-heading.ct-theme-dark {
+  color: var(--ct-starshot-heading-dark-text-color);
+}

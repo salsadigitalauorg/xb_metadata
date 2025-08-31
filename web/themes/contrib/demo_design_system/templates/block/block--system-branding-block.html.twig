@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * CivicTheme implementation to display a Branding block.
+ */
+#}
+{% extends "block.html.twig" %}
+
+{% block content %}
+  {% if show_site_logo %}
+    {% include '@molecules/logo/logo.twig' with {
+      logos: logos,
+      url: url,
+      title: title,
+      theme: theme,
+      modifier_class: modifier_class,
+      type: type ?? 'default',
+    } only %}
+  {% endif %}
+
+  {% if show_site_name and site_name %}
+    {% include '@atoms/link/link.twig' with {
+      theme: theme,
+      text: site_name,
+      url: path('<front>'),
+      attributes: 'rel="home"'
+    } only %}
+  {% endif %}
+
+  {% if show_site_slogan and site_slogan %}
+    {% include '@atoms/paragraph/paragraph.twig' with {
+      theme: theme,
+      content: site_slogan
+    } only %}
+  {% endif %}
+{% endblock %}

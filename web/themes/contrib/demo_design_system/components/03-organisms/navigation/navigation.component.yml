@@ -1,0 +1,87 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Navigation
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+  # required:
+  #   - items
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+# @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+#items:
+#type: array
+#title: Items
+#description: Array of menu items.
+#items:
+#type: boolean
+
+    title:
+      type: string
+      title: Title
+      description: Navigation title.
+      examples:
+        - Main Navigation
+
+    type:
+      type: string
+      title: Type
+      description: 'One of: none, inline, dropdown, drawer.'
+      default: none
+      enum:
+        - none
+        - inline
+        - dropdown
+        - drawer
+      examples:
+        - none
+
+    dropdown_columns:
+      type: integer
+      title: Dropdown columns
+      description: Number of columns in the dropdown drawer.
+      examples:
+        - 5
+
+    dropdown_columns_fill:
+      type: boolean
+      title: Fill columns.
+      examples:
+        - false
+
+    is_animated:
+      type: boolean
+      title: Use animation for transitions.
+      examples:
+        - true
+
+    menu_id:
+      type: string
+      title: Menu id
+      description: Optional menu ID used for grouping dropdown items.
+      default: navigation
+      examples:
+        - navigation
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

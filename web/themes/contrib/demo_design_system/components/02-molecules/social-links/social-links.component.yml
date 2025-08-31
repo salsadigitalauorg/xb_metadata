@@ -1,0 +1,59 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Social links
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+  # required:
+  #   - items
+
+  properties:
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #items:
+    #type: array
+    #title: Items
+    #description: 'Array of items:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #direction:
+    #type: string
+    #title: Direction
+    #description: >
+    #Direction: horizontal, vertical. Defaults to horizontal.
+    #default: horizontal
+    #enum:
+    #- horizontal
+    #- vertical
+    #examples:
+    #- horizontal
+
+    with_border:
+      type: boolean
+      title: Whether icons have borders.
+      examples:
+        - true
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

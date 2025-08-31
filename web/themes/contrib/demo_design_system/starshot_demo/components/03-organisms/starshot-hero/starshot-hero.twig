@@ -1,0 +1,49 @@
+{#
+/**
+ * @file
+ * Starshot Hero component.
+ *
+ * Variables:
+ * - title: [string] Title.
+ * - summary: [string] Text summary.
+ * - padding: [string] Top padding. small, default.
+ * - image: [object] Image object:
+ *   - url: [string] Source.
+ *   - alt: [string] Alt text.
+ * - link: [object] Call to action link:
+ *   - text: [string] Display text.
+ *   - url: [string] Href.
+ * - design: [string] Design: light, green, blue, lavender, blue-stripe.
+ */
+#}
+
+{% set design_class = 'ct-starshot-container--design-%s'|format(design|default('none')) %}
+{% set padding_class = padding ? 'ct-starshot-hero--padding-' ~ padding : '' %}
+
+<div class="ct-starshot-hero {{ design_class }} {{ padding_class }}">
+  <div class="ct-starshot-hero__inner">
+    <div class="ct-starshot-hero__left">
+      <svg width="186" height="49" viewBox="0 0 186 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24.3692 42.7385C34.5143 42.7385 42.7385 34.5143 42.7385 24.3693C42.7385 14.2242 34.5143 6 24.3692 6C14.2242 6 6 14.2242 6 24.3693C6 34.5143 14.2242 42.7385 24.3692 42.7385Z" stroke="white" stroke-width="11.9148" stroke-miterlimit="10" />
+        <path d="M94.6173 42.7385C104.762 42.7385 112.987 34.5143 112.987 24.3693C112.987 14.2242 104.762 6 94.6173 6C84.4723 6 76.248 14.2242 76.248 24.3693C76.248 34.5143 84.4723 42.7385 94.6173 42.7385Z" stroke="white" stroke-width="11.9148" stroke-miterlimit="10" />
+        <path d="M161.278 42.7385C171.423 42.7385 179.647 34.5143 179.647 24.3693C179.647 14.2242 171.423 6 161.278 6C151.133 6 142.908 14.2242 142.908 24.3693C142.908 34.5143 151.133 42.7385 161.278 42.7385Z" stroke="white" stroke-width="11.9148" stroke-miterlimit="10" />
+      </svg>
+      {% if title %}
+        <h1>{{ title }}</h1>
+      {% endif %}
+      {% if summary %}
+        <p>{{ summary }}</p>
+      {% endif %}
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    </div>
+    <div class="ct-starshot-hero__right">
+      {% if image and image.src %}
+        <div class="ct-starshot-hero__media">
+          <img src="{{ image.src }}" alt="{{ image.alt }}" />
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: bfaba865-47e0-4d69-866d-acd6adf24746
+  bundle: image
+  default_langcode: en
+  depends:
+    a16b12a8-ec3c-4ae5-a683-aff8eef8dcfa: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: starshot_8.png
+  created:
+    -
+      value: 1741360313
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: a16b12a8-ec3c-4ae5-a683-aff8eef8dcfa
+      alt: 'slide 1'
+      title: ''
+      width: 437
+      height: 547

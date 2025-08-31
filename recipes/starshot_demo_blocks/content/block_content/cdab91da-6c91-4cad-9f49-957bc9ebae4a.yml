@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: cdab91da-6c91-4cad-9f49-957bc9ebae4a
+  bundle: basic
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: Trademark
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  body:
+    -
+      value: '<p>Drupal is a <a href="https://www.drupal.org/about/trademark"><strong>registered trademark</strong></a> of <a href="https://dri.es/"><strong>Dries Buytaert</strong></a>.</p>'
+      format: basic_html
+      summary: ''

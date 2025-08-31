@@ -1,0 +1,43 @@
+@import '../../../components/00-base/variables.components';
+
+// Tag.
+$ct-tag-light-drupal-background-color: ct-color-light('interaction-background') !default;
+$ct-tag-light-drupal-border-color: transparent !default;
+$ct-tag-light-drupal-color: ct-color-light('interaction-text') !default;
+$ct-tag-dark-drupal-background-color: ct-color-dark('interaction-background') !default;
+$ct-tag-dark-drupal-border-color: transparent !default;
+$ct-tag-dark-drupal-color: ct-color-dark('interaction-text') !default;
+
+// Drupal button.
+$ct-button-light-drupal-background-color: transparent !default;
+$ct-button-light-drupal-border-color: ct-color-light('interaction-background-3') !default;
+$ct-button-light-drupal-color: ct-color-light('interaction-background-3') !default;
+$ct-button-light-drupal-hover-background-color: $ct-button-light-tertiary-background-color !default;
+$ct-button-light-drupal-hover-border-color: $ct-button-light-tertiary-border-color !default;
+$ct-button-light-drupal-hover-color: ct-color-light('interaction-hover-background') !default;
+$ct-button-light-drupal-visited-background-color: $ct-button-light-tertiary-background-color !default;
+$ct-button-light-drupal-visited-border-color: $ct-button-light-tertiary-border-color !default;
+$ct-button-light-drupal-visited-color: $ct-button-light-tertiary-color !default;
+$ct-button-light-drupal-active-background-color: $ct-button-light-tertiary-hover-background-color !default;
+$ct-button-light-drupal-active-border-color: $ct-button-light-tertiary-hover-border-color !default;
+$ct-button-light-drupal-active-color: $ct-button-light-tertiary-hover-color !default;
+$ct-button-light-drupal-focus-background-color: false !default;
+$ct-button-light-drupal-focus-border-color: false !default;
+$ct-button-light-drupal-focus-color: false !default;
+$ct-button-light-drupal-focus-outline-color: ct-color-light('interaction-focus') !default;
+$ct-button-dark-drupal-background-color: transparent !default;
+$ct-button-dark-drupal-border-color: ct-color-dark('interaction-background') !default;
+$ct-button-dark-drupal-color: ct-color-dark('interaction-background') !default;
+$ct-button-dark-drupal-hover-background-color: $ct-button-dark-tertiary-background-color !default;
+$ct-button-dark-drupal-hover-border-color: $ct-button-dark-tertiary-border-color !default;
+$ct-button-dark-drupal-hover-color: ct-color-dark('interaction-hover-background') !default;
+$ct-button-dark-drupal-visited-background-color: $ct-button-dark-tertiary-background-color !default;
+$ct-button-dark-drupal-visited-border-color: $ct-button-dark-tertiary-border-color !default;
+$ct-button-dark-drupal-visited-color: $ct-button-dark-tertiary-color !default;
+$ct-button-dark-drupal-active-background-color: $ct-button-dark-tertiary-hover-background-color !default;
+$ct-button-dark-drupal-active-border-color: $ct-button-dark-tertiary-hover-border-color !default;
+$ct-button-dark-drupal-active-color: $ct-button-dark-tertiary-hover-color !default;
+$ct-button-dark-drupal-focus-background-color: false !default;
+$ct-button-dark-drupal-focus-border-color: false !default;
+$ct-button-dark-drupal-focus-color: false !default;
+$ct-button-dark-drupal-focus-outline-color: ct-color-dark('interaction-focus') !default;

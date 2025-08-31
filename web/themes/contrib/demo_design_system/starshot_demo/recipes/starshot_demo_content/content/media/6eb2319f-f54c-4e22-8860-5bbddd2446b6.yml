@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 6eb2319f-f54c-4e22-8860-5bbddd2446b6
+  bundle: image
+  default_langcode: en
+  depends:
+    8273892b-94c6-4026-a9aa-f037d52f8103: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: temp_starshot_contributors.png
+  created:
+    -
+      value: 1741574596
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  field_media_image:
+    -
+      entity: 8273892b-94c6-4026-a9aa-f037d52f8103
+      alt: 'Starshot contributors including lead organizations Acquia and Salsa Digital'
+      title: ''
+      width: 2718
+      height: 878

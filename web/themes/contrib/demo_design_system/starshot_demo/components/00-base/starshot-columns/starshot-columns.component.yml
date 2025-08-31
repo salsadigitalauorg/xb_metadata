@@ -1,0 +1,82 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Columns
+
+status: experimental
+
+group: Base
+
+props:
+
+  type: object
+
+  properties:
+    cols:
+      type: string
+      title: Columns
+      description: 'Number of columns: one, two, three, four.'
+      enum:
+        - one
+        - two
+        - three
+        - four
+      default: one
+      examples:
+        - one
+
+    gap:
+      type: string
+      title: Gap between items
+      description: 'The space between columns or content.'
+      enum:
+        - none
+        - small
+        - medium
+        - large
+      default: medium
+      examples:
+        - medium
+
+    alignment:
+      type: string
+      title: 'Text alignment'
+      description: 'The alignment of the content within the columns.'
+      enum:
+        - none
+        - left
+        - right
+        - center
+        - 'right-on-last'
+      default: none
+      examples:
+        - none
+
+slots:
+
+  column_one:
+    title: Column one
+    description: First column slot.
+    # @fixme if no examples, component does not show up.
+    examples:
+      - Column one
+
+  column_two:
+    title: Column two
+    description: Second column slot.
+    # @fixme if no examples, component does not show up.
+    examples:
+      - Column two
+
+  column_three:
+    title: Column three
+    description: Third column slot.
+    # @fixme if no examples, component does not show up.
+    examples:
+      - Column three
+
+  column_four:
+    title: Column four
+    description: Fourth column slot.
+    # @fixme if no examples, component does not show up.
+    examples:
+      - Column four

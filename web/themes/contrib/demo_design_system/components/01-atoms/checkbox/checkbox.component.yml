@@ -1,0 +1,85 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Checkbox
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+    #required:
+    #- name
+    #- id
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    name:
+      type: string
+      title: Name
+      description: DOM name. Required.
+      examples:
+        - name
+
+    id:
+      type: string
+      title: Id
+      description: DOM id. Required.
+      examples:
+        - id
+
+    value:
+      type: string
+      title: Value
+      description: DOM value.
+      examples:
+        - '123'
+
+    label:
+      type: string
+      title: Label
+      description: Label content.
+      examples:
+        - Checkbox label
+
+    is_checked:
+      type: boolean
+      title: Denote if the control is checked.
+      examples:
+        - false
+
+    is_required:
+      type: boolean
+      title: Denote if the control is required.
+      examples:
+        - false
+
+    is_invalid:
+      type: boolean
+      title: Denote if the control is invalid.
+      examples:
+        - false
+
+    is_disabled:
+      type: boolean
+      title: Denote if the control is disabled.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

@@ -1,0 +1,263 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.starshot-button {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+.starshot-button--primary a {
+  background-color: var(--ct-color-light-background-5);
+  color: var(--ct-color-light-body-3);
+  text-decoration: none;
+  border-radius: 6px;
+  display: inline-block;
+  position: relative;
+  padding: 14px 20px;
+}
+@media (min-width: 0) {
+  .starshot-button--primary a {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .starshot-button--primary a {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .starshot-button--primary a {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .starshot-button--primary a {
+    padding: 14px 20px;
+  }
+}
+@media (min-width: 1440px) {
+  .starshot-button--primary a {
+    padding: 24px 30px;
+  }
+}
+.starshot-button--primary a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--ct-color-light-background-5);
+  top: 6px;
+  left: -6px;
+  border-radius: 6px;
+  z-index: -1;
+}
+.starshot-button--primary a:hover, .starshot-button--primary a:focus {
+  background-color: var(--ct-color-light-body-3);
+  color: var(--ct-color-light-body-4);
+}
+.starshot-button--primary a:hover::before, .starshot-button--primary a:focus::before {
+  border: 3px solid var(--ct-color-light-body-3);
+}
+.starshot-button--secondary a {
+  color: var(--ct-color-light-drupal-brand);
+  border: 1px solid var(--ct-color-light-drupal-brand);
+  border-radius: 6px;
+  display: inline-block;
+  text-decoration: none;
+  padding: 14px 20px;
+}
+@media (min-width: 0) {
+  .starshot-button--secondary a {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .starshot-button--secondary a {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .starshot-button--secondary a {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .starshot-button--secondary a {
+    padding: 14px 20px;
+  }
+}
+@media (min-width: 1440px) {
+  .starshot-button--secondary a {
+    padding: 22px 30px;
+  }
+}
+.starshot-button--secondary a:hover, .starshot-button--secondary a:focus {
+  color: var(--ct-color-light-body-4);
+  border-color: var(--ct-color-light-border-1);
+}
+.starshot-button--tertiary a {
+  color: white;
+  border: 3px solid #12285f;
+  background-color: #12285f;
+  border-radius: 6px;
+  display: inline-block;
+  text-decoration: none;
+  padding: 14px 20px;
+}
+@media (min-width: 0) {
+  .starshot-button--tertiary a {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .starshot-button--tertiary a {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .starshot-button--tertiary a {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+.starshot-button--tertiary a:hover, .starshot-button--tertiary a:focus {
+  background-color: white;
+  color: #12285f;
+  border-color: #12285f;
+}
+.starshot-button--link a {
+  color: var(--ct-color-light-body-4);
+  border-bottom: 1px solid var(--ct-color-light-border-1);
+  padding-bottom: 8px;
+  display: inline-block;
+  text-decoration: none;
+}
+@media (min-width: 0) {
+  .starshot-button--link a {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .starshot-button--link a {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .starshot-button--link a {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+.starshot-button--link a::after {
+  content: "";
+  position: relative;
+  top: 9px;
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--ct-color-light-drupal-brand);
+  transition: width 0.3s;
+}
+.starshot-button--link a:hover, .starshot-button--link a:focus {
+  border-color: transparent;
+  color: var(--ct-color-light-drupal-brand);
+}
+.starshot-button--link a:hover::after, .starshot-button--link a:focus::after {
+  width: 100%;
+}
+.starshot-button--link-alt a {
+  color: var(--ct-color-light-body-4);
+  display: inline-block;
+  font-weight: 400;
+  text-decoration: none;
+}
+@media (min-width: 0) {
+  .starshot-button--link-alt a {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 992px) {
+  .starshot-button--link-alt a {
+    font-size: 1rem;
+    line-height: 1.75rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .starshot-button--link-alt a {
+    font-size: 1.5rem;
+    line-height: 2.75rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+}
+.starshot-button--link-alt a::after {
+  content: "";
+  position: relative;
+  top: 0;
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--ct-color-light-drupal-brand);
+  transition: width 0.3s;
+}
+.starshot-button--link-alt a:hover, .starshot-button--link-alt a:focus {
+  color: var(--ct-color-light-drupal-brand);
+}
+.starshot-button--link-alt a:hover::after, .starshot-button--link-alt a:focus::after {
+  width: 100%;
+}

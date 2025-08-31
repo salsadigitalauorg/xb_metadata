@@ -1,0 +1,22 @@
+.reviewErrors {
+  background-color: var(--amber-2);
+}
+
+.collapseButton {
+  display: flex;
+  cursor: pointer;
+  color: var(--slate-12);
+}
+
+.labelIcon {
+  color: var(--gray-10)
+}
+
+.chevron {
+  transition: transform 300ms ease-in-out;
+  color: var(--slate-12);
+  &.closed {
+    transform: rotate(-180deg);
+  }
+}
+

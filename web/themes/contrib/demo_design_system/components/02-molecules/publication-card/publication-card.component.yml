@@ -1,0 +1,140 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Publication card
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+  # required:
+  #   - file
+  #     - url
+  #     - name
+
+  properties:
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'Boring placeholder'
+          width: 600
+          height: 400
+
+    title:
+      type: string
+      title: Title
+      description: The text of card title.
+      examples:
+        - 'Publication or whitepaper main title'
+
+    summary:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Summary
+      description: Summary of the card.
+      examples:
+        - 'A brief summary of the publication or whitepaper.'
+
+          #file:
+          #type: object
+          #title: File
+          #description: 'File object containing:'
+          #
+          #properties:
+          #name:
+          #type: string
+          #title: Name
+          #description: File name (as it appears to the user).
+          #examples:
+          #- 'Document.doc'
+          #
+          #ext:
+          #type: string
+          #title: Ext
+          #description: File extension.
+          #examples:
+          #- 'doc'
+          #
+          #url:
+          #type: string
+          #title: Url
+          #description: File URL.
+          #examples:
+          #- 'https://example.com/document.doc'
+          #
+          #size:
+          #type: string
+          #title: Size
+          #description: File size (as it appears to the user).
+          #examples:
+          #- '42.88 KB'
+          #
+          #created:
+          #type: string
+          #title: Created
+          #description: File created date.
+          #examples:
+          #- '2023-01-20T11:00:00Z'
+          #
+          #changed:
+          #type: string
+          #title: Changed
+          #description: File changed date.
+          #examples:
+          #- '2023-01-21T15:00:00Z'
+          #
+          #icon:
+          #type: string
+          #title: Icon
+          #description: File type icon name.
+          #examples:
+          #- 'word-file'
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes
+      examples:
+        - 'custom-class'
+
+slots:
+
+  image_over:
+    title: Image over
+    description: Content slot.
+    examples:
+      - '<p>image_over</p>'
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_middle:
+    title: Content middle
+    description: Content slot.
+    examples:
+      - '<p>content_middle</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

@@ -1,0 +1,9 @@
+{
+    "name": "starshot_demo/starshot_demo_recipe_media",
+    "description": "Provides media content for the Starshot Demo theme",
+    "type": "drupal-recipe",
+    "require": {
+        "drupal/core": ">=10.4"
+    },
+    "license": "GPL-2.0-or-later"
+}

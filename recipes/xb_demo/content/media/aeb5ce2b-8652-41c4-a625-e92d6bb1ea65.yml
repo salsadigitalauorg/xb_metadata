@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: aeb5ce2b-8652-41c4-a625-e92d6bb1ea65
+  bundle: image
+  default_langcode: en
+  depends:
+    8adeb0f7-88bb-4e66-bb55-8f51f0b0cfdd: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: listing_1.png
+  created:
+    -
+      value: 1741358151
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: 8adeb0f7-88bb-4e66-bb55-8f51f0b0cfdd
+      alt: 'icon person'
+      title: ''
+      width: 182
+      height: 182

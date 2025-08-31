@@ -1,0 +1,10 @@
+name: 'Starshot Demo Content'
+description: 'Provides content for the Starshot Demo theme'
+type: 'Demo'
+recipes:
+  - core/recipes/basic_block_type
+  - core/recipes/basic_html_format_editor
+  - core/recipes/full_html_format_editor
+  - core/recipes/image_media_type
+install:
+  - menu_link_content

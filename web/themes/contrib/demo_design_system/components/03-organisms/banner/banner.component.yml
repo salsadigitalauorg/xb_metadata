@@ -1,0 +1,155 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Banner
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #breadcrumb:
+    #type: array
+    #title: Breadcrumb
+    #description: Breadcrumb links.
+    #items:
+    #type: object
+    #
+    #properties:
+    #links:
+    #type: array
+    #title: Links
+    #description: 'Array of link objects containing:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #text:
+    #type: string
+    #title: Text
+    #description: Link text.
+    #examples:
+    #- 'Home'
+    #
+    #
+    #url:
+    #type: string
+    #title: Url
+    #description: Link URL.
+    #examples:
+    #- 'https://example.com/home'
+    #
+    #active_is_link:
+    #type: boolean
+    #title: Show active element as a link.
+
+    site_section:
+      type: string
+      title: Site section
+      description: Site section.
+      examples:
+        - Site section name
+
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - Providing visually engaging digital experiences
+
+    is_decorative:
+      type: boolean
+      title: Show as decorative.
+      examples:
+        - false
+
+    featured_image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Featured image
+      examples:
+        - src: 'https://uikit.civictheme.io/demo/images/demo1.jpg'
+          alt: 'Featured image alt text'
+          width: 600
+          height: 400
+
+    background_image:
+      type: string
+      title: Background image
+      description: URL to a background image.
+      examples:
+        - 'https://uikit.civictheme.io/assets/backgrounds/civictheme_background_1.png'
+
+    background_image_blend_mode:
+      type: string
+      title: Background image blend mode
+      description: Type of the background image blending. Defaults to normal.
+      default: normal
+      examples:
+        - normal
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-banner-class'
+
+slots:
+
+  content_top1:
+    title: Content top1
+    description: Content slot.
+    examples:
+      - '<p>content_top1</p>'
+
+  content_top2:
+    title: Content top2
+    description: Content slot.
+    examples:
+      - '<p>content_top2</p>'
+
+  content_top3:
+    title: Content top3
+    description: Content slot.
+    examples:
+      - '<p>content_top3</p>'
+
+  content_middle:
+    title: Content middle
+    description: Content slot.
+    examples:
+      - '<p>content_middle</p>'
+
+  content:
+    title: Content
+    description: Content slot.
+    examples:
+      - '<p>content</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'
+
+  content_below:
+    title: Content below
+    description: Content slot.
+    examples:
+      - '<p>content_below</p>'

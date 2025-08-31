@@ -1,0 +1,168 @@
+.ct-starshot-hero {
+  $root: &;
+
+  &--design-none {
+    // ...
+  }
+
+  &--design-light {
+    background-image: url('../../../assets/starshot/background_2.png');
+    background-size: cover;
+  }
+
+  &--design-green {
+    background-image: url('../../../assets/backgrounds/starshot_pattern.png');
+  }
+
+  &--design-blue {
+    background-color: ct-color-light('background-6');
+  }
+
+  &--design-blue-stripe {
+    background-color: ct-color-light('background-6');
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        #83d0ef,
+        #83d0ef 20px,
+        #ccedf9 20px,
+        #ccedf9 72px
+      );
+    background-position: center;
+  }
+
+  &--design-lavender {
+    background-color: ct-color-light('background-4');
+  }
+
+  padding-top: 60px;
+  padding-bottom: 60px;
+  overflow: hidden;
+
+  @include ct-breakpoint(l) {
+    padding-top: 56px;
+    padding-bottom: 92px;
+  }
+
+  @include ct-breakpoint(xxl) {
+    padding-top: 112px;
+    padding-bottom: 185px;
+  }
+
+  &--padding-header {
+    @include ct-breakpoint(l) {
+      margin-top: calc(-89px - 48px - 20px);
+      padding-top: calc(89px + 48px + 20px);
+    }
+  }
+
+  &__inner {
+    max-width: 1608px;
+    margin: auto;
+    position: relative;
+    padding: 0 ct-spacing(3);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-direction: column;
+
+    @include ct-breakpoint(l) {
+      flex-direction: row;
+    }
+
+    @include ct-breakpoint(xxl) {
+      padding: 0 ct-spacing(2);
+    }
+  }
+
+  &__left {
+    background-color: ct-color-light('highlight');
+    border-radius: 40px;
+    padding: 24px 24px 230px 24px;
+    width: 100%;
+
+    @include ct-breakpoint(l) {
+      border-radius: 20px;
+      width: 58.33%;
+      padding: 27px 88.5px 83px 27px;
+      border-radius: 55px;
+    }
+
+    @include ct-breakpoint(xxl) {
+      width: 58.33%;
+      padding: 54px 177px 166px 54px;
+      border-radius: 110px;
+    }
+
+    svg {
+      width: 93px;
+      height: 24.5px;
+
+      @include ct-breakpoint(l) {
+        width: 93px;
+        height: 24.5px;
+      }
+
+      @include ct-breakpoint(xxl) {
+        width: 186px;
+        height: 49px;
+      }
+    }
+
+    h1 {
+      @include ct-typography('starshot-hero-title');
+
+      color: ct-color-light('heading-2');
+      margin-top: 35px;
+      margin-bottom: 35px;
+
+      @include ct-breakpoint(l) {
+        margin-top: 38px;
+      }
+
+      @include ct-breakpoint(xxl) {
+        margin-top: 76px;
+      }
+    }
+
+    p {
+      @include ct-typography('starshot-hero-description');
+
+      color: ct-color-light('body-3');
+      margin-bottom: 35px;
+
+      @include ct-breakpoint(l) {
+        margin-bottom: 35px;
+      }
+
+      @include ct-breakpoint(xxl) {
+        margin-bottom: 50px;
+      }
+    }
+  }
+
+  &__right {
+    width: 85%;
+    margin-top: -220px;
+
+    @include ct-breakpoint(l) {
+      width: 41.67%;
+      margin-left: -8.33%;
+      margin-top: 0;
+    }
+
+    .ct-starshot-hero__media {
+      @include ct-breakpoint(l) {
+        width: 50vw;
+      }
+
+      @include ct-breakpoint(xxl) {
+        width: 50vw;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}

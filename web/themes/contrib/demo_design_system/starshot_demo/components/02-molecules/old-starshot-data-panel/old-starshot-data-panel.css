@@ -1,0 +1,124 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-old-starshot-data-panel {
+  position: relative;
+}
+.ct-old-starshot-data-panel__wrapper {
+  padding: 2.5rem 0;
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-data-panel__wrapper {
+    padding: 5rem;
+  }
+}
+.ct-old-starshot-data-panel__row {
+  align-items: center;
+}
+.ct-old-starshot-data-panel__image {
+  margin-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-data-panel__image {
+    margin-bottom: 1.5rem;
+  }
+}
+.ct-old-starshot-data-panel__image .ct-image {
+  max-width: 100%;
+  height: auto;
+}
+@media (min-width: 0) {
+  .ct-old-starshot-data-panel__description {
+    font-size: 1.125rem;
+    line-height: 1.8125rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.15px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-data-panel__description {
+    font-size: 1.5rem;
+    line-height: 2.75rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.12px;
+  }
+}
+.ct-old-starshot-data-panel__link {
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+@media (min-width: 992px) {
+  .ct-old-starshot-data-panel__link {
+    width: auto;
+  }
+}
+.ct-old-starshot-data-panel__stats {
+  align-content: center;
+}
+@media (min-width: 0) {
+  .ct-old-starshot-data-panel__stats__description {
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    font-family: "Ubuntu Mono", monospace;
+    font-weight: 400;
+    letter-spacing: 0.36px;
+  }
+}
+.ct-old-starshot-data-panel__stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.ct-old-starshot-data-panel__stats__number {
+  display: flex;
+  align-items: baseline;
+}
+@media (min-width: 0) {
+  .ct-old-starshot-data-panel__stats__amount {
+    font-size: 3.875rem;
+    line-height: 3.75rem;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    letter-spacing: -3.72px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-data-panel__stats__amount {
+    font-size: 6.25rem;
+    line-height: 6.25rem;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    letter-spacing: -6.5px;
+  }
+}
+@media (min-width: 0) {
+  .ct-old-starshot-data-panel__stats__sub {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+}
+@media (min-width: 768px) {
+  .ct-old-starshot-data-panel__stats__sub {
+    font-size: 1.625rem;
+    line-height: 2.25rem;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.26px;
+  }
+}
+.ct-old-starshot-data-panel.ct-theme-light {
+  background-color: var(--ct-old-starshot-data-panel-light-background-color);
+  color: var(--ct-old-starshot-data-panel-light-color);
+}
+.ct-old-starshot-data-panel.ct-theme-dark {
+  background-color: var(--ct-old-starshot-data-panel-dark-background-color);
+  color: var(--ct-old-starshot-data-panel-dark-color);
+}

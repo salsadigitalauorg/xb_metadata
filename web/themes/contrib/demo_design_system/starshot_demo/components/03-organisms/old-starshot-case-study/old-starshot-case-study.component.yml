@@ -1,0 +1,81 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Old Starshot Case Study
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - Here is a title
+
+    description:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Description
+      description: Description.
+      examples:
+        - Here is a description
+
+    featured_image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Featured image
+      examples:
+        - src: 'https://placehold.co/600x400.png'
+          alt: 'placeholder'
+          width: 600
+          height: 400
+
+    # @fixme comment out for now
+    #data_panel:
+    #type: object
+    #title: Data panel
+    #description: 'Data panel object:'
+    #
+    #properties:
+    #image:
+    #type: object
+    #title: Image
+    #description: 'Data panel image object:'
+    #
+    #description:
+    #type: string
+    #title: Description
+    #description: Data panel description.
+    #
+    #link:
+    #type: object
+    #title: Link
+    #description: 'Data panel link object:'
+    #panels:
+    #type: array
+    #title: Panels
+    #description: 'Data panels array:'
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

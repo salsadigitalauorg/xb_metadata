@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Starshot Paragraph component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - content: [string] The description's content.
+ * - color: [string] Color: body, body-2, body-3
+ * - display: [string] Size: regular, large
+ * - allow_html: [boolean] Allow HTML in text.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set color_class = 'ct-old-starshot-paragraph--%s'|format(color|default('body')) %}
+{% set display_class = 'ct-old-starshot-paragraph--%s'|format(display|default('regular')) %}
+{% set modifier_class = '%s %s %s %s'|format(theme_class, color_class, display_class, modifier_class|default('')) %}
+
+{% if content is not empty -%}
+  <div class="ct-old-starshot-paragraph {{ modifier_class -}}" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
+    {% if allow_html|default(false) %}
+      {{- content|raw -}}
+    {% else %}
+      {{- content -}}
+    {% endif %}
+  </div>
+{%- endif %}

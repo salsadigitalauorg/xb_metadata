@@ -1,0 +1,38 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Testimonial
+
+status: experimental
+
+group: Molecules
+
+props:
+
+  type: object
+
+  properties:
+    quote:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      contentMediaType: text/html
+      x-formatting-context: block
+      title: Quote
+      description: The quote at the top.
+      examples:
+        - 'For our 1000+ websites, one of the benefits of Drupal is that accessibility compliance is already covered.'
+
+    cite:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Person
+      description: The person info below the quote.
+      examples:
+        - 'Joyce Peralta, Manager, Digital Communications at McGill University'
+
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: The image on the right.
+      examples:
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/testimonial_avatar.png'
+          alt: 'Testimonial image'

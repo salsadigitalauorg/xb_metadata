@@ -1,0 +1,8 @@
+uuid: 3ef3a9e7-995f-4396-bdcf-e89bd95a2641
+langcode: en
+status: true
+dependencies: {  }
+id: starshot-demo-main
+label: 'Starshot Demo Main Menu'
+description: 'Starshot demo main menu links'
+locked: false

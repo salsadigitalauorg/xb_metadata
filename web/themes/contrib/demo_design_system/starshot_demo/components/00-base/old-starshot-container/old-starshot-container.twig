@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Old Starshot Container component.
+ *
+ * Variables:
+ * - content: [string] Inner content HTML.
+ * - background_url: [string] Background URL.
+ * - constrain: [boolean] To constrain with a container class, or edge-to-edge.
+ * - vertical_spacing: [string] Margin vertical spacing: top, bottom, both.
+ * - vertical_spacing_inner: [string] Padding vertical spacing: top, bottom, both.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set vertical_spacing = vertical_spacing|default('none') %}
+{% set vertical_spacing_inner = vertical_spacing_inner|default('both') %}
+{% set vertical_spacing_class = vertical_spacing in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing--%s'|format(vertical_spacing) : '' %}
+{% set vertical_spacing_inner_class = vertical_spacing_inner in ['top', 'bottom', 'both'] ? 'ct-vertical-spacing-inset--%s'|format(vertical_spacing_inner) : '' %}
+{% set modifier_class = '%s %s %s'|format(vertical_spacing_class, vertical_spacing_inner_class, modifier_class|default('')) %}
+
+<div
+  class="ct-old-starshot-container {{ modifier_class -}}"
+  {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}
+  {% if background_url is not empty %}style="background-image: url('{{- background_url|raw -}}')"{% endif %}
+>
+  {% if constrain %}
+    <div class="container">
+      <div class="row">
+        <div class="col-xxs-12">
+  {% endif %}
+  {% block content %}
+    {{ content|raw }}
+  {% endblock %}
+  {% if constrain %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

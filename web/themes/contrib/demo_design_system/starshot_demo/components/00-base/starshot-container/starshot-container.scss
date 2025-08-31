@@ -1,0 +1,282 @@
+.ct-starshot-container {
+  $root: &;
+
+  --container-link-color: #{ct-color-light('body-4')};
+  --container-paragraph-color: #{ct-color-light('body-4')};
+
+  &--design-none {
+    // ...
+  }
+
+  &--design-light {
+    background-image: url('#{$ct-assets-directory}/starshot/background_2.png');
+    background-size: cover;
+  }
+
+  &--design-green {
+    --container-link-color: #{ct-color-light('body-3')};
+    --container-paragraph-color: #{ct-color-light('body-3')};
+    background-image: url('#{$ct-assets-directory}/backgrounds/starshot_pattern.png');
+  }
+
+  &--design-blue {
+    background-color: ct-color-light('background-6');
+  }
+
+  &--design-navy {
+    --container-link-color: #{ct-color-light('body-3')};
+    --container-paragraph-color: #{ct-color-light('body-3')};
+    background-color: ct-color-light('background-5');
+  }
+
+  &--design-blue-stripe {
+    background-color: ct-color-light('background-6');
+    background-image:
+      repeating-linear-gradient(45deg,
+        #83d0ef,
+        #83d0ef 20px,
+        #ccedf9 20px,
+        #ccedf9 72px);
+    background-position: center;
+  }
+
+  &--design-lavender {
+    background-color: ct-color-light('background-4');
+  }
+
+  &--design-gradient {
+    background: linear-gradient(90deg, #26a4e5, #cbbaf5);
+  }
+
+  &--has-side-padding {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  &--act-as-header {
+    min-height: 60px;
+
+    .ct-menu {
+      display: none;
+
+      @include ct-breakpoint(m) {
+        display: flex;
+        flex-direction: row;
+
+        .ct-link {
+          color: #12285f;
+          text-transform: uppercase;
+          margin-bottom: -2px;
+          padding: 0;
+          transition: border-bottom 200ms ease-in;
+          letter-spacing: 1.5px;
+          border-bottom: 2px solid transparent;
+          font-size: 13px;
+          font-weight: 600;
+          font-style: normal;
+          line-height: normal;
+
+          &:hover,
+          &:visited,
+          &:hover:visited {
+            color: #12285f;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+
+  &__inner {
+
+    padding: 16px 24px;
+
+    #{$root}--constrain & {
+      max-width: 1608px;
+      margin: auto;
+    }
+
+    #{$root}--gap & {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    #{$root}--gap-small & {
+      gap: 16px;
+    }
+
+    #{$root}--gap-medium & {
+      gap: 32px;
+    }
+
+    #{$root}--gap-large & {
+      gap: 40px;
+    }
+
+    &--design-slot-outline {
+      border: 2px solid #12285f;
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    &--design-slot-carpet {
+      border-radius: 10px;
+      border-style: solid;
+      border-width: 40px 0 0 40px;
+      border-image: url('/themes/contrib/demo_design_system/starshot_demo/components/00-base/starshot-container/fringe.svg') 40 round;
+      box-shadow: 0 0 0 10px #12285f;
+      border-image-outset: 40px 0 0 40px;
+    }
+
+    &--design-slot-shadow {
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.05);
+      --container-link-color: #12285f;
+      --container-paragraph-color: #12285f;
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    &--design-slot-blue-shadow {
+      box-shadow: -15px 15px 0px 0px #009CDE;
+      --container-link-color: #12285f;
+      --container-paragraph-color: #12285f;
+      background-color: white;
+      border: 2px solid #12285f;
+      border-radius: 10px;
+      position: relative;
+
+      & > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      &::before {
+        position: absolute;
+        top: -15px;
+        left: 15px;
+        right: -15px;
+        bottom: 15px;
+        content: "";
+        border: 2px solid #FFC107;
+        display: block;
+        border-radius: 10px;
+
+      }
+    }
+
+  }
+
+  &--spacing-large {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @include ct-breakpoint(l) {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+  }
+
+  &--spacing-x-large {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @include ct-breakpoint(l) {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    @include ct-breakpoint(xxl) {
+      padding-top: 120px;
+      padding-bottom: 120px;
+    }
+  }
+
+  &--spacing-xx-large {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    @include ct-breakpoint(l) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    @include ct-breakpoint(xxl) {
+      padding-top: 160px;
+      padding-bottom: 160px;
+    }
+  }
+
+  &--has-image {
+    @include ct-breakpoint(l) {
+      position: relative;
+      padding-right: 30%;
+    }
+  }
+
+  &__image {
+    display: none;
+
+    @include ct-breakpoint(l) {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 25%;
+      object-fit: cover;
+      object-position: left;
+      width: 30%;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: left;
+    }
+  }
+
+  .ct-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @media screen and (max-width: 600px) {
+      width: calc(100vw - 48px);
+    }
+
+    .ct-link {
+      color: var(--container-link-color);
+
+      &:hover,
+      &:visited,
+      &:hover:visited {
+        color: var(--container-link-color);
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      .ct-icon {
+        display: none;
+      }
+    }
+  }
+
+  .block-block-content {
+    p {
+      @include ct-typography('starshot-block-content-paragraph');
+      color: var(--container-paragraph-color);
+
+      a {
+        color: var(--container-paragraph-color);
+      }
+    }
+  }
+}

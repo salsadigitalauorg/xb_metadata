@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 27cfe536-2098-4eca-ba99-47ea5205fc0c
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: testimonial_avatar.png
+  uri:
+    -
+      value: 'public://2025-03/testimonial_avatar.png'
+      url: /sites/default/files/2025-03/testimonial_avatar.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 114313
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741460152

@@ -1,0 +1,54 @@
+//
+// Starshot heading component.
+//
+
+.ct-old-starshot-heading {
+  $root: &;
+
+  margin: 0;
+  margin-bottom: ct-spacing(4);
+
+  &--drupal-2 {
+    @include ct-typography('heading-drupal-2');
+  }
+
+  &--drupal-3 {
+    @include ct-typography('heading-drupal-3');
+  }
+
+  &--drupal-4 {
+    @include ct-typography('heading-drupal-4');
+  }
+
+  &--drupal-5 {
+    @include ct-typography('heading-drupal-5');
+  }
+
+  &--drupal-6 {
+    @include ct-typography('heading-drupal-6');
+  }
+
+  &--drupal-7 {
+    @include ct-typography('heading-drupal-7');
+  }
+
+  &--drupal-8 {
+    @include ct-typography('heading-drupal-8');
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    @include ct-component-property($root, $theme, text, color);
+  }
+}

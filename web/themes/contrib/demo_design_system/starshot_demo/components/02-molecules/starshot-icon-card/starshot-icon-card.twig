@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Starshot Icon Card component.
+ *
+ * Variables:
+ * - image: [object] The image on the top.
+ *   - src: [string] Url.
+ *   - alt: [string] Alt.
+ * - title: [string] The card title.
+ * - summary: [string] The card summary.
+ */
+#}
+
+{% set background = background|default('none') %}
+
+<div class="starshot-icon-card">
+  {% if image %}
+    <img class="starshot-icon-card__image" src="{{ image.src }}" alt="{{ image.alt }}" />
+  {% endif %}
+  <div class="starshot-icon-card__title">{{ title }}</div>
+  <p class="starshot-icon-card__summary">{{ summary }}</p>
+</div>

@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Starshot Container component.
+ *
+ * Variables:
+ * - content: [string] Inner content HTML.
+ * - background_url: [string] Background URL. @todo
+ * - design: [string] Design: none, light, green, blue, dark-blue, lavender, blue-stripe
+ * - spacing: [string] Spacing: none, small, large, x-large, xx-large.
+ * - gap: [string] Gap: none, small, medium, large.
+ * - constrain: [boolean] Constrain: true, false.
+ * - side_padding: [boolean] Edge to edge: true, false.
+ * - image: [string] Url to image.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set design_class = 'ct-starshot-container--design-%s'|format(design|default('none')) %}
+{% set spacing_class = 'ct-starshot-container--spacing-%s'|format(spacing|default('none')) %}
+{% set gap_class = 'ct-starshot-container--gap-%s'|format(gap|default('none')) %}
+{% set has_gap_class = gap ? 'ct-starshot-container--gap' : '' %}
+{% set act_as_header_class = act_as_header ? 'ct-starshot-container--act-as-header' : '' %}
+
+{% set constrain_class = constrain ? 'ct-starshot-container--constrain' : '' %}
+{% set has_image_class = image and image.src ? 'ct-starshot-container--has-image' : '' %}
+{% set side_padding_class = side_padding ? 'ct-starshot-container--has-side-padding' : '' %}
+{% set modifier_class = '%s %s %s %s %s %s %s %s %s %s'|format(design_class, constrain_class, spacing_class, has_gap_class, gap_class, has_image_class, side_padding_class, drop_shadow_class, act_as_header_class, modifier_class|default('')) %}
+
+{% set design_slot_class = 'ct-starshot-container__inner--design-slot-%s'|format(design_slot|default('none')) %}
+{% set modifier_inner_class = '%s %s'|format(design_slot_class, modifier_inner_class|default('')) %}
+
+{% set background_url = '' %}
+
+<div
+  class="ct-starshot-container {{ modifier_class -}}"
+  {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}
+  {% if background_url is not empty %}style="background-image: url('{{- background_url|raw -}}')"{% endif %}
+>
+  <div class="ct-starshot-container__inner {{ modifier_inner_class -}}">
+    {% block content %}
+      {{ content|raw }}
+    {% endblock %}
+  </div>
+  {% if image and image.src %}
+    <div class="ct-starshot-container__image">
+      <img src="{{ image.src }}" alt="{{ image.alt }}" />
+    </div>
+  {% endif %}
+</div>

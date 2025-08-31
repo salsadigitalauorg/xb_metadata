@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 2bce854f-89c7-454a-8f6b-febea1f7a26c
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: starshot_5kids.jpeg
+  uri:
+    -
+      value: 'public://2025-03/starshot_5kids.jpeg'
+      url: /sites/default/files/2025-03/starshot_5kids.jpeg
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 3396004
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741782082

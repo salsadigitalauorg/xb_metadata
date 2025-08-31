@@ -1,0 +1,20 @@
+{
+    "name": "drupal/demo_design_system",
+    "description": "The Starshot Demo Design System for Experience Builder.",
+    "type": "drupal-theme",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/civictheme/civictheme",
+    "support": {
+        "source": "https://github.com/civictheme/monorepo-drupal",
+        "issues": "https://github.com/civictheme/monorepo-drupal/issues"
+    },
+    "require": {
+        "php": ">=8.2",
+        "drupal/components": "^3@beta",
+        "drupal/default_content": "^2"
+    },
+    "suggest": {
+        "drupal/ckeditor5": "CKEditor 5 - WYSIWYG HTML editor",
+        "drupal/search_api": "Provides a framework for easily creating searches on any entity known to Drupal, using any kind of search engine."
+    }
+}

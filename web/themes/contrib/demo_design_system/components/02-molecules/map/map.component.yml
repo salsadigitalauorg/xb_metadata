@@ -1,0 +1,96 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Map
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- url
+
+  properties:
+    address:
+      type: string
+      title: Address
+      description: Optional address.
+      examples:
+        - 'Australia'
+        - '123 Main St, Sydney, Australia'
+
+    url:
+      type: string
+      title: Url
+      description: URL for the map iframe.
+      examples:
+        - 'https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed'
+
+    view_url:
+      type: string
+      title: View url
+      description: URL for the external map.
+      examples:
+        - 'https://maps.google.com'
+
+    view_text:
+      type: string
+      title: View text
+      description: Optional text for the URL for the external map.
+      default: View in Google Maps
+      examples:
+        - View in Google Maps
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - top
+        - bottom
+        - both
+
+    with_background:
+      type: boolean
+      title: With background or not.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'map--large'
+        - 'map--centered'
+
+slots:
+
+  content_top:
+    title: Content top
+    description: Content slot.
+    examples:
+      - '<p>content_top</p>'
+
+  content_bottom:
+    title: Content bottom
+    description: Content slot.
+    examples:
+      - '<p>content_bottom</p>'

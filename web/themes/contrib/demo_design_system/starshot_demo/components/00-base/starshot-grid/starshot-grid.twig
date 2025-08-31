@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Starshot Flex component.
+ *
+ * Variables:
+ * - gap: [string] Gap: none, small, medium, large.
+ * - vertical: [string] Vertical: top, center, bottom.
+ * - horizontal: [string] Horizontal: left, center, right, space-between.
+ * - direction: [string] Horizontal: across, down.
+ * - col: [string] Columns: none, one, two, three, four.
+ * - wrap: [boolean] Wrap: wrap, nowrap.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set gap_class = 'starshot-grid--gap-%s'|format(gap|default('none')) %}
+{% set vertical_class = 'starshot-grid--vertical-%s'|format(vertical|default('center')) %}
+{% set horizontal_class = 'starshot-grid--horizontal-%s'|format(horizontal|default('left')) %}
+{% set direction_class = 'starshot-grid--direction-%s'|format(direction|default('across')) %}
+{% set wrap_class = 'starshot-grid--wrap-%s'|format(wrap|default('wrap')) %}
+
+{% set modifier_class = '%s %s %s %s %s %s'|format(gap_class, vertical_class, horizontal_class, direction_class, wrap_class, modifier_class|default('')) %}
+
+<div class="starshot-grid {{ modifier_class }} {{ last_to_end ? 'starshot-grid--last-to-end' : '' }}">
+  {%- block content %}
+    {{- content -}}
+  {% endblock -%}
+</div>

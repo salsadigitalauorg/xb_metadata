@@ -1,0 +1,59 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Field message
+
+status: obsolete
+
+group: Atoms
+
+props:
+
+  type: object
+    #required:
+    #- content
+
+  properties:
+    content:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Content
+      description: The description's content.
+      examples:
+        - Field message content sample.
+
+    type:
+      type: string
+      title: Type
+      description: 'Message type: error, information, warning, success.'
+      default: information
+      enum:
+        - error
+        - information
+        - warning
+        - success
+      examples:
+        - information
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    allow_html:
+      type: boolean
+      title: Allow HTML in text.
+      examples:
+        - true
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

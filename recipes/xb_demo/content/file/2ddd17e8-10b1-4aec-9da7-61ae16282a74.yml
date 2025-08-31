@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 2ddd17e8-10b1-4aec-9da7-61ae16282a74
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: starshot_xb_sdds_contributors_supporting.png
+  uri:
+    -
+      value: 'public://2025-03/starshot_xb_sdds_contributors_supporting.png'
+      url: /sites/default/files/2025-03/starshot_xb_sdds_contributors_supporting.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 136946
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741359599

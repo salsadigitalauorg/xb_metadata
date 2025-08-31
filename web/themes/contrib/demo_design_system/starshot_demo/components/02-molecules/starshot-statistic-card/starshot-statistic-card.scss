@@ -1,0 +1,36 @@
+.ct-starshot-statistic-card {
+  $root: &;
+
+  &--align-center {
+    text-align: center;
+  }
+
+  &__top {
+    white-space: nowrap;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  &__number {
+    @include ct-typography('starshot-stats-stat-title');
+  }
+
+  &__suffix {
+    @include ct-typography('starshot-stats-stat-small-title');
+  }
+
+  &__description {
+    @include ct-typography('starshot-stats-stat-description');
+
+    display: block;
+    margin: 0 auto;
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__number,
+    #{$root}__suffix,
+    #{$root}__description {
+      @include ct-component-property($root, $theme, text, color);
+    }
+  }
+}

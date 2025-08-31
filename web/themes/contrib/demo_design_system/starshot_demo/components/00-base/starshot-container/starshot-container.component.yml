@@ -1,0 +1,127 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Container
+
+status: experimental
+
+group: Base
+
+props:
+
+  type: object
+
+  properties:
+    #@todo
+    #background_url:
+    #type: string
+    #title: The background image URL.
+    #enum:
+    #- '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/background_1.png'
+    #- '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/background_2.png'
+    #default: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/background_2.png'
+    #examples:
+    #- '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/background_2.png'
+    #- '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/background_1.png'
+
+    design:
+      type: string
+      title: Design container
+      description: 'Design: none, light, green, blue, navy, lavender, blue-stripe, gradient.'
+      enum:
+        - none
+        - light
+        - green
+        - blue
+        - navy
+        - lavender
+        - blue-stripe
+        - gradient
+      default: none
+      examples:
+        - none
+
+    design_slot:
+      type: string
+      title: Design inner
+      description: 'Design inner: none, outline, shadow, carpet'
+      enum:
+        - none
+        - outline
+        - shadow
+        - blue-shadow
+        - carpet
+      default: none
+      examples:
+        - none
+
+    spacing:
+      type: string
+      title: Top and bottom spacing
+      description: 'Spacing: none, small, large, x-large, xx-large.'
+      enum:
+        - none
+        - small
+        - large
+        - x-large
+        - xx-large
+      default: large
+      examples:
+        - large
+
+    #@todo
+    #gap:
+    #type: string
+    #title: Gap
+    #description: 'Gap: none, small, medium, large.'
+    #enum:
+    #- none
+    #- small
+    #- medium
+    #- large
+    #default: none
+    #examples:
+    #- medium
+
+    #@todo
+    constrain:
+      type: boolean
+      title: To constrain with a container class, or edge-to-edge.
+      examples:
+      - true
+
+    side_padding:
+      type: boolean
+      title: Padding on sides
+      default: false
+      examples:
+        - false
+
+    act_as_header:
+      type: boolean
+      title: Act as Header
+      description: If a menu is inserted, it will be styled as main menu
+      default: false
+      examples:
+        - false
+
+    # Don't put examples as this is used with and without images.
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'
+
+slots:
+
+  content:
+    type: string
+    title: Content
+    description: Content slot.
+    #examples:
+    #  - '<strong>sample html content</strong>'

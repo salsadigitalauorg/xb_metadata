@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Welcome story template.
+ */
+#}
+
+<div class="story-welcome">
+  <div class="story-welcome__inner">
+    {% include '@molecules/logo/logo.twig' with {
+      theme: 'light',
+      logos: logos,
+    } only %}
+
+    {% include '@atoms/heading/heading.twig' with {
+      theme: 'dark',
+      content: 'A design system built on top of <a class="" href="https://www.civictheme.io">CivicTheme</a> and customized for <a class="" href="https://drupal.org/about/starshot">Starshot</a>.',
+      level: 4,
+      modifier_class: 'ct-text-align-center',
+    } only %}
+
+    {% include '@atoms/paragraph/paragraph.twig' with {
+      theme: 'dark',
+      content: 'Welcome to the Starshot Demo Design System (SDDS), an open-source, atomic design-based, design system developed to help you build websites quickly and efficiently.',
+      modifier_class: 'ct-text-align-center',
+    } only %}
+  </div>
+</div>

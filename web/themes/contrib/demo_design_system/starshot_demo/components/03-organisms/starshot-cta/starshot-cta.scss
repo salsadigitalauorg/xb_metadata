@@ -1,0 +1,88 @@
+.starshot-cta {
+  background-image: url('../../../assets/starshot/background_2.png');
+  background-size: cover;
+
+  .ct-starshot-case-study + & {
+    margin-top: -74px;
+    padding-top: 74px;
+    z-index: -1;
+
+    @include ct-breakpoint(xl) {
+      margin-top: -174px;
+      padding-top: 174px;
+    }
+  }
+
+  &__inner {
+    max-width: 1608px;
+    margin: auto;
+    padding: 60px ct-spacing(3);
+
+    @include ct-breakpoint(xxl) {
+      padding: 120px ct-spacing(2);
+    }
+  }
+
+  &__2col {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+
+    @include ct-breakpoint(m) {
+      flex-direction: row;
+    }
+  }
+
+  &__left {
+    flex-basis: 100%;
+
+    @include ct-breakpoint(m) {
+      flex-basis: 50%;
+    }
+
+    @include ct-breakpoint(xl) {
+      flex-basis: 45%;
+    }
+  }
+
+  &__right {
+    flex-basis: 100%;
+
+    @include ct-breakpoint(m) {
+      flex-basis: 50%;
+    }
+
+    @include ct-breakpoint(xl) {
+      flex-basis: 40%;
+    }
+  }
+
+  &__left {
+    h2 {
+      @include ct-typography('starshot-heading');
+
+      color: ct-color-light('heading-4');
+      margin-top: 0;
+
+      em {
+        font-style: normal;
+        color: ct-color-light('highlight');
+      }
+    }
+  }
+
+  &__right-content {
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+
+    // Testing a fix to retain gap when using experience builder.
+    & > .xb--sortable-list {
+      display: flex;
+      gap: 40px;
+      flex-direction: column;
+    }
+  }
+}

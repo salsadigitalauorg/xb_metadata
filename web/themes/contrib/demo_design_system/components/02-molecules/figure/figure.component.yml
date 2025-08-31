@@ -1,0 +1,68 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Figure
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- url
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    url:
+      type: string
+      title: Url
+      description: URL of the image.
+      examples:
+        - 'https://example.com/image.jpg'
+
+    alt:
+      type: string
+      title: Alt
+      description: Alternate text of the image.
+      examples:
+        - 'Alternative text'
+
+    width:
+      type: string
+      title: Width
+      description: Width.
+      examples:
+        - '600'
+
+    height:
+      type: string
+      title: Height
+      description: Height.
+      examples:
+        - '400'
+
+    caption:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Caption
+      description: Caption for the image.
+      examples:
+        - 'Figure image caption.'
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

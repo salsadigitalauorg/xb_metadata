@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 78ab09a3-a390-4133-8b34-ed0e04f8dc79
+  bundle: image
+  default_langcode: en
+  depends:
+    2bce854f-89c7-454a-8f6b-febea1f7a26c: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: '5 happy kids'
+  created:
+    -
+      value: 1741782082
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 2bce854f-89c7-454a-8f6b-febea1f7a26c
+      alt: '5 happy kids'
+      title: ''
+      width: 4096
+      height: 2160

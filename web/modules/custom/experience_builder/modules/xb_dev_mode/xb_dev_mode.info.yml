@@ -1,0 +1,11 @@
+name: Experience Builder dev mode
+description: 'Puts XB into dev mode - which shows the extensions toolbar (for now)'
+core_version_requirement: ^10.4 || ^11.1
+type: module
+dependencies:
+  - experience_builder:experience_builder
+
+# Information added by Drupal.org packaging script on 2025-07-30
+version: '0.7.3-alpha1'
+project: 'experience_builder'
+datestamp: 1753882094

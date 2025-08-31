@@ -1,0 +1,93 @@
+.starshot-testimonial {
+  background-image: linear-gradient(90deg, #009cde 0%, #ccbaf4 100%);
+  position: relative;
+  border-radius: 48px;
+  padding: 100px 24px 24px;
+  margin-top: 120px;
+
+  @include ct-breakpoint(l) {
+    padding: 40px 125px 40px 43px;
+    margin-right: 45px;
+    border-radius: 34px;
+  }
+
+  @include ct-breakpoint(xxl) {
+    margin-right: 90px;
+    padding: 80px 250px 80px 86px;
+    border-radius: 68px;
+  }
+
+  &__quote {
+    @include ct-typography('starshot-testimonial-quote-quotation');
+
+    color: ct-color-light('body-4');
+
+    a {
+      color: ct-color-light('body-4');
+    }
+  }
+
+  &__cite {
+    @include ct-typography('starshot-testimonial-quote-citation');
+
+    color: ct-color-light('body-4');
+  }
+
+  &__avatar {
+    position: absolute;
+    top: -71px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include ct-breakpoint(l) {
+      right: -43px;
+      left: unset;
+      transform: unset;
+    }
+
+    @include ct-breakpoint(xxl) {
+      right: -86px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      border: 2px solid ct-color-light('border-2');
+      top: 5px;
+      left: -10px;
+      right: 5px;
+      bottom: -5px;
+      border-radius: 16px;
+
+      @include ct-breakpoint(l) {
+        border-width: 3px;
+        border-radius: 16px;
+        top: 10px;
+        left: -15px;
+        right: 10px;
+        bottom: -10px;
+      }
+
+      @include ct-breakpoint(xxl) {
+        border-width: 4px;
+        border-radius: 32px;
+      }
+    }
+
+    img {
+      border-radius: 16px;
+      width: 160px;
+      height: auto;
+
+      @include ct-breakpoint(l) {
+        border-radius: 16px;
+        width: 145px;
+      }
+
+      @include ct-breakpoint(xxl) {
+        border-radius: 32px;
+        width: 290px;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Case Study
+
+status: experimental
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Title.
+      examples:
+        - 'Case study'
+
+    image:
+      $ref: json-schema-definitions://experience_builder.module/image
+      type: object
+      title: Image
+      examples:
+        - src: '/themes/contrib/demo_design_system/starshot_demo/assets/starshot/starshot_6.png'
+          alt: 'Two kids drinking milk'
+        - src: '/themes/contrib/demo_design_system/assets/images/drupal_placeholder_image_1.jpg'
+          alt: 'Drupal placeholder image'
+
+slots:
+
+  content:
+    title: Content
+    description: Case study content.
+      #examples:
+      #- '<p>content</p>'

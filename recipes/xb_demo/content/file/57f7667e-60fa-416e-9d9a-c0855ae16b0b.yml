@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 57f7667e-60fa-416e-9d9a-c0855ae16b0b
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: listing_2.png
+  uri:
+    -
+      value: 'public://2025-03/listing_2.png'
+      url: /sites/default/files/2025-03/listing_2.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 4527
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741358237

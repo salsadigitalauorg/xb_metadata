@@ -1,0 +1,128 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Field
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+    #required:
+    #- type
+    #- name
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark. Optional.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    type:
+      type: string
+      title: Type
+      description: Type defined by a control type. Required.
+      default: hidden
+      examples:
+        - hidden
+
+    title:
+      type: string
+      title: Title
+      description: Title. Optional.
+      examples:
+        - Field title
+
+    title_display:
+      type: string
+      title: Title display
+      description: 'Title display: visible, invisible, hidden. Optional.'
+      default: visible
+      enum:
+        - visible
+        - invisible
+        - hidden
+      examples:
+        - visible
+
+    description:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Description
+      description: Description. Optional.
+      examples:
+        - Description content sample.
+
+    name:
+      type: string
+      title: Name
+      description: DOM name. Required, propagated.
+      examples:
+        - Sample name
+
+    value:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Value
+      description: DOM value. Optional, propagated.
+      examples:
+        - Sample value
+
+    id:
+      type: string
+      title: Id
+      description: Control DOM id. Optional, propagated.
+      examples:
+        - '123'
+
+    is_invalid:
+      type: boolean
+      title: Denote if the control is invalid. Optional, propagated.
+      default: false
+      examples:
+        - false
+
+    is_disabled:
+      type: boolean
+      title: Denote if the control is disabled. Optional, propagated.
+      default: false
+      examples:
+        - false
+
+    is_required:
+      type: boolean
+      title: Denote if the control is required. Optional, propagated.
+      default: false
+      examples:
+        - false
+
+    orientation:
+      type: string
+      title: Orientation
+      description: 'Elements orientation: vertical, horizontal. Optional.'
+      default: vertical
+      enum:
+        - vertical
+        - horizontal
+      examples:
+        - vertical
+
+    is_inline:
+      type: boolean
+      title: Denote if the complex control is shown inline. Optional.
+      examples:
+        - false
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes. Optional.
+      examples:
+        - 'custom-class'

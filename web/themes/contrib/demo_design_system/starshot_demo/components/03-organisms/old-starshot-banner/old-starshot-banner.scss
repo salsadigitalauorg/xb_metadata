@@ -1,0 +1,68 @@
+//
+// Starshot banner component.
+//
+
+.ct-old-starshot-banner {
+  $root: &;
+
+  position: relative;
+
+  #{$root}__wrapper {
+    @include ct-breakpoint(m) {
+      padding: 0 ct-spacing(10);
+    }
+  }
+
+  #{$root}__inner {
+    @include ct-background();
+
+    position: relative;
+    padding-top: ct-spacing(3);
+    padding-bottom: ct-spacing(10);
+    display: flex;
+    flex-direction: column-reverse;
+
+    @include ct-breakpoint(l) {
+      flex-direction: row;
+    }
+
+    @include ct-print() {
+      padding-top: ct-spacing(2);
+      padding-bottom: ct-spacing(3);
+    }
+  }
+
+  #{$root}__featured-image__wrapper {
+    @include ct-image-fit();
+
+    @include ct-breakpoint(l) {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      right: 0;
+    }
+
+    @include ct-breakpoint(l) {
+      width: $ct-old-starshot-banner-featured-image-width;
+    }
+
+    @include ct-breakpoint(xxl) {
+      width: $ct-old-starshot-banner-featured-image-width-xxl;
+    }
+  }
+
+  #{$root}__title {
+    margin-bottom: ct-spacing(2);
+
+    @include ct-breakpoint(m) {
+      margin-bottom: ct-spacing(3);
+    }
+  }
+
+  @include ct-component-theme($root) using($root, $theme) {
+    #{$root}__wrapper {
+      @include ct-component-property($root, $theme, background-color);
+    }
+  }
+}

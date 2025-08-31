@@ -1,0 +1,51 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Message
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    type:
+      type: string
+      title: Type
+      description: 'Message type: information, error, warning, success.'
+      default: information
+      enum:
+        - information
+        - error
+        - warning
+        - success
+      examples:
+        - information
+
+    description:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Description
+      description: Description text.
+      examples:
+        - Message description sample.
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

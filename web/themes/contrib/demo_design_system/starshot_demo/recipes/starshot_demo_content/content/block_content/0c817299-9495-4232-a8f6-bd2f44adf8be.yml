@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 0c817299-9495-4232-a8f6-bd2f44adf8be
+  bundle: basic
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'About Starshot Demo'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  body:
+    -
+      value: '<p>The <a href="https://www.drupal.org/project/demo_design_system">Starshot Demo Design System</a> theme is built for the <a href="https://www.drupal.org/about/starshot">Starshot Initiative</a> on top of <a href="https://www.civictheme.io/">CivicTheme</a>. A big thank you to all the contributors!</p>'
+      format: full_html
+      summary: ''

@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: a13069f0-e5e8-4738-9aa9-2ab6167a9cbf
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: starshot_7.png
+  uri:
+    -
+      value: 'public://2025-03/starshot_7.png'
+      url: /sites/default/files/2025-03/starshot_7.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 10543
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741358419

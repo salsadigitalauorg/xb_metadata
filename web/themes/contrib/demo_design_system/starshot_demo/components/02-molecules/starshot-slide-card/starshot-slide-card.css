@@ -1,0 +1,110 @@
+/**
+ * This file was automatically generated. Please run `npm run dist` to update.
+ */
+
+.ct-starshot-slide-card {
+  max-width: 437px;
+  width: 90%;
+  margin: 0 auto;
+  padding-left: 18px;
+}
+@media (min-width: 768px) {
+  .ct-starshot-slide-card {
+    max-width: 100%;
+    width: calc(100% - 48px);
+    margin: 0 24px;
+    padding-left: 0;
+  }
+}
+@media (min-width: 1280px) {
+  .ct-starshot-slide-card {
+    width: calc(100% - 92px);
+    margin: 0 46px;
+  }
+}
+.ct-starshot-slide-card__link {
+  color: var(--ct-color-light-body-4);
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+@media (min-width: 0) {
+  .ct-starshot-slide-card__link {
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+}
+@media (min-width: 992px) {
+  .ct-starshot-slide-card__link {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-slide-card__link {
+    font-size: 1.625rem;
+    line-height: 2.25rem;
+    font-family: "Noto Sans", sans-serif;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+}
+.ct-starshot-slide-card__link:hover, .ct-starshot-slide-card__link:focus {
+  text-decoration-line: underline;
+}
+.ct-starshot-slide-card__image {
+  width: 100%;
+}
+.ct-starshot-slide-card__inner {
+  background-color: var(--ct-color-light-background-7);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  transition: 0.3s box-shadow;
+  box-shadow: 0 0 0 rgba(18, 40, 95, 0);
+  border-radius: 36px;
+  margin-bottom: 23px;
+  padding-top: 62px;
+}
+@media (min-width: 992px) {
+  .ct-starshot-slide-card__inner {
+    border-radius: 36px;
+    margin-bottom: 23px;
+    padding-top: 62px;
+    box-shadow: 0 0 0 rgba(18, 40, 95, 0);
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-slide-card__inner {
+    border-radius: 72px;
+    margin-bottom: 46px;
+    padding-top: 123px;
+  }
+}
+.ct-starshot-slide-card__inner svg {
+  position: absolute;
+  top: 22px;
+  left: 26px;
+  max-height: 25px;
+  width: auto;
+}
+@media (min-width: 992px) {
+  .ct-starshot-slide-card__inner svg {
+    max-height: 25px;
+    top: 22px;
+    left: 26px;
+  }
+}
+@media (min-width: 1440px) {
+  .ct-starshot-slide-card__inner svg {
+    max-height: unset;
+    top: 45px;
+    left: 52px;
+  }
+}

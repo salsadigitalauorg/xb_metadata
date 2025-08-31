@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: block_content
+  uuid: 1f8003df-ba5b-44d7-adf0-763e5e949661
+  bundle: basic
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  info:
+    -
+      value: 'Temp Footer'
+  reusable:
+    -
+      value: true
+  revision_translation_affected:
+    -
+      value: true
+  body:
+    -
+      value: '<img src="/themes/contrib/demo_design_system/starshot_demo/assets/starshot/temp_starshot_footer.png" width="3444" height="1280">'
+      format: basic_html
+      summary: ''

@@ -1,0 +1,39 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 0b040f3e-5ab0-446f-a0d3-dbdfd646305d
+  bundle: image
+  default_langcode: en
+  depends:
+    50b289ff-d2f9-403b-a1c0-4bfd34a3e7ce: file
+default:
+  revision_user:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Journalist at home'
+  created:
+    -
+      value: 1741782104
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 0
+  field_media_image:
+    -
+      entity: 50b289ff-d2f9-403b-a1c0-4bfd34a3e7ce
+      alt: 'Journalist at home'
+      title: ''
+      width: 3864
+      height: 2576

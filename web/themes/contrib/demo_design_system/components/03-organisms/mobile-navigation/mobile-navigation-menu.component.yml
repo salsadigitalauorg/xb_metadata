@@ -1,0 +1,65 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Mobile navigation menu
+
+status: obsolete
+
+group: Organisms
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+          # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+          #items:
+          #type: array
+          #title: Items
+          #description: 'Menu links array. Each item contains:'
+          #items:
+          #type: object
+          #
+          #properties:
+          #title:
+          #type: string
+          #title: Title
+          #description: The title of the link.
+          # examples:
+          #     - Link title
+          #
+          #url:
+          #type: string
+          #title: Url
+          #description: The link url.
+          # examples:
+            # - https://example.com
+          #
+          #below:
+          #type: array
+          #title: Below
+          #description: Array of submenu items.
+          #
+          #is_expanded:
+          #type: boolean
+          #title: Is expanded
+          #description: Flag if the current item has visible child.
+          # examples:
+          #   - false
+          #
+          #in_active_trail:
+          #type: boolean
+          #title: In active trail
+          #description: Flag if the current item is in the active trail.
+          # examples:
+          #     - false

@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Starshot Testimonial Card component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - title: [string] Title.
+ * - summary: [string] Summary.
+ * - image: [object] Image object:
+ *   - src: [string] Image URL.
+ *   - alt: [string] Image alt text.
+ */
+#}
+
+{% set theme_class = 'ct-theme-%s'|format(theme|default('light')) %}
+{% set modifier_class = '%s %s'|format(theme_class, modifier_class|default('')) %}
+
+<div class="ct-starshot-testimonial-card {{ modifier_class }}">
+  {% if image and image.src %}
+    <img class="ct-starshot-testimonial-card__image" src="{{ image.src }}" alt="{{ image.alt }}" />
+  {% endif %}
+  <div class="ct-starshot-testimonial-card__title">{{ title }}</div>
+  <p class="ct-starshot-testimonial-card__summary">{{ summary }}</p>
+</div>

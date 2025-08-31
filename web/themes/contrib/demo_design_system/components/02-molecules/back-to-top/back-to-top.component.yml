@@ -1,0 +1,12 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: CT Back to top
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+  properties: {}

@@ -1,0 +1,101 @@
+{#
+/**
+ * @file
+ * Starshot Card component.
+ *
+ * Variables:
+ * - theme: [string] Theme: light, dark.
+ * - display: [string] Card display: vertical, horizontal, centered, overlay.
+ * - title: [string] Card title.
+ * - summary: [string] Card summary.
+ * - link: [object] Link object:
+ *    - text: [string] Text for the link.
+ *    - url: [string] URL for the link.
+ *    - is_external: [boolean] Link is external or not.
+ * - background: [string] URL for the background image.
+ * - tags: [array] Tags array:
+ *   - icon: [string] Icon name.
+ *   - content: [string] Tag text.
+ *   - icon_placement: [string] Icon position: left, right.
+ *   - url: [string] URL for the link.
+ *   - is_new_window: [boolean] Open link in a new window.
+ *   - is_external: [boolean] Link is external or not.
+ * - image: [object] Image object:
+ *    - url: [string] URL for the image.
+ *    - alt: [string] Image alt text.
+ * - attributes: [string] Additional attributes.
+ * - modifier_class: [string] Additional classes.
+ */
+#}
+
+{% set theme = theme|default('light') %}
+{% set theme_class = 'ct-theme-%s'|format(theme) %}
+{% set display = display|default('vertical') %}
+{% set display_class = 'ct-old-starshot-card--%s'|format(display) %}
+{% set background = background|default('none') %}
+{% set background_class = 'ct-old-starshot-card--%s'|format(background) %}
+{% set has_overlay_image = image.src and display == 'overlay' %}
+{% set overlay_image_class = has_overlay_image ? 'ct-old-starshot-card--overlay-image' : '' %}
+{% set modifier_class = '%s %s %s %s %s'|format(theme_class, display_class, background_class, overlay_image_class, modifier_class|default('')) %}
+{% set tag_theme = background == 'background' ? 'light' : 'dark' %}
+{% set tag_theme = background == 'none' ? theme : tag_theme %}
+{% set tag_theme = has_overlay_image ? 'dark' : tag_theme %}
+{% set link_theme = background == 'none' ? theme : 'light' %}
+
+{% if title is not empty %}
+  <div class="ct-old-starshot-card {{ modifier_class -}}" {% if attributes is not empty %}{{- attributes|raw -}}{% endif %}>
+    {% if image.src %}
+      <div class="ct-old-starshot-card__image">
+        {% include '@atoms/image/image.twig' with {
+          theme: theme,
+          url: image.src,
+          alt: image.alt,
+        } only %}
+      </div>
+    {% endif %}
+    <div class="ct-old-starshot-card__wrapper">
+      {% set tag_content %}
+        {% if tags %}
+          <div class="ct-old-starshot-card__tags">
+            {% for tag in tags %}
+              {% include '@atoms/tag/tag.twig' with {
+                theme: tag_theme,
+                type: 'drupal',
+                content: tag.content,
+                icon: tag.icon,
+                icon_placement: tag.icon_placement|default('before'),
+                url: tag.url,
+                is_new_window: tag.is_new_window,
+                is_external: tag.is_external,
+              } only %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endset %}
+      {% if display != 'horizontal' %}{{- tag_content -}}{% endif %}
+      {% if title %}
+        <div class="ct-old-starshot-card__title">{{ title }}</div>
+      {% endif %}
+      {% if summary or (link is not empty and link.text is not empty) %}
+        <div class="ct-old-starshot-card__content">
+          {% if display == 'horizontal' %}{{- tag_content -}}{% endif %}
+          <div class="ct-old-starshot-card__summary">{{ summary }}</div>
+          {% if link is not empty and link.text is not empty %}
+            <div class="ct-old-starshot-card__link-wrapper">
+              {% include "@atoms/button/button.twig" with {
+                theme: link_theme,
+                kind: 'link',
+                type: display == 'vertical' ? 'drupal' : 'primary',
+                text: link.text,
+                url: link.url,
+                is_external: link.is_external,
+                icon: display == 'vertical' ? '' : 'right-arrow-2',
+                modifier_class: 'ct-old-starshot-card__link'
+              } only %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

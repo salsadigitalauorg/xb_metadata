@@ -1,0 +1,28 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 8aff52f3-4315-4203-8fc1-79680809c86e
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: starshot_13.png
+  uri:
+    -
+      value: 'public://2025-03/starshot_13.png'
+      url: /sites/default/files/2025-03/starshot_13.png
+  filemime:
+    -
+      value: image/png
+  filesize:
+    -
+      value: 494467
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1741359979

@@ -1,0 +1,34 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: Social Media Icon
+status: experimental
+props:
+  type: object
+  required:
+    - name
+    - url
+  properties:
+    name:
+      type: string
+      title: Social Media
+      description: 'Pick the social media to display'
+      enum:
+        - facebook
+        - instagram
+        - linkedin
+        - mastodon
+        - x
+        - youtube
+      default: youtube
+      examples:
+        - youtube
+    url:
+      type: string
+      format: uri
+      title: Social Media URL
+      examples:
+        - 'https://www.youtube.com/drupalassociation'
+        - 'https://www.facebook.com/DrupalOpenSource/'
+        - 'https://www.instagram.com/drupalassociation/'
+        - 'https://www.linkedin.com/company/drupal-project/'
+        - 'https://mastodon.social/@drupal'
+        - 'http://x.com/drupal'

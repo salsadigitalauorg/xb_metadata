@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Starshot Case Study component.
+ *
+ * Variables:
+ * - title: [string] Title.
+ * - image: [object] Image object:
+ *   - src: [string] Source.
+ *   - alt: [string] Alt text.
+ */
+#}
+
+<div class="ct-starshot-case-study">
+  <div class="ct-starshot-case-study__background">
+    <div class="ct-starshot-case-study__inner">
+      {% if title %}
+        <h2>{{ title }}</h2>
+      {% endif %}
+      <div class="ct-starshot-case-study__content">
+        {% block content %}
+          {{ content|raw }}
+        {% endblock %}
+      </div>
+      {% if image and image.src %}
+        <div class="ct-starshot-case-study__image">
+          <img class="ct-starshot-case-study__image-element" src="{{ image.src }}" alt="{{ image.alt }}" />
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

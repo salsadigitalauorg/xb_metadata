@@ -1,0 +1,11 @@
+type: module
+name: Experience Builder Vite Integration
+description: "Enables Hot Module Replacement (HMR) for Experience Builder via the Vite development server."
+core_version_requirement: ^10 || ^11
+dependencies:
+  - experience_builder:experience_builder
+
+# Information added by Drupal.org packaging script on 2025-07-30
+version: '0.7.3-alpha1'
+project: 'experience_builder'
+datestamp: 1753882094

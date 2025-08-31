@@ -1,0 +1,36 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 51ea38d6-92f9-4ec0-bf4a-3fa59927939a
+  bundle: image
+  default_langcode: en
+  depends:
+    4d004be6-ecfc-4932-9cba-0ffc85b6fa44: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: starshot_xb_sdds_contributors_leading.png
+  created:
+    -
+      value: 1741359454
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+      pathauto: 1
+  field_media_image:
+    -
+      entity: 4d004be6-ecfc-4932-9cba-0ffc85b6fa44
+      alt: Acquia
+      title: ''
+      width: 1638
+      height: 462

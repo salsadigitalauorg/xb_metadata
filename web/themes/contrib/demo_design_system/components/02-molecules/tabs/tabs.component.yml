@@ -1,0 +1,116 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Tabs
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+  # required:
+  #   - panels
+
+  properties:
+    # @fixme TypeError: Drupal\experience_builder\PropShape::resolveSchemaReferences(): Argument #1 ($schema) must be of type array, string given
+    #panels:
+    #type: array
+    #title: Panels
+    #description: 'Array of panels:'
+    #items:
+    #type: object
+    #
+    #properties:
+    #title:
+    #type: string
+    #title: Title
+    #description: Panel title.
+    #examples:
+    #- 'Panel 1 title'
+    #
+    #content:
+    #type: string
+    #title: Content
+    #description: Panel content.
+    #examples:
+    #- 'This is the content for panel 1'
+    #
+    #id:
+    #type: string
+    #title: Id
+    #description: Panel id.
+    #examples:
+    #- 'tab-1'
+    #
+    #is_selected:
+    #type: boolean
+    #title: Is selected
+    #description: Panel is selected or not
+    #examples:
+    #- true
+
+    #links:
+    #type: array
+    #title: Links
+    #description: Optional array of links (if not provided - will be generated
+    #items:
+    #type: object
+    #
+    #properties:
+    #text:
+    #type: string
+    #title: Text
+    #description: Link text.
+    #examples:
+    #- 'Tab 1 title'
+    #
+    #url:
+    #type: string
+    #title: Url
+    #description: Link URL.
+    #examples:
+    #- 'https://example.com'
+    #
+    #modifier_class:
+    #type: string
+    #title: Modifier class
+    #description: Additional link classes.
+    #examples:
+    #- 'ct-tabs__tab--selected'
+    #
+    #attributes:
+    #type: string
+    #title: Attributes
+    #description: Additional link attributes.
+    #examples:
+    #- 'data-toggle="tab"'
+
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    vertical_spacing:
+      type: string
+      title: Vertical spacing
+      description: 'Vertical spacing: top, bottom, both.'
+      enum:
+        - top
+        - bottom
+        - both
+      examples:
+        - both
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

@@ -1,0 +1,49 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Datetime
+
+status: obsolete
+
+group: Base
+
+props:
+
+  type: object
+    #required:
+    #- start
+
+  properties:
+    start:
+      type: string
+      title: Start
+      description: Formatted start time.
+      examples:
+        - '20 Jan 2023 11:00'
+
+    start_iso:
+      type: string
+      title: Start iso
+      description: Start time in ISO format.
+      examples:
+        - '2023-01-20T11:00:00Z'
+
+    end:
+      type: string
+      title: End
+      description: Formatted end time.
+      examples:
+        - '20 Jan 2023 11:00'
+
+    end_iso:
+      type: string
+      title: End iso
+      description: End time in ISO format.
+      examples:
+        - '2023-01-20T11:00:00Z'
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-class'

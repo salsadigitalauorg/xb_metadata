@@ -1,0 +1,105 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+
+name: Video player
+
+status: obsolete
+
+group: Molecules
+
+props:
+
+  type: object
+
+  properties:
+    theme:
+      type: string
+      title: Theme
+      description: 'Theme: light, dark.'
+      default: light
+      enum:
+        - light
+        - dark
+      examples:
+        - light
+
+    title:
+      type: string
+      title: Title
+      description: Title for the iframe.
+      examples:
+        - 'Test video'
+
+    url:
+      type: string
+      title: Url
+      description: URL of the video.
+      examples:
+        - 'https://www.youtube.com/embed/C0DPdy98e4c'
+
+    width:
+      type: string
+      title: Width
+      description: Width of the iframe.
+      examples:
+        - '640'
+
+    height:
+      type: string
+      title: Height
+      description: Height of the video.
+      examples:
+        - '500'
+
+    transcript_link:
+      type: object
+      title: Transcript link
+      description: Video transcript link.
+
+      properties:
+        text:
+          type: string
+          title: Text
+          description: Button text.
+          examples:
+            - 'View transcript'
+
+        title:
+          type: string
+          title: Title
+          description: Button title.
+          examples:
+            - 'Open transcription in a new window'
+
+        url:
+          type: string
+          title: Url
+          description: URL for the link button.
+          examples:
+            - 'https://example.com'
+
+        is_new_window:
+          type: boolean
+          title: Open in a new window or not.
+          examples:
+            - false
+
+        is_external:
+          type: boolean
+          title: If link is external or not.
+          examples:
+            - false
+
+    oembed:
+      type: string
+      $ref: json-schema-definitions://experience_builder.module/textarea
+      title: Oembed
+      description: oEmbed provided iframe container.
+      examples:
+        - '<iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/C0DPdy98e4c" width="420"></iframe>'
+
+    modifier_class:
+      type: string
+      title: Modifier class
+      description: Additional classes.
+      examples:
+        - 'custom-video-class'
