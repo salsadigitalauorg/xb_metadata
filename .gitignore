@@ -10,9 +10,8 @@ web/*
 # Ignore all module content by default
 web/modules/*
 
-# Allow custom modules directory (structure)
+# Allow custom modules directory (recursively)
 !web/modules/custom/
 
 # Track all themes (recursively)
 !web/themes/**
-
