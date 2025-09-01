@@ -1,0 +1,319 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component.schema.json",
+  "metadata": {
+    "id": "civictheme-navigation-card",
+    "name": "Navigation Card",
+    "description": "Card component for navigation with title, summary, and link. Features flexible layout with image support and icon display options.",
+    "version": "1.0.0",
+    "category": "molecules",
+    "subcategory": "list",
+    "status": "stable",
+    "created": "2024-01-01",
+    "modified": "2024-01-01",
+    "author": "CivicTheme",
+    "tags": ["navigation", "card", "link", "image", "icon", "summary"]
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "title": "Theme",
+        "description": "Theme variation controlling the visual appearance",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "examples": ["light", "dark"]
+      },
+      "image_as_icon": {
+        "type": "boolean",
+        "title": "Image as Icon",
+        "description": "Whether to display the image as an icon instead of a full image",
+        "default": false,
+        "examples": [true, false]
+      },
+      "attributes": {
+        "type": "string",
+        "title": "HTML Attributes",
+        "description": "Additional HTML attributes to apply to the root element",
+        "examples": ["data-card-id=\"nav-1\"", "id=\"main-navigation-card\""]
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes for styling variations",
+        "examples": ["ct-navigation-card--featured", "custom-nav-card"]
+      },
+      "image": {
+        "type": "object",
+        "title": "Card Image",
+        "description": "Optional image for the navigation card",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Image URL",
+            "description": "URL path to the card image",
+            "format": "uri",
+            "examples": ["./demo/images/demo1.jpg", "/path/to/navigation-image.jpg"]
+          },
+          "alt": {
+            "type": "string",
+            "title": "Alt Text",
+            "description": "Alternative text for the image (required for accessibility)",
+            "examples": ["Service illustration", "Navigation category image"]
+          }
+        },
+        "examples": [
+          {
+            "url": "./demo/images/demo1.jpg",
+            "alt": "Image alt text"
+          }
+        ]
+      },
+      "link": {
+        "type": "object",
+        "title": "Navigation Link",
+        "description": "Link object for the navigation destination",
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Link Text",
+            "description": "Display text for the link (usually same as title)",
+            "examples": ["Learn More", "View Services", "Get Started"]
+          },
+          "url": {
+            "type": "string",
+            "title": "Link URL",
+            "description": "URL to navigate to when card is clicked",
+            "format": "uri",
+            "examples": ["https://example.com", "/services", "/about"]
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "title": "Open in New Window",
+            "description": "Whether to open the link in a new window/tab",
+            "default": false,
+            "examples": [false, true]
+          },
+          "is_external": {
+            "type": "boolean",
+            "title": "External Link",
+            "description": "Whether the link is external (affects styling and behavior)",
+            "default": false,
+            "examples": [false, true]
+          }
+        },
+        "examples": [
+          {
+            "text": "Link",
+            "url": "https://example.com",
+            "is_new_window": false,
+            "is_external": false
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "theme": "light",
+        "title": "Navigation card heading which runs across two or three lines",
+        "summary": "Bring to the table win-win survival strategies to ensure proactive domination.",
+        "link": {
+          "text": "Link",
+          "url": "https://example.com",
+          "is_new_window": false,
+          "is_external": false
+        },
+        "image": {
+          "url": "./demo/images/demo1.jpg",
+          "alt": "Image alt text"
+        },
+        "image_as_icon": false
+      }
+    ]
+  },
+  "slots": {
+    "icon": {
+      "title": "Icon",
+      "description": "Icon name/symbol to display instead of or alongside the image",
+      "examples": ["user", "settings", "arrow-right"]
+    },
+    "title": {
+      "title": "Card Title",
+      "description": "Main title/heading for the navigation card",
+      "examples": ["Services", "About Us", "Contact Information"]
+    },
+    "summary": {
+      "title": "Card Summary",
+      "description": "Descriptive text that explains the navigation destination",
+      "examples": ["Learn about our comprehensive service offerings", "Discover our company history and mission"]
+    },
+    "content_top": {
+      "title": "Top Content",
+      "description": "Content area at the top of the card for badges, labels, or additional information",
+      "examples": ["<span class=\"badge\">New</span>", "<div class=\"category\">Service</div>"]
+    },
+    "image_over": {
+      "title": "Image Overlay",
+      "description": "Content to overlay on top of the image",
+      "examples": ["<span class=\"overlay-badge\">Featured</span>"]
+    },
+    "content_middle": {
+      "title": "Middle Content",
+      "description": "Content area between title and summary for additional details",
+      "examples": ["<div class=\"meta-info\">Updated recently</div>"]
+    },
+    "content_bottom": {
+      "title": "Bottom Content",
+      "description": "Content area at the bottom of the card for additional actions or information",
+      "examples": ["<div class=\"card-footer\">Last updated: Jan 2024</div>"]
+    }
+  },
+  "css": {
+    "classes": {
+      "root": "ct-navigation-card",
+      "modifiers": [
+        "ct-navigation-card--with-image",
+        "ct-navigation-card--with-link",
+        "ct-navigation-card--image-as-icon"
+      ],
+      "elements": [
+        "ct-navigation-card__image",
+        "ct-navigation-card__image__over",
+        "ct-navigation-card__content",
+        "ct-navigation-card__content-top",
+        "ct-navigation-card__icon",
+        "ct-navigation-card__icon__image",
+        "ct-navigation-card__title",
+        "ct-navigation-card__title__link",
+        "ct-navigation-card__content-middle",
+        "ct-navigation-card__summary",
+        "ct-navigation-card__content-bottom"
+      ]
+    },
+    "layout": {
+      "responsive": "Uses container queries to switch from column to row layout",
+      "flexbox": "Flex container with responsive direction changes",
+      "container_query": "Changes layout at navigation card orientation threshold"
+    },
+    "variables": {
+      "border-radius": "$ct-navigation-card-border-radius",
+      "orientation-threshold": "$ct-navigation-card-orientation-threshold",
+      "image-height-mobile": "$ct-navigation-card-image-height-mobile",
+      "image-width-mobile": "$ct-navigation-card-image-width-mobile",
+      "image-max-width-desktop": "$ct-navigation-card-image-max-width-desktop",
+      "image-min-width-desktop": "$ct-navigation-card-image-min-width-desktop",
+      "image-min-height-desktop": "$ct-navigation-card-image-min-height-desktop"
+    }
+  },
+  "integration": {
+    "drupal": {
+      "module": "civictheme",
+      "template": "civictheme:navigation-card",
+      "library": "civictheme/navigation-card",
+      "dependencies": ["civictheme/image", "civictheme/icon", "civictheme/link", "civictheme/heading", "civictheme/paragraph"],
+      "field_mapping": {
+        "node.field_card_image": "image",
+        "node.title": "title",
+        "node.field_summary": "summary",
+        "node.field_link": "link"
+      }
+    },
+    "components_used": [
+      "civictheme:image",
+      "civictheme:icon",
+      "civictheme:link",
+      "civictheme:heading",
+      "civictheme:paragraph"
+    ]
+  },
+  "accessibility": {
+    "requirements": [
+      "Card title must be provided for rendering",
+      "Image alt text must be provided when using images",
+      "Link should have proper focus states and keyboard navigation",
+      "Wide link area should be implemented for better usability"
+    ],
+    "aria": {
+      "properties": ["Wide link implementation for entire card clickability"],
+      "keyboard": "Full keyboard navigation through interactive elements"
+    },
+    "considerations": [
+      "Ensure sufficient color contrast for text over images",
+      "Provide meaningful alt text for decorative and informational images",
+      "Consider screen reader experience with wide link areas"
+    ]
+  },
+  "performance": {
+    "loading": "Consider lazy loading for images below the fold",
+    "optimization": "Container queries for responsive behavior",
+    "images": "Optimize image sizes for different breakpoints"
+  },
+  "usage": {
+    "guidelines": [
+      "Always provide a meaningful title for the card",
+      "Use clear, descriptive summary text",
+      "Provide appropriate image alt text",
+      "Consider image aspect ratios for consistent layouts",
+      "Use icons when appropriate for category identification"
+    ],
+    "examples": [
+      {
+        "title": "Basic Navigation Card",
+        "description": "Simple navigation card with title and link",
+        "code": "{% include 'civictheme:navigation-card' with { theme: 'light', title: 'Services', summary: 'Explore our service offerings', link: { url: '/services', text: 'View Services' } } only %}"
+      },
+      {
+        "title": "Card with Image",
+        "description": "Navigation card with accompanying image",
+        "code": "{% include 'civictheme:navigation-card' with { theme: 'light', title: 'About Us', image: { url: '/images/about.jpg', alt: 'Team photo' }, link: { url: '/about' } } only %}"
+      },
+      {
+        "title": "Icon Navigation Card",
+        "description": "Navigation card using icon instead of large image",
+        "code": "{% include 'civictheme:navigation-card' with { theme: 'light', title: 'Contact', icon: 'phone', summary: 'Get in touch with us', link: { url: '/contact' } } only %}"
+      }
+    ],
+    "best_practices": [
+      "Keep titles concise but descriptive",
+      "Write clear summaries that explain the destination",
+      "Use consistent image sizes across navigation cards",
+      "Choose appropriate icons that represent the content",
+      "Test responsive behavior with different content lengths"
+    ]
+  },
+  "testing": {
+    "unit_tests": [
+      "Component renders with required title",
+      "Image displays when provided",
+      "Icon displays when provided",
+      "Link functionality works correctly",
+      "Image as icon mode works properly"
+    ],
+    "accessibility_tests": [
+      "Keyboard navigation through interactive elements",
+      "Screen reader accessibility of card content",
+      "Focus management and wide link behavior",
+      "Image alt text presence and quality"
+    ],
+    "visual_regression": [
+      "Light and dark theme variations",
+      "With and without images",
+      "Icon vs image display modes",
+      "Responsive layout changes",
+      "Various content length scenarios"
+    ]
+  },
+  "extraction": {
+    "source": "CivicTheme uikit-main repository",
+    "files_analyzed": [
+      "navigation-card.component.yml",
+      "navigation-card.twig",
+      "navigation-card.scss",
+      "navigation-card.stories.js",
+      "navigation-card.stories.data.js"
+    ],
+    "confidence": 0.95,
+    "last_updated": "2024-01-01",
+    "notes": "Complete component analysis including container query usage, responsive image handling, and flexible icon/image display options"
+  }
+}

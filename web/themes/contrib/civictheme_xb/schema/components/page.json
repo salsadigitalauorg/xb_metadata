@@ -1,0 +1,385 @@
+{
+  "$schema": "https://schemas.dsis.dev/component/v1.0.0/schema.json",
+  "id": "page",
+  "name": "Page Template",
+  "description": "Comprehensive page template component that orchestrates the entire page structure including header, content area with sidebar layout, footer, and back-to-top functionality. Provides extensive slot system for flexible content placement and theming options for different page sections.",
+  "category": "templates",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "platform": {
+    "drupal": {
+      "version": "^10 || ^11",
+      "sdc": true,
+      "namespace": "civictheme",
+      "schema_version": "v1",
+      "integration": "Designed as main page template for Drupal themes"
+    }
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "title": "Page Theme",
+        "description": "Overall theme variation for the page"
+      },
+      "header_theme": {
+        "type": "string",
+        "enum": ["light", "dark"],
+        "title": "Header Theme",
+        "description": "Theme variation specifically for the header section"
+      },
+      "footer_theme": {
+        "type": "string",
+        "enum": ["light", "dark"],
+        "title": "Footer Theme",
+        "description": "Theme variation specifically for the footer section"
+      },
+      "footer_background_image": {
+        "type": "string",
+        "title": "Footer Background Image",
+        "description": "Background image URL for the footer section"
+      },
+      "hide_sidebar_left": {
+        "type": "boolean",
+        "default": false,
+        "title": "Hide Left Sidebar",
+        "description": "Whether to hide both left sidebar positions"
+      },
+      "hide_sidebar_right": {
+        "type": "boolean",
+        "default": false,
+        "title": "Hide Right Sidebar",
+        "description": "Whether to hide both right sidebar positions"
+      },
+      "content_contained": {
+        "type": "boolean",
+        "default": false,
+        "title": "Content Contained",
+        "description": "Whether page content should use container vs container-fluid layout"
+      },
+      "vertical_spacing": {
+        "type": "string",
+        "enum": ["none", "top", "bottom", "both"],
+        "default": "none",
+        "title": "Vertical Spacing",
+        "description": "Controls vertical spacing for the main content layout"
+      },
+      "attributes": {
+        "type": "string",
+        "title": "Additional Attributes",
+        "description": "Additional HTML attributes to apply to the page wrapper"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes to customize page appearance"
+      }
+    }
+  },
+  "slots": {
+    "banner": {
+      "title": "Banner",
+      "description": "Site-wide banner content displayed prominently at top of page",
+      "type": "html"
+    },
+    "highlighted": {
+      "title": "Highlighted",
+      "description": "Highlighted content area (e.g., system messages, important announcements)",
+      "type": "html"
+    },
+    "header_top_1": {
+      "title": "Header Top Section 1",
+      "description": "First section in header top row",
+      "type": "html"
+    },
+    "header_top_2": {
+      "title": "Header Top Section 2",
+      "description": "Second section in header top row",
+      "type": "html"
+    },
+    "header_top_3": {
+      "title": "Header Top Section 3",
+      "description": "Third section in header top row",
+      "type": "html"
+    },
+    "header_middle_1": {
+      "title": "Header Middle Section 1",
+      "description": "First section in header middle row (typically logo area)",
+      "type": "html"
+    },
+    "header_middle_2": {
+      "title": "Header Middle Section 2",
+      "description": "Second section in header middle row",
+      "type": "html"
+    },
+    "header_middle_3": {
+      "title": "Header Middle Section 3",
+      "description": "Third section in header middle row (typically search/tools)",
+      "type": "html"
+    },
+    "header_bottom_1": {
+      "title": "Header Bottom Section 1",
+      "description": "First section in header bottom row (typically main navigation)",
+      "type": "html"
+    },
+    "content_top": {
+      "title": "Content Top",
+      "description": "Content area displayed above the main layout",
+      "type": "html"
+    },
+    "sidebar_top_left": {
+      "title": "Top Left Sidebar",
+      "description": "Top left sidebar content area",
+      "type": "html"
+    },
+    "sidebar_top_left_attributes": {
+      "title": "Top Left Sidebar Attributes",
+      "description": "HTML attributes for the top left sidebar element",
+      "type": "string"
+    },
+    "sidebar_top_right": {
+      "title": "Top Right Sidebar",
+      "description": "Top right sidebar content area",
+      "type": "html"
+    },
+    "sidebar_top_right_attributes": {
+      "title": "Top Right Sidebar Attributes",
+      "description": "HTML attributes for the top right sidebar element",
+      "type": "string"
+    },
+    "content": {
+      "title": "Main Content",
+      "description": "Primary page content area",
+      "type": "html",
+      "required": true
+    },
+    "content_attributes": {
+      "title": "Content Attributes",
+      "description": "HTML attributes for the main content section",
+      "type": "string"
+    },
+    "sidebar_bottom_left": {
+      "title": "Bottom Left Sidebar",
+      "description": "Bottom left sidebar content area",
+      "type": "html"
+    },
+    "sidebar_bottom_left_attributes": {
+      "title": "Bottom Left Sidebar Attributes",
+      "description": "HTML attributes for the bottom left sidebar element",
+      "type": "string"
+    },
+    "sidebar_bottom_right": {
+      "title": "Bottom Right Sidebar",
+      "description": "Bottom right sidebar content area",
+      "type": "html"
+    },
+    "sidebar_bottom_right_attributes": {
+      "title": "Bottom Right Sidebar Attributes",
+      "description": "HTML attributes for the bottom right sidebar element",
+      "type": "string"
+    },
+    "sidebar": {
+      "title": "Legacy Sidebar",
+      "description": "Legacy sidebar content (falls back to sidebar_bottom_left)",
+      "type": "html"
+    },
+    "sidebar_attributes": {
+      "title": "Legacy Sidebar Attributes",
+      "description": "Legacy sidebar HTML attributes (falls back to sidebar_bottom_left_attributes)",
+      "type": "string"
+    },
+    "content_bottom": {
+      "title": "Content Bottom",
+      "description": "Content area displayed below the main layout",
+      "type": "html"
+    },
+    "footer_top_1": {
+      "title": "Footer Top Section 1",
+      "description": "First section in footer top row",
+      "type": "html"
+    },
+    "footer_top_2": {
+      "title": "Footer Top Section 2",
+      "description": "Second section in footer top row",
+      "type": "html"
+    },
+    "footer_middle_1": {
+      "title": "Footer Middle Section 1",
+      "description": "First section in footer middle row",
+      "type": "html"
+    },
+    "footer_middle_2": {
+      "title": "Footer Middle Section 2",
+      "description": "Second section in footer middle row",
+      "type": "html"
+    },
+    "footer_middle_3": {
+      "title": "Footer Middle Section 3",
+      "description": "Third section in footer middle row",
+      "type": "html"
+    },
+    "footer_middle_4": {
+      "title": "Footer Middle Section 4",
+      "description": "Fourth section in footer middle row",
+      "type": "html"
+    },
+    "footer_bottom_1": {
+      "title": "Footer Bottom Section 1",
+      "description": "First section in footer bottom row",
+      "type": "html"
+    },
+    "footer_bottom_2": {
+      "title": "Footer Bottom Section 2",
+      "description": "Second section in footer bottom row",
+      "type": "html"
+    }
+  },
+  "css": {
+    "root_class": "ct-page",
+    "modifiers": [
+      {
+        "class": "ct-theme-light",
+        "description": "Light theme for overall page"
+      },
+      {
+        "class": "ct-theme-dark",
+        "description": "Dark theme for overall page"
+      }
+    ]
+  },
+  "blocks": [
+    "header_block",
+    "banner_block",
+    "highlighted_block",
+    "content_block",
+    "footer_block",
+    "back_to_top_block"
+  ],
+  "dependencies": [
+    "header",
+    "layout",
+    "footer",
+    "back-to-top"
+  ],
+  "accessibility": {
+    "features": [
+      "Provides 'top' anchor for back-to-top functionality",
+      "Sets main-content ID on layout when no banner is present",
+      "Uses tabindex='-1' for programmatic focus management",
+      "Includes semantic structure with proper landmark roles",
+      "Maintains logical reading order through template structure"
+    ],
+    "landmarks": [
+      "Header section provides banner landmark",
+      "Main content area provides main landmark",
+      "Footer section provides contentinfo landmark",
+      "Skip links target main-content for keyboard navigation"
+    ]
+  },
+  "layout_structure": {
+    "header": {
+      "sections": ["top (3 slots)", "middle (3 slots)", "bottom (1 slot)"],
+      "theming": "Independent theme control"
+    },
+    "content": {
+      "layout": "Uses layout component for sidebar management",
+      "sidebars": "4 positions: top-left, top-right, bottom-left, bottom-right",
+      "legacy_support": "Fallback from 'sidebar' to 'sidebar_bottom_left'"
+    },
+    "footer": {
+      "sections": ["top (2 slots)", "middle (4 slots)", "bottom (2 slots)"],
+      "theming": "Independent theme control",
+      "background": "Optional background image support"
+    }
+  },
+  "examples": [
+    {
+      "name": "Standard Page Layout",
+      "description": "Typical page with header, content, sidebar, and footer",
+      "props": {
+        "theme": "light",
+        "header_theme": "light",
+        "footer_theme": "light",
+        "content_contained": true,
+        "vertical_spacing": "both",
+        "content": "<h1>Welcome to Our Site</h1><p>This is the main content area.</p>",
+        "sidebar_bottom_left": "<nav>Sidebar Navigation</nav>"
+      }
+    },
+    {
+      "name": "Full Width Dark Theme",
+      "description": "Dark themed page with full-width content and no sidebars",
+      "props": {
+        "theme": "dark",
+        "header_theme": "dark",
+        "footer_theme": "dark",
+        "hide_sidebar_left": true,
+        "hide_sidebar_right": true,
+        "content_contained": false,
+        "banner": "<div class='alert'>Site Maintenance Notice</div>",
+        "content": "<article>Full width article content</article>"
+      }
+    },
+    {
+      "name": "Complex Multi-Section Layout",
+      "description": "Page utilizing multiple header and footer sections",
+      "props": {
+        "theme": "light",
+        "header_theme": "light",
+        "footer_theme": "dark",
+        "content_contained": true,
+        "header_top_1": "Alert Bar",
+        "header_middle_1": "Logo",
+        "header_middle_3": "Search",
+        "header_bottom_1": "Main Navigation",
+        "highlighted": "System Messages",
+        "content": "Main Page Content",
+        "sidebar_top_left": "Quick Links",
+        "sidebar_bottom_right": "Related Content",
+        "footer_middle_1": "Company Info",
+        "footer_middle_2": "Quick Links",
+        "footer_bottom_1": "Copyright",
+        "footer_bottom_2": "Social Links"
+      }
+    }
+  ],
+  "best_practices": [
+    "Use consistent theming across page sections",
+    "Leverage the extensive slot system for flexible layouts",
+    "Consider accessibility when using banner vs highlighted slots",
+    "Test sidebar visibility options for responsive design",
+    "Use legacy sidebar slots for backward compatibility",
+    "Implement proper focus management for interactive elements",
+    "Consider performance with complex nested component structures"
+  ],
+  "related_components": ["header", "footer", "layout", "back-to-top", "banner"],
+  "technical_notes": [
+    "Orchestrates multiple complex components into cohesive page structure",
+    "Conditional main-content ID placement based on banner presence",
+    "Legacy sidebar fallback maintains backward compatibility",
+    "Independent theming for different page sections",
+    "Extensive slot system provides maximum flexibility",
+    "Uses only include statements - no custom layout logic"
+  ],
+  "extraction_meta": {
+    "source_files": [
+      "/packages/sdc/components/04-templates/page/page.component.yml",
+      "/packages/sdc/components/04-templates/page/page.twig",
+      "/packages/sdc/components/04-templates/page/page.scss",
+      "/packages/sdc/components/04-templates/page/page.stories.js",
+      "/packages/sdc/components/04-templates/page/page.stories.data.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": 0.95,
+    "notes": [
+      "Component has stable status in source",
+      "Comprehensive page template with extensive slot system",
+      "Good example data showing integration with other components",
+      "Clean separation of concerns with dedicated components for each section"
+    ]
+  }
+}

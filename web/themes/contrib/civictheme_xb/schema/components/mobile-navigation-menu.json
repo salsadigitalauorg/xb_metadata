@@ -1,0 +1,263 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component-schema.json",
+  "id": "mobile-navigation-menu",
+  "name": "Mobile Navigation Menu",
+  "description": "Menu component for mobile navigation panel that renders hierarchical navigation structures with flyout support for submenus.",
+  "category": "molecule",
+  "status": "stable",
+  "metadata": {
+    "version": "1.8.0",
+    "platform": "drupal",
+    "framework": "twig",
+    "designSystem": "CivicTheme",
+    "accessibility": {
+      "wcagCompliant": true,
+      "wcagLevel": "AA",
+      "screenReaderSupport": true,
+      "keyboardNavigation": true
+    },
+    "responsive": true,
+    "maintainer": "CivicTheme Team",
+    "interactive": true
+  },
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation controlling color scheme and styling",
+      "enum": ["light", "dark"],
+      "default": "light",
+      "category": "appearance"
+    },
+    "items": {
+      "type": "array",
+      "description": "Hierarchical menu items array with recursive structure",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Menu item display title"
+          },
+          "url": {
+            "type": "string",
+            "description": "Menu item target URL"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Optional icon symbol name"
+          },
+          "below": {
+            "type": "array",
+            "description": "Submenu items with same structure"
+          },
+          "is_expanded": {
+            "type": "boolean",
+            "description": "Whether item submenu is expanded"
+          },
+          "in_active_trail": {
+            "type": "boolean",
+            "description": "Whether item is in active navigation trail"
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "description": "Whether to open link in new window"
+          },
+          "is_external": {
+            "type": "boolean",
+            "description": "Whether link is external"
+          }
+        },
+        "required": ["title", "url"]
+      },
+      "category": "content"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes for menu styling",
+      "category": "styling"
+    }
+  },
+  "cssClasses": {
+    "root": "ct-menu",
+    "modifiers": [
+      {
+        "name": "ct-theme-light",
+        "description": "Light theme styling"
+      },
+      {
+        "name": "ct-theme-dark",
+        "description": "Dark theme styling"
+      },
+      {
+        "name": "ct-menu--level-{n}",
+        "description": "Menu level styling (0, 1, 2, etc.)"
+      }
+    ],
+    "elements": [
+      {
+        "name": "ct-menu__item",
+        "description": "Individual menu item container"
+      },
+      {
+        "name": "ct-menu__item--level-{n}",
+        "description": "Menu item level-specific styling"
+      },
+      {
+        "name": "ct-menu__item--has-children",
+        "description": "Menu item with submenu indicator"
+      },
+      {
+        "name": "ct-menu__item--active-trail",
+        "description": "Menu item in active navigation trail"
+      },
+      {
+        "name": "ct-menu__item__link",
+        "description": "Menu item link element"
+      },
+      {
+        "name": "ct-menu__item__link-trigger",
+        "description": "Submenu expansion trigger"
+      },
+      {
+        "name": "ct-menu__sub-menu",
+        "description": "Submenu container"
+      },
+      {
+        "name": "ct-menu__sub-menu__wrapper",
+        "description": "Submenu wrapper with level styling"
+      },
+      {
+        "name": "ct-mobile-navigation__open-subsection-trigger",
+        "description": "Mobile-specific submenu trigger button"
+      },
+      {
+        "name": "ct-mobile-navigation__close-trigger",
+        "description": "Mobile-specific close trigger for submenus"
+      }
+    ]
+  },
+  "behavior": {
+    "hierarchical": {
+      "maxDepth": "unlimited",
+      "expandable": true,
+      "collapsible": true
+    },
+    "flyout": {
+      "direction": "right",
+      "focusTarget": ".ct-link",
+      "nestedSupport": true
+    },
+    "accessibility": {
+      "ariaExpanded": true,
+      "ariaHidden": true,
+      "collapsiblePanel": "data-collapsible-panel"
+    }
+  },
+  "macros": [
+    {
+      "name": "menu_links",
+      "description": "Primary macro for rendering menu items recursively",
+      "parameters": ["items", "menu_level", "modifier_class", "theme", "is_collapsible"]
+    },
+    {
+      "name": "menu_links_below",
+      "description": "Specialized macro for rendering submenu items with mobile flyout behavior",
+      "parameters": ["items", "menu_level", "modifier_class", "theme", "parent_item"]
+    }
+  ],
+  "dependencies": [
+    "civictheme:link",
+    "civictheme:button",
+    "civictheme:mobile-navigation-close"
+  ],
+  "platform": {
+    "drupal": {
+      "type": "sdc",
+      "machineName": "mobile_navigation_menu",
+      "category": "molecule",
+      "dependencies": ["civictheme:link", "civictheme:button", "civictheme:mobile-navigation-close"]
+    }
+  },
+  "examples": [
+    {
+      "name": "Simple Menu",
+      "description": "Basic mobile navigation menu",
+      "props": {
+        "theme": "light",
+        "items": [
+          {
+            "title": "Home",
+            "url": "/",
+            "in_active_trail": true,
+            "is_expanded": false
+          },
+          {
+            "title": "About",
+            "url": "/about",
+            "in_active_trail": false,
+            "is_expanded": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Hierarchical Menu",
+      "description": "Mobile navigation menu with submenus",
+      "props": {
+        "theme": "light",
+        "items": [
+          {
+            "title": "Services",
+            "url": "/services",
+            "in_active_trail": false,
+            "is_expanded": false,
+            "below": [
+              {
+                "title": "Web Design",
+                "url": "/services/web-design",
+                "in_active_trail": false,
+                "is_expanded": false
+              },
+              {
+                "title": "Development",
+                "url": "/services/development",
+                "in_active_trail": false,
+                "is_expanded": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "accessibility": {
+    "requirements": [
+      "All menu items must be keyboard accessible",
+      "ARIA expanded/collapsed states must be properly managed",
+      "Submenu triggers must have descriptive labels",
+      "Focus management must work correctly in nested structures",
+      "Screen readers must understand menu hierarchy"
+    ]
+  },
+  "bestPractices": [
+    "Keep menu hierarchy shallow (3 levels maximum recommended)",
+    "Use descriptive menu item titles",
+    "Ensure submenu triggers are clearly labeled",
+    "Provide visual indicators for items with submenus",
+    "Implement smooth transitions between menu levels"
+  ],
+  "extraction": {
+    "timestamp": "2024-12-19T10:55:00Z",
+    "source": "CivicTheme UIKit v1.9.0",
+    "confidence": {
+      "props": 0.92,
+      "styling": 0.88,
+      "behavior": 0.95,
+      "accessibility": 0.90
+    },
+    "extractedFrom": [
+      "mobile-navigation-menu.component.yml",
+      "mobile-navigation-menu.twig"
+    ]
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component-schema.json",
+  "id": "video-player",
+  "name": "Video Player",
+  "description": "Component for displaying videos with various source options, controls, and accessibility features including transcript links.",
+  "category": "molecule",
+  "status": "stable",
+  "metadata": {
+    "version": "1.0.0",
+    "platform": "drupal",
+    "framework": "twig",
+    "designSystem": "CivicTheme",
+    "accessibility": {
+      "wcagCompliant": true,
+      "wcagLevel": "AA",
+      "screenReaderSupport": true,
+      "keyboardNavigation": true
+    },
+    "responsive": true,
+    "maintainer": "CivicTheme Team"
+  },
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation controlling color scheme and styling",
+      "enum": ["light", "dark"],
+      "default": "light",
+      "category": "appearance"
+    },
+    "title": {
+      "type": "string",
+      "description": "Button title for accessibility and SEO",
+      "category": "content"
+    },
+    "poster": {
+      "type": "string",
+      "description": "Optional video poster image URL displayed before video loads",
+      "category": "media"
+    },
+    "width": {
+      "type": "string",
+      "description": "Video player width in pixels or CSS units",
+      "category": "layout"
+    },
+    "height": {
+      "type": "string",
+      "description": "Video player height in pixels or CSS units",
+      "category": "layout"
+    },
+    "sources": {
+      "type": "array",
+      "description": "Array of video source objects with different formats",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL for the video source file"
+          },
+          "type": {
+            "type": "string",
+            "description": "MIME type of video (e.g., 'video/mp4', 'video/webm')"
+          }
+        },
+        "required": ["url", "type"]
+      },
+      "category": "media"
+    },
+    "embedded_source": {
+      "type": "string",
+      "description": "Iframe URL for embedded video (e.g., YouTube, Vimeo)",
+      "category": "media"
+    },
+    "raw_source": {
+      "type": "string",
+      "description": "Raw HTML of embedded video player for custom implementations",
+      "category": "media"
+    },
+    "transcript_link": {
+      "type": "object",
+      "description": "Video transcript link object for accessibility",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Link text displayed to users"
+        },
+        "title": {
+          "type": "string",
+          "description": "Link title attribute for accessibility"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to transcript resource"
+        },
+        "is_new_window": {
+          "type": "boolean",
+          "description": "Whether to open transcript in new window",
+          "default": false
+        },
+        "is_external": {
+          "type": "boolean",
+          "description": "Whether transcript link is external",
+          "default": false
+        },
+        "attributes": {
+          "type": "string",
+          "description": "Additional HTML attributes for transcript link"
+        }
+      },
+      "category": "accessibility"
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes for the video player container",
+      "category": "technical"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes for custom styling",
+      "category": "styling"
+    }
+  },
+  "blocks": [
+    {
+      "name": "video_block",
+      "description": "Main video content area containing the video element or iframe"
+    },
+    {
+      "name": "links_block",
+      "description": "Container for transcript and related links"
+    }
+  ],
+  "cssClasses": {
+    "root": "ct-video-player",
+    "modifiers": [
+      {
+        "name": "ct-theme-light",
+        "description": "Light theme styling"
+      },
+      {
+        "name": "ct-theme-dark",
+        "description": "Dark theme styling"
+      }
+    ],
+    "elements": [
+      {
+        "name": "ct-video-player__wrapper",
+        "description": "Video container with responsive aspect ratio"
+      },
+      {
+        "name": "ct-video-player__links",
+        "description": "Container for transcript and related links"
+      },
+      {
+        "name": "ct-video-player__links__transcript",
+        "description": "Transcript link container"
+      }
+    ]
+  },
+  "dependencies": [
+    "civictheme:video",
+    "civictheme:iframe",
+    "civictheme:button"
+  ],
+  "platform": {
+    "drupal": {
+      "type": "sdc",
+      "machineName": "video_player",
+      "category": "molecule",
+      "dependencies": ["civictheme:video", "civictheme:iframe", "civictheme:button"]
+    }
+  },
+  "examples": [
+    {
+      "name": "Video Sources",
+      "description": "Video player with multiple source formats",
+      "props": {
+        "theme": "light",
+        "width": "550",
+        "height": "400",
+        "sources": [
+          {
+            "url": "demo/videos/demo.webm",
+            "type": "video/webm"
+          },
+          {
+            "url": "demo/videos/demo.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "poster": "demo/videos/demo_poster.png",
+        "transcript_link": {
+          "text": "View transcript",
+          "title": "Open transcription in a new window",
+          "url": "https://example.com",
+          "is_new_window": true
+        }
+      }
+    },
+    {
+      "name": "Embedded Video",
+      "description": "Video player with YouTube embed",
+      "props": {
+        "theme": "light",
+        "title": "Test video",
+        "width": "550",
+        "height": "400",
+        "embedded_source": "https://www.youtube.com/embed/C0DPdy98e4c",
+        "transcript_link": {
+          "text": "View transcript",
+          "title": "Open transcription in a new window",
+          "url": "https://example.com",
+          "is_new_window": true
+        }
+      }
+    }
+  ],
+  "accessibility": {
+    "requirements": [
+      "Video content must have captions for prerecorded audio",
+      "Transcript link must be provided for accessibility",
+      "Video controls must be keyboard accessible",
+      "Focus indicators must be visible when navigating with keyboard",
+      "ARIA attributes must be properly implemented"
+    ],
+    "wcagCriteria": [
+      {
+        "criterion": "1.2.1",
+        "level": "A",
+        "description": "Audio-only and Video-only (Prerecorded)",
+        "status": "Pass"
+      },
+      {
+        "criterion": "1.2.2",
+        "level": "A",
+        "description": "Captions (Prerecorded)",
+        "status": "Pass"
+      },
+      {
+        "criterion": "2.1.1",
+        "level": "A",
+        "description": "Keyboard",
+        "status": "Pass"
+      },
+      {
+        "criterion": "2.4.7",
+        "level": "AA",
+        "description": "Focus Visible",
+        "status": "Pass"
+      }
+    ]
+  },
+  "bestPractices": [
+    "Always provide transcripts for video content to ensure accessibility",
+    "Include clear, accessible controls for play/pause, volume, and full-screen",
+    "Ensure video player resizes appropriately across different screen sizes",
+    "Optimize video files to reduce load times and bandwidth usage",
+    "Provide multiple quality options where possible",
+    "Make transcript availability clearly visible",
+    "Allow users to control playback speed and volume"
+  ],
+  "extraction": {
+    "timestamp": "2024-12-19T10:30:00Z",
+    "source": "CivicTheme UIKit v1.9.0",
+    "confidence": {
+      "props": 0.95,
+      "styling": 0.90,
+      "behavior": 0.85,
+      "accessibility": 0.95
+    },
+    "extractedFrom": [
+      "video-player.component.yml",
+      "video-player.twig",
+      "video-player.scss",
+      "video-player.stories.js",
+      "video-player.md documentation"
+    ]
+  }
+}

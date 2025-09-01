@@ -1,0 +1,363 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "banner",
+  "name": "Banner",
+  "description": "A versatile full-width component that introduces a page's content with supporting visuals, text, and navigation elements, creating an engaging entry point for users.",
+  "category": "organisms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/banner/",
+    "extracted_from": {
+      "component_yml": "banner.component.yml",
+      "template": "banner.twig",
+      "styles": "banner.scss",
+      "stories": "banner.stories.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/organisms/banner.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "is_decorative": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to show as decorative."
+    },
+    "background_image_blend_mode": {
+      "type": "enum",
+      "required": false,
+      "default": "normal",
+      "options": ["normal", "multiply", "screen", "overlay", "soft-light", "hard-light", "color-dodge", "color-burn", "darken", "lighten", "difference", "exclusion"],
+      "description": "Background image blending type. Defaults to 'normal'."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    },
+    "breadcrumb": {
+      "type": "object",
+      "required": false,
+      "description": "Breadcrumb navigation.",
+      "properties": {
+        "links": {
+          "type": "array",
+          "description": "Breadcrumb links.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Link text"
+              },
+              "url": {
+                "type": "string",
+                "description": "Link URL"
+              }
+            }
+          }
+        },
+        "active_is_link": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the active item is a link."
+        }
+      }
+    },
+    "featured_image": {
+      "type": "object",
+      "required": false,
+      "description": "Featured image.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image source URL."
+        },
+        "alt": {
+          "type": "string",
+          "description": "Image alt text."
+        }
+      }
+    },
+    "background_image": {
+      "type": "object",
+      "required": false,
+      "description": "Background image.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image source URL."
+        },
+        "alt": {
+          "type": "string",
+          "description": "Image alt text."
+        }
+      }
+    }
+  },
+  "slots": {
+    "content_top1": {
+      "description": "Top section content.",
+      "accepts": ["html"],
+      "required": false
+    },
+    "content_top2": {
+      "description": "Second top section content.",
+      "accepts": ["html"],
+      "required": false
+    },
+    "content_top3": {
+      "description": "Third top section content.",
+      "accepts": ["html"],
+      "required": false
+    },
+    "content_middle": {
+      "description": "Middle section content.",
+      "accepts": ["html"],
+      "required": false
+    },
+    "content": {
+      "description": "Main content.",
+      "accepts": ["html"],
+      "required": false
+    },
+    "content_bottom": {
+      "description": "Bottom section content.",
+      "accepts": ["html"],
+      "required": false
+    },
+    "content_below": {
+      "description": "Below banner section content.",
+      "accepts": ["html"],
+      "required": false
+    },
+    "site_section": {
+      "description": "Site section name.",
+      "accepts": ["text"],
+      "required": false
+    },
+    "title": {
+      "description": "Banner title.",
+      "accepts": ["text"],
+      "required": false
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "banner",
+      "template": "banner.twig",
+      "libraries": ["civictheme/banner"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-banner",
+        "modifiers": [
+          "ct-banner--decorative"
+        ],
+        "elements": [
+          "ct-banner__wrapper",
+          "ct-banner__inner",
+          "ct-banner__content-top",
+          "ct-banner__content-top2",
+          "ct-banner__content-top3",
+          "ct-banner__content-middle",
+          "ct-banner__content",
+          "ct-banner__content-bottom",
+          "ct-banner__content-below",
+          "ct-banner__breadcrumb",
+          "ct-banner__site-section",
+          "ct-banner__title",
+          "ct-banner__featured-image",
+          "ct-banner__featured-image__wrapper"
+        ],
+        "states": []
+      },
+      "theme_support": {
+        "light": "Light theme variant with appropriate color schemes",
+        "dark": "Dark theme variant with appropriate color schemes"
+      },
+      "breakpoints": {
+        "mobile": "Base styles with responsive adjustments",
+        "tablet": "Medium breakpoint (m) adjustments for layout and spacing",
+        "desktop": "Large screen optimizations"
+      }
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:breadcrumb", "civictheme:heading", "civictheme:image"],
+    "contains": ["breadcrumb", "heading", "image", "content"],
+    "alternatives": ["hero", "promo"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Default Banner",
+      "description": "Standard banner with all content sections and featured image",
+      "props": {
+        "theme": "light",
+        "is_decorative": true,
+        "background_image_blend_mode": "multiply",
+        "breadcrumb": {
+          "links": [
+            {
+              "text": "Link 1",
+              "url": "https://example.com/breadcrumb-1"
+            },
+            {
+              "text": "Link 2",
+              "url": "https://example.com/breadcrumb-2"
+            },
+            {
+              "text": "Link 3",
+              "url": "https://example.com/breadcrumb-3"
+            }
+          ],
+          "active_is_link": false
+        },
+        "featured_image": {
+          "url": "./demo/images/demo2.jpg",
+          "alt": "Featured image alt text"
+        },
+        "background_image": {
+          "url": "background-image-url.jpg",
+          "alt": "Background image alt text"
+        }
+      },
+      "slots": {
+        "site_section": "Site section name",
+        "title": "Providing visually engaging digital experiences",
+        "content": "<p>Government grade set of high quality design themes that are accessible, inclusive and provide a consistent digital experience for your citizen.</p>"
+      }
+    },
+    {
+      "name": "Dark Theme Banner",
+      "description": "Banner with dark theme variation",
+      "props": {
+        "theme": "dark",
+        "is_decorative": true,
+        "background_image_blend_mode": "multiply"
+      },
+      "slots": {
+        "title": "Dark themed banner title",
+        "content": "<p>Content optimized for dark theme display.</p>"
+      }
+    },
+    {
+      "name": "Simple Banner",
+      "description": "Minimal banner with just title and content",
+      "props": {
+        "theme": "light",
+        "is_decorative": false
+      },
+      "slots": {
+        "title": "Simple banner title",
+        "content": "<p>Basic banner content without decorative elements.</p>"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Create a strong visual introduction to a page's content",
+      "Communicate the main purpose or theme of a page",
+      "Provide contextual navigation through breadcrumbs",
+      "Include primary and secondary call-to-action buttons for key user journeys",
+      "Establish visual hierarchy at the top of a page"
+    ],
+    "when_not_to_use": [
+      "The page requires a minimalist introduction without visual emphasis",
+      "Space is at a premium and a full-width banner would push important content below the fold",
+      "The page serves a purely functional purpose where a visual banner might distract users from completing tasks",
+      "Multiple banners would be needed on a single page, creating visual competition and confusion"
+    ],
+    "best_practices": [
+      "Ensure the heading clearly communicates the page's purpose, with supporting text that provides necessary context while remaining concise",
+      "Use background images that enhance rather than compete with content. Images should maintain sufficient contrast with text elements",
+      "Ensure the banner adapts appropriately across devices, with readable text and properly scaled imagery on all screen sizes",
+      "Limit buttons to a maximum of two, with clear hierarchy between primary and secondary actions. Button text should be action-oriented",
+      "When using breadcrumbs within the banner, ensure they provide clear navigational context while maintaining visual distinction from other banner elements",
+      "Maintain sufficient colour contrast between text and background. If using background images, ensure they don't interfere with text legibility",
+      "Optimise images for quick loading, especially on mobile devices, to avoid negatively impacting performance metrics"
+    ],
+    "accessibility": {
+      "wcag_compliance": "WCAG 2.2 AA",
+      "criteria_met": [
+        {
+          "criterion": "Non-text Content",
+          "level": "A",
+          "status": "Pass",
+          "notes": "The background image is considered decoration and can be ignored by screen readers"
+        },
+        {
+          "criterion": "Contrast (Minimum)",
+          "level": "AA",
+          "status": "Pass",
+          "notes": "Contrast meets the minimum 4.5:1 ratio"
+        },
+        {
+          "criterion": "Resize text",
+          "level": "AA",
+          "status": "Pass",
+          "notes": "Text is still visible and readable when resized to at least 200%"
+        },
+        {
+          "criterion": "Keyboard",
+          "level": "A",
+          "status": "Pass",
+          "notes": "Elements are accessible using keyboard only"
+        },
+        {
+          "criterion": "Focus Visible",
+          "level": "AA",
+          "status": "Pass",
+          "notes": "Focus is visible when navigating using a keyboard"
+        },
+        {
+          "criterion": "Text Spacing",
+          "level": "AA",
+          "status": "Pass",
+          "notes": "Text remains visible and readable with adjusted spacing parameters"
+        }
+      ]
+    },
+    "known_issues": [
+      "Mobile responsiveness: On some smaller mobile devices, the banner's text and buttons may appear crowded, affecting usability and visual appeal",
+      "Image loading: Large background images can impact page load performance, particularly on slower connections",
+      "Breadcrumb visibility: In some implementations, breadcrumbs may not have sufficient contrast against certain background images"
+    ],
+    "variations": [
+      "With Featured Image: Banner includes a featured image positioned on the right side (desktop)",
+      "Without Featured Image: Banner with full-width content layout",
+      "With Breadcrumbs: Banner includes breadcrumb navigation",
+      "With Background Image: Banner with background image and blend mode options",
+      "Decorative Variant: Banner with decorative clip-path effects and enhanced visual styling"
+    ],
+    "user_research": {
+      "confidence_rating": "Medium",
+      "findings": [
+        "Users appreciate the visual prominence of the component for establishing page context",
+        "Call-to-action buttons within banners receive good engagement when clearly labelled",
+        "Breadcrumb integration helps users understand their location within the site architecture"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

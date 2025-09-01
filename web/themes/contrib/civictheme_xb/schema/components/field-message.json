@@ -1,0 +1,206 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "field-message",
+  "name": "Field Message",
+  "description": "Component for form field messages with different status types (error, information, warning, success) that provide feedback to users about field validation and status.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/field-message/",
+    "extracted_from": {
+      "component_yml": "field-message.component.yml",
+      "template": "field-message.twig",
+      "styles": "field-message.scss",
+      "stories": "field-message.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": "",
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "content": {
+      "type": "string",
+      "required": false,
+      "description": "The message content."
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "default": "information",
+      "options": ["error", "information", "warning", "success"],
+      "description": "Message type (error, information, warning, success)."
+    },
+    "allow_html": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to allow HTML in text."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "field_message",
+      "template": "field-message.twig",
+      "libraries": ["civictheme/field-message"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-field-message",
+        "modifiers": [
+          "ct-field-message--error",
+          "ct-field-message--information",
+          "ct-field-message--warning", 
+          "ct-field-message--success",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-field-message__icon"
+        ],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-field-message-border-radius",
+        "$ct-field-message-light-information-color",
+        "$ct-field-message-light-information-background-color",
+        "$ct-field-message-light-information-border-color",
+        "$ct-field-message-light-information-icon-color",
+        "$ct-field-message-dark-information-color",
+        "$ct-field-message-dark-information-background-color",
+        "$ct-field-message-dark-information-border-color",
+        "$ct-field-message-dark-information-icon-color",
+        "$ct-field-message-light-warning-color",
+        "$ct-field-message-light-warning-background-color",
+        "$ct-field-message-light-warning-border-color",
+        "$ct-field-message-light-warning-icon-color",
+        "$ct-field-message-dark-warning-color",
+        "$ct-field-message-dark-warning-background-color",
+        "$ct-field-message-dark-warning-border-color",
+        "$ct-field-message-dark-warning-icon-color",
+        "$ct-field-message-light-error-color",
+        "$ct-field-message-light-error-background-color",
+        "$ct-field-message-light-error-border-color",
+        "$ct-field-message-light-error-icon-color",
+        "$ct-field-message-dark-error-color",
+        "$ct-field-message-dark-error-background-color",
+        "$ct-field-message-dark-error-border-color",
+        "$ct-field-message-dark-error-icon-color",
+        "$ct-field-message-light-success-color",
+        "$ct-field-message-light-success-background-color",
+        "$ct-field-message-light-success-border-color",
+        "$ct-field-message-light-success-icon-color",
+        "$ct-field-message-dark-success-color",
+        "$ct-field-message-dark-success-background-color",
+        "$ct-field-message-dark-success-border-color",
+        "$ct-field-message-dark-success-icon-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:icon"],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Error Message",
+      "description": "Field message showing an error state",
+      "props": {
+        "theme": "light",
+        "type": "error",
+        "content": "This field is required.",
+        "allow_html": true
+      }
+    },
+    {
+      "name": "Success Message",
+      "description": "Field message showing a success state",
+      "props": {
+        "theme": "light",
+        "type": "success",
+        "content": "Field validated successfully.",
+        "allow_html": false
+      }
+    },
+    {
+      "name": "Warning Message",
+      "description": "Field message showing a warning state",
+      "props": {
+        "theme": "light",
+        "type": "warning",
+        "content": "Please verify this information is correct.",
+        "allow_html": false
+      }
+    },
+    {
+      "name": "Information Message",
+      "description": "Field message providing information",
+      "props": {
+        "theme": "light",
+        "type": "information",
+        "content": "This field helps us provide better service.",
+        "allow_html": false
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Display form validation errors to users",
+      "Show success confirmations for field validation",
+      "Provide warnings about field input",
+      "Give informational feedback about field processing",
+      "Communicate real-time validation status"
+    ],
+    "when_not_to_use": [
+      "For general field descriptions - use field-description component instead",
+      "For static help text that doesn't change based on user input",
+      "For global form messages that apply to the entire form"
+    ],
+    "best_practices": [
+      "Use appropriate message types - error for validation failures, success for confirmations",
+      "Keep messages concise and actionable",
+      "Provide specific guidance on how to fix errors",
+      "Use consistent language and tone across message types",
+      "Ensure sufficient color contrast for accessibility",
+      "Include appropriate icons to reinforce message meaning"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Icons provide visual reinforcement but text should be self-explanatory. Messages should be announced to screen readers when they appear."
+    },
+    "known_issues": [],
+    "variations": [
+      "Error messages: Red styling with close icon for validation failures",
+      "Success messages: Green styling with approve icon for confirmations",
+      "Warning messages: Orange styling with exclamation icon for cautions",
+      "Information messages: Blue styling with information icon for neutral feedback"
+    ]
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T00:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

@@ -1,0 +1,383 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "navigation",
+  "name": "Navigation",
+  "description": "Navigation component for menu with various display types supporting hierarchical navigation, dropdowns, and responsive behavior",
+  "category": "organisms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/navigation/",
+    "extracted_from": {
+      "component_yml": "navigation.component.yml",
+      "template": "navigation.twig",
+      "styles": "navigation.scss",
+      "stories": "navigation.stories.js",
+      "stories_data": "navigation.stories.data.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/organisms/navigation.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation controlling color scheme"
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "Navigation name for nav element accessibility label",
+      "examples": ["Main navigation", "Primary menu"]
+    },
+    "menu_id": {
+      "type": "string",
+      "required": false,
+      "default": "navigation",
+      "description": "Optional menu ID used for grouping dropdown items and collapsible behavior"
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "default": "none",
+      "options": ["none", "inline", "dropdown", "drawer"],
+      "description": "Navigation display type controlling layout and interaction pattern"
+    },
+    "variant": {
+      "type": "enum",
+      "required": false,
+      "options": ["primary", "secondary"],
+      "description": "Navigation style variant affecting visual presentation"
+    },
+    "dropdown_columns": {
+      "type": "number",
+      "required": false,
+      "default": 1,
+      "minimum": 1,
+      "maximum": 6,
+      "description": "Number of columns for drawer dropdown layout"
+    },
+    "dropdown_columns_fill": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether dropdown items should fill available column space"
+    },
+    "is_animated": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to use animation for collapsible transitions"
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes for the container element"
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes for customization"
+    },
+    "items": {
+      "type": "array",
+      "required": true,
+      "description": "Hierarchical menu items supporting unlimited nesting",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Navigation item display text"
+          },
+          "url": {
+            "type": "string",
+            "required": false,
+            "description": "Link destination URL"
+          },
+          "in_active_trail": {
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Whether item is in the current page's navigation trail"
+          },
+          "is_expanded": {
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Whether item's submenu is expanded by default"
+          },
+          "below": {
+            "type": "array",
+            "required": false,
+            "description": "Child navigation items with recursive structure"
+          },
+          "attributes": {
+            "type": "string",
+            "required": false,
+            "description": "Additional HTML attributes for the item"
+          },
+          "modifier_class": {
+            "type": "string",
+            "required": false,
+            "description": "Additional CSS classes for the item"
+          }
+        }
+      }
+    }
+  },
+  "slots": {
+    "title": {
+      "description": "Optional title displayed above navigation items",
+      "accepts": ["content"],
+      "required": false
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "navigation",
+      "template": "navigation.twig",
+      "libraries": ["civictheme/navigation"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-navigation",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark",
+          "ct-navigation--none",
+          "ct-navigation--inline",
+          "ct-navigation--dropdown",
+          "ct-navigation--drawer",
+          "ct-navigation--primary",
+          "ct-navigation--secondary"
+        ],
+        "elements": [
+          "ct-navigation__title",
+          "ct-navigation__items",
+          "ct-navigation__menu",
+          "ct-navigation__has-dropdown",
+          "ct-navigation__dropdown-columns--1",
+          "ct-navigation__dropdown-columns--2",
+          "ct-navigation__dropdown-columns--3",
+          "ct-navigation__dropdown-columns--4",
+          "ct-navigation__dropdown-columns--5",
+          "ct-navigation__dropdown-columns--6",
+          "ct-navigation__dropdown-columns--fill"
+        ],
+        "states": [
+          "active",
+          "expanded",
+          "collapsed",
+          "hover",
+          "focus"
+        ]
+      },
+      "custom_properties": [
+        "$ct-navigation-breakpoint",
+        "$ct-navigation-light-menu-color",
+        "$ct-navigation-dark-menu-color",
+        "$ct-border-radius",
+        "$ct-navigation-dropdown-border-radius"
+      ],
+      "typography": "ct-typography('heading-5')",
+      "spacing": [
+        "ct-spacing()",
+        "ct-spacing(2)",
+        "ct-spacing(4)",
+        "ct-spacing(6)"
+      ]
+    }
+  },
+  "javascript": {
+    "behavior": "collapsible",
+    "features": [
+      "Expandable/collapsible menu sections",
+      "Animated transitions",
+      "Keyboard navigation support",
+      "Touch-friendly interaction"
+    ],
+    "data_attributes": {
+      "collapsible": "Controls collapsible behavior",
+      "collapsible-duration": "Animation duration for transitions"
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:heading", "civictheme:menu"],
+    "contains": ["heading", "menu", "link"],
+    "alternatives": ["mobile-navigation", "side-navigation"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Navigation",
+      "description": "Simple navigation without special display type",
+      "props": {
+        "theme": "light",
+        "type": "none",
+        "items": [
+          {
+            "title": "Home",
+            "url": "/",
+            "in_active_trail": true
+          },
+          {
+            "title": "About",
+            "url": "/about"
+          },
+          {
+            "title": "Services",
+            "url": "/services"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Dropdown Navigation",
+      "description": "Navigation with expandable dropdown menus",
+      "props": {
+        "theme": "light",
+        "type": "dropdown",
+        "variant": "primary",
+        "items": [
+          {
+            "title": "Services",
+            "url": "/services",
+            "is_expanded": false,
+            "below": [
+              {
+                "title": "Web Development",
+                "url": "/services/web"
+              },
+              {
+                "title": "Design",
+                "url": "/services/design"
+              }
+            ]
+          },
+          {
+            "title": "About",
+            "url": "/about"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Drawer Navigation",
+      "description": "Multi-column drawer with categorized navigation",
+      "props": {
+        "theme": "dark",
+        "type": "drawer",
+        "variant": "secondary",
+        "dropdown_columns": 3,
+        "dropdown_columns_fill": true,
+        "is_animated": true,
+        "items": [
+          {
+            "title": "Government Services",
+            "url": "/services",
+            "below": [
+              {
+                "title": "Health Services",
+                "url": "/services/health",
+                "below": [
+                  {
+                    "title": "Public Health",
+                    "url": "/services/health/public"
+                  },
+                  {
+                    "title": "Mental Health",
+                    "url": "/services/health/mental"
+                  }
+                ]
+              },
+              {
+                "title": "Education Services",
+                "url": "/services/education"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Users need to access different sections of website/application",
+      "Content requires logical hierarchy organization",
+      "Need consistent navigation across pages",
+      "Supporting both desktop and mobile patterns",
+      "Multiple site sections requiring organized access"
+    ],
+    "when_not_to_use": [
+      "Very few pages or simple linear structure",
+      "Highly specialized navigation patterns needed",
+      "Single-page scroll-based navigation exclusively",
+      "Custom navigation differing from web conventions"
+    ],
+    "best_practices": [
+      "Organize items logically with important items first",
+      "Use concise, descriptive labels for destinations",
+      "Maintain consistent placement across pages",
+      "Ensure active states are clearly visible",
+      "Adapt appropriately across screen sizes",
+      "Provide sufficient contrast and keyboard access",
+      "Give clear expanding/collapsing mechanisms",
+      "Indicate hover and active states clearly"
+    ],
+    "accessibility": {
+      "wcag_compliance": "WCAG 2.2 AA (with exceptions)",
+      "wcag_issues": [
+        "2.5.8 Target Size (Minimum): Some navigation targets may not meet minimum size requirements"
+      ],
+      "features": [
+        "Keyboard navigation support",
+        "Screen reader compatibility with navigation role",
+        "Focus visibility and management",
+        "ARIA expanded states for dropdowns",
+        "Consistent navigation patterns"
+      ],
+      "attributes": [
+        "aria-label: Uses 'name' prop for navigation identification",
+        "aria-expanded: Applied to expandable items",
+        "data-collapsible: Controls collapsible behavior"
+      ]
+    },
+    "responsive": {
+      "mobile": "Hidden by default, shown via hamburger menu",
+      "desktop": "Full navigation display with flex layout"
+    },
+    "variations": [
+      "none: Simple list without special layout, used for basic navigation structures",
+      "inline: Horizontal layout with wrapping, suitable for limited top-level items", 
+      "dropdown: Expandable sections revealing additional options on hover/click",
+      "drawer: Expansive panel with categorized navigation for complex site structures"
+    ],
+    "known_issues": [
+      "Mobile usability on very small screens",
+      "Dropdown timing sensitivity for slower navigation",
+      "Deep navigation hierarchy cognitive load",
+      "Target size WCAG compliance needs improvement"
+    ],
+    "user_research": {
+      "confidence_rating": "Very High",
+      "findings": [
+        "Clear visual hierarchy appreciated by users",
+        "Dropdown system effective for complex structures",
+        "Mobile patterns refined through iterative testing",
+        "Visual indicators improve interaction understanding",
+        "Inline header positioning preserves screen real estate"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

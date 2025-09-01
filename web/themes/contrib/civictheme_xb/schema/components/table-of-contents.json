@@ -1,0 +1,240 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "table-of-contents",
+  "title": "Table of Contents",
+  "description": "Component for page section links table of contents",
+  "type": "object",
+  "category": "molecules",
+  "status": "stable",
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation",
+      "enum": ["light", "dark"],
+      "default": "light"
+    },
+    "title": {
+      "type": "string",
+      "description": "Table of contents title (e.g., 'On this page')"
+    },
+    "position": {
+      "type": "string",
+      "description": "TOC position relative to content",
+      "enum": ["before", "after", "prepend", "append"],
+      "default": "before"
+    },
+    "anchor_selector": {
+      "type": "string",
+      "description": "CSS selector for headings to include in TOC (e.g., 'h2, h3')",
+      "default": "h2"
+    },
+    "scope_selector": {
+      "type": "string",
+      "description": "CSS selector for the content area to generate TOC from",
+      "default": ".ct-basic-content"
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes"
+    }
+  },
+  "slots": {
+    "links": {
+      "description": "Table of contents links (manual mode)",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Link text"
+          },
+          "url": {
+            "type": "string",
+            "description": "Link URL (usually anchor link)"
+          }
+        },
+        "required": ["title", "url"]
+      }
+    },
+    "content": {
+      "description": "Content to scan for headings (automatic mode, only displays when links are not provided)"
+    }
+  },
+  "blocks": {
+    "content_block": {
+      "description": "Override the default content rendering"
+    }
+  },
+  "css_classes": {
+    "base": "ct-table-of-contents",
+    "modifiers": {
+      "position_before": "ct-table-of-contents--position-before",
+      "position_after": "ct-table-of-contents--position-after",
+      "position_prepend": "ct-table-of-contents--position-prepend",
+      "position_append": "ct-table-of-contents--position-append",
+      "theme_light": "ct-theme-light",
+      "theme_dark": "ct-theme-dark"
+    },
+    "elements": {
+      "title": "ct-table-of-contents__title",
+      "links": "ct-table-of-contents__links",
+      "link_item": "ct-table-of-contents__link-item",
+      "link": "ct-table-of-contents__link"
+    }
+  },
+  "css_variables": {
+    "$ct-table-of-contents-max-width": "Maximum width of TOC component",
+    "$ct-table-of-contents-min-width": "Minimum width of TOC component",
+    "$ct-table-of-contents-link-active-border-radius": "Border radius for active link state"
+  },
+  "javascript": {
+    "automatic_mode": {
+      "description": "JavaScript automatically generates TOC from page headings",
+      "data_attributes": {
+        "data-table-of-contents-theme": "Theme for automatic mode",
+        "data-table-of-contents-title": "Title for automatic mode",
+        "data-table-of-contents-anchor-selector": "Selector for headings to include",
+        "data-table-of-contents-anchor-scope-selector": "Scope selector for content area",
+        "data-table-of-contents-position": "Position relative to content"
+      },
+      "features": [
+        "Automatically generates anchor IDs for headings without IDs",
+        "Handles duplicate IDs by adding random suffixes",
+        "Scans specified content areas for headings",
+        "Places TOC in specified position relative to content"
+      ]
+    }
+  },
+  "modes": {
+    "manual": {
+      "description": "Manually provide links via the links slot",
+      "required": ["links"]
+    },
+    "automatic": {
+      "description": "Automatically generate TOC from page headings using JavaScript",
+      "required": ["scope_selector"],
+      "optional": ["anchor_selector", "title", "position"]
+    }
+  },
+  "accessibility": {
+    "features": [
+      "Uses semantic heading structure (h2 for title)",
+      "Provides keyboard navigation with proper focus management",
+      "Links include focus-visible styling",
+      "List structure for screen reader navigation"
+    ],
+    "guidelines": [
+      "Ensure heading hierarchy is logical in target content",
+      "Provide meaningful anchor text",
+      "Test keyboard navigation between TOC and content",
+      "Verify screen reader announces TOC structure properly"
+    ]
+  },
+  "platform_integration": {
+    "drupal": {
+      "field_types": ["field_text_long", "field_text_with_summary"],
+      "view_modes": ["full", "default"],
+      "template_suggestions": [
+        "table-of-contents--[view-mode].twig",
+        "table-of-contents--[bundle].twig"
+      ]
+    }
+  },
+  "usage_examples": {
+    "manual": {
+      "description": "Manual TOC with predefined links",
+      "props": {
+        "theme": "light",
+        "title": "On this page",
+        "position": "before",
+        "links": [
+          {
+            "title": "Introduction",
+            "url": "#introduction"
+          },
+          {
+            "title": "Getting Started",
+            "url": "#getting-started"
+          },
+          {
+            "title": "Advanced Topics",
+            "url": "#advanced-topics"
+          }
+        ]
+      }
+    },
+    "automatic": {
+      "description": "Automatic TOC generation from content headings",
+      "props": {
+        "theme": "light",
+        "title": "Contents",
+        "anchor_selector": "h2, h3",
+        "scope_selector": ".content-area",
+        "position": "before"
+      }
+    },
+    "positioned": {
+      "description": "TOC positioned after content",
+      "props": {
+        "theme": "dark", 
+        "title": "What you learned",
+        "position": "after",
+        "anchor_selector": "h2",
+        "scope_selector": ".article-content"
+      }
+    }
+  },
+  "design_tokens": {
+    "spacing": [
+      "Component margins: ct-spacing(4) for before/after positions",
+      "Title margin: ct-spacing(3) bottom",
+      "Link padding: ct-spacing() vertical, ct-spacing(2) horizontal",
+      "Mobile top margin: ct-spacing(3)"
+    ],
+    "typography": [
+      "Title: heading-4 typography mixin",
+      "Links: label-extra-small typography mixin"
+    ],
+    "layout": [
+      "Responsive: full width mobile, max-content desktop",
+      "Container uses grid system with container/row/col structure"
+    ]
+  },
+  "best_practices": [
+    "Use descriptive titles like 'On this page' or 'Contents'",
+    "Choose appropriate anchor selectors to avoid cluttered TOCs",
+    "Test with various content lengths and heading structures",
+    "Consider TOC placement in relation to page layout",
+    "Ensure sufficient color contrast for link text",
+    "Use consistent heading hierarchy in target content",
+    "Limit TOC to essential navigation points"
+  ],
+  "related_components": [
+    "basic-content",
+    "heading",
+    "link"
+  ],
+  "extraction_metadata": {
+    "source_files": [
+      "/packages/sdc/components/02-molecules/table-of-contents/table-of-contents.component.yml",
+      "/packages/sdc/components/02-molecules/table-of-contents/table-of-contents.twig",
+      "/packages/sdc/components/02-molecules/table-of-contents/table-of-contents.scss",
+      "/packages/sdc/components/02-molecules/table-of-contents/table-of-contents.stories.js",
+      "/packages/sdc/components/02-molecules/table-of-contents/table-of-contents.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": "high",
+    "notes": [
+      "Component supports both manual and automatic modes",
+      "JavaScript automatically generates IDs for headings without them",
+      "Uses grid system with responsive container layout",
+      "Position options control placement relative to content",
+      "Link styling includes distinctive stripe elements and hover states"
+    ]
+  }
+}

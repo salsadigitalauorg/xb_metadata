@@ -1,0 +1,238 @@
+{
+  "$schema": "https://schemas.dsis.dev/component/v1.0.0/schema.json",
+  "id": "item-list",
+  "name": "Item List",
+  "description": "Flexible list component for displaying items in horizontal or vertical layouts with configurable spacing and sizing options. Provides consistent spacing and responsive behavior.",
+  "category": "base",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "platform": {
+    "drupal": {
+      "version": "^10 || ^11",
+      "sdc": true,
+      "namespace": "civictheme",
+      "schema_version": "v1"
+    }
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "direction": {
+        "type": "string",
+        "enum": ["horizontal", "vertical"],
+        "default": "horizontal",
+        "title": "Direction",
+        "description": "Layout direction for list items"
+      },
+      "size": {
+        "type": "string",
+        "enum": ["small", "regular", "large"],
+        "default": "regular",
+        "title": "Size",
+        "description": "Size variation affecting gap spacing between items"
+      },
+      "no_gap": {
+        "type": "boolean",
+        "default": false,
+        "title": "No Gap",
+        "description": "Whether to remove all spacing between items"
+      },
+      "items": {
+        "type": "array",
+        "title": "List Items",
+        "description": "Array of HTML content strings for each list item",
+        "items": {
+          "type": "string",
+          "description": "HTML content for individual list item"
+        }
+      },
+      "attributes": {
+        "type": "string",
+        "title": "Additional Attributes",
+        "description": "Additional HTML attributes to apply to the root element"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes to customize appearance"
+      }
+    },
+    "required": ["items"]
+  },
+  "slots": {},
+  "css": {
+    "root_class": "ct-item-list",
+    "modifiers": [
+      {
+        "class": "ct-item-list--horizontal",
+        "description": "Horizontal flexbox layout with flex-wrap enabled"
+      },
+      {
+        "class": "ct-item-list--vertical",
+        "description": "Vertical flexbox layout with column direction"
+      },
+      {
+        "class": "ct-item-list--small",
+        "description": "Small spacing between items"
+      },
+      {
+        "class": "ct-item-list--regular",
+        "description": "Regular spacing between items (default)"
+      },
+      {
+        "class": "ct-item-list--large",
+        "description": "Large spacing between items with responsive adjustment"
+      },
+      {
+        "class": "ct-item-list--no-gap",
+        "description": "Removes all spacing between items"
+      }
+    ],
+    "elements": [
+      {
+        "class": "ct-item-list__item",
+        "description": "Individual list item container"
+      }
+    ],
+    "variables": [
+      "$ct-item-list-horizontal-regular-column-gap",
+      "$ct-item-list-horizontal-regular-row-gap",
+      "$ct-item-list-horizontal-small-column-gap",
+      "$ct-item-list-horizontal-small-row-gap",
+      "$ct-item-list-horizontal-large-column-gap",
+      "$ct-item-list-horizontal-large-row-gap",
+      "$ct-item-list-vertical-regular-column-gap",
+      "$ct-item-list-vertical-regular-row-gap",
+      "$ct-item-list-vertical-small-column-gap",
+      "$ct-item-list-vertical-small-row-gap",
+      "$ct-item-list-vertical-large-column-gap",
+      "$ct-item-list-vertical-large-row-gap"
+    ]
+  },
+  "responsive_behavior": {
+    "large_size": {
+      "mobile": "Uses half the configured gap values",
+      "desktop": "Uses full gap values at responsive breakpoint"
+    },
+    "horizontal_layout": {
+      "wrapping": "flex-wrap enabled for multi-row layouts",
+      "gap_handling": "Separate column and row gap values"
+    }
+  },
+  "blocks": [],
+  "dependencies": [],
+  "examples": [
+    {
+      "name": "Horizontal List",
+      "description": "Standard horizontal list with regular spacing",
+      "props": {
+        "direction": "horizontal",
+        "size": "regular",
+        "no_gap": false,
+        "items": [
+          "<span>Item 1</span>",
+          "<span>Item 2</span>",
+          "<span>Item 3</span>"
+        ]
+      }
+    },
+    {
+      "name": "Vertical List with Large Spacing",
+      "description": "Vertical list with large spacing between items",
+      "props": {
+        "direction": "vertical",
+        "size": "large",
+        "no_gap": false,
+        "items": [
+          "<div class=\"card\">Card 1</div>",
+          "<div class=\"card\">Card 2</div>",
+          "<div class=\"card\">Card 3</div>"
+        ]
+      }
+    },
+    {
+      "name": "Compact Horizontal List",
+      "description": "Horizontal list with no spacing for compact layouts",
+      "props": {
+        "direction": "horizontal",
+        "size": "regular",
+        "no_gap": true,
+        "items": [
+          "<button>Button 1</button>",
+          "<button>Button 2</button>",
+          "<button>Button 3</button>"
+        ]
+      }
+    },
+    {
+      "name": "Small Vertical Navigation",
+      "description": "Vertical navigation list with small spacing",
+      "props": {
+        "direction": "vertical",
+        "size": "small",
+        "no_gap": false,
+        "items": [
+          "<a href=\"#\">Home</a>",
+          "<a href=\"#\">About</a>",
+          "<a href=\"#\">Services</a>",
+          "<a href=\"#\">Contact</a>"
+        ]
+      }
+    }
+  ],
+  "accessibility": {
+    "guidelines": [
+      "Uses semantic ul and li elements for proper list structure",
+      "Maintains logical reading order for screen readers",
+      "List items inherit accessibility from their content",
+      "Respects reduced motion preferences in responsive transitions"
+    ],
+    "wcag_compliance": [
+      "WCAG 2.1 AA - 1.3.1 Info and Relationships (semantic structure)",
+      "WCAG 2.1 AA - 1.3.2 Meaningful Sequence"
+    ],
+    "aria_support": "Standard list semantics through ul/li structure"
+  },
+  "best_practices": [
+    "Use semantic HTML content within list items",
+    "Choose direction based on content and layout requirements",
+    "Consider responsive behavior when using large size",
+    "Use no_gap sparingly and only when design requires it",
+    "Test with various content lengths to ensure proper wrapping",
+    "Ensure sufficient contrast if items have background colors",
+    "Keep item content concise for better readability"
+  ],
+  "use_cases": [
+    "Button groups and action lists",
+    "Tag collections and category lists",
+    "Navigation menus and breadcrumbs",
+    "Card layouts and content grids",
+    "Social media link collections",
+    "Step indicators and progress flows"
+  ],
+  "related_components": ["menu", "tag", "button", "link"],
+  "technical_notes": [
+    "Uses CSS flexbox for layout control",
+    "Responsive gap adjustments for large size only",
+    "Box model reset applied to root element",
+    "Sass math functions for responsive calculations",
+    "No JavaScript dependencies - pure CSS solution"
+  ],
+  "extraction_meta": {
+    "source_files": [
+      "/packages/sdc/components/00-base/item-list/item-list.component.yml",
+      "/packages/sdc/components/00-base/item-list/item-list.twig",
+      "/packages/sdc/components/00-base/item-list/item-list.scss",
+      "/packages/sdc/components/00-base/item-list/item-list.stories.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": 0.95,
+    "notes": [
+      "Component has stable status in source",
+      "Simple but flexible foundation component",
+      "Comprehensive responsive spacing system",
+      "Clear documentation and good examples"
+    ]
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component.schema.json",
+  "metadata": {
+    "id": "civictheme-map",
+    "name": "Map",
+    "description": "Component for interactive maps with supporting information. Embeds map iframes with optional address display and external link to full map view.",
+    "version": "1.0.0",
+    "category": "molecules",
+    "subcategory": "media",
+    "status": "stable",
+    "created": "2024-01-01",
+    "modified": "2024-01-01",
+    "author": "CivicTheme",
+    "tags": ["map", "iframe", "location", "address", "google-maps", "interactive"]
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "title": "Theme",
+        "description": "Theme variation controlling the visual appearance",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "examples": ["light", "dark"]
+      },
+      "vertical_spacing": {
+        "type": "string",
+        "title": "Vertical Spacing",
+        "description": "Vertical spacing position for the component",
+        "enum": ["top", "bottom", "both"],
+        "examples": ["top", "bottom", "both"]
+      },
+      "with_background": {
+        "type": "boolean",
+        "title": "With Background",
+        "description": "Whether to display the component with a themed background",
+        "default": false,
+        "examples": [true, false]
+      },
+      "attributes": {
+        "type": "string",
+        "title": "HTML Attributes",
+        "description": "Additional HTML attributes to apply to the root element",
+        "examples": ["data-map-id=\"location-1\"", "id=\"main-map\""]
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes for styling variations",
+        "examples": ["ct-map--custom", "featured-map"]
+      },
+      "address": {
+        "type": "string",
+        "title": "Address",
+        "description": "Optional address or location name for accessibility and context",
+        "examples": ["123 Main Street, Melbourne, Australia", "Sydney Opera House", "Central Park, New York"]
+      },
+      "url": {
+        "type": "string",
+        "title": "Map iframe URL",
+        "description": "URL for the map iframe embed (required for the component to render)",
+        "format": "uri",
+        "examples": [
+          "https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed",
+          "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d..."
+        ]
+      },
+      "view_url": {
+        "type": "string",
+        "title": "External Map URL",
+        "description": "URL to open the full map in a new window/tab",
+        "format": "uri",
+        "examples": [
+          "https://maps.google.com/maps?q=melbourne+australia",
+          "https://www.google.com/maps/place/Sydney+Opera+House"
+        ]
+      },
+      "view_text": {
+        "type": "string",
+        "title": "View Link Text",
+        "description": "Text for the external map link button",
+        "default": "View in Google Maps",
+        "examples": ["View in Google Maps", "Open full map", "Get directions"]
+      }
+    },
+    "required": ["url"],
+    "examples": [
+      {
+        "theme": "light",
+        "url": "https://maps.google.com/maps?q=australia&t=&z=3&ie=UTF8&iwloc=&output=embed",
+        "address": "Australia",
+        "view_url": "https://example.com",
+        "view_text": "View in Google Maps",
+        "vertical_spacing": "both",
+        "with_background": true
+      }
+    ]
+  },
+  "slots": {
+    "content_top": {
+      "title": "Top Content",
+      "description": "Content area above the map for titles, descriptions, or additional information",
+      "examples": ["<h3>Our Location</h3><p>Visit us at our main office.</p>"]
+    },
+    "content_bottom": {
+      "title": "Bottom Content",
+      "description": "Content area below the map for additional information, hours, or contact details",
+      "examples": ["<p>Open Monday to Friday, 9am - 5pm</p>", "<div class=\"contact-info\">Phone: (03) 9123 4567</div>"]
+    }
+  },
+  "css": {
+    "classes": {
+      "root": "ct-map",
+      "modifiers": [
+        "ct-map--with-background",
+        "ct-vertical-spacing-inset--top",
+        "ct-vertical-spacing-inset--bottom",
+        "ct-vertical-spacing-inset--both"
+      ],
+      "elements": [
+        "ct-map__content-top",
+        "ct-map__canvas",
+        "ct-map__iframe",
+        "ct-map__link",
+        "ct-map__content-bottom"
+      ]
+    },
+    "layout": {
+      "responsive": "Uses Bootstrap-like grid system (container, row, col)",
+      "iframe": "Responsive iframe with aspect ratio maintained using padding-bottom technique"
+    },
+    "variables": {
+      "space-horizontal": "$ct-map-space-horizontal",
+      "padding-bottom": "$ct-map-padding-bottom"
+    }
+  },
+  "integration": {
+    "drupal": {
+      "module": "civictheme",
+      "template": "civictheme:map",
+      "library": "civictheme/map",
+      "dependencies": ["civictheme/iframe", "civictheme/button"],
+      "field_mapping": {
+        "node.field_map_embed_url": "url",
+        "node.field_map_address": "address",
+        "node.field_map_external_url": "view_url"
+      }
+    },
+    "components_used": [
+      "civictheme:iframe",
+      "civictheme:button"
+    ]
+  },
+  "accessibility": {
+    "requirements": [
+      "Map iframe must have appropriate title attribute for screen readers",
+      "Address should be provided for context when available",
+      "External link should indicate it opens in new window",
+      "Keyboard navigation should work for all interactive elements"
+    ],
+    "aria": {
+      "properties": [
+        "iframe title attribute with address when available",
+        "External link indicates new window behavior"
+      ]
+    },
+    "iframe": {
+      "allowfullscreen": "Enables fullscreen functionality",
+      "data_chromatic": "ignore attribute for visual testing"
+    }
+  },
+  "security": {
+    "iframe": {
+      "considerations": "Only use trusted map providers (Google Maps, etc.)",
+      "attributes": "Component includes allowfullscreen attribute"
+    }
+  },
+  "performance": {
+    "loading": "Consider lazy loading for maps below the fold",
+    "optimization": "Map iframes can impact page load performance",
+    "data_usage": "External maps consume user data"
+  },
+  "usage": {
+    "guidelines": [
+      "Always provide a URL for the map iframe to render",
+      "Include address for accessibility and context",
+      "Provide external link for full map functionality",
+      "Consider mobile experience and touch interactions"
+    ],
+    "examples": [
+      {
+        "title": "Basic Map",
+        "description": "Simple map embed with external link",
+        "code": "{% include 'civictheme:map' with { theme: 'light', url: 'https://maps.google.com/maps?q=melbourne', view_url: 'https://maps.google.com/maps?q=melbourne', address: 'Melbourne, Australia' } only %}"
+      },
+      {
+        "title": "Map with Content",
+        "description": "Map with additional content areas",
+        "code": "{% include 'civictheme:map' with { theme: 'light', url: '...', content_top: '<h3>Visit Us</h3>', content_bottom: '<p>Parking available</p>' } only %}"
+      }
+    ],
+    "best_practices": [
+      "Always provide meaningful address for accessibility",
+      "Use descriptive text for external map links",
+      "Test map functionality across different devices",
+      "Consider privacy implications of embedding third-party maps",
+      "Provide fallback content for users with JavaScript disabled"
+    ]
+  },
+  "testing": {
+    "unit_tests": [
+      "Component renders with required URL",
+      "External link appears when view_url provided",
+      "Address appears in iframe title when provided",
+      "Background styling applies when with_background is true"
+    ],
+    "accessibility_tests": [
+      "Iframe has proper title attribute",
+      "External link indicates new window behavior",
+      "Keyboard navigation works for interactive elements"
+    ],
+    "visual_regression": [
+      "Light and dark theme variations",
+      "With and without background",
+      "Various vertical spacing options",
+      "Responsive behavior on different screen sizes"
+    ]
+  },
+  "extraction": {
+    "source": "CivicTheme uikit-main repository",
+    "files_analyzed": [
+      "map.component.yml",
+      "map.twig",
+      "map.scss",
+      "map.stories.js"
+    ],
+    "confidence": 0.95,
+    "last_updated": "2024-01-01",
+    "notes": "Complete component analysis including iframe handling, responsive design, and accessibility considerations"
+  }
+}

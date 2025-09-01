@@ -1,0 +1,194 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "search",
+  "name": "Search",
+  "description": "A search component that provides users with a method to find content by entering keywords or phrases, enhancing site navigation and content discovery.",
+  "category": "molecules",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/search/",
+    "extracted_from": {
+      "component_yml": "search.component.yml",
+      "template": "search.twig",
+      "styles": "search.scss",
+      "stories": "search.stories.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/search.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)"
+    },
+    "text": {
+      "type": "string",
+      "required": false,
+      "default": "Search",
+      "description": "Text label for the search link"
+    },
+    "url": {
+      "type": "url",
+      "required": true,
+      "default": "/search",
+      "description": "URL to the search results page"
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes for the search container"
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes for styling variations"
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "search",
+      "template": "search.twig",
+      "libraries": ["civictheme/search"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-search",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-search__link",
+          "ct-search__link-text"
+        ],
+        "states": [
+          "hover",
+          "active",
+          "focus"
+        ]
+      },
+      "custom_properties": [
+        "--ct-navigation-drawer-menu-item-hover-background-color",
+        "--ct-navigation-menu-hover-color",
+        "--ct-navigation-menu-item-hover-border-color",
+        "--ct-navigation-drawer-menu-item-active-background-color",
+        "--ct-navigation-menu-active-color",
+        "--ct-navigation-menu-item-active-border-color"
+      ],
+      "typography": "label-regular",
+      "spacing": {
+        "padding_horizontal": "ct-spacing(2)",
+        "padding_vertical": "$ct-navigation-drawer-top-offset",
+        "icon_margin": "ct-spacing(0.5)"
+      }
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:link"],
+    "contains": ["link", "icon"],
+    "alternatives": ["input", "textfield"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Default Search",
+      "description": "Basic search component with light theme",
+      "props": {
+        "theme": "light",
+        "text": "Search",
+        "url": "/search"
+      }
+    },
+    {
+      "name": "Dark Theme Search",
+      "description": "Search component with dark theme variation",
+      "props": {
+        "theme": "dark",
+        "text": "Search",
+        "url": "/search"
+      }
+    },
+    {
+      "name": "Custom Search",
+      "description": "Search with custom text and URL",
+      "props": {
+        "theme": "light",
+        "text": "Find content",
+        "url": "/custom-search"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Website contains large amount of content requiring quick discovery",
+      "Users may not know exact location within navigation structure",
+      "Providing alternative navigation method to complement primary navigation",
+      "Analytics show frequent content searches",
+      "Site serves diverse user needs where browsing alone is insufficient"
+    ],
+    "when_not_to_use": [
+      "Website has simple structure with minimal, easily navigated content",
+      "Search functionality adds unnecessary complexity",
+      "Content doesn't lend itself to keyword searching",
+      "Cannot commit resources to maintaining quality search results"
+    ],
+    "best_practices": [
+      "Position consistently across site, typically in header or utility navigation",
+      "Include visible label or clear placeholder text",
+      "Size appropriately for typical search queries",
+      "Include visually distinct search button with clear label or icon",
+      "Ensure mobile optimization with responsive design",
+      "Provide keyboard accessibility and proper focus states",
+      "Handle errors gracefully with helpful guidance",
+      "Optimize performance for quick results delivery"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA (with exceptions)",
+      "wcag_issues": [
+        "2.5.8 Target Size (Minimum): Target size does not meet WCAG 2.2 Level AA requirements (24x24 CSS pixels minimum)"
+      ],
+      "keyboard_support": true,
+      "screen_reader_support": true,
+      "focus_management": true,
+      "notes": "Generally meets accessibility requirements but needs target size adjustment"
+    },
+    "responsive": {
+      "mobile": {
+        "text_visibility": "hidden",
+        "behavior": "Icon-only display to save space"
+      },
+      "desktop": {
+        "text_visibility": "visible",
+        "behavior": "Full text and icon display with hover effects"
+      }
+    },
+    "known_issues": [
+      "Target size compliance: Does not meet WCAG 2.2 minimum target size requirements",
+      "Mobile text visibility: Search text is hidden on mobile which may impact discoverability",
+      "Search activation: Requires navigation to search page rather than inline search"
+    ],
+    "variations": [
+      "Inline search: Search box appears directly in interface, typically in header",
+      "Popover search: Search box appears in popover panel when search icon is clicked"
+    ],
+    "user_research": {
+      "confidence_rating": "Medium",
+      "findings": [
+        "Search button disabled until valid query prevents unfavorable results scenarios",
+        "Based on previous commercial project learnings"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

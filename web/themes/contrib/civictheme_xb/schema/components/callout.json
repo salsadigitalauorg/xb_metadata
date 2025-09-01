@@ -1,0 +1,225 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "callout",
+  "name": "Callout",
+  "description": "Content component for highlighting important information with title, content and links. Provides a prominent way to draw attention to key messages or call-to-action content.",
+  "category": "molecules",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/callout/",
+    "extracted_from": {
+      "component_yml": "callout.component.yml",
+      "template": "callout.twig", 
+      "styles": "callout.scss",
+      "stories": "callout.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "vertical_spacing": {
+      "type": "enum",
+      "required": false,
+      "options": ["top", "bottom", "both"],
+      "description": "Vertical spacing position."
+    },
+    "links": {
+      "type": "array",
+      "required": false,
+      "description": "Array of link objects for call-to-action buttons or links.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Link text"
+          },
+          "url": {
+            "type": "string",
+            "description": "Link URL"
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "description": "Whether to open link in new window"
+          },
+          "is_external": {
+            "type": "boolean",
+            "description": "Whether the link is external"
+          }
+        }
+      }
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {
+    "title": {
+      "description": "Callout title content."
+    },
+    "content": {
+      "description": "Main callout content text."
+    },
+    "content_top": {
+      "description": "Additional content area above main content."
+    },
+    "content_bottom": {
+      "description": "Additional content area below main content."
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "callout",
+      "template": "callout.twig",
+      "libraries": ["civictheme/callout"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-callout",
+        "modifiers": [
+          "ct-vertical-spacing-inset--top",
+          "ct-vertical-spacing-inset--bottom", 
+          "ct-vertical-spacing-inset--both",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-callout__wrapper",
+          "ct-callout__content-top",
+          "ct-callout__inner",
+          "ct-callout__title",
+          "ct-callout__content",
+          "ct-callout__links",
+          "ct-callout__content-bottom"
+        ],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-callout-light-background-color",
+        "$ct-callout-light-border-color",
+        "$ct-callout-dark-background-color",
+        "$ct-callout-dark-border-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:heading", "civictheme:paragraph", "civictheme:button", "civictheme:link"],
+    "contains": ["heading", "paragraph", "button", "link"],
+    "alternatives": ["banner", "promo"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Callout",
+      "description": "Simple callout with title and content",
+      "props": {
+        "theme": "light",
+        "title": "Important Notice",
+        "content": "This is an important message that needs to stand out from the rest of the content."
+      }
+    },
+    {
+      "name": "Callout with Links",
+      "description": "Callout with call-to-action links",
+      "props": {
+        "theme": "light",
+        "title": "Get Started Today",
+        "content": "Join thousands of users who are already benefiting from our service.",
+        "links": [
+          {
+            "text": "Sign Up Now",
+            "url": "/signup"
+          },
+          {
+            "text": "Learn More",
+            "url": "/about"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Dark Theme Callout",
+      "description": "Callout with dark theme styling",
+      "props": {
+        "theme": "dark",
+        "title": "Special Offer",
+        "content": "Limited time offer - don't miss out on this exclusive opportunity.",
+        "vertical_spacing": "both",
+        "links": [
+          {
+            "text": "Claim Offer",
+            "url": "/offer"
+          }
+        ]
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Highlight important announcements or messages",
+      "Create prominent call-to-action sections",
+      "Draw attention to special offers or promotions",
+      "Emphasize key information within content",
+      "Provide secondary navigation or next steps"
+    ],
+    "when_not_to_use": [
+      "For general content - use regular text components",
+      "As primary navigation - use navigation components",
+      "For complex forms or interactions - use specialized components",
+      "When the content doesn't need special emphasis"
+    ],
+    "best_practices": [
+      "Use clear, concise titles that grab attention",
+      "Keep content focused and action-oriented",
+      "Limit the number of links to avoid decision paralysis",
+      "Use appropriate vertical spacing to separate from other content",
+      "Ensure sufficient contrast for readability",
+      "Test call-to-action effectiveness with users",
+      "Use consistently throughout the site for similar types of content"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper semantic markup for highlighted content with accessible link structures."
+    },
+    "known_issues": [],
+    "variations": [
+      "Content types: Text-only, with links, with multiple content areas",
+      "Spacing: Top, bottom, or both vertical spacing options",
+      "Theme variations: Light and dark theme support",
+      "Link types: Internal and external links with various behaviors",
+      "Content slots: Flexible content areas for different use cases"
+    ],
+    "user_research": {
+      "confidence_rating": "Medium",
+      "findings": [
+        "Users respond well to visually distinct callout sections",
+        "Clear call-to-action buttons improve conversion rates",
+        "Too many links in callouts can reduce effectiveness",
+        "Consistent styling helps users recognize important information"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

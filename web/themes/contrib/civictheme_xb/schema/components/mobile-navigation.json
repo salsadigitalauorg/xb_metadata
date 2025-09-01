@@ -1,0 +1,494 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component-schema.json",
+  "id": "mobile-navigation",
+  "name": "Mobile Navigation",
+  "description": "User-friendly, accessible mobile navigation system that helps users navigate websites on mobile devices while maintaining hierarchy and context.",
+  "category": "organism",
+  "status": "stable",
+  "metadata": {
+    "version": "1.8.0",
+    "platform": "drupal",
+    "framework": "twig",
+    "designSystem": "CivicTheme",
+    "accessibility": {
+      "wcagCompliant": true,
+      "wcagLevel": "AA",
+      "screenReaderSupport": true,
+      "keyboardNavigation": true,
+      "keyboardTrap": true,
+      "focusManagement": true
+    },
+    "responsive": true,
+    "maintainer": "CivicTheme Team",
+    "interactive": true
+  },
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation controlling color scheme and styling",
+      "enum": ["light", "dark"],
+      "default": "light",
+      "category": "appearance"
+    },
+    "top_menu": {
+      "type": "array",
+      "description": "Top section menu items with hierarchical structure",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Menu item display title"
+          },
+          "url": {
+            "type": "string",
+            "description": "Menu item target URL"
+          },
+          "in_active_trail": {
+            "type": "boolean",
+            "description": "Whether item is in active navigation trail"
+          },
+          "is_expanded": {
+            "type": "boolean",
+            "description": "Whether item submenu is expanded"
+          },
+          "below": {
+            "type": "array",
+            "description": "Submenu items array",
+            "items": {
+              "$ref": "#/props/top_menu/items"
+            }
+          }
+        },
+        "required": ["title", "url"]
+      },
+      "category": "content"
+    },
+    "bottom_menu": {
+      "type": "array",
+      "description": "Bottom utility section menu items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Menu item display title"
+          },
+          "url": {
+            "type": "string",
+            "description": "Menu item target URL"
+          },
+          "in_active_trail": {
+            "type": "boolean",
+            "description": "Whether item is in active navigation trail"
+          },
+          "is_expanded": {
+            "type": "boolean",
+            "description": "Whether item submenu is expanded"
+          },
+          "below": {
+            "type": "array",
+            "description": "Submenu items array",
+            "items": {
+              "$ref": "#/props/bottom_menu/items"
+            }
+          }
+        },
+        "required": ["title", "url"]
+      },
+      "category": "content"
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes for navigation container",
+      "category": "technical"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes for custom styling",
+      "category": "styling"
+    }
+  },
+  "slots": [
+    {
+      "name": "content_top",
+      "description": "Top content area above navigation menus",
+      "required": false
+    },
+    {
+      "name": "content_bottom",
+      "description": "Bottom content area below navigation menus",
+      "required": false
+    }
+  ],
+  "blocks": [
+    {
+      "name": "content_top_block",
+      "description": "Container for top supplementary content"
+    },
+    {
+      "name": "top_menu_block",
+      "description": "Container for primary navigation menu"
+    },
+    {
+      "name": "bottom_menu_block",
+      "description": "Container for utility navigation menu"
+    },
+    {
+      "name": "content_bottom_block",
+      "description": "Container for bottom supplementary content"
+    }
+  ],
+  "cssClasses": {
+    "root": "ct-mobile-navigation",
+    "modifiers": [
+      {
+        "name": "ct-theme-light",
+        "description": "Light theme styling"
+      },
+      {
+        "name": "ct-theme-dark",
+        "description": "Dark theme styling"
+      }
+    ],
+    "elements": [
+      {
+        "name": "ct-mobile-navigation__panel",
+        "description": "Main navigation panel container with flyout functionality"
+      },
+      {
+        "name": "ct-mobile-navigation__content_top",
+        "description": "Top content area"
+      },
+      {
+        "name": "ct-mobile-navigation__top-menu-wrapper",
+        "description": "Primary menu container"
+      },
+      {
+        "name": "ct-mobile-navigation__top-menu",
+        "description": "Primary menu styling"
+      },
+      {
+        "name": "ct-mobile-navigation__bottom-menu-wrapper",
+        "description": "Utility menu container"
+      },
+      {
+        "name": "ct-mobile-navigation__bottom-menu",
+        "description": "Utility menu styling"
+      },
+      {
+        "name": "ct-mobile-navigation__content_bottom",
+        "description": "Bottom content area"
+      },
+      {
+        "name": "ct-mobile-navigation__open-subsection-trigger",
+        "description": "Button to open submenu sections"
+      },
+      {
+        "name": "ct-mobile-navigation__close-trigger",
+        "description": "Button to close navigation panels"
+      }
+    ]
+  },
+  "behavior": {
+    "flyout": {
+      "direction": "right",
+      "focusTarget": ".ct-link",
+      "closeAll": true,
+      "keyboard": true
+    },
+    "responsive": {
+      "breakpoint": "$ct-mobile-navigation-breakpoint",
+      "hideOnDesktop": true
+    }
+  },
+  "subComponents": [
+    {
+      "id": "mobile-navigation-trigger",
+      "name": "Mobile Navigation Trigger",
+      "description": "Button component for triggering the mobile navigation panel",
+      "props": {
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark"],
+          "default": "light"
+        },
+        "text": {
+          "type": "string",
+          "description": "Button text",
+          "default": "Menu"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon symbol name",
+          "default": "bars"
+        },
+        "attributes": {
+          "type": "string",
+          "description": "Additional HTML attributes"
+        },
+        "modifier_class": {
+          "type": "string",
+          "description": "Additional CSS classes"
+        }
+      }
+    },
+    {
+      "id": "mobile-navigation-close",
+      "name": "Mobile Navigation Close",
+      "description": "Close button component for the mobile navigation panel",
+      "props": {
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark"],
+          "default": "light"
+        },
+        "text": {
+          "type": "string",
+          "description": "Close button text",
+          "default": "Close"
+        },
+        "attributes": {
+          "type": "string",
+          "description": "Additional HTML attributes"
+        },
+        "modifier_class": {
+          "type": "string",
+          "description": "Additional CSS classes"
+        }
+      }
+    },
+    {
+      "id": "mobile-navigation-menu",
+      "name": "Mobile Navigation Menu",
+      "description": "Menu component for the mobile navigation panel",
+      "props": {
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark"],
+          "default": "light"
+        },
+        "items": {
+          "type": "array",
+          "description": "Menu items with hierarchical structure"
+        },
+        "modifier_class": {
+          "type": "string",
+          "description": "Additional CSS classes"
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    "civictheme:mobile-navigation-close",
+    "civictheme:mobile-navigation-menu",
+    "civictheme:mobile-navigation-trigger",
+    "civictheme:button",
+    "civictheme:link"
+  ],
+  "platform": {
+    "drupal": {
+      "type": "sdc",
+      "machineName": "mobile_navigation",
+      "category": "organism",
+      "dependencies": ["civictheme:mobile-navigation-close", "civictheme:mobile-navigation-menu", "civictheme:button", "civictheme:link"]
+    }
+  },
+  "examples": [
+    {
+      "name": "Mobile Navigation",
+      "description": "Complete mobile navigation with trigger and panel",
+      "props": {
+        "theme": "light",
+        "top_menu": [
+          {
+            "title": "Menu item 1",
+            "url": "https://example.com/menu-item-1",
+            "in_active_trail": false,
+            "is_expanded": false,
+            "below": [
+              {
+                "title": "Menu subitem 1",
+                "url": "https://example.com/menu-item-1",
+                "in_active_trail": false,
+                "is_expanded": false,
+                "below": false
+              },
+              {
+                "title": "Menu subitem 2",
+                "url": "https://example.com/menu-item-1",
+                "in_active_trail": false,
+                "is_expanded": false,
+                "below": [
+                  {
+                    "title": "Menu subsubitem 1",
+                    "url": "https://example.com/menu-item-1",
+                    "in_active_trail": false,
+                    "is_expanded": false,
+                    "below": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Menu item 2",
+            "url": "https://example.com/menu-item-2",
+            "in_active_trail": false,
+            "is_expanded": false
+          }
+        ],
+        "bottom_menu": [
+          {
+            "title": "Help",
+            "url": "https://example.com/help",
+            "in_active_trail": false,
+            "is_expanded": false
+          },
+          {
+            "title": "Contact us",
+            "url": "https://example.com/contact",
+            "in_active_trail": false,
+            "is_expanded": false
+          }
+        ]
+      }
+    }
+  ],
+  "accessibility": {
+    "requirements": [
+      "All navigation items must be keyboard accessible",
+      "Focus management must be properly implemented",
+      "ARIA attributes must be properly set (expanded, hidden, live)",
+      "Screen reader users must understand navigation hierarchy",
+      "Keyboard trap must be implemented when navigation is open",
+      "Focus must return to trigger when navigation is closed",
+      "Visual focus indicators must be clearly visible"
+    ],
+    "wcagCriteria": [
+      {
+        "criterion": "1.3.1",
+        "level": "A",
+        "description": "Info and Relationships",
+        "status": "Pass"
+      },
+      {
+        "criterion": "1.4.4",
+        "level": "AA",
+        "description": "Resize text",
+        "status": "Pass"
+      },
+      {
+        "criterion": "2.1.1",
+        "level": "A",
+        "description": "Keyboard",
+        "status": "Pass"
+      },
+      {
+        "criterion": "2.1.2",
+        "level": "A",
+        "description": "No Keyboard Trap",
+        "status": "Pass"
+      },
+      {
+        "criterion": "2.4.3",
+        "level": "A",
+        "description": "Focus Order",
+        "status": "Pass"
+      },
+      {
+        "criterion": "2.4.7",
+        "level": "AA",
+        "description": "Focus Visible",
+        "status": "Pass"
+      },
+      {
+        "criterion": "3.2.1",
+        "level": "A",
+        "description": "On Focus",
+        "status": "Pass"
+      },
+      {
+        "criterion": "3.2.2",
+        "level": "A",
+        "description": "On Input",
+        "status": "Pass"
+      },
+      {
+        "criterion": "3.2.4",
+        "level": "AA",
+        "description": "Consistent Identification",
+        "status": "Pass"
+      }
+    ]
+  },
+  "bestPractices": [
+    "Clearly display site hierarchy with distinct tiers for navigation levels",
+    "Include visual and textual indicators for current location",
+    "Provide consistent Back/Close options for efficient navigation",
+    "Clearly indicate active/selected navigation items",
+    "Group related navigation items together logically",
+    "Limit items at each level to reduce excessive scrolling",
+    "Place navigation controls in consistent locations",
+    "Ensure touch-friendly targets (minimum 44×44px)",
+    "Use clear visual cues to distinguish navigation levels",
+    "Implement smooth transitions between navigation states"
+  ],
+  "usageGuidelines": {
+    "when_to_use": [
+      "Creating responsive websites for mobile devices",
+      "Complex navigation structures that need condensing for small screens",
+      "Multiple navigation levels need to be preserved efficiently",
+      "Users need clear contextual information about site hierarchy"
+    ],
+    "when_not_to_use": [
+      "Minimal navigation needs that fit in simple horizontal menu",
+      "Desktop-focused design without responsive requirements",
+      "Progressive web app with custom navigation patterns",
+      "Navigation hierarchy is so flat that simpler solution is appropriate"
+    ]
+  },
+  "variations": [
+    {
+      "name": "Main menu (First tier)",
+      "description": "Full-screen overlay with primary navigation and utility links"
+    },
+    {
+      "name": "Secondary level (Second tier)",
+      "description": "Categories under parent navigation item with contextual header"
+    },
+    {
+      "name": "Tertiary level (Third tier)",
+      "description": "Specific articles/pages within selected category"
+    }
+  ],
+  "knownIssues": [
+    "Performance on older devices: Animations may cause lag on limited processing power",
+    "Deep navigation challenges: 4+ levels can become confusing for users",
+    "Utility section visibility: Bottom utility links sometimes overlooked",
+    "Back button expectations: Some users expect device back button to navigate between levels"
+  ],
+  "extraction": {
+    "timestamp": "2024-12-19T10:45:00Z",
+    "source": "CivicTheme UIKit v1.9.0",
+    "confidence": {
+      "props": 0.95,
+      "styling": 0.90,
+      "behavior": 0.95,
+      "accessibility": 0.95
+    },
+    "extractedFrom": [
+      "mobile-navigation.component.yml",
+      "mobile-navigation.twig",
+      "mobile-navigation.scss",
+      "mobile-navigation.stories.js",
+      "mobile-navigation-trigger.component.yml",
+      "mobile-navigation-trigger.twig",
+      "mobile-navigation-close.component.yml",
+      "mobile-navigation-close.twig",
+      "mobile-navigation-menu.component.yml",
+      "mobile-navigation-menu.twig",
+      "mobile-navigation.md documentation"
+    ]
+  }
+}

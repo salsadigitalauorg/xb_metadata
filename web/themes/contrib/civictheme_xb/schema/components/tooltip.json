@@ -1,0 +1,227 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "tooltip",
+  "title": "Tooltip",
+  "description": "Component for displaying tooltip information with an icon",
+  "type": "object",
+  "category": "molecules", 
+  "status": "stable",
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation",
+      "enum": ["light", "dark"],
+      "default": "light"
+    },
+    "position": {
+      "type": "string",
+      "description": "Tooltip position relative to the trigger button",
+      "enum": [
+        "auto", "auto-start", "auto-end",
+        "top", "top-start", "top-end", 
+        "bottom", "bottom-start", "bottom-end",
+        "right", "right-start", "right-end",
+        "left", "left-start", "left-end"
+      ],
+      "default": "auto"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Symbol to use in the button",
+      "default": "information-mark"
+    },
+    "icon_size": {
+      "type": "string",
+      "description": "Icon size",
+      "enum": ["extra-large", "large", "regular", "small", "extra-small"],
+      "default": "large"
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes"
+    },
+    "modifier_class": {
+      "type": "string", 
+      "description": "Additional CSS classes"
+    }
+  },
+  "required": ["content"],
+  "slots": {
+    "title": {
+      "description": "Text used within the button title and for screen readers"
+    },
+    "content": {
+      "description": "Text to display within the tooltip popup",
+      "required": true
+    }
+  },
+  "css_classes": {
+    "base": "ct-tooltip",
+    "modifiers": {
+      "theme_light": "ct-theme-light",
+      "theme_dark": "ct-theme-dark"
+    },
+    "elements": {
+      "button": "ct-tooltip__button",
+      "description": "ct-tooltip__description",
+      "description_inner": "ct-tooltip__description__inner",
+      "arrow": "ct-tooltip__arrow"
+    },
+    "states": {
+      "visible": "[data-tooltip-visible]",
+      "hidden": ":not([data-tooltip-visible])"
+    }
+  },
+  "css_variables": {
+    "$ct-tooltip-description-border-radius": "Border radius for tooltip popup",
+    "$ct-tooltip-width-mobile": "Tooltip width on mobile devices", 
+    "$ct-tooltip-width": "Tooltip width on desktop devices",
+    "$ct-tooltip-z-index": "Z-index for tooltip layering",
+    "$ct-tooltip-triangle-width": "Width of tooltip arrow/triangle",
+    "$ct-tooltip-triangle-height": "Height of tooltip arrow/triangle"
+  },
+  "javascript": {
+    "popper_integration": {
+      "description": "Uses Popper.js for intelligent positioning",
+      "library": "Popper.js",
+      "features": [
+        "Automatic position calculation based on viewport",
+        "Flip modifier for fallback positioning",
+        "Arrow positioning and styling",
+        "Offset configuration for proper spacing"
+      ]
+    },
+    "interactions": {
+      "show_triggers": ["click", "focusin", "mouseenter"],
+      "hide_triggers": ["focusout", "mouseleave", "close button click"],
+      "accessibility": [
+        "Generates unique IDs for ARIA relationship",
+        "Sets aria-describedby on trigger button",
+        "Manages focus states properly"
+      ]
+    },
+    "data_attributes": {
+      "data-component-name": "Identifies component type as 'tooltip'",
+      "data-tooltip": "Initialization state marker",
+      "data-tooltip-button": "Marks the trigger button element",
+      "data-tooltip-content": "Marks the tooltip content element",
+      "data-tooltip-arrow": "Marks the tooltip arrow element",
+      "data-tooltip-close": "Marks the close button element",
+      "data-tooltip-position": "Position preference for Popper.js",
+      "data-tooltip-visible": "Controls visibility state"
+    }
+  },
+  "accessibility": {
+    "features": [
+      "Screen reader support with aria-describedby relationship",
+      "Keyboard navigation support with focus management",
+      "ARIA labels and titles for button accessibility", 
+      "Proper focus-visible styling",
+      "Close button for dismissing tooltip"
+    ],
+    "guidelines": [
+      "Always provide meaningful title text for screen readers",
+      "Keep tooltip content concise and informative",
+      "Test keyboard navigation flow",
+      "Ensure sufficient color contrast in both themes",
+      "Avoid tooltips for essential information"
+    ]
+  },
+  "platform_integration": {
+    "drupal": {
+      "field_types": ["field_text", "field_text_long"],
+      "view_modes": ["inline", "help", "default"],
+      "template_suggestions": [
+        "tooltip--[view-mode].twig",
+        "tooltip--[bundle].twig"
+      ]
+    }
+  },
+  "usage_examples": {
+    "basic": {
+      "description": "Basic tooltip with information icon",
+      "props": {
+        "theme": "light",
+        "position": "auto",
+        "title": "More information",
+        "content": "This provides additional context about the feature."
+      }
+    },
+    "positioned": {
+      "description": "Tooltip with specific positioning",
+      "props": {
+        "theme": "dark",
+        "position": "top",
+        "icon": "help",
+        "icon_size": "small",
+        "title": "Help information",
+        "content": "Click here to learn more about this functionality."
+      }
+    },
+    "custom_icon": {
+      "description": "Tooltip with custom icon and size",
+      "props": {
+        "theme": "light",
+        "position": "right-start", 
+        "icon": "question-mark",
+        "icon_size": "regular",
+        "title": "Questions? Click for help",
+        "content": "For additional support, contact our help desk at help@example.com."
+      }
+    }
+  },
+  "design_tokens": {
+    "elevation": [
+      "Uses ct-elevation(2) mixin for tooltip popup shadow"
+    ],
+    "typography": [
+      "Tooltip content uses label-extra-small typography mixin"
+    ],
+    "spacing": [
+      "Inner content padding: ct-spacing(3)",
+      "Close button padding with spacing utilities",
+      "Popper.js offset: [0, 36] pixels"
+    ],
+    "positioning": [
+      "Absolute positioning for tooltip popup",
+      "Z-index management for layering",
+      "Arrow positioning based on Popper.js placement"
+    ]
+  },
+  "best_practices": [
+    "Use tooltips for supplementary information, not essential content",
+    "Keep tooltip content brief and scannable", 
+    "Choose appropriate positioning based on UI context",
+    "Ensure tooltips don't interfere with other interface elements",
+    "Test across different viewport sizes and devices",
+    "Provide alternative ways to access tooltip information",
+    "Use consistent iconography across tooltip implementations"
+  ],
+  "related_components": [
+    "icon",
+    "button"
+  ],
+  "dependencies": {
+    "external": [
+      "Popper.js - Required for positioning functionality"
+    ]
+  },
+  "extraction_metadata": {
+    "source_files": [
+      "/packages/sdc/components/02-molecules/tooltip/tooltip.component.yml",
+      "/packages/sdc/components/02-molecules/tooltip/tooltip.twig",
+      "/packages/sdc/components/02-molecules/tooltip/tooltip.scss", 
+      "/packages/sdc/components/02-molecules/tooltip/tooltip.stories.js",
+      "/packages/sdc/components/02-molecules/tooltip/tooltip.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": "high",
+    "notes": [
+      "Component requires Popper.js library for positioning functionality",
+      "JavaScript handles all interaction states and accessibility features",
+      "Arrow styling dynamically adjusts based on Popper.js placement",
+      "Close button uses tertiary button component internally",
+      "Tooltip content is visually hidden until triggered"
+    ]
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "field",
+  "name": "Field",
+  "description": "A comprehensive form field wrapper component that manages input elements with labels, descriptions, and validation messages. Serves as the main entry point for building accessible, consistent form fields across different input types.",
+  "category": "molecules",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/field/",
+    "extracted_from": {
+      "component_yml": "field.component.yml",
+      "template": "field.twig",
+      "styles": "field.scss",
+      "stories": "field.stories.js",
+      "stories_data": "field.stories.data.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/field.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation for styling"
+    },
+    "type": {
+      "type": "enum",
+      "required": true,
+      "default": "hidden",
+      "options": ["textfield", "textarea", "select", "select_multiple", "radio", "checkbox", "hidden", "color", "date", "email", "file", "image", "month", "number", "password", "range", "search", "tel", "time", "url", "week", "other"],
+      "description": "The type of form control to render (required)"
+    },
+    "title": {
+      "type": "string",
+      "required": false,
+      "description": "Main label/title for the field"
+    },
+    "title_display": {
+      "type": "enum",
+      "required": false,
+      "default": "visible",
+      "options": ["visible", "invisible", "hidden"],
+      "description": "Controls how the field title is displayed"
+    },
+    "label": {
+      "type": "string",
+      "required": false,
+      "description": "Specific control label (required only for radio groups or checkboxes)"
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "description": "Helpful text describing the field purpose or requirements"
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "DOM name attribute for the control"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "Current value of the control"
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "Unique DOM identifier for the control"
+    },
+    "is_invalid": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the control has validation errors"
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the control is disabled"
+    },
+    "is_required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the field is mandatory"
+    },
+    "required_text": {
+      "type": "string",
+      "required": false,
+      "description": "Text to display for required fields (e.g., '*')"
+    },
+    "orientation": {
+      "type": "enum",
+      "required": false,
+      "default": "vertical",
+      "options": ["vertical", "horizontal"],
+      "description": "Layout direction for field elements"
+    },
+    "is_inline": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether complex controls are shown inline"
+    },
+    "control": {
+      "type": "array",
+      "required": false,
+      "description": "Object or array of objects with control properties for complex controls"
+    },
+    "options": {
+      "type": "array",
+      "required": false,
+      "description": "Available options for select, radio, or checkbox controls",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The value submitted when this option is selected"
+          },
+          "label": {
+            "type": "string",
+            "description": "Display text for the option"
+          }
+        }
+      }
+    },
+    "is_multiple": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the field allows multiple values"
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Hint text shown in empty fields"
+    },
+    "message": {
+      "type": "object",
+      "required": false,
+      "description": "Validation or informational message",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The message text to display"
+        },
+        "attributes": {
+          "type": "string",
+          "description": "Additional HTML attributes for the message element"
+        }
+      }
+    },
+    "prefix": {
+      "type": "string",
+      "required": false,
+      "description": "Content displayed before the input control"
+    },
+    "suffix": {
+      "type": "string",
+      "required": false,
+      "description": "Content displayed after the input control"
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes for the field wrapper"
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes for styling customization"
+    }
+  },
+  "slots": {
+    "label": {
+      "description": "Label component rendered when title is provided",
+      "accepts": ["civictheme:label"],
+      "required": false
+    },
+    "description": {
+      "description": "Field description component for help text",
+      "accepts": ["civictheme:field-description"],
+      "required": false
+    },
+    "control": {
+      "description": "The actual form control (textfield, select, radio, etc.)",
+      "accepts": ["civictheme:textfield", "civictheme:textarea", "civictheme:select", "civictheme:checkbox", "civictheme:radio", "civictheme:input"],
+      "required": false
+    },
+    "message": {
+      "description": "Field message component for validation/error messages",
+      "accepts": ["civictheme:field-message"],
+      "required": false
+    },
+    "prefix": {
+      "description": "Custom content before the control",
+      "accepts": ["html"],
+      "required": false
+    },
+    "suffix": {
+      "description": "Custom content after the control",
+      "accepts": ["html"],
+      "required": false
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "field",
+      "template": "field.twig",
+      "libraries": ["civictheme/field"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-field",
+        "modifiers": [
+          "ct-field--textfield",
+          "ct-field--textarea",
+          "ct-field--select",
+          "ct-field--radio",
+          "ct-field--checkbox",
+          "ct-field--required",
+          "ct-field--disabled",
+          "ct-field--invalid",
+          "ct-field--vertical",
+          "ct-field--horizontal",
+          "ct-field--horizontal--fluid",
+          "ct-field--with-fixed-title",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-field__title",
+          "ct-field__wrapper",
+          "ct-field__description",
+          "ct-field__control",
+          "ct-field__message",
+          "ct-field__prefix",
+          "ct-field__suffix"
+        ],
+        "states": [
+          "required",
+          "disabled",
+          "invalid",
+          "focus",
+          "hover"
+        ]
+      },
+      "custom_properties": [
+        "$ct-field-horizontal-label-min-width",
+        "$ct-field-horizontal-label-max-width",
+        "$ct-field-label-fixed-widths",
+        "$ct-field-description-light-color",
+        "$ct-field-description-dark-color",
+        "$ct-field-message-border-radius",
+        "$ct-field-message-light-error-background-color",
+        "$ct-field-message-light-error-border-color",
+        "$ct-field-message-light-error-color",
+        "$ct-field-message-dark-error-background-color",
+        "$ct-field-message-dark-error-border-color",
+        "$ct-field-message-dark-error-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": [
+      "civictheme:label",
+      "civictheme:field-description",
+      "civictheme:field-message",
+      "civictheme:textfield",
+      "civictheme:textarea",
+      "civictheme:select",
+      "civictheme:checkbox",
+      "civictheme:radio",
+      "civictheme:input",
+      "civictheme:item-list"
+    ],
+    "contains": [
+      "label",
+      "field-description",
+      "field-message",
+      "input-controls"
+    ],
+    "alternatives": ["fieldset"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Default Field",
+      "description": "Basic text field with vertical layout",
+      "props": {
+        "theme": "light",
+        "type": "textfield",
+        "title": "Field title",
+        "title_display": "visible",
+        "description": "Description content sample",
+        "placeholder": "Field placeholder",
+        "orientation": "vertical"
+      }
+    },
+    {
+      "name": "Required Field",
+      "description": "Field marked as required with asterisk",
+      "props": {
+        "theme": "light",
+        "type": "textfield",
+        "title": "Required Field",
+        "is_required": true,
+        "required_text": "*"
+      }
+    },
+    {
+      "name": "Radio Group",
+      "description": "Field with radio button options",
+      "props": {
+        "theme": "light",
+        "type": "radio",
+        "title": "Radio Group",
+        "control": [
+          {"label": "Option 1", "value": "1"},
+          {"label": "Option 2", "value": "2"},
+          {"label": "Option 3", "value": "3"}
+        ]
+      }
+    },
+    {
+      "name": "Select Field",
+      "description": "Dropdown selection field",
+      "props": {
+        "theme": "light",
+        "type": "select",
+        "title": "Select Field",
+        "options": [
+          {"label": "Option 1", "value": "option_1"},
+          {"label": "Option 2", "value": "option_2"},
+          {"label": "Option 3", "value": "option_3"}
+        ]
+      }
+    },
+    {
+      "name": "Invalid Field with Message",
+      "description": "Field showing validation error",
+      "props": {
+        "theme": "light",
+        "type": "textfield",
+        "title": "Field with Error",
+        "is_invalid": true,
+        "message": {
+          "content": "This field has an error"
+        }
+      }
+    },
+    {
+      "name": "Horizontal Layout",
+      "description": "Field with horizontal label placement",
+      "props": {
+        "theme": "light",
+        "type": "textfield",
+        "title": "Horizontal Field",
+        "orientation": "horizontal",
+        "description": "Field with horizontal layout"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Collecting user input in forms",
+      "Presenting form elements with consistent, accessible structure",
+      "Providing context or validation feedback for form inputs",
+      "Grouping related form elements with proper labelling",
+      "Implementing required or optional field indicators"
+    ],
+    "when_not_to_use": [
+      "Creating standalone controls without labels or context",
+      "Embedding interactive elements in flowing text",
+      "Simple instructions better presented as plain text or links",
+      "Complex multi-step data collection requiring wizard interfaces"
+    ],
+    "best_practices": [
+      "Use concise, descriptive labels that clearly indicate required information",
+      "Mark required fields with asterisks and explain this pattern to users",
+      "Provide clear field descriptions explaining purpose and formatting requirements",
+      "Group related fields using the fieldset component",
+      "Maintain consistent field sizes based on expected input length",
+      "Implement inline validation with clear, helpful error messages",
+      "Ensure responsive display across all device sizes",
+      "Maintain logical tab order following visual flow",
+      "Design with clear visual hierarchy to guide users",
+      "Provide clear instructions to prevent errors"
+    ],
+    "accessibility": {
+      "wcag_compliance": "WCAG 2.2 AA (with exceptions)",
+      "wcag_issues": [
+        "2.5.8 Target Size (Minimum): Some targets less than 24x24 CSS pixels"
+      ],
+      "features": [
+        "Proper label association with form controls",
+        "Support for screen readers through semantic HTML",
+        "Keyboard navigation support",
+        "Focus management and visible focus indicators",
+        "Error identification and description",
+        "Consistent field structure and relationships"
+      ]
+    },
+    "known_issues": [
+      "Target size compliance: Some field targets may not meet minimum 24x24 pixel requirement",
+      "Complex field types may require additional accessibility testing",
+      "Horizontal layout may cause issues on very narrow screens"
+    ],
+    "variations": [
+      "Default: Standard field with label above input",
+      "Inline: Field with label positioned beside input",
+      "With helper text: Field with additional descriptive text",
+      "With validation: Field showing validation states",
+      "Required: Field marked as mandatory",
+      "Optional: Field explicitly marked as optional",
+      "Mobile optimized: Fields adjusted for smaller screens"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Consistent field structure improves form completion rates",
+        "Clear labeling and descriptions reduce user errors",
+        "Validation feedback helps users correct mistakes quickly",
+        "Horizontal layouts work well for simple fields but can be challenging on mobile"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

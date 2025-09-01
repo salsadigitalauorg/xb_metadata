@@ -1,0 +1,251 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component.schema.json",
+  "id": "publication-card",
+  "name": "Publication Card",
+  "description": "Card component for displaying publication information with downloadable file. Features image support, file metadata display, and flexible content areas.",
+  "category": "molecules",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "library": "CivicTheme",
+  "metadata": {
+    "designTokens": ["theme", "spacing", "typography", "elevation"],
+    "accessibility": {
+      "wcag": ["AA"],
+      "features": ["keyboard-navigation", "screen-reader-support", "focus-management", "download-links"]
+    },
+    "responsive": true,
+    "themeable": true
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "title": "Theme",
+        "description": "Theme variation for the card",
+        "enum": ["light", "dark"],
+        "default": "light"
+      },
+      "image": {
+        "type": "object",
+        "title": "Image",
+        "description": "Card image configuration",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Image URL",
+            "description": "URL of the card image"
+          },
+          "alt": {
+            "type": "string",
+            "title": "Alt Text",
+            "description": "Alternative text for the image"
+          }
+        }
+      },
+      "file": {
+        "type": "object",
+        "title": "File",
+        "description": "File object for download - required for card to render",
+        "required": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "File Name",
+            "description": "Name of the file for download"
+          },
+          "url": {
+            "type": "string",
+            "title": "File URL",
+            "description": "URL to download the file"
+          },
+          "ext": {
+            "type": "string",
+            "title": "File Extension",
+            "description": "File extension (e.g., 'pdf', 'doc', 'xls')"
+          },
+          "size": {
+            "type": "string",
+            "title": "File Size",
+            "description": "Human-readable file size (e.g., '42.88 KB')"
+          }
+        }
+      },
+      "attributes": {
+        "type": "string",
+        "title": "HTML Attributes",
+        "description": "Additional HTML attributes for the card wrapper"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes for customization"
+      }
+    }
+  },
+  "slots": {
+    "image_over": {
+      "title": "Image Overlay",
+      "description": "Content to overlay on the image"
+    },
+    "content_top": {
+      "title": "Top Content",
+      "description": "Content area above the title"
+    },
+    "title": {
+      "title": "Title",
+      "description": "Card title - becomes a download link"
+    },
+    "content_middle": {
+      "title": "Middle Content",
+      "description": "Content area between title and summary"
+    },
+    "summary": {
+      "title": "Summary",
+      "description": "Card summary or description text"
+    },
+    "content_bottom": {
+      "title": "Bottom Content",
+      "description": "Content area at the bottom of the card"
+    }
+  },
+  "cssClasses": {
+    "root": "ct-publication-card",
+    "modifiers": {
+      "theme": {
+        "light": "ct-theme-light",
+        "dark": "ct-theme-dark"
+      },
+      "withImage": "ct-publication-card--with-image"
+    },
+    "elements": {
+      "image": "ct-publication-card__image",
+      "imageOver": "ct-publication-card__image__over",
+      "content": "ct-publication-card__content",
+      "contentTop": "ct-publication-card__content-top",
+      "contentMiddle": "ct-publication-card__content__middle",
+      "title": "ct-publication-card__title",
+      "titleLink": "ct-publication-card__title__link",
+      "summary": "ct-publication-card__summary",
+      "link": "ct-publication-card__link",
+      "linkExtension": "ct-publication-card__link__extension",
+      "contentBottom": "ct-publication-card__content-bottom"
+    }
+  },
+  "designTokens": {
+    "spacing": ["ct-spacing(2)", "ct-spacing(3)"],
+    "borderRadius": ["$ct-publication-card-border-radius"],
+    "elevation": ["ct-elevation-interaction()"],
+    "image": {
+      "mobile": {
+        "height": "$ct-publication-card-image-height-mobile",
+        "width": "$ct-publication-card-image-width-mobile"
+      },
+      "desktop": {
+        "height": "$ct-publication-card-image-height-desktop",
+        "width": "$ct-publication-card-image-width-desktop"
+      }
+    },
+    "layout": {
+      "mobile": "flex-direction: column",
+      "desktop": "flex-direction: row"
+    }
+  },
+  "dependencies": [
+    "civictheme:image",
+    "civictheme:link",
+    "civictheme:heading",
+    "civictheme:paragraph"
+  ],
+  "platform": {
+    "drupal": {
+      "schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json",
+      "component_id": "civictheme:publication-card"
+    }
+  },
+  "examples": [
+    {
+      "name": "Default",
+      "description": "Basic publication card with all elements",
+      "props": {
+        "theme": "light",
+        "title": "Promo card title",
+        "summary": "Summary of the promo card",
+        "image": {
+          "url": "./demo/images/demo1.jpg",
+          "alt": "Image alt text"
+        },
+        "file": {
+          "name": "Document.doc",
+          "ext": "doc",
+          "url": "https://example.com/file.pdf",
+          "size": "42.88 KB"
+        }
+      }
+    },
+    {
+      "name": "Without Image",
+      "description": "Publication card without image",
+      "props": {
+        "theme": "light",
+        "title": "Document Title",
+        "summary": "Document description",
+        "file": {
+          "name": "Report.pdf",
+          "ext": "pdf",
+          "url": "https://example.com/report.pdf",
+          "size": "1.2 MB"
+        }
+      }
+    },
+    {
+      "name": "Dark Theme",
+      "description": "Publication card with dark theme",
+      "props": {
+        "theme": "dark",
+        "title": "Dark themed publication",
+        "file": {
+          "name": "Spreadsheet.xlsx",
+          "ext": "xlsx",
+          "url": "https://example.com/data.xlsx",
+          "size": "856 KB"
+        }
+      }
+    }
+  ],
+  "accessibility": {
+    "notes": [
+      "File object is required for the card to render",
+      "Title link includes download icon for clarity",
+      "File download link includes descriptive title attribute",
+      "File extension and size are displayed for user awareness",
+      "Card maintains proper focus order for keyboard navigation"
+    ]
+  },
+  "bestPractices": [
+    "Always provide meaningful file names",
+    "Include file extension and size information when available",
+    "Use descriptive titles for better accessibility",
+    "Provide alt text for images when present",
+    "Consider responsive layout - card switches from column to row layout on desktop"
+  ],
+  "extraction": {
+    "source": "CivicTheme UIKit",
+    "timestamp": "2025-08-10",
+    "version": "uikit-main",
+    "confidence": {
+      "props": 0.95,
+      "slots": 0.95,
+      "cssClasses": 0.9,
+      "examples": 0.85,
+      "designTokens": 0.8
+    },
+    "files_analyzed": [
+      "/publication-card/publication-card.component.yml",
+      "/publication-card/publication-card.twig",
+      "/publication-card/publication-card.scss",
+      "/publication-card/publication-card.stories.js"
+    ]
+  }
+}

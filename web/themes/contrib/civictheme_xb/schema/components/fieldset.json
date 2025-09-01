@@ -1,0 +1,210 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "fieldset",
+  "name": "Fieldset",
+  "description": "Fieldset component for grouping form elements with legend, description, and validation messages that semantically groups related form fields together.",
+  "category": "atoms", 
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/fieldset/",
+    "extracted_from": {
+      "component_yml": "fieldset.component.yml",
+      "template": "fieldset.twig",
+      "styles": "fieldset.scss",
+      "stories": "fieldset.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": "",
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "legend": {
+      "type": "string",
+      "required": false,
+      "description": "Legend for the fieldset."
+    },
+    "description": {
+      "type": "string",
+      "required": false,
+      "description": "Description for the fieldset."
+    },
+    "description_display": {
+      "type": "enum",
+      "required": false,
+      "default": "before",
+      "options": ["before", "after", "invisible"],
+      "description": "Description display position (before, after, invisible)."
+    },
+    "message": {
+      "type": "string",
+      "required": false,
+      "description": "Message content."
+    },
+    "message_type": {
+      "type": "enum",
+      "required": false,
+      "default": "error",
+      "options": ["error", "information", "warning", "success"],
+      "description": "Message type (error, information, warning, success)."
+    },
+    "is_required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the fieldset is required."
+    },
+    "required_text": {
+      "type": "string",
+      "required": false,
+      "description": "Text to display within label element when required."
+    },
+    "prefix": {
+      "type": "string",
+      "required": false,
+      "description": "The content to add before the fieldset children."
+    },
+    "suffix": {
+      "type": "string",
+      "required": false,
+      "description": "The content to add after the fieldset children."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {
+    "fields": {
+      "description": "Fields content.",
+      "required": false
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "fieldset",
+      "template": "fieldset.twig",
+      "libraries": ["civictheme/fieldset"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-fieldset",
+        "modifiers": [
+          "ct-fieldset--required",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-fieldset__legend",
+          "ct-fieldset__wrapper",
+          "ct-fieldset__description",
+          "ct-fieldset__description--invisible",
+          "ct-fieldset__description--before",
+          "ct-fieldset__description--after",
+          "ct-fieldset__message",
+          "ct-fieldset__prefix",
+          "ct-fieldset__fields",
+          "ct-fieldset__suffix"
+        ],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-fieldset-stripe-width"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:label", "civictheme:paragraph", "civictheme:field-message"],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Fieldset",
+      "description": "Simple fieldset with legend and description",
+      "props": {
+        "theme": "light",
+        "legend": "Contact Information",
+        "description": "Please provide your contact details",
+        "description_display": "before"
+      }
+    },
+    {
+      "name": "Required Fieldset",
+      "description": "Fieldset marked as required with validation message",
+      "props": {
+        "theme": "light",
+        "legend": "Required Information",
+        "description": "All fields in this section are required",
+        "description_display": "before",
+        "is_required": true,
+        "message": "Please complete all required fields",
+        "message_type": "error"
+      }
+    },
+    {
+      "name": "Fieldset with Success Message",
+      "description": "Fieldset showing successful validation",
+      "props": {
+        "theme": "light",
+        "legend": "Personal Details",
+        "message": "Information validated successfully",
+        "message_type": "success"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Group related form fields together semantically",
+      "Provide a legend/heading for a group of form controls",
+      "Create sections within larger forms",
+      "Group radio buttons or checkboxes that relate to the same question",
+      "Organize complex forms into logical sections"
+    ],
+    "when_not_to_use": [
+      "For single, standalone form fields",
+      "When grouping is purely visual and not semantic",
+      "For page-level headings (use heading component instead)"
+    ],
+    "best_practices": [
+      "Use descriptive legends that clearly explain the purpose of grouped fields",
+      "Keep fieldset groups focused and logically related",
+      "Use required indicators consistently across fieldsets",
+      "Position descriptions appropriately - before for context, after for additional notes",
+      "Ensure fieldsets work well with screen readers and assistive technologies",
+      "Use the visual stripe to help users distinguish fieldset boundaries"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Fieldsets provide important semantic grouping for screen readers and are essential for accessible forms."
+    },
+    "known_issues": [],
+    "variations": [
+      "Basic fieldset: Legend and grouped fields",
+      "Required fieldset: Includes required indicator in legend",
+      "Fieldset with messages: Validation or informational messages",
+      "Description positions: Before, after, or invisible (for screen readers only)"
+    ]
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T00:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "textarea",
+  "name": "Textarea",
+  "description": "Multi-line text input form element with customizable appearance and states. Provides accessible textarea functionality for longer text input with support for various form validation states.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/textarea/",
+    "extracted_from": {
+      "component_yml": "textarea.component.yml",
+      "template": "textarea.twig", 
+      "styles": "textarea.scss",
+      "stories": "textarea.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "DOM name attribute (required).",
+      "examples": ["comment", "description", "feedback"]
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "DOM ID attribute."
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "The textarea value.",
+      "examples": ["Default text content", ""]
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Placeholder text.",
+      "examples": ["Enter your comments here...", "Describe your issue"]
+    },
+    "rows": {
+      "type": "integer",
+      "required": false,
+      "description": "Display rows count.",
+      "examples": [3, 5, 10]
+    },
+    "is_invalid": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the textarea is invalid."
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the textarea is disabled."
+    },
+    "is_required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the textarea is required."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "textarea",
+      "template": "textarea.twig",
+      "libraries": ["civictheme/textarea"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-textarea",
+        "modifiers": [
+          "ct-textarea--is-invalid",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [],
+        "states": [
+          "required",
+          "disabled",
+          "focus",
+          "hover"
+        ]
+      },
+      "custom_properties": [
+        "$ct-textarea-light-color",
+        "$ct-textarea-light-background-color",
+        "$ct-textarea-light-border-color",
+        "$ct-textarea-light-focus-border-color",
+        "$ct-textarea-light-invalid-border-color",
+        "$ct-textarea-dark-color",
+        "$ct-textarea-dark-background-color",
+        "$ct-textarea-dark-border-color",
+        "$ct-textarea-dark-focus-border-color",
+        "$ct-textarea-dark-invalid-border-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": ["textfield", "input"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Textarea",
+      "description": "Simple textarea with placeholder",
+      "props": {
+        "theme": "light",
+        "name": "comment",
+        "id": "comment-textarea",
+        "placeholder": "Enter your comments here...",
+        "rows": 4
+      }
+    },
+    {
+      "name": "Required Textarea",
+      "description": "Required textarea for forms",
+      "props": {
+        "theme": "light",
+        "name": "description",
+        "id": "description-textarea",
+        "placeholder": "Describe your issue",
+        "rows": 5,
+        "is_required": true
+      }
+    },
+    {
+      "name": "Invalid Textarea",
+      "description": "Textarea with validation error",
+      "props": {
+        "theme": "light",
+        "name": "feedback",
+        "id": "feedback-textarea",
+        "value": "Too short",
+        "rows": 3,
+        "is_invalid": true
+      }
+    },
+    {
+      "name": "Disabled Textarea",
+      "description": "Disabled textarea state",
+      "props": {
+        "theme": "light",
+        "name": "readonly-content",
+        "id": "readonly-textarea",
+        "value": "This content cannot be edited",
+        "rows": 3,
+        "is_disabled": true
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Collect multi-line text input from users",
+      "Allow users to enter comments, descriptions, or feedback",
+      "Create message or note input fields",
+      "Provide space for detailed form responses",
+      "Enable code or markup input in applications"
+    ],
+    "when_not_to_use": [
+      "For single-line input - use textfield instead",
+      "For structured data entry - use specific input types",
+      "For rich text editing - consider WYSIWYG components",
+      "For very long content - consider specialized editors",
+      "For sensitive information that shouldn't be visible"
+    ],
+    "best_practices": [
+      "Provide clear placeholder text to guide users",
+      "Set appropriate row count based on expected content length",
+      "Use descriptive labels and helper text",
+      "Provide clear validation feedback for errors",
+      "Enable resizing when appropriate for user convenience",
+      "Ensure sufficient color contrast for readability",
+      "Test with various input lengths and content types"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper form control semantics and keyboard navigation for multi-line text input."
+    },
+    "known_issues": [],
+    "variations": [
+      "Row heights: Configurable number of visible rows",
+      "States: Default, focused, invalid, disabled, required",
+      "Theme variations: Light and dark theme support",
+      "Content types: Comments, descriptions, feedback, code input",
+      "Validation states: Clear error indication and messaging"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect textareas to be resizable for longer content",
+        "Clear placeholder text helps users understand expected input",
+        "Appropriate sizing reduces need for scrolling within the field",
+        "Validation feedback should appear near the textarea"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

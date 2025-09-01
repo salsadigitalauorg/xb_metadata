@@ -1,0 +1,266 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "grid",
+  "name": "Grid",
+  "description": "Grid component for creating responsive layouts. Provides flexible CSS Grid and Bootstrap-style responsive layout system with configurable columns, breakpoints, and container options.",
+  "category": "base",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/00-base/grid/",
+    "extracted_from": {
+      "component_yml": "grid.component.yml",
+      "template": "grid.twig",
+      "styles": "grid.scss",
+      "stories": "grid.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "items": {
+      "type": "array",
+      "required": false,
+      "description": "Array of content items to display in grid columns.",
+      "items": {
+        "type": "string",
+        "description": "HTML content for each grid item"
+      }
+    },
+    "row_element": {
+      "type": "string",
+      "required": false,
+      "default": "div",
+      "description": "HTML element type for the grid row.",
+      "examples": ["div", "section", "article"]
+    },
+    "row_class": {
+      "type": "string",
+      "required": false,
+      "description": "CSS class override for the row (defaults to 'row')."
+    },
+    "row_attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes for the row element."
+    },
+    "column_element": {
+      "type": "string",
+      "required": false,
+      "default": "div",
+      "description": "HTML element type for grid columns.",
+      "examples": ["div", "article", "section"]
+    },
+    "column_class": {
+      "type": "string",
+      "required": false,
+      "description": "CSS class override for columns (defaults to 'col' if template_column_count is 0)."
+    },
+    "column_attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes for column elements."
+    },
+    "use_container": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Whether to wrap the grid in a container element."
+    },
+    "is_fluid": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to use fluid container (full width) when use_container is true."
+    },
+    "template_column_count": {
+      "type": "number",
+      "required": false,
+      "default": 0,
+      "description": "Fixed number of columns (0 for automatic column sizing)."
+    },
+    "auto_breakpoint": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Switch between columns automatically as screen size reduces."
+    },
+    "fill_width": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Stretch remaining items to fill row width."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "grid",
+      "template": "grid.twig",
+      "libraries": ["civictheme/grid"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-grid",
+        "modifiers": [
+          "ct-grid--auto-breakpoint",
+          "ct-grid--fill-width"
+        ],
+        "elements": [
+          "container",
+          "container-fluid",
+          "row",
+          "col"
+        ],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-grid-columns",
+        "$ct-grid-gutter-width",
+        "$ct-grid-breakpoint-xs",
+        "$ct-grid-breakpoint-sm",
+        "$ct-grid-breakpoint-md",
+        "$ct-grid-breakpoint-lg",
+        "$ct-grid-breakpoint-xl",
+        "$ct-grid-breakpoint-xxl"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Grid",
+      "description": "Simple 3-column grid layout",
+      "props": {
+        "items": [
+          "<div>Column 1 content</div>",
+          "<div>Column 2 content</div>",
+          "<div>Column 3 content</div>"
+        ],
+        "template_column_count": 3
+      }
+    },
+    {
+      "name": "Auto Grid",
+      "description": "Grid with automatic column sizing",
+      "props": {
+        "items": [
+          "<div>Item 1</div>",
+          "<div>Item 2</div>",
+          "<div>Item 3</div>",
+          "<div>Item 4</div>",
+          "<div>Item 5</div>"
+        ],
+        "template_column_count": 0
+      }
+    },
+    {
+      "name": "Responsive Grid",
+      "description": "Grid with responsive breakpoints",
+      "props": {
+        "items": [
+          "<div>Responsive item 1</div>",
+          "<div>Responsive item 2</div>",
+          "<div>Responsive item 3</div>",
+          "<div>Responsive item 4</div>"
+        ],
+        "template_column_count": 2,
+        "auto_breakpoint": true
+      }
+    },
+    {
+      "name": "Fluid Container Grid",
+      "description": "Full-width grid without fixed container",
+      "props": {
+        "items": [
+          "<div>Full width item 1</div>",
+          "<div>Full width item 2</div>"
+        ],
+        "use_container": true,
+        "is_fluid": true,
+        "template_column_count": 2
+      }
+    },
+    {
+      "name": "Fill Width Grid",
+      "description": "Grid where remaining items fill available width",
+      "props": {
+        "items": [
+          "<div>Item 1</div>",
+          "<div>Item 2</div>",
+          "<div>Item 3</div>"
+        ],
+        "template_column_count": 4,
+        "fill_width": true
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Create responsive multi-column layouts",
+      "Display content cards or items in organized grids",
+      "Build dashboard layouts with multiple content sections",
+      "Organize form elements in structured layouts",
+      "Create gallery or portfolio displays"
+    ],
+    "when_not_to_use": [
+      "For simple single-column content - use basic layout components",
+      "When CSS Grid or Flexbox would be more appropriate for the specific layout",
+      "For complex layouts requiring custom positioning",
+      "When content doesn't naturally fit into grid structures"
+    ],
+    "best_practices": [
+      "Choose appropriate column counts for your content and screen sizes",
+      "Use responsive breakpoints for mobile-friendly layouts",
+      "Test grid behavior across different screen sizes",
+      "Consider content hierarchy when organizing grid items",
+      "Use semantic HTML elements for grid containers when appropriate",
+      "Ensure grid layouts are accessible with proper focus management",
+      "Consider loading performance with large numbers of grid items"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides semantic HTML structure for grid layouts with configurable element types for proper document structure."
+    },
+    "known_issues": [],
+    "variations": [
+      "Column types: Fixed column count vs automatic sizing",
+      "Container options: Regular container, fluid container, or no container",
+      "Responsive behavior: Auto-breakpoint responsive columns",
+      "Fill behavior: Options to stretch items to fill available width",
+      "Element types: Configurable HTML elements for semantic structure"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect grid layouts to be responsive across devices",
+        "Consistent spacing and alignment improve visual hierarchy",
+        "Auto-sizing grids adapt well to varying content amounts",
+        "Mobile users benefit from single-column layouts on small screens"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

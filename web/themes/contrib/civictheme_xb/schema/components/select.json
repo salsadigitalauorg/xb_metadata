@@ -1,0 +1,204 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "select",
+  "name": "Select",
+  "description": "Select dropdown form element with customizable options and states. Provides accessible dropdown functionality with support for single and multiple selections, option groups, and various form states.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/select/",
+    "extracted_from": {
+      "component_yml": "select.component.yml",
+      "template": "select.twig", 
+      "styles": "select.scss",
+      "stories": "select.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "DOM ID attribute."
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "DOM name attribute (required)."
+    },
+    "is_multiple": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to allow multiple selections."
+    },
+    "options": {
+      "type": "array",
+      "required": false,
+      "description": "Array of option objects with label, value, and selection state."
+    },
+    "is_invalid": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the select is invalid."
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the select is disabled."
+    },
+    "is_required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the select is required."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "select",
+      "template": "select.twig",
+      "libraries": ["civictheme/select"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-select",
+        "modifiers": [
+          "ct-select--is-invalid",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [],
+        "states": [
+          "required",
+          "disabled",
+          "focus",
+          "hover"
+        ]
+      },
+      "custom_properties": [
+        "$ct-select-light-color",
+        "$ct-select-light-background-color",
+        "$ct-select-light-border-color",
+        "$ct-select-light-focus-border-color",
+        "$ct-select-light-invalid-border-color",
+        "$ct-select-dark-color",
+        "$ct-select-dark-background-color",
+        "$ct-select-dark-border-color",
+        "$ct-select-dark-focus-border-color",
+        "$ct-select-dark-invalid-border-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": ["radio", "checkbox"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Select",
+      "description": "Simple select dropdown",
+      "props": {
+        "theme": "light",
+        "name": "select-name",
+        "id": "select-id",
+        "options": [
+          {"label": "Option 1", "value": "1"},
+          {"label": "Option 2", "value": "2"},
+          {"label": "Option 3", "value": "3"}
+        ]
+      }
+    },
+    {
+      "name": "Multiple Select",
+      "description": "Select with multiple selection enabled",
+      "props": {
+        "theme": "light",
+        "name": "multi-select",
+        "id": "multi-select-id",
+        "is_multiple": true,
+        "options": [
+          {"label": "Option 1", "value": "1", "is_selected": true},
+          {"label": "Option 2", "value": "2"},
+          {"label": "Option 3", "value": "3", "is_selected": true}
+        ]
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Allow users to choose from a list of predefined options",
+      "Save space when there are many options to choose from",
+      "Provide single or multiple selection functionality",
+      "Create form controls with grouped options (optgroups)",
+      "Filter or sort content based on categories"
+    ],
+    "when_not_to_use": [
+      "When there are only 2-3 options - consider radio buttons or checkboxes",
+      "For complex multi-step selections - consider specialized components",
+      "When users need to see all options at once - use radio buttons or checkboxes",
+      "For actions rather than selections - use buttons"
+    ],
+    "best_practices": [
+      "Provide clear, descriptive option labels",
+      "Use logical grouping with optgroups when appropriate",
+      "Pre-select sensible default options when possible",
+      "Provide clear validation feedback for required fields",
+      "Ensure sufficient contrast for readability",
+      "Test with keyboard navigation and screen readers"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper semantic markup and keyboard navigation for dropdown selections."
+    },
+    "known_issues": [],
+    "variations": [
+      "Single selection: Standard dropdown behavior",
+      "Multiple selection: Allow multiple option selection",
+      "Option groups: Organize related options together",
+      "States: Default, focused, invalid, disabled, required",
+      "Theme variations: Light and dark theme support"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect dropdown menus to expand when clicked",
+        "Clear option labeling reduces selection errors",
+        "Multiple selection should be clearly indicated",
+        "Default selections can speed up form completion"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

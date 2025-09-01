@@ -1,0 +1,203 @@
+{
+  "$schema": "https://schemas.dsis.dev/component/v1.0.0/schema.json",
+  "id": "webform",
+  "name": "Webform",
+  "description": "Container component for Drupal webforms with theme styling, background options, and automatic error handling. Provides consistent layout and accessibility features for form content.",
+  "category": "organisms",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "platform": {
+    "drupal": {
+      "version": "^10 || ^11",
+      "sdc": true,
+      "namespace": "civictheme",
+      "schema_version": "v1",
+      "integration": "Designed specifically for Drupal Webform module integration"
+    }
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "title": "Theme",
+        "description": "Theme variation controlling colors and appearance"
+      },
+      "vertical_spacing": {
+        "type": "string",
+        "enum": ["none", "top", "bottom", "both"],
+        "default": "none",
+        "title": "Vertical Spacing",
+        "description": "Vertical spacing positioning using inset spacing"
+      },
+      "with_background": {
+        "type": "boolean",
+        "default": false,
+        "title": "With Background",
+        "description": "Whether to display with background styling"
+      },
+      "attributes": {
+        "type": "string",
+        "title": "Additional Attributes",
+        "description": "Additional HTML attributes to apply to the root element"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes to customize appearance"
+      }
+    }
+  },
+  "slots": {
+    "referenced_webform": {
+      "title": "Referenced Webform",
+      "description": "Rendered HTML content of the Drupal webform",
+      "type": "html",
+      "required": true
+    }
+  },
+  "css": {
+    "root_class": "ct-webform",
+    "modifiers": [
+      {
+        "class": "ct-webform--with-background",
+        "description": "Applies background styling"
+      },
+      {
+        "class": "ct-webform--with-spacing",
+        "description": "Applies background styling (legacy class)"
+      },
+      {
+        "class": "ct-theme-light",
+        "description": "Light theme colors for webform container"
+      },
+      {
+        "class": "ct-theme-dark",
+        "description": "Dark theme colors for webform container"
+      },
+      {
+        "class": "ct-vertical-spacing-inset-top",
+        "description": "Adds top inset spacing"
+      },
+      {
+        "class": "ct-vertical-spacing-inset-bottom",
+        "description": "Adds bottom inset spacing"
+      },
+      {
+        "class": "ct-vertical-spacing-inset-both",
+        "description": "Adds both top and bottom inset spacing"
+      }
+    ]
+  },
+  "javascript": {
+    "class": "CivicThemeWebform",
+    "functionality": [
+      "Automatic error handling and focus management",
+      "Scroll to error messages on form validation failures",
+      "Accessibility enhancement for error messages",
+      "Form state initialization and tracking"
+    ],
+    "events": [
+      "DOMContentLoaded for automatic initialization"
+    ],
+    "features": [
+      "Detects field validation errors (.ct-field-message--error)",
+      "Locates associated error messages (.ct-message--error)",
+      "Makes error messages focusable for accessibility",
+      "Smooth scrolling to error messages",
+      "Prevents duplicate initialization"
+    ]
+  },
+  "blocks": [],
+  "dependencies": [],
+  "examples": [
+    {
+      "name": "Basic Webform",
+      "description": "Standard webform with light theme",
+      "props": {
+        "theme": "light",
+        "with_background": false,
+        "vertical_spacing": "none",
+        "referenced_webform": "<!-- Drupal webform content -->"
+      }
+    },
+    {
+      "name": "Webform with Background",
+      "description": "Webform with background styling and spacing",
+      "props": {
+        "theme": "light",
+        "with_background": true,
+        "vertical_spacing": "both",
+        "referenced_webform": "<!-- Drupal webform content -->"
+      }
+    },
+    {
+      "name": "Dark Theme Webform",
+      "description": "Webform with dark theme styling",
+      "props": {
+        "theme": "dark",
+        "with_background": true,
+        "vertical_spacing": "top",
+        "referenced_webform": "<!-- Drupal webform content -->"
+      }
+    }
+  ],
+  "accessibility": {
+    "guidelines": [
+      "Automatically handles form validation error focus",
+      "Makes error messages focusable for screen readers",
+      "Smooth scrolling to error messages for better UX",
+      "Inherits accessibility features from contained form elements",
+      "Supports keyboard navigation through form fields"
+    ],
+    "wcag_compliance": [
+      "WCAG 2.1 AA - 2.4.3 Focus Order (error handling)",
+      "WCAG 2.1 AA - 3.3.1 Error Identification",
+      "WCAG 2.1 AA - 3.3.3 Error Suggestion"
+    ],
+    "aria_support": "Enhanced error message accessibility through dynamic tabindex management"
+  },
+  "best_practices": [
+    "Use with Drupal Webform module for optimal integration",
+    "Test form validation error handling",
+    "Ensure form fields follow CivicTheme form component patterns",
+    "Consider background styling in relation to surrounding content",
+    "Test with screen readers to verify error announcement",
+    "Keep forms concise and well-structured",
+    "Use proper field labeling and help text"
+  ],
+  "related_components": ["field", "field-message", "message", "button", "input", "textarea", "select"],
+  "technical_notes": [
+    "Container component - does not render form fields directly",
+    "Relies on Drupal's webform rendering for actual form content",
+    "JavaScript enhancement for error handling accessibility",
+    "Uses Bootstrap grid system for responsive layout",
+    "Theme variables applied at container level"
+  ],
+  "drupal_integration": {
+    "webform_module": "Designed for use with Drupal Webform module",
+    "rendering": "referenced_webform slot contains rendered webform from Drupal",
+    "error_handling": "Integrates with Drupal's form validation and error messaging",
+    "theme_integration": "Applies CivicTheme styling to Drupal webform output"
+  },
+  "extraction_meta": {
+    "source_files": [
+      "/packages/sdc/components/03-organisms/webform/webform.component.yml",
+      "/packages/sdc/components/03-organisms/webform/webform.twig",
+      "/packages/sdc/components/03-organisms/webform/webform.scss",
+      "/packages/sdc/components/03-organisms/webform/webform.stories.js",
+      "/packages/sdc/components/03-organisms/webform/webform.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": 0.9,
+    "notes": [
+      "Component has stable status in source",
+      "Simple container component with JavaScript enhancement",
+      "Specific integration with Drupal Webform module",
+      "Minimal styling with focus on error handling UX"
+    ]
+  }
+}

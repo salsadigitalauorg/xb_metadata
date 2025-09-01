@@ -1,0 +1,269 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "link",
+  "name": "Link",
+  "description": "A link component that allows users to navigate to related content, either within the current page, elsewhere on the site, or on external sites. Supports configurable styles, states, and icon positioning.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/link/",
+    "extracted_from": {
+      "component_yml": "link.component.yml",
+      "template": "link.twig",
+      "styles": "link.scss",
+      "stories": "link.stories.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/atoms/link.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation controlling color scheme"
+    },
+    "text": {
+      "type": "string",
+      "required": false,
+      "description": "Link text content. Can be empty for icon-only links.",
+      "examples": ["Link text", "Download file", "Visit external site"]
+    },
+    "url": {
+      "type": "string",
+      "required": false,
+      "description": "Link URL destination",
+      "examples": ["https://www.example.com", "/page", "#section"]
+    },
+    "title": {
+      "type": "string",
+      "required": false,
+      "description": "Title attribute for the link providing additional context"
+    },
+    "is_new_window": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Open link in a new window/tab with target='_blank'"
+    },
+    "is_external": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Indicates if the link is external, adds external styling and icon"
+    },
+    "is_active": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Indicates if the link is in an active state"
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Indicates if the link is disabled and non-interactive"
+    },
+    "icon": {
+      "type": "enum",
+      "required": false,
+      "options": [
+        "account", "approve", "bars", "bullet", "calendar-1", "calendar-2", "call", "cancel", "checked", "close-outline", "close", "document", "down-arrow-1", "down-arrow-2", "download-file", "download", "exclamation-mark-1", "exclamation-mark-2", "exclamation-mark-3", "eye", "facebook", "help", "image", "information-mark", "instagram", "layer", "layers", "left-arrow-outline", "left-arrow", "linkedin", "lock-file", "lock-gallery", "magnifier", "map", "megaphone", "message", "mobile", "mortarboard", "newspaper", "open-source", "pdf-file", "progress", "right-arrow-1", "right-arrow-2", "select-box", "share", "square", "to-do", "twitter", "up-arrow", "upper-arrow", "upper-right-arrow", "users", "watch", "water-drop", "web", "word-file", "x", "youtube"
+      ],
+      "description": "Icon name from the CivicTheme icon set"
+    },
+    "icon_placement": {
+      "type": "enum",
+      "required": false,
+      "default": "after",
+      "options": ["before", "after"],
+      "description": "Icon position relative to text"
+    },
+    "icon_group_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Disable icon and last word grouping functionality"
+    },
+    "icon_single_only": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Only show 1 icon (if both icon and is_external are present, external takes preference)"
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes as string"
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes for customization"
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "link",
+      "template": "link.twig",
+      "libraries": ["civictheme/link"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-link",
+        "modifiers": [
+          "ct-link--external",
+          "ct-link--active",
+          "ct-link--disabled",
+          "ct-link--only-icon",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-link__icon",
+          "ct-text-icon__group"
+        ],
+        "states": [
+          "hover",
+          "focus",
+          "active",
+          "visited",
+          "disabled"
+        ]
+      },
+      "custom_properties": [],
+      "typography": "label-regular",
+      "spacing": {
+        "padding": "ct-spacing(0.375) 0 ct-spacing(0.25)",
+        "icon_only_padding": "ct-spacing(1)",
+        "icon_only_margin": "-1 * ct-spacing(1)"
+      }
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:text-icon", "civictheme:icon"],
+    "contains": ["text-icon", "icon"],
+    "alternatives": ["button", "content-link"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic link",
+      "description": "Standard text link",
+      "props": {
+        "text": "Link text",
+        "url": "https://www.example.com"
+      }
+    },
+    {
+      "name": "External link",
+      "description": "Link to external site with icon",
+      "props": {
+        "text": "External site",
+        "url": "https://www.external-site.com",
+        "is_external": true,
+        "is_new_window": true
+      }
+    },
+    {
+      "name": "Link with icon",
+      "description": "Link with custom icon before text",
+      "props": {
+        "text": "Download file",
+        "url": "/download.pdf",
+        "icon": "download",
+        "icon_placement": "before"
+      }
+    },
+    {
+      "name": "Icon-only link",
+      "description": "Link with only an icon, no text",
+      "props": {
+        "url": "/account",
+        "icon": "account",
+        "title": "Go to account page"
+      }
+    },
+    {
+      "name": "Dark theme link",
+      "description": "Link using dark theme colors",
+      "props": {
+        "text": "Dark theme link",
+        "url": "#",
+        "theme": "dark"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Connect users to related content or functionality",
+      "Provide navigation between pages within your website",
+      "Direct users to external resources or websites",
+      "Create in-page navigation to different sections",
+      "Provide supplementary information without disrupting the primary content flow"
+    ],
+    "when_not_to_use": [
+      "The action will change or manipulate data - use a button instead",
+      "The interaction initiates a process or workflow - use a button instead",
+      "Multiple actions are required in a form - use buttons to clearly indicate submission and cancellation",
+      "The primary call to action needs to be emphasised - consider using a button which has greater visual prominence",
+      "Text simply needs emphasis without navigation - use appropriate text styling instead"
+    ],
+    "best_practices": [
+      "Write link text that clearly describes where the link will take the user",
+      "Keep link text concise but descriptive enough to make sense when read out of context",
+      "Maintain consistent styling for links throughout your site",
+      "Implement all link states (default, hover, active, focus, visited)",
+      "Clearly indicate when a link will take users to an external site",
+      "Use underlines to help differentiate links from surrounding text",
+      "Ensure sufficient contrast against background (4.5:1 minimum)",
+      "Provide visible focus indicators that meet WCAG 2.2 standards"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA (with exceptions)",
+      "wcag_issues": [
+        "1.3.1 Info and Relationships (Level A): Links that open in new tab/window should alert the user"
+      ],
+      "features": [
+        "Keyboard navigation support",
+        "Screen reader compatible",
+        "High contrast support",
+        "Focus indicators",
+        "External link indication"
+      ],
+      "notes": [
+        "External links automatically get 'Opens in a new tab/window' screen reader text when is_new_window is true",
+        "Icon-only links get increased padding for better touch targets",
+        "Focus outline meets WCAG 2.2 standards"
+      ]
+    },
+    "known_issues": [
+      "External link notification: Links opening in new windows should provide clearer user notification",
+      "Icon-only accessibility: Icon-only links rely on title attribute which may not be sufficient for all screen readers",
+      "Touch target size: Some link configurations may not meet minimum touch target requirements"
+    ],
+    "variations": [
+      "Content link: Links used within body text content",
+      "Navigation link: Links used in navigation and other UI elements with semibold weight"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect links to have distinct visual styling (underlines, color changes)",
+        "External link indicators improve user confidence and reduce unexpected navigation",
+        "Icon placement preferences vary by context but 'after' is generally preferred",
+        "Consistent link styling across the site improves user comprehension"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "pagination",
+  "name": "Pagination",
+  "description": "Component for navigating through multiple pages of content. Provides accessible navigation controls with first/previous/next/last links, page numbers, and items-per-page selection.",
+  "category": "molecules",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/pagination/",
+    "extracted_from": {
+      "component_yml": "pagination.component.yml",
+      "template": "pagination.twig", 
+      "styles": "pagination.scss",
+      "stories": "pagination.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "heading_id": {
+      "type": "string",
+      "required": false,
+      "description": "Heading ID for accessibility landmark."
+    },
+    "items_modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional classes for pagination items."
+    },
+    "items_per_page_title": {
+      "type": "string",
+      "required": false,
+      "default": "Items per page",
+      "description": "Label for items per page selector."
+    },
+    "items_per_page_name": {
+      "type": "string",
+      "required": false,
+      "description": "Name attribute for items per page select field."
+    },
+    "items_per_page_id": {
+      "type": "string",
+      "required": false,
+      "description": "ID attribute for items per page select field."
+    },
+    "items_per_page_attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional attributes for items per page select element."
+    },
+    "use_ellipsis": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to show ellipsis for truncated page ranges."
+    },
+    "items": {
+      "type": "object",
+      "required": false,
+      "description": "Pagination navigation items.",
+      "properties": {
+        "first": {
+          "type": "object",
+          "properties": {
+            "text": {"type": "string", "default": "First"},
+            "href": {"type": "string", "description": "URL for first page"}
+          }
+        },
+        "previous": {
+          "type": "object", 
+          "properties": {
+            "text": {"type": "string", "default": "Prev"},
+            "href": {"type": "string", "description": "URL for previous page"}
+          }
+        },
+        "pages": {
+          "type": "object",
+          "description": "Object containing numbered page links"
+        },
+        "next": {
+          "type": "object",
+          "properties": {
+            "text": {"type": "string", "default": "Next"},
+            "href": {"type": "string", "description": "URL for next page"}
+          }
+        },
+        "last": {
+          "type": "object",
+          "properties": {
+            "text": {"type": "string", "default": "Last"},
+            "href": {"type": "string", "description": "URL for last page"}
+          }
+        }
+      }
+    },
+    "items_per_page_options": {
+      "type": "array",
+      "required": false,
+      "description": "Options for items per page selector.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string", "default": "option"},
+          "label": {"type": "string", "description": "Display text"},
+          "value": {"type": "string", "description": "Option value"},
+          "selected": {"type": "boolean", "description": "Whether option is selected"}
+        }
+      }
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {
+    "title": {
+      "description": "Active page title or description."
+    },
+    "current": {
+      "description": "Current page number display."
+    },
+    "total_pages": {
+      "description": "Total pages count display."
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "pagination",
+      "template": "pagination.twig",
+      "libraries": ["civictheme/pagination"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-pagination",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-pagination__wrapper",
+          "ct-pagination__items",
+          "ct-pagination__item",
+          "ct-pagination__link",
+          "ct-pagination__current",
+          "ct-pagination__ellipsis",
+          "ct-pagination__per-page"
+        ],
+        "states": [
+          "hover",
+          "focus",
+          "active",
+          "disabled"
+        ]
+      },
+      "custom_properties": [
+        "$ct-pagination-light-color",
+        "$ct-pagination-light-background-color",
+        "$ct-pagination-light-border-color",
+        "$ct-pagination-light-hover-background-color",
+        "$ct-pagination-light-active-background-color",
+        "$ct-pagination-dark-color",
+        "$ct-pagination-dark-background-color",
+        "$ct-pagination-dark-border-color",
+        "$ct-pagination-dark-hover-background-color",
+        "$ct-pagination-dark-active-background-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:link", "civictheme:select"],
+    "contains": ["link", "select"],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Pagination",
+      "description": "Simple pagination with previous/next navigation",
+      "props": {
+        "theme": "light",
+        "items": {
+          "previous": {
+            "text": "Previous",
+            "href": "/page/1"
+          },
+          "pages": {
+            "1": {"href": "/page/1", "text": "1"},
+            "2": {"href": "/page/2", "text": "2", "current": true},
+            "3": {"href": "/page/3", "text": "3"}
+          },
+          "next": {
+            "text": "Next", 
+            "href": "/page/3"
+          }
+        }
+      }
+    },
+    {
+      "name": "Full Pagination",
+      "description": "Complete pagination with first/last links and ellipsis",
+      "props": {
+        "theme": "light",
+        "use_ellipsis": true,
+        "items": {
+          "first": {
+            "text": "First",
+            "href": "/page/1"
+          },
+          "previous": {
+            "text": "Prev",
+            "href": "/page/4"
+          },
+          "pages": {
+            "1": {"href": "/page/1", "text": "1"},
+            "4": {"href": "/page/4", "text": "4"},
+            "5": {"href": "/page/5", "text": "5", "current": true},
+            "6": {"href": "/page/6", "text": "6"},
+            "10": {"href": "/page/10", "text": "10"}
+          },
+          "next": {
+            "text": "Next",
+            "href": "/page/6"
+          },
+          "last": {
+            "text": "Last",
+            "href": "/page/10"
+          }
+        }
+      }
+    },
+    {
+      "name": "Pagination with Items Per Page",
+      "description": "Pagination with items per page selector",
+      "props": {
+        "theme": "light",
+        "items_per_page_title": "Items per page",
+        "items_per_page_name": "per_page",
+        "items_per_page_id": "per-page-select",
+        "items_per_page_options": [
+          {"label": "10", "value": "10"},
+          {"label": "25", "value": "25", "selected": true},
+          {"label": "50", "value": "50"}
+        ],
+        "items": {
+          "previous": {
+            "text": "Previous",
+            "href": "/page/1"
+          },
+          "pages": {
+            "1": {"href": "/page/1", "text": "1"},
+            "2": {"href": "/page/2", "text": "2", "current": true}
+          },
+          "next": {
+            "text": "Next",
+            "href": "/page/3"
+          }
+        }
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Navigate through large sets of search results or listings",
+      "Break up long content lists into manageable chunks",
+      "Provide user control over content display density",
+      "Enable sequential browsing of multi-page content",
+      "Improve page performance by limiting displayed items"
+    ],
+    "when_not_to_use": [
+      "For small datasets that fit on one page",
+      "When infinite scroll would be more appropriate",
+      "For non-sequential content where pagination doesn't make sense",
+      "In mobile contexts where pagination might be cumbersome"
+    ],
+    "best_practices": [
+      "Provide clear indication of current page position",
+      "Include accessible labels and ARIA attributes",
+      "Show reasonable page ranges with ellipsis for long sequences",
+      "Offer appropriate items-per-page options (10, 25, 50)",
+      "Ensure pagination controls are keyboard accessible",
+      "Provide first/last page links for long page sequences",
+      "Maintain pagination state across user interactions"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper navigation landmarks, accessible labels, and keyboard navigation support for all pagination controls."
+    },
+    "known_issues": [],
+    "variations": [
+      "Navigation types: Previous/next only, full pagination, first/last links",
+      "Page display: Numbered pages, ellipsis for long sequences",
+      "Items per page: Optional selector for result density control",
+      "Theme variations: Light and dark theme support",
+      "Responsive behavior: Adapted controls for different screen sizes"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect pagination for large result sets",
+        "Clear current page indication improves navigation",
+        "Items-per-page control gives users sense of control",
+        "First/last links are helpful for very long page sequences",
+        "Mobile users prefer simpler pagination interfaces"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

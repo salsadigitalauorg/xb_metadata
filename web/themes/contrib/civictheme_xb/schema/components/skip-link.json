@@ -1,0 +1,160 @@
+{
+  "$schema": "https://schemas.dsis.dev/component/v1.0.0/schema.json",
+  "id": "skip-link",
+  "name": "Skip Link",
+  "description": "Accessibility skip link component that allows keyboard users to bypass navigation and jump directly to main content. Hidden by default but becomes visible when focused.",
+  "category": "organisms",
+  "status": "experimental",
+  "version": "1.0.0",
+  "framework": "twig",
+  "platform": {
+    "drupal": {
+      "version": "^10 || ^11",
+      "sdc": true,
+      "namespace": "civictheme",
+      "schema_version": "v1"
+    }
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "title": "Theme",
+        "description": "Theme variation controlling colors and appearance"
+      },
+      "text": {
+        "type": "string",
+        "default": "Skip to main content",
+        "title": "Link Text",
+        "description": "Text displayed on the skip link"
+      },
+      "url": {
+        "type": "string",
+        "title": "Target URL",
+        "description": "Anchor link destination (typically #main-content)"
+      },
+      "attributes": {
+        "type": "string",
+        "title": "Additional Attributes",
+        "description": "Additional HTML attributes to apply to the root element"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes to customize appearance"
+      }
+    },
+    "required": ["url"]
+  },
+  "slots": {},
+  "css": {
+    "root_class": "ct-skip-link",
+    "modifiers": [
+      {
+        "class": "ct-theme-light",
+        "description": "Light theme colors for skip link"
+      },
+      {
+        "class": "ct-theme-dark",
+        "description": "Dark theme colors for skip link"
+      }
+    ],
+    "elements": [
+      {
+        "class": "ct-skip-link__link",
+        "description": "Skip link element with visually hidden styling that becomes visible on focus"
+      },
+      {
+        "class": "ct-visually-hidden",
+        "description": "Utility class that hides element visually but keeps it accessible to screen readers"
+      }
+    ],
+    "behaviors": [
+      {
+        "selector": ".ct-skip-link__link:focus-visible, .ct-skip-link__link:active, .ct-skip-link__link:hover",
+        "description": "Skip link becomes visible when focused, active, or hovered (except on iOS)"
+      }
+    ]
+  },
+  "blocks": [],
+  "dependencies": [
+    "link"
+  ],
+  "examples": [
+    {
+      "name": "Basic Skip Link",
+      "description": "Standard skip link pointing to main content",
+      "props": {
+        "theme": "light",
+        "text": "Skip to main content",
+        "url": "#main-content"
+      }
+    },
+    {
+      "name": "Custom Skip Link",
+      "description": "Skip link with custom text and dark theme",
+      "props": {
+        "theme": "dark",
+        "text": "Jump to content",
+        "url": "#content-area"
+      }
+    },
+    {
+      "name": "Navigation Skip Link",
+      "description": "Skip link for bypassing navigation menu",
+      "props": {
+        "theme": "light",
+        "text": "Skip navigation",
+        "url": "#main-navigation"
+      }
+    }
+  ],
+  "accessibility": {
+    "guidelines": [
+      "Essential for keyboard navigation accessibility",
+      "Should be one of the first focusable elements on the page",
+      "Must be visible when focused to meet WCAG requirements",
+      "Target element should have appropriate focus handling",
+      "Provides way to bypass repetitive navigation content"
+    ],
+    "wcag_compliance": [
+      "WCAG 2.1 AA - 2.4.1 Bypass Blocks",
+      "WCAG 2.1 AA - 2.4.3 Focus Order"
+    ],
+    "aria_support": "Uses semantic link element with descriptive text and title attributes"
+  },
+  "best_practices": [
+    "Place skip links at the very beginning of page content",
+    "Use descriptive text that clearly indicates the target",
+    "Ensure target element can receive focus or has tabindex",
+    "Test with keyboard-only navigation",
+    "Consider providing multiple skip links for complex layouts",
+    "Ensure skip link is visible when focused for sighted keyboard users"
+  ],
+  "related_components": ["link"],
+  "technical_notes": [
+    "Uses ct-visually-hidden utility to hide by default",
+    "Includes platform detection for iOS-specific handling",
+    "Focus visibility handled through CSS overrides",
+    "Link component provides base functionality"
+  ],
+  "extraction_meta": {
+    "source_files": [
+      "/packages/sdc/components/03-organisms/skip-link/skip-link.component.yml",
+      "/packages/sdc/components/03-organisms/skip-link/skip-link.twig",
+      "/packages/sdc/components/03-organisms/skip-link/skip-link.scss",
+      "/packages/sdc/components/03-organisms/skip-link/skip-link.stories.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": 0.9,
+    "notes": [
+      "Component has experimental status in source",
+      "Simple but critical accessibility component",
+      "Includes iOS-specific platform detection",
+      "Clear focus management implementation"
+    ]
+  }
+}

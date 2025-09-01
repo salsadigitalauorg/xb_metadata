@@ -1,0 +1,179 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "iframe",
+  "name": "Iframe",
+  "description": "Component for iframe embedded external content with flexible sizing, background options, and spacing controls for safely embedding third-party content.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/iframe/",
+    "extracted_from": {
+      "component_yml": "iframe.component.yml",
+      "template": "iframe.twig",
+      "styles": "iframe.scss",
+      "stories": "iframe.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": "",
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "url": {
+      "type": "string",
+      "required": false,
+      "description": "Iframe URL."
+    },
+    "width": {
+      "type": "integer",
+      "required": false,
+      "description": "Iframe width."
+    },
+    "height": {
+      "type": "integer",
+      "required": false,
+      "description": "Iframe height."
+    },
+    "vertical_spacing": {
+      "type": "enum",
+      "required": false,
+      "options": ["top", "bottom", "both"],
+      "description": "Vertical spacing position (top, bottom, both)."
+    },
+    "with_background": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to include a background."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "iframe",
+      "template": "iframe.twig",
+      "libraries": ["civictheme/iframe"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-iframe",
+        "modifiers": [
+          "ct-iframe--with-background",
+          "ct-vertical-spacing-inset--top",
+          "ct-vertical-spacing-inset--bottom",
+          "ct-vertical-spacing-inset--both",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-iframe-space-horizontal"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Iframe",
+      "description": "Standard iframe embedding external content",
+      "props": {
+        "theme": "light",
+        "url": "https://www.openstreetmap.org/export/embed.html?bbox=144.1910129785538%2C-38.33563928918572%2C146.0037571191788%2C-37.37170047141492&layer=mapnik",
+        "width": 500,
+        "height": 300
+      }
+    },
+    {
+      "name": "Iframe with Background",
+      "description": "Iframe with themed background wrapper",
+      "props": {
+        "theme": "light",
+        "url": "https://example.com/embed",
+        "width": 600,
+        "height": 400,
+        "with_background": true,
+        "vertical_spacing": "both"
+      }
+    },
+    {
+      "name": "Responsive Iframe",
+      "description": "Iframe without fixed dimensions for responsive behavior",
+      "props": {
+        "theme": "light",
+        "url": "https://example.com/responsive-embed",
+        "vertical_spacing": "top"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Embed maps from external services (Google Maps, OpenStreetMap)",
+      "Include social media feeds or widgets",
+      "Embed video content from external platforms",
+      "Display third-party tools or calculators",
+      "Include external forms or surveys",
+      "Show content from other domains that must be sandboxed"
+    ],
+    "when_not_to_use": [
+      "For internal content that could be included directly",
+      "When the external content is not trusted or secure",
+      "For content that needs to be indexed by search engines",
+      "When responsive design is critical and iframe content doesn't adapt well"
+    ],
+    "best_practices": [
+      "Always specify appropriate security attributes (sandbox, allow policies)",
+      "Use HTTPS URLs for iframe sources when possible",
+      "Consider accessibility implications of embedded content",
+      "Test embedded content across different screen sizes",
+      "Provide fallback content or error handling for failed iframe loads",
+      "Be mindful of performance impact of embedded content",
+      "Use with_background option to visually integrate iframes with site design"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA (with dependencies)",
+      "wcag_issues": [],
+      "notes": "Accessibility depends heavily on the embedded content. Ensure iframe content is accessible and provide appropriate titles/descriptions."
+    },
+    "known_issues": [
+      "Some external content may not work well in responsive designs",
+      "Cross-origin security restrictions may affect functionality",
+      "Performance can be impacted by external content loading times"
+    ],
+    "variations": [
+      "Basic iframe: Simple embedding with URL and dimensions",
+      "Background wrapper: Adds themed background around iframe content",
+      "Responsive iframe: Uses CSS to adapt to container dimensions",
+      "Spacing variations: Control vertical spacing around iframe"
+    ]
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T00:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

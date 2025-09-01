@@ -1,0 +1,232 @@
+{
+  "$schema": "https://schemas.dsis.dev/component/v1.0.0/schema.json",
+  "id": "text-icon",
+  "name": "Text Icon",
+  "description": "Utility component for combining text content with icons, featuring intelligent text grouping, icon positioning, and accessibility enhancements. Handles external link indicators and new window notifications automatically.",
+  "category": "base",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "platform": {
+    "drupal": {
+      "version": "^10 || ^11",
+      "sdc": true,
+      "namespace": "civictheme",
+      "schema_version": "v1"
+    }
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "text": {
+        "type": "string",
+        "title": "Text Content",
+        "description": "Main text content to display with optional icon"
+      },
+      "is_new_window": {
+        "type": "boolean",
+        "default": false,
+        "title": "Opens in New Window",
+        "description": "Whether the link opens in a new window (adds screen reader text)"
+      },
+      "is_external": {
+        "type": "boolean",
+        "default": false,
+        "title": "External Link",
+        "description": "Whether this is an external link (adds external icon automatically)"
+      },
+      "icon": {
+        "type": "string",
+        "title": "Icon Name",
+        "description": "Icon symbol name to display with the text"
+      },
+      "icon_placement": {
+        "type": "string",
+        "enum": ["before", "after"],
+        "default": "after",
+        "title": "Icon Placement",
+        "description": "Position of the icon relative to the text"
+      },
+      "icon_class": {
+        "type": "string",
+        "title": "Icon CSS Class",
+        "description": "Additional CSS class for custom icon styling"
+      },
+      "icon_group_disabled": {
+        "type": "boolean",
+        "default": false,
+        "title": "Disable Icon Grouping",
+        "description": "Whether to disable the automatic grouping of icon with the last word"
+      },
+      "icon_single_only": {
+        "type": "boolean",
+        "default": false,
+        "title": "Single Icon Only",
+        "description": "Show only one icon when both custom icon and external indicator are present (external takes precedence)"
+      }
+    }
+  },
+  "slots": {},
+  "css": {
+    "root_class": "ct-text-icon",
+    "elements": [
+      {
+        "class": "ct-text-icon__group",
+        "description": "Wrapper for icon and last word grouping with nowrap behavior"
+      }
+    ],
+    "utility_classes": [
+      {
+        "class": "ct-visually-hidden",
+        "description": "Screen reader only text for accessibility"
+      }
+    ]
+  },
+  "text_processing": {
+    "word_grouping": "Automatically groups the last word with icons to prevent awkward line breaks",
+    "text_splitting": "Splits text by spaces to identify the last word for grouping",
+    "icon_positioning": "Icons can be placed before entire text or grouped with last word",
+    "external_handling": "External links automatically get upper-right-arrow icon"
+  },
+  "icon_logic": {
+    "priority_order": [
+      "1. External icon (if is_external and icon_single_only)",
+      "2. Custom icon (if icon provided)",
+      "3. External icon (if is_external and not icon_single_only)",
+      "4. New window text (if is_new_window)"
+    ],
+    "placement_rules": [
+      "Before placement: Icon appears before all text",
+      "After placement: Icon groups with last word",
+      "External icons: Always appear after text unless single_only is true"
+    ]
+  },
+  "blocks": [],
+  "dependencies": [
+    "icon"
+  ],
+  "examples": [
+    {
+      "name": "Text with Before Icon",
+      "description": "Text with icon positioned before the content",
+      "props": {
+        "text": "Download the file",
+        "icon": "download",
+        "icon_placement": "before"
+      }
+    },
+    {
+      "name": "Text with After Icon",
+      "description": "Text with icon positioned after and grouped with last word",
+      "props": {
+        "text": "View the documentation",
+        "icon": "right-arrow-1",
+        "icon_placement": "after"
+      }
+    },
+    {
+      "name": "External Link with Auto Icon",
+      "description": "External link with automatic external indicator",
+      "props": {
+        "text": "Visit external website",
+        "is_external": true
+      }
+    },
+    {
+      "name": "New Window Link",
+      "description": "Link that opens in new window with accessibility text",
+      "props": {
+        "text": "Open in new tab",
+        "is_new_window": true,
+        "is_external": true
+      }
+    },
+    {
+      "name": "Custom Icon with External",
+      "description": "Custom icon with external indicator (both shown)",
+      "props": {
+        "text": "External document",
+        "icon": "document",
+        "icon_placement": "before",
+        "is_external": true,
+        "icon_single_only": false
+      }
+    },
+    {
+      "name": "Single Icon Priority",
+      "description": "External takes precedence when single_only is true",
+      "props": {
+        "text": "External link priority",
+        "icon": "document",
+        "is_external": true,
+        "icon_single_only": true
+      }
+    },
+    {
+      "name": "Grouping Disabled",
+      "description": "Text with icon but grouping disabled",
+      "props": {
+        "text": "Long text that might wrap awkwardly",
+        "icon": "right-arrow-1",
+        "icon_placement": "after",
+        "icon_group_disabled": true
+      }
+    }
+  ],
+  "accessibility": {
+    "guidelines": [
+      "Automatically adds screen reader text for new window links",
+      "Uses semantic span elements for proper markup",
+      "External link indicators provide visual context",
+      "Icon grouping prevents awkward line breaks that affect readability",
+      "Visually hidden text provides context for screen readers"
+    ],
+    "wcag_compliance": [
+      "WCAG 2.1 AA - 1.1.1 Non-text Content (icon meaning conveyed through context)",
+      "WCAG 2.1 AA - 3.2.5 Change on Request (new window notification)"
+    ],
+    "screen_reader_support": "Includes '(Opens in a new tab/window)' text for new window links"
+  },
+  "best_practices": [
+    "Use descriptive text that makes sense with or without icons",
+    "Consider icon placement in relation to text length and wrapping",
+    "Use external indicators consistently for external links",
+    "Test with varying text lengths to ensure proper grouping",
+    "Provide new window notifications for accessibility",
+    "Use icon_single_only to avoid icon overload",
+    "Test icon grouping with different screen sizes"
+  ],
+  "use_cases": [
+    "Button and link text with directional icons",
+    "External link indicators for outbound links",
+    "File download links with file type icons",
+    "Navigation items with status or state icons",
+    "Call-to-action text with emphasis icons",
+    "Document links with document type indicators"
+  ],
+  "related_components": ["icon", "link", "button"],
+  "technical_notes": [
+    "Uses Twig's string manipulation functions for text processing",
+    "Implements intelligent word grouping to prevent line break issues",
+    "Handles multiple icon scenarios with priority logic",
+    "No JavaScript dependencies - pure template logic",
+    "Minimal CSS footprint with single grouping utility class",
+    "Flexible enough to work within other components"
+  ],
+  "extraction_meta": {
+    "source_files": [
+      "/packages/sdc/components/00-base/text-icon/text-icon.component.yml",
+      "/packages/sdc/components/00-base/text-icon/text-icon.twig",
+      "/packages/sdc/components/00-base/text-icon/text-icon.scss",
+      "/packages/sdc/components/00-base/text-icon/text-icon.stories.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": 0.95,
+    "notes": [
+      "Component has stable status in source",
+      "Complex text processing logic with intelligent icon handling",
+      "Simple but effective CSS implementation",
+      "Good accessibility considerations with screen reader support"
+    ]
+  }
+}

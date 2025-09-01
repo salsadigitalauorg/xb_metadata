@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "subject-card",
+  "title": "Subject Card",
+  "description": "Card component for displaying a subject with image and title",
+  "type": "object",
+  "category": "molecules",
+  "status": "stable",
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation",
+      "enum": ["light", "dark"],
+      "default": "light"
+    },
+    "image": {
+      "type": "object",
+      "description": "Card image",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image URL",
+          "format": "uri"
+        },
+        "alt": {
+          "type": "string",
+          "description": "Image alt text for accessibility"
+        }
+      },
+      "required": ["url", "alt"]
+    },
+    "link": {
+      "type": "object",
+      "description": "Card link object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Link URL",
+          "format": "uri"
+        },
+        "is_new_window": {
+          "type": "boolean",
+          "description": "Whether to open the link in a new window",
+          "default": false
+        }
+      },
+      "required": ["url"]
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes"
+    }
+  },
+  "required": ["title"],
+  "slots": {
+    "title": {
+      "description": "Card title content",
+      "required": true
+    },
+    "image_over": {
+      "description": "Image overlay content (appears over the image)"
+    }
+  },
+  "blocks": {
+    "image_block": {
+      "description": "Override the default image rendering"
+    },
+    "image_over_block": {
+      "description": "Override the default image overlay rendering"
+    },
+    "title_block": {
+      "description": "Override the default title rendering"
+    }
+  },
+  "css_classes": {
+    "base": "ct-subject-card",
+    "modifiers": {
+      "with_image": "ct-subject-card--with-image",
+      "theme_light": "ct-theme-light",
+      "theme_dark": "ct-theme-dark"
+    },
+    "elements": {
+      "content": "ct-subject-card__content",
+      "image": "ct-subject-card__image",
+      "image_over": "ct-subject-card__image__over",
+      "title": "ct-subject-card__title",
+      "title_link": "ct-subject-card__title__link"
+    }
+  },
+  "css_variables": {
+    "$ct-service-card-border-radius": "Border radius for the card",
+    "$ct-subject-card-image-height-mobile": "Minimum height on mobile devices",
+    "$ct-subject-card-image-width-mobile": "Minimum width on mobile devices",
+    "$ct-subject-card-image-height-desktop": "Minimum height on desktop devices",
+    "$ct-subject-card-image-width-desktop": "Minimum width on desktop devices"
+  },
+  "accessibility": {
+    "features": [
+      "Images include alt text for screen readers",
+      "Links use semantic link elements",
+      "Heading structure maintained with level 4 headings",
+      "Cover link pattern allows entire card to be clickable"
+    ],
+    "guidelines": [
+      "Always provide meaningful alt text for images",
+      "Keep titles concise but descriptive",
+      "Ensure sufficient color contrast in overlay content",
+      "Test keyboard navigation for linked cards"
+    ]
+  },
+  "platform_integration": {
+    "drupal": {
+      "field_types": ["field_image", "field_link", "field_text"],
+      "view_modes": ["card", "teaser", "default"],
+      "template_suggestions": [
+        "subject-card--[view-mode].twig",
+        "subject-card--[bundle].twig"
+      ]
+    }
+  },
+  "usage_examples": {
+    "basic": {
+      "description": "Basic subject card with image and title",
+      "props": {
+        "theme": "light",
+        "title": "Subject card title which runs across two or three lines",
+        "image": {
+          "url": "./demo/images/demo1.jpg",
+          "alt": "Image alt text"
+        }
+      }
+    },
+    "with_link": {
+      "description": "Subject card with clickable link",
+      "props": {
+        "theme": "light",
+        "title": "Clickable Subject Card",
+        "image": {
+          "url": "./demo/images/demo1.jpg",
+          "alt": "Image alt text"
+        },
+        "link": {
+          "url": "https://example.com",
+          "is_new_window": false
+        }
+      }
+    },
+    "with_overlay": {
+      "description": "Subject card with image overlay content",
+      "props": {
+        "theme": "dark",
+        "title": "Card with Overlay",
+        "image": {
+          "url": "./demo/images/demo1.jpg",
+          "alt": "Image alt text"
+        },
+        "image_over": "<span class=\"badge\">Featured</span>"
+      }
+    }
+  },
+  "design_tokens": {
+    "spacing": [
+      "Card content padding: ct-spacing(2) mobile, ct-spacing(3) desktop"
+    ],
+    "elevation": [
+      "Uses ct-elevation-interaction() mixin for hover effects"
+    ],
+    "layout": [
+      "Flexbox layout with column direction",
+      "Content positioned at flex-end for bottom alignment",
+      "Image positioned absolutely to cover entire card"
+    ]
+  },
+  "best_practices": [
+    "Use descriptive titles that work both with and without context",
+    "Always provide alt text for images",
+    "Consider content contrast when using image overlays",
+    "Keep overlay content minimal to avoid cluttering",
+    "Test with various image aspect ratios",
+    "Use consistent image dimensions within card grids"
+  ],
+  "related_components": [
+    "image",
+    "link", 
+    "heading",
+    "card"
+  ],
+  "extraction_metadata": {
+    "source_files": [
+      "/packages/sdc/components/02-molecules/subject-card/subject-card.component.yml",
+      "/packages/sdc/components/02-molecules/subject-card/subject-card.twig",
+      "/packages/sdc/components/02-molecules/subject-card/subject-card.scss",
+      "/packages/sdc/components/02-molecules/subject-card/subject-card.stories.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": "high",
+    "notes": [
+      "Card uses absolute positioning for image with content overlay",
+      "Title is wrapped in heading component with level 4",
+      "Links use cover pattern to make entire card clickable",
+      "Component includes responsive design with different dimensions for mobile/desktop",
+      "Icons are conditionally shown for non-image linked cards"
+    ]
+  }
+}

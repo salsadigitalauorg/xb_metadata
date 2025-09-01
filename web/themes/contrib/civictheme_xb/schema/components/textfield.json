@@ -1,0 +1,223 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "textfield",
+  "name": "Textfield",
+  "description": "Single-line text input form element with customizable appearance and states. Provides accessible text input functionality with support for various input types and form validation states.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/textfield/",
+    "extracted_from": {
+      "component_yml": "textfield.component.yml",
+      "template": "textfield.twig", 
+      "styles": "textfield.scss",
+      "stories": "textfield.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "DOM name attribute (required).",
+      "examples": ["firstname", "email", "phone"]
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "DOM ID attribute."
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "The textfield value.",
+      "examples": ["Default value", ""]
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Placeholder text.",
+      "examples": ["Enter your name", "example@email.com"]
+    },
+    "is_invalid": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the textfield is invalid."
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the textfield is disabled."
+    },
+    "is_required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the textfield is required."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "textfield",
+      "template": "textfield.twig",
+      "libraries": ["civictheme/textfield"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-textfield",
+        "modifiers": [
+          "ct-textfield--is-invalid",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [],
+        "states": [
+          "required",
+          "disabled",
+          "focus",
+          "hover"
+        ]
+      },
+      "custom_properties": [
+        "$ct-textfield-light-color",
+        "$ct-textfield-light-background-color",
+        "$ct-textfield-light-border-color",
+        "$ct-textfield-light-focus-border-color",
+        "$ct-textfield-light-invalid-border-color",
+        "$ct-textfield-dark-color",
+        "$ct-textfield-dark-background-color",
+        "$ct-textfield-dark-border-color",
+        "$ct-textfield-dark-focus-border-color",
+        "$ct-textfield-dark-invalid-border-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": ["input", "textarea"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Textfield",
+      "description": "Simple text input with placeholder",
+      "props": {
+        "theme": "light",
+        "name": "firstname",
+        "id": "firstname-input",
+        "placeholder": "Enter your name"
+      }
+    },
+    {
+      "name": "Email Textfield",
+      "description": "Email input with validation",
+      "props": {
+        "theme": "light",
+        "name": "email",
+        "id": "email-input",
+        "placeholder": "example@email.com",
+        "is_required": true,
+        "attributes": "type=\"email\""
+      }
+    },
+    {
+      "name": "Invalid Textfield",
+      "description": "Textfield with validation error",
+      "props": {
+        "theme": "light",
+        "name": "username",
+        "id": "username-input",
+        "value": "user@",
+        "is_invalid": true
+      }
+    },
+    {
+      "name": "Disabled Textfield",
+      "description": "Disabled textfield state",
+      "props": {
+        "theme": "light",
+        "name": "readonly-field",
+        "id": "readonly-input",
+        "value": "Cannot be edited",
+        "is_disabled": true
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Collect single-line text input from users",
+      "Create form fields for names, emails, phone numbers",
+      "Enable search input functionality",
+      "Provide input for short text values",
+      "Create login and registration forms"
+    ],
+    "when_not_to_use": [
+      "For multi-line input - use textarea instead",
+      "For selecting from predefined options - use select, radio, or checkboxes",
+      "For complex structured input - use specialized input types",
+      "For file uploads - use file input components",
+      "For password fields without proper security considerations"
+    ],
+    "best_practices": [
+      "Use appropriate input types (email, tel, url) via attributes",
+      "Provide clear placeholder text to guide users",
+      "Use descriptive labels and associate them properly",
+      "Provide immediate validation feedback for errors",
+      "Ensure sufficient color contrast for readability",
+      "Test with various input lengths and content types",
+      "Consider autocomplete attributes for common fields"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper form control semantics and keyboard navigation for single-line text input."
+    },
+    "known_issues": [],
+    "variations": [
+      "Input types: Text, email, tel, url, password (via attributes)",
+      "States: Default, focused, invalid, disabled, required",
+      "Theme variations: Light and dark theme support",
+      "Content validation: Email, phone, URL, custom patterns",
+      "Security: Password fields with proper attributes"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect immediate feedback on input validation",
+        "Clear placeholder text reduces form abandonment",
+        "Proper input types improve mobile keyboard experience",
+        "Consistent styling across forms improves usability"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

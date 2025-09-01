@@ -1,0 +1,123 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "back-to-top",
+  "name": "Back to Top",
+  "description": "Button component that allows users to quickly return to the top of the page, appearing when users have scrolled down and providing smooth navigation back to the beginning of content.",
+  "category": "molecules",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/back-to-top/",
+    "extracted_from": {
+      "component_yml": "back-to-top.component.yml",
+      "template": "back-to-top.twig",
+      "styles": "back-to-top.scss",
+      "stories": "back-to-top.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": "",
+    "coverage": "none"
+  },
+  "props": {
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "back_to_top",
+      "template": "back-to-top.twig",
+      "libraries": ["civictheme/back-to-top", "civictheme/scrollspy"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-back-to-top",
+        "modifiers": [],
+        "elements": [
+          "ct-back-to-top__button"
+        ],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-back-to-top-space-right",
+        "$ct-back-to-top-space-bottom",
+        "$ct-back-to-top-background-color",
+        "$ct-back-to-top-border-color",
+        "$ct-back-to-top-color",
+        "$ct-back-to-top-outline-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:button"],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Back to Top",
+      "description": "Standard back to top button with default positioning",
+      "props": {}
+    },
+    {
+      "name": "Custom Back to Top",
+      "description": "Back to top button with custom classes",
+      "props": {
+        "modifier_class": "custom-back-to-top",
+        "attributes": "data-custom-attribute='value'"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "On long pages where users need to scroll significantly",
+      "In content-heavy pages like articles or documentation",
+      "When users frequently need to return to page navigation or header",
+      "For improving user experience on mobile devices with limited scrolling",
+      "In applications with infinite scroll or extensive content lists"
+    ],
+    "when_not_to_use": [
+      "On short pages that fit within a single viewport",
+      "In applications with persistent header navigation",
+      "When the page already has a sticky navigation element",
+      "For print media (component is hidden in print styles)"
+    ],
+    "best_practices": [
+      "Position the button in a consistent location (typically bottom-right)",
+      "Only show the button after users have scrolled a certain distance",
+      "Use appropriate visual styling that stands out but doesn't obstruct content",
+      "Ensure the button is accessible via keyboard navigation",
+      "Provide smooth scrolling animation for better user experience",
+      "Include visually hidden text for screen readers",
+      "Test positioning across different screen sizes"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component includes visually hidden text for screen readers and proper keyboard navigation support. Uses skip-to-target functionality for accessibility."
+    },
+    "known_issues": [
+      "Button appears in fixed position and may overlap with other floating elements",
+      "Scrollspy functionality requires JavaScript to be enabled"
+    ],
+    "variations": [
+      "Default: Fixed position button with scroll detection",
+      "Custom styled: Button with modified appearance via modifier classes"
+    ]
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T00:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

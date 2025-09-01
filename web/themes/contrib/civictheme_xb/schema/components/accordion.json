@@ -1,0 +1,290 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "accordion",
+  "name": "Accordion",
+  "description": "Collapsible accordion component with expandable panels for organizing content into sections that users can expand or collapse",
+  "category": "molecules",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/accordion/",
+    "extracted_from": {
+      "component_yml": "accordion.component.yml",
+      "template": "accordion.twig",
+      "styles": "accordion.scss",
+      "stories": "accordion.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/accordion.md",
+    "coverage": "none",
+    "issue": "Documentation file contains text-list component content instead of accordion information"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation controlling color scheme"
+    },
+    "expand_all": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to expand all panels by default"
+    },
+    "with_background": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to display with a background wrapper"
+    },
+    "vertical_spacing": {
+      "type": "enum",
+      "required": false,
+      "default": "none",
+      "options": ["none", "top", "bottom", "both"],
+      "description": "Vertical spacing position for component margins"
+    },
+    "panels": {
+      "type": "array",
+      "required": true,
+      "description": "Array of accordion panels to display",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Panel header title text"
+          },
+          "content": {
+            "type": "string",
+            "required": true,
+            "description": "Panel content (supports HTML)"
+          },
+          "expanded": {
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Whether this individual panel is expanded by default"
+          }
+        }
+      }
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes for the root element"
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes for styling modifications"
+    }
+  },
+  "slots": {
+    "content_top": {
+      "description": "Content to display above the accordion panels",
+      "accepts": ["html"],
+      "required": false
+    },
+    "content_bottom": {
+      "description": "Content to display below the accordion panels",
+      "accepts": ["html"],
+      "required": false
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "accordion",
+      "template": "accordion.twig",
+      "libraries": ["civictheme/accordion"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-accordion",
+        "modifiers": [
+          "ct-accordion--with-background",
+          "ct-theme-light",
+          "ct-theme-dark",
+          "ct-vertical-spacing-inset--top",
+          "ct-vertical-spacing-inset--bottom", 
+          "ct-vertical-spacing-inset--both"
+        ],
+        "elements": [
+          "ct-accordion__content-top",
+          "ct-accordion__content",
+          "ct-accordion__content-bottom",
+          "ct-accordion__panels",
+          "ct-accordion__panels__panel",
+          "ct-accordion__panels__panel__header",
+          "ct-accordion__panels__panel__header__button",
+          "ct-accordion__panels__panel__content",
+          "ct-accordion__panels__panel__content__inner"
+        ],
+        "states": [
+          "expanded",
+          "collapsed",
+          "focus",
+          "hover"
+        ]
+      },
+      "custom_properties": [
+        "$ct-accordion-space-horizontal",
+        "$ct-accordion-item-border-radius",
+        "$ct-accordion-stripe-width",
+        "$ct-accordion-header-border-radius",
+        "$ct-accordion-button-border-radius"
+      ]
+    }
+  },
+  "javascript": {
+    "behavior": "collapsible",
+    "features": [
+      "Individual panel expand/collapse",
+      "Global expand all functionality",
+      "Smooth animations (250ms duration)",
+      "Wide trigger area for better usability",
+      "State persistence through data attributes"
+    ],
+    "data_attributes": {
+      "collapsible": "Marks element as collapsible for JavaScript behavior",
+      "collapsible-collapsed": "Marks collapsed state for JavaScript and CSS",
+      "collapsible-duration": "Animation duration for expand/collapse transitions",
+      "collapsible-trigger": "Identifies trigger element for collapsible behavior",
+      "collapsible-trigger-wide": "Enables wide trigger area for interaction",
+      "collapsible-panel": "Identifies content panel for collapsible behavior"
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:paragraph"],
+    "contains": ["paragraph", "button"],
+    "alternatives": ["tabs"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Default Accordion",
+      "description": "Basic accordion with multiple panels",
+      "props": {
+        "theme": "light",
+        "expand_all": false,
+        "with_background": false,
+        "vertical_spacing": "none",
+        "panels": [
+          {
+            "title": "Accordion title 1",
+            "content": "Accordion content 1 <a href=\"https://example.com\">Example link</a>",
+            "expanded": false
+          },
+          {
+            "title": "Accordion title 2",
+            "content": "Accordion content 2 <a href=\"https://example.com\">Example link</a>",
+            "expanded": false
+          },
+          {
+            "title": "Accordion title 3",
+            "content": "Accordion content 3 <a href=\"https://example.com\">Example link</a>",
+            "expanded": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "With Background",
+      "description": "Accordion with background styling",
+      "props": {
+        "theme": "light",
+        "expand_all": false,
+        "with_background": true,
+        "vertical_spacing": "both",
+        "panels": [
+          {
+            "title": "Panel with background",
+            "content": "Content with background styling enabled",
+            "expanded": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "Dark Theme",
+      "description": "Accordion with dark theme variation",
+      "props": {
+        "theme": "dark",
+        "expand_all": false,
+        "with_background": false,
+        "vertical_spacing": "none",
+        "panels": [
+          {
+            "title": "Dark theme panel",
+            "content": "Content using dark theme colors",
+            "expanded": false
+          }
+        ]
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Organizing large amounts of related content into manageable sections",
+      "Providing overview information with optional detail exploration",
+      "Creating FAQ sections where users can expand relevant questions",
+      "Saving vertical space while maintaining content accessibility",
+      "Allowing users to focus on specific content areas"
+    ],
+    "when_not_to_use": [
+      "Content is short and doesn't need to be hidden",
+      "Users need to see all information simultaneously for comparison",
+      "The content flow requires sequential reading",
+      "There are only one or two content sections",
+      "Navigation between sections is more important than content organization"
+    ],
+    "best_practices": [
+      "Use clear, descriptive titles that indicate the content within each panel",
+      "Limit the number of panels to avoid overwhelming users (typically 3-7 panels)",
+      "Consider which panels should be expanded by default based on user needs",
+      "Ensure content within panels is well-structured and scannable",
+      "Provide smooth animations to help users understand the expand/collapse behavior",
+      "Maintain consistent visual styling across all panels",
+      "Test on mobile devices to ensure touch targets are appropriately sized"
+    ],
+    "accessibility": {
+      "wcag_compliance": "WCAG 2.2 AA (estimated)",
+      "features": [
+        "Keyboard navigation support",
+        "ARIA expanded state management",
+        "ARIA hidden content management",
+        "Focus management with focus-visible styling",
+        "Semantic button elements for interaction",
+        "Proper heading hierarchy with heading-6 typography"
+      ],
+      "attributes": [
+        "aria-expanded: Indicates whether panel is expanded",
+        "aria-hidden: Hides collapsed content from screen readers",
+        "data-collapsible: Marks element as collapsible for JavaScript behavior"
+      ]
+    },
+    "known_issues": [
+      "Documentation mismatch: Current documentation file contains incorrect content",
+      "Content overflow: Long content in panels may cause layout issues on smaller screens",
+      "Animation accessibility: Users with motion sensitivity may need reduced motion options"
+    ],
+    "user_research": {
+      "confidence_rating": "Low",
+      "findings": [],
+      "note": "Limited research data available due to documentation content issue"
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "MEDIUM",
+    "issues": [
+      "Documentation file contains incorrect content (text-list instead of accordion)",
+      "Limited intelligence data available due to documentation issue",
+      "User research insights not available"
+    ]
+  }
+}

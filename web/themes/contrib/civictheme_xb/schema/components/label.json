@@ -1,0 +1,237 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "label",
+  "name": "Label",
+  "description": "Label component for form elements with customizable appearance and states. Provides accessible labeling for form controls with support for required field indicators and various sizing options.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/label/",
+    "extracted_from": {
+      "component_yml": "label.component.yml",
+      "template": "label.twig", 
+      "styles": "label.scss",
+      "stories": "label.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "tag": {
+      "type": "enum",
+      "required": false,
+      "default": "label",
+      "options": ["label", "legend"],
+      "description": "HTML tag to use (label for form controls, legend for fieldsets)."
+    },
+    "content": {
+      "type": "string",
+      "required": false,
+      "description": "The label's content text.",
+      "examples": ["Label content", "First Name", "Email Address"]
+    },
+    "size": {
+      "type": "enum",
+      "required": false,
+      "default": "regular",
+      "options": ["extra-large", "large", "regular", "small", "extra-small"],
+      "description": "Label size for different contexts."
+    },
+    "is_required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the label is for a required field."
+    },
+    "required_text": {
+      "type": "string",
+      "required": false,
+      "default": "(required)",
+      "description": "Text to display for required fields."
+    },
+    "for": {
+      "type": "string",
+      "required": false,
+      "description": "Form element ID this label belongs to."
+    },
+    "allow_html": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to allow HTML in content."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "label",
+      "template": "label.twig",
+      "libraries": ["civictheme/label"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-label",
+        "modifiers": [
+          "ct-label--extra-large",
+          "ct-label--large",
+          "ct-label--regular",
+          "ct-label--small",
+          "ct-label--extra-small",
+          "ct-label--required",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-label__required"
+        ],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-label-light-color",
+        "$ct-label-dark-color",
+        "$ct-label-required-color",
+        "$ct-label-font-size-extra-large",
+        "$ct-label-font-size-large",
+        "$ct-label-font-size-regular",
+        "$ct-label-font-size-small",
+        "$ct-label-font-size-extra-small"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Label",
+      "description": "Simple form label",
+      "props": {
+        "theme": "light",
+        "tag": "label",
+        "content": "Label content",
+        "size": "regular",
+        "for": "input-id"
+      }
+    },
+    {
+      "name": "Required Field Label",
+      "description": "Label for required form field",
+      "props": {
+        "theme": "light",
+        "tag": "label",
+        "content": "Email Address",
+        "size": "regular",
+        "is_required": true,
+        "required_text": "(required)",
+        "for": "email-input"
+      }
+    },
+    {
+      "name": "Fieldset Legend",
+      "description": "Legend element for fieldset grouping",
+      "props": {
+        "theme": "light",
+        "tag": "legend",
+        "content": "Contact Information",
+        "size": "large"
+      }
+    },
+    {
+      "name": "Small Label",
+      "description": "Compact label for tight spaces",
+      "props": {
+        "theme": "light",
+        "tag": "label",
+        "content": "City",
+        "size": "small",
+        "for": "city-input"
+      }
+    },
+    {
+      "name": "Dark Theme Label",
+      "description": "Label with dark theme styling",
+      "props": {
+        "theme": "dark",
+        "tag": "label",
+        "content": "Username",
+        "size": "regular",
+        "is_required": true,
+        "for": "username-input"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Label form input fields like text inputs, checkboxes, and radio buttons",
+      "Create legends for fieldset groupings",
+      "Provide accessible text descriptions for form controls",
+      "Indicate required fields to users",
+      "Create hierarchical form structures with different label sizes"
+    ],
+    "when_not_to_use": [
+      "For purely decorative text - use paragraph or heading components",
+      "As clickable elements without associated form controls",
+      "For complex form descriptions - consider field-description component",
+      "When form controls already have built-in labeling"
+    ],
+    "best_practices": [
+      "Always associate labels with form controls using the 'for' attribute",
+      "Use clear, descriptive text that explains what the input expects",
+      "Indicate required fields consistently throughout forms",
+      "Choose appropriate label sizes based on form hierarchy and importance",
+      "Place labels consistently (typically above or to the left of inputs)",
+      "Use legend tags for fieldset groupings, label tags for individual controls",
+      "Ensure sufficient contrast between label text and background"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper semantic markup for screen readers and supports proper form control association."
+    },
+    "known_issues": [],
+    "variations": [
+      "Tag types: label for form controls, legend for fieldsets",
+      "Sizes: Five size options from extra-small to extra-large",
+      "Required states: Optional required field indicators",
+      "Theme variations: Light and dark theme support",
+      "Content options: Plain text or HTML content support"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Clear, descriptive labels reduce form completion errors",
+        "Required field indicators help users understand form expectations",
+        "Consistent label positioning improves form usability",
+        "Proper label-to-input association is crucial for accessibility"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

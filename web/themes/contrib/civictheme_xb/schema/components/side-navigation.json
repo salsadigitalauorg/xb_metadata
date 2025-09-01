@@ -1,0 +1,268 @@
+{
+  "$schema": "https://schemas.dsis.dev/component/v1.0.0/schema.json",
+  "id": "side-navigation",
+  "name": "Side Navigation",
+  "description": "Vertical sidebar navigation component with hierarchical menu structure and collapsible sections. Includes skip-link functionality and supports multi-level navigation.",
+  "category": "organisms",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "platform": {
+    "drupal": {
+      "version": "^10 || ^11",
+      "sdc": true,
+      "namespace": "civictheme",
+      "schema_version": "v1"
+    }
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "title": "Theme",
+        "description": "Theme variation controlling colors and appearance"
+      },
+      "vertical_spacing": {
+        "type": "string",
+        "enum": ["none", "top", "bottom", "both"],
+        "default": "none",
+        "title": "Vertical Spacing",
+        "description": "Vertical spacing positioning using inset spacing"
+      },
+      "items": {
+        "type": "array",
+        "title": "Navigation Items",
+        "description": "Hierarchical array of navigation menu items",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "title": "Title",
+              "description": "Display text for the navigation item"
+            },
+            "url": {
+              "type": "string",
+              "title": "URL",
+              "description": "Link destination for the navigation item"
+            },
+            "in_active_trail": {
+              "type": "boolean",
+              "default": false,
+              "title": "In Active Trail",
+              "description": "Whether this item is in the current active navigation trail"
+            },
+            "is_expanded": {
+              "type": "boolean",
+              "default": false,
+              "title": "Is Expanded",
+              "description": "Whether this item's submenu should be expanded by default"
+            },
+            "below": {
+              "type": "array",
+              "title": "Submenu Items",
+              "description": "Child navigation items for hierarchical navigation"
+            }
+          },
+          "required": ["title", "url"]
+        }
+      },
+      "attributes": {
+        "type": "string",
+        "title": "Additional Attributes",
+        "description": "Additional HTML attributes to apply to the root element"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes to customize appearance"
+      }
+    },
+    "required": ["items"]
+  },
+  "slots": {
+    "title": {
+      "title": "Navigation Title",
+      "description": "Optional heading text displayed above the navigation menu",
+      "type": "text"
+    }
+  },
+  "css": {
+    "root_class": "ct-side-navigation",
+    "modifiers": [
+      {
+        "class": "ct-theme-light",
+        "description": "Light theme colors for navigation"
+      },
+      {
+        "class": "ct-theme-dark",
+        "description": "Dark theme colors for navigation"
+      },
+      {
+        "class": "ct-vertical-spacing-inset-top",
+        "description": "Adds top inset spacing"
+      },
+      {
+        "class": "ct-vertical-spacing-inset-bottom",
+        "description": "Adds bottom inset spacing"
+      },
+      {
+        "class": "ct-vertical-spacing-inset-both",
+        "description": "Adds both top and bottom inset spacing"
+      }
+    ],
+    "elements": [
+      {
+        "class": "ct-side-navigation__title",
+        "description": "Navigation title heading with heading-5 typography"
+      },
+      {
+        "class": "ct-side-navigation__menu",
+        "description": "Navigation menu container with list styling reset"
+      },
+      {
+        "class": "ct-menu--level-{0-10}",
+        "description": "Menu level classes for hierarchical indentation"
+      },
+      {
+        "class": "ct-menu__item",
+        "description": "Individual menu item container"
+      },
+      {
+        "class": "ct-menu__item--expanded",
+        "description": "Expanded menu item showing submenu"
+      },
+      {
+        "class": "ct-menu__item--active-trail",
+        "description": "Menu item in active navigation trail"
+      },
+      {
+        "class": "ct-menu__item--level-0",
+        "description": "Top-level menu item with parent styling"
+      },
+      {
+        "class": "ct-menu__item__link",
+        "description": "Menu item link with border and stripe styling"
+      },
+      {
+        "class": "ct-menu__item__link-trigger",
+        "description": "Collapsible trigger for expandable menu items"
+      }
+    ]
+  },
+  "blocks": [
+    "title_block"
+  ],
+  "dependencies": [
+    "skip-link",
+    "heading",
+    "menu"
+  ],
+  "examples": [
+    {
+      "name": "Basic Side Navigation",
+      "description": "Standard side navigation with hierarchical menu structure",
+      "props": {
+        "theme": "light",
+        "title": "Side Navigation title",
+        "items": [
+          {
+            "title": "Menu item 1",
+            "url": "https://example.com/menu-item-1",
+            "in_active_trail": false,
+            "is_expanded": false,
+            "below": [
+              {
+                "title": "Menu subitem 1",
+                "url": "https://example.com/menu-item-1",
+                "in_active_trail": false,
+                "is_expanded": false,
+                "below": false
+              }
+            ]
+          },
+          {
+            "title": "Menu item 2",
+            "url": "https://example.com/menu-item-2",
+            "in_active_trail": false,
+            "is_expanded": false
+          }
+        ],
+        "vertical_spacing": "none"
+      }
+    },
+    {
+      "name": "Dark Theme Navigation",
+      "description": "Side navigation with dark theme and active trail",
+      "props": {
+        "theme": "dark",
+        "title": "Main Navigation",
+        "vertical_spacing": "both",
+        "items": [
+          {
+            "title": "Home",
+            "url": "/",
+            "in_active_trail": true,
+            "is_expanded": false
+          },
+          {
+            "title": "Services",
+            "url": "/services",
+            "in_active_trail": false,
+            "is_expanded": true,
+            "below": [
+              {
+                "title": "Web Development",
+                "url": "/services/web-development",
+                "in_active_trail": false
+              },
+              {
+                "title": "Consulting",
+                "url": "/services/consulting",
+                "in_active_trail": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "accessibility": {
+    "guidelines": [
+      "Includes skip-link functionality for keyboard navigation",
+      "Use proper heading hierarchy for navigation titles",
+      "Ensure sufficient color contrast for all theme variations",
+      "Test keyboard navigation through expandable menu items",
+      "Provide clear visual indicators for active trail items"
+    ],
+    "aria_support": "Inherits ARIA attributes from included menu component with collapsible functionality"
+  },
+  "best_practices": [
+    "Keep navigation hierarchy to reasonable depth (max 3 levels recommended)",
+    "Use descriptive titles that clearly indicate page content",
+    "Consider using active trail to show current page context",
+    "Test collapsible functionality across different screen sizes",
+    "Ensure navigation titles align with page content structure"
+  ],
+  "related_components": ["menu", "skip-link", "heading"],
+  "extraction_meta": {
+    "source_files": [
+      "/packages/sdc/components/03-organisms/side-navigation/side-navigation.component.yml",
+      "/packages/sdc/components/03-organisms/side-navigation/side-navigation.twig",
+      "/packages/sdc/components/03-organisms/side-navigation/side-navigation.scss",
+      "/packages/sdc/components/03-organisms/side-navigation/side-navigation.stories.js",
+      "/packages/sdc/components/03-organisms/side-navigation/side-navigation.stories.data.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": 0.95,
+    "notes": [
+      "Component has stable status in source",
+      "Comprehensive styling with level-specific indentation",
+      "Includes complex theming for parent/child and active states",
+      "Good example data showing multi-level hierarchy"
+    ]
+  }
+}

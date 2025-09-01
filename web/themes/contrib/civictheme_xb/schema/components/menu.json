@@ -1,0 +1,332 @@
+{
+  "$schema": "https://schemas.dsis.dev/component/v1.0.0/schema.json",
+  "id": "menu",
+  "name": "Menu",
+  "description": "Hierarchical navigation menu component with support for unlimited nesting levels, active trail indication, and optional collapsible functionality. Uses Twig macros for recursive rendering of nested menu structures.",
+  "category": "base",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "platform": {
+    "drupal": {
+      "version": "^10 || ^11",
+      "sdc": true,
+      "namespace": "civictheme",
+      "schema_version": "v1"
+    }
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "title": "Theme",
+        "description": "Theme variation controlling colors and appearance"
+      },
+      "items": {
+        "type": "array",
+        "title": "Menu Items",
+        "description": "Hierarchical array of menu navigation items",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "title": "Title",
+              "description": "Display text for the menu item"
+            },
+            "url": {
+              "type": "string",
+              "title": "URL",
+              "description": "Link destination for the menu item"
+            },
+            "in_active_trail": {
+              "type": "boolean",
+              "default": false,
+              "title": "In Active Trail",
+              "description": "Whether this item is in the current active navigation trail"
+            },
+            "is_expanded": {
+              "type": "boolean",
+              "default": false,
+              "title": "Is Expanded",
+              "description": "Whether this item's submenu should be expanded by default"
+            },
+            "attributes": {
+              "type": "string",
+              "title": "Item Attributes",
+              "description": "Additional HTML attributes for the list item element"
+            },
+            "link_attributes": {
+              "type": "string",
+              "title": "Link Attributes",
+              "description": "Additional HTML attributes for the link element"
+            },
+            "modifier_class": {
+              "type": "string",
+              "title": "Item Modifier Class",
+              "description": "Additional CSS classes for the list item"
+            },
+            "is_new_window": {
+              "type": "boolean",
+              "default": false,
+              "title": "Open in New Window",
+              "description": "Whether to open the link in a new window"
+            },
+            "is_external": {
+              "type": "boolean",
+              "default": false,
+              "title": "External Link",
+              "description": "Whether the link is external to the current site"
+            },
+            "below": {
+              "type": "array",
+              "title": "Submenu Items",
+              "description": "Child menu items for hierarchical navigation (recursive structure)"
+            }
+          },
+          "required": ["title", "url"]
+        }
+      },
+      "is_collapsible": {
+        "type": "boolean",
+        "default": false,
+        "title": "Is Collapsible",
+        "description": "Whether to enable collapsible functionality for submenus"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes to customize appearance"
+      }
+    },
+    "required": ["items"]
+  },
+  "slots": {},
+  "css": {
+    "root_class": "ct-menu",
+    "modifiers": [
+      {
+        "class": "ct-menu--level-{0-N}",
+        "description": "Level-specific classes for hierarchical styling (0 = top level)"
+      },
+      {
+        "class": "ct-theme-light",
+        "description": "Light theme colors for menu"
+      },
+      {
+        "class": "ct-theme-dark",
+        "description": "Dark theme colors for menu"
+      }
+    ],
+    "elements": [
+      {
+        "class": "ct-menu__item",
+        "description": "Individual menu item list element"
+      },
+      {
+        "class": "ct-menu__item--level-{0-N}",
+        "description": "Level-specific menu item class"
+      },
+      {
+        "class": "ct-menu__item--has-children",
+        "description": "Menu item that contains submenu items"
+      },
+      {
+        "class": "ct-menu__item--active-trail",
+        "description": "Menu item in the current active navigation trail"
+      },
+      {
+        "class": "ct-menu__item__link",
+        "description": "Menu item link element"
+      },
+      {
+        "class": "ct-menu__item__link-trigger",
+        "description": "Collapsible trigger link for expandable menu items"
+      },
+      {
+        "class": "ct-menu__sub-menu",
+        "description": "Submenu list container"
+      },
+      {
+        "class": "ct-menu__sub-menu__wrapper",
+        "description": "Submenu wrapper with collapsible panel attributes"
+      },
+      {
+        "class": "ct-menu__sub-menu__wrapper--level-{1-N}",
+        "description": "Level-specific submenu wrapper class"
+      }
+    ],
+    "data_attributes": [
+      {
+        "attribute": "data-component-name",
+        "value": "ct-menu",
+        "description": "Component identifier for top-level menu"
+      },
+      {
+        "attribute": "data-collapsible",
+        "description": "Marks collapsible menu items"
+      },
+      {
+        "attribute": "data-collapsible-duration",
+        "value": "0",
+        "description": "Animation duration for collapsible items"
+      },
+      {
+        "attribute": "data-collapsible-collapsed",
+        "description": "Indicates collapsed state for non-expanded items"
+      },
+      {
+        "attribute": "data-collapsible-panel",
+        "description": "Collapsible panel wrapper"
+      },
+      {
+        "attribute": "data-collapsible-trigger",
+        "description": "Collapsible trigger element"
+      }
+    ]
+  },
+  "twig_features": {
+    "macros": [
+      "menu_links: Main recursive macro for rendering menu structure",
+      "menu_links_below: Separate macro for submenu rendering (allows overrides)"
+    ],
+    "recursive_rendering": "Uses Twig macros to handle unlimited nesting levels",
+    "import_self": "Uses {% import _self as menus %} for macro access"
+  },
+  "accessibility": {
+    "guidelines": [
+      "Uses semantic ul/li structure for proper menu hierarchy",
+      "Implements aria-expanded for collapsible menu items",
+      "Uses aria-hidden for collapsed submenu panels",
+      "Provides aria-current='page' for deepest active trail items",
+      "Includes descriptive titles for collapsible triggers",
+      "Maintains proper focus management in collapsible menus"
+    ],
+    "wcag_compliance": [
+      "WCAG 2.1 AA - 1.3.1 Info and Relationships (semantic structure)",
+      "WCAG 2.1 AA - 2.1.1 Keyboard (collapsible functionality)",
+      "WCAG 2.1 AA - 4.1.2 Name, Role, Value (ARIA attributes)"
+    ],
+    "aria_support": "Comprehensive ARIA implementation for hierarchical navigation with collapsible support"
+  },
+  "collapsible_functionality": {
+    "trigger_elements": "Creates collapsible trigger links for items with children",
+    "state_management": "Uses aria-expanded and data-collapsible-collapsed attributes",
+    "panel_control": "Submenu wrappers become collapsible panels",
+    "active_trail_handling": "Expanded state respects active trail and is_expanded properties"
+  },
+  "active_trail_logic": {
+    "trail_detection": "Marks items in navigation path to current page",
+    "current_page_indicator": "Uses aria-current='page' for deepest active item",
+    "child_detection": "Checks for active children to determine current page status",
+    "expansion_control": "Active trail items can be auto-expanded when collapsible"
+  },
+  "blocks": [],
+  "dependencies": [
+    "link"
+  ],
+  "examples": [
+    {
+      "name": "Simple Navigation Menu",
+      "description": "Basic horizontal navigation with single-level items",
+      "props": {
+        "theme": "light",
+        "is_collapsible": false,
+        "items": [
+          {"title": "Home", "url": "/", "in_active_trail": true},
+          {"title": "About", "url": "/about", "in_active_trail": false},
+          {"title": "Services", "url": "/services", "in_active_trail": false},
+          {"title": "Contact", "url": "/contact", "in_active_trail": false}
+        ]
+      }
+    },
+    {
+      "name": "Hierarchical Collapsible Menu",
+      "description": "Multi-level navigation with collapsible submenus",
+      "props": {
+        "theme": "light",
+        "is_collapsible": true,
+        "items": [
+          {
+            "title": "Products",
+            "url": "/products",
+            "in_active_trail": true,
+            "is_expanded": true,
+            "below": [
+              {
+                "title": "Software",
+                "url": "/products/software",
+                "in_active_trail": true,
+                "below": [
+                  {"title": "Web Apps", "url": "/products/software/web-apps", "in_active_trail": false},
+                  {"title": "Mobile Apps", "url": "/products/software/mobile-apps", "in_active_trail": true}
+                ]
+              },
+              {"title": "Hardware", "url": "/products/hardware", "in_active_trail": false}
+            ]
+          },
+          {"title": "Support", "url": "/support", "in_active_trail": false}
+        ]
+      }
+    },
+    {
+      "name": "Dark Theme Sidebar Menu",
+      "description": "Vertical navigation menu with dark theme styling",
+      "props": {
+        "theme": "dark",
+        "is_collapsible": true,
+        "modifier_class": "sidebar-menu",
+        "items": [
+          {"title": "Dashboard", "url": "/dashboard", "in_active_trail": false},
+          {
+            "title": "Settings",
+            "url": "/settings",
+            "in_active_trail": false,
+            "is_expanded": false,
+            "below": [
+              {"title": "Profile", "url": "/settings/profile", "in_active_trail": false},
+              {"title": "Preferences", "url": "/settings/preferences", "in_active_trail": false}
+            ]
+          },
+          {"title": "Logout", "url": "/logout", "in_active_trail": false, "is_external": true}
+        ]
+      }
+    }
+  ],
+  "best_practices": [
+    "Keep menu hierarchy to reasonable depth (max 3-4 levels recommended)",
+    "Use descriptive and concise menu titles",
+    "Implement consistent active trail logic throughout the site",
+    "Test collapsible functionality with keyboard navigation",
+    "Ensure sufficient contrast for both theme variations",
+    "Consider mobile responsiveness for horizontal menus",
+    "Use external and new window indicators appropriately"
+  ],
+  "related_components": ["link", "side-navigation", "navigation"],
+  "technical_notes": [
+    "Uses recursive Twig macros for unlimited nesting levels",
+    "Separate macro for submenu rendering allows for easier customization",
+    "Complex active trail logic with child detection",
+    "Collapsible functionality requires JavaScript integration",
+    "Level classes enable hierarchical styling",
+    "No direct CSS or JavaScript - relies on collapsible utility and link component"
+  ],
+  "extraction_meta": {
+    "source_files": [
+      "/packages/sdc/components/00-base/menu/menu.component.yml",
+      "/packages/sdc/components/00-base/menu/menu.twig",
+      "/packages/sdc/components/00-base/menu/menu.stories.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": 0.95,
+    "notes": [
+      "Component has stable status in source",
+      "Complex recursive menu structure with Twig macros",
+      "Comprehensive accessibility implementation",
+      "Well-documented example data with multi-level hierarchy"
+    ]
+  }
+}

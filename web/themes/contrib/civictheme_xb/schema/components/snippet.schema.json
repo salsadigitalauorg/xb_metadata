@@ -1,0 +1,243 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component.schema.json",
+  "id": "snippet",
+  "name": "Snippet",
+  "description": "Component for displaying a content snippet with title, summary, tags, and optional link. Provides a lightweight content presentation format with flexible content areas.",
+  "category": "molecules",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "library": "CivicTheme",
+  "metadata": {
+    "designTokens": ["theme", "spacing", "typography"],
+    "accessibility": {
+      "wcag": ["AA"],
+      "features": ["keyboard-navigation", "screen-reader-support", "focus-management"]
+    },
+    "responsive": true,
+    "themeable": true
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "title": "Theme",
+        "description": "Theme variation for the snippet",
+        "enum": ["light", "dark"],
+        "default": "light"
+      },
+      "attributes": {
+        "type": "string",
+        "title": "HTML Attributes",
+        "description": "Additional HTML attributes for the snippet wrapper"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes for customization"
+      }
+    }
+  },
+  "slots": {
+    "content_top": {
+      "title": "Top Content",
+      "description": "Content area above the title"
+    },
+    "title": {
+      "title": "Title",
+      "description": "Snippet title text - required for snippet to render",
+      "required": true
+    },
+    "content_middle": {
+      "title": "Middle Content",
+      "description": "Content area between title and summary"
+    },
+    "summary": {
+      "title": "Summary",
+      "description": "Snippet summary or description text"
+    },
+    "link": {
+      "title": "Link",
+      "description": "Link object for making the title linkable",
+      "structure": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL",
+            "description": "Link URL"
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "title": "New Window",
+            "description": "Whether to open link in new window",
+            "default": false
+          }
+        }
+      }
+    },
+    "tags": {
+      "title": "Tags",
+      "description": "Array of tag strings or tag objects"
+    },
+    "content_bottom": {
+      "title": "Bottom Content",
+      "description": "Content area at the bottom of the snippet"
+    }
+  },
+  "cssClasses": {
+    "root": "ct-snippet",
+    "modifiers": {
+      "theme": {
+        "light": "ct-theme-light",
+        "dark": "ct-theme-dark"
+      }
+    },
+    "elements": {
+      "content": "ct-snippet__content",
+      "contentTop": "ct-snippet__content-top",
+      "title": "ct-snippet__title",
+      "titleLink": "ct-snippet__title__link",
+      "contentMiddle": "ct-snippet__content-middle",
+      "summary": "ct-snippet__summary",
+      "tags": "ct-snippet__tags",
+      "contentBottom": "ct-snippet__content-bottom"
+    }
+  },
+  "designTokens": {
+    "spacing": ["ct-spacing(1)", "ct-spacing(2)"],
+    "layout": {
+      "padding": {
+        "top": "ct-spacing(1)",
+        "bottom": "ct-spacing(1)"
+      },
+      "marginBottom": "ct-spacing(2)",
+      "marginTop": "ct-spacing(2)"
+    },
+    "tags": {
+      "display": "flex"
+    }
+  },
+  "dependencies": [
+    "civictheme:link",
+    "civictheme:heading",
+    "civictheme:paragraph",
+    "civictheme:tag-list"
+  ],
+  "platform": {
+    "drupal": {
+      "schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json",
+      "component_id": "civictheme:snippet"
+    }
+  },
+  "examples": [
+    {
+      "name": "Default",
+      "description": "Basic snippet with title, summary, and tags",
+      "props": {
+        "theme": "light"
+      },
+      "slots": {
+        "title": "Snippet name which runs across two or three lines",
+        "summary": "Summary of the snippet",
+        "tags": ["Tag 1", "Tag 2"]
+      }
+    },
+    {
+      "name": "With Link",
+      "description": "Snippet with linked title",
+      "props": {
+        "theme": "light"
+      },
+      "slots": {
+        "title": "Clickable snippet title",
+        "summary": "This snippet title is clickable and leads to more content",
+        "link": {
+          "url": "https://example.com",
+          "is_new_window": false
+        },
+        "tags": ["Linked", "Content"]
+      }
+    },
+    {
+      "name": "Dark Theme",
+      "description": "Snippet with dark theme variation",
+      "props": {
+        "theme": "dark"
+      },
+      "slots": {
+        "title": "Dark themed snippet",
+        "summary": "This snippet uses the dark theme variation",
+        "tags": ["Dark", "Theme"]
+      }
+    },
+    {
+      "name": "With Extra Content",
+      "description": "Snippet with additional content areas",
+      "props": {
+        "theme": "light"
+      },
+      "slots": {
+        "content_top": "Additional information above title",
+        "title": "Snippet with extra content",
+        "content_middle": "Content between title and summary",
+        "summary": "Main summary content",
+        "tags": ["Extra", "Content"],
+        "content_bottom": "Additional content at the bottom"
+      }
+    },
+    {
+      "name": "External Link",
+      "description": "Snippet with external link that opens in new window",
+      "props": {
+        "theme": "light"
+      },
+      "slots": {
+        "title": "External resource",
+        "summary": "This snippet links to an external resource",
+        "link": {
+          "url": "https://external-site.com",
+          "is_new_window": true
+        },
+        "tags": ["External", "Resource"]
+      }
+    }
+  ],
+  "accessibility": {
+    "notes": [
+      "Title is required for the snippet to render",
+      "When link is provided, title becomes clickable with proper link semantics",
+      "Summary content supports HTML for rich formatting",
+      "Tags are displayed in a horizontal layout for better readability",
+      "Component maintains proper focus order for keyboard navigation"
+    ]
+  },
+  "bestPractices": [
+    "Use descriptive and concise titles",
+    "Keep summaries brief but informative",
+    "Use tags to categorize and organize content",
+    "Consider link behavior - use is_new_window for external links",
+    "Test content with and without optional elements",
+    "Ensure content is meaningful without relying on visual styling alone"
+  ],
+  "extraction": {
+    "source": "CivicTheme UIKit",
+    "timestamp": "2025-08-10",
+    "version": "uikit-main",
+    "confidence": {
+      "props": 0.95,
+      "slots": 0.95,
+      "cssClasses": 0.9,
+      "examples": 0.85,
+      "designTokens": 0.8
+    },
+    "files_analyzed": [
+      "/snippet/snippet.component.yml",
+      "/snippet/snippet.twig",
+      "/snippet/snippet.scss",
+      "/snippet/snippet.stories.js",
+      "/snippet/snippet.stories.data.js"
+    ]
+  }
+}

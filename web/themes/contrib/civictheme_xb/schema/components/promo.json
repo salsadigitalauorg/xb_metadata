@@ -1,0 +1,251 @@
+{
+  "$schema": "https://schemas.dsis.dev/component/v1.0.0/schema.json",
+  "id": "promo",
+  "name": "Promo",
+  "description": "Promotional component with title, content, and call-to-action link. Displays promotional content in a structured format with theming support and optional container layout.",
+  "category": "organisms",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "platform": {
+    "drupal": {
+      "version": "^10 || ^11",
+      "sdc": true,
+      "namespace": "civictheme",
+      "schema_version": "v1"
+    }
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "title": "Theme",
+        "description": "Theme variation controlling colors and appearance"
+      },
+      "is_contained": {
+        "type": "boolean",
+        "default": true,
+        "title": "Contained",
+        "description": "Whether the content is wrapped in a container layout"
+      },
+      "vertical_spacing": {
+        "type": "string",
+        "enum": ["none", "top", "bottom", "both"],
+        "default": "none",
+        "title": "Vertical Spacing",
+        "description": "Vertical spacing positioning for the promo section"
+      },
+      "with_background": {
+        "type": "boolean",
+        "default": false,
+        "title": "With Background",
+        "description": "Whether to display with background styling"
+      },
+      "link": {
+        "type": "object",
+        "title": "Call-to-Action Link",
+        "description": "Optional call-to-action button configuration",
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Link Text",
+            "description": "Text displayed on the button"
+          },
+          "url": {
+            "type": "string",
+            "title": "URL",
+            "description": "Link destination URL"
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "default": false,
+            "title": "Open in New Window",
+            "description": "Whether to open link in a new window/tab"
+          },
+          "is_external": {
+            "type": "boolean",
+            "default": false,
+            "title": "External Link",
+            "description": "Whether the link is external to the current site"
+          }
+        }
+      },
+      "attributes": {
+        "type": "string",
+        "title": "Additional Attributes",
+        "description": "Additional HTML attributes to apply to the root element"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes to customize appearance"
+      }
+    }
+  },
+  "slots": {
+    "content_top": {
+      "title": "Content Top",
+      "description": "Optional content area displayed above the main content",
+      "type": "html"
+    },
+    "title": {
+      "title": "Title",
+      "description": "Main heading text for the promotional section",
+      "type": "text"
+    },
+    "content": {
+      "title": "Content",
+      "description": "Main descriptive content text",
+      "type": "html"
+    },
+    "content_bottom": {
+      "title": "Content Bottom",
+      "description": "Optional content area displayed below the main content",
+      "type": "html"
+    }
+  },
+  "css": {
+    "root_class": "ct-promo",
+    "modifiers": [
+      {
+        "class": "ct-promo--with-background",
+        "description": "Applies background styling with horizontal padding on medium+ screens"
+      },
+      {
+        "class": "ct-theme-light",
+        "description": "Light theme colors"
+      },
+      {
+        "class": "ct-theme-dark",
+        "description": "Dark theme colors"
+      },
+      {
+        "class": "ct-vertical-spacing-top",
+        "description": "Adds top vertical spacing"
+      },
+      {
+        "class": "ct-vertical-spacing-bottom",
+        "description": "Adds bottom vertical spacing"
+      },
+      {
+        "class": "ct-vertical-spacing-both",
+        "description": "Adds both top and bottom vertical spacing"
+      }
+    ],
+    "elements": [
+      {
+        "class": "ct-promo__wrapper",
+        "description": "Main wrapper with flex layout on medium+ screens"
+      },
+      {
+        "class": "ct-promo__inner",
+        "description": "Inner content container with flex-grow"
+      },
+      {
+        "class": "ct-promo__content-top",
+        "description": "Top content area container"
+      },
+      {
+        "class": "ct-promo__title",
+        "description": "Title heading element"
+      },
+      {
+        "class": "ct-promo__content",
+        "description": "Main content paragraph element"
+      },
+      {
+        "class": "ct-promo__links",
+        "description": "Call-to-action button container"
+      },
+      {
+        "class": "ct-promo__button",
+        "description": "Call-to-action button element"
+      },
+      {
+        "class": "ct-promo__content-bottom",
+        "description": "Bottom content area container"
+      }
+    ]
+  },
+  "blocks": [
+    "content_top_block",
+    "content_block",
+    "content_left_block",
+    "content_right_block",
+    "content_bottom_block"
+  ],
+  "examples": [
+    {
+      "name": "Basic Promo",
+      "description": "Standard promotional section with title, content, and call-to-action",
+      "props": {
+        "theme": "light",
+        "title": "Sign up for industry news and updates from CivicTheme",
+        "is_contained": true,
+        "link": {
+          "text": "Sign up",
+          "url": "https://example.com",
+          "is_new_window": true,
+          "is_external": true
+        },
+        "with_background": false,
+        "vertical_spacing": "none",
+        "content": "Officia officia deserunt sint sint magna esse in ut elit aliquip nostrud laboris."
+      }
+    },
+    {
+      "name": "Dark Theme with Background",
+      "description": "Promo with dark theme and background styling",
+      "props": {
+        "theme": "dark",
+        "title": "Join Our Community",
+        "is_contained": true,
+        "with_background": true,
+        "vertical_spacing": "both",
+        "link": {
+          "text": "Get Started",
+          "url": "/register",
+          "is_new_window": false,
+          "is_external": false
+        },
+        "content": "Connect with like-minded individuals and stay updated with the latest developments."
+      }
+    }
+  ],
+  "accessibility": {
+    "guidelines": [
+      "Ensure adequate color contrast for both light and dark themes",
+      "Use semantic heading structure with title slot",
+      "Provide descriptive link text for call-to-action buttons",
+      "Test keyboard navigation through all interactive elements"
+    ],
+    "aria_support": "Inherits ARIA attributes from included heading and button components"
+  },
+  "best_practices": [
+    "Use concise, action-oriented titles",
+    "Keep promotional content brief and focused",
+    "Ensure call-to-action text clearly indicates the expected action",
+    "Consider vertical spacing in relation to surrounding content",
+    "Test appearance with both theme variations"
+  ],
+  "related_components": ["heading", "paragraph", "button"],
+  "extraction_meta": {
+    "source_files": [
+      "/packages/sdc/components/03-organisms/promo/promo.component.yml",
+      "/packages/sdc/components/03-organisms/promo/promo.twig",
+      "/packages/sdc/components/03-organisms/promo/promo.scss",
+      "/packages/sdc/components/03-organisms/promo/promo.stories.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": 0.95,
+    "notes": [
+      "Component has stable status in source",
+      "Well-documented with clear prop definitions",
+      "Comprehensive styling with theme support",
+      "Good story examples with realistic content"
+    ]
+  }
+}

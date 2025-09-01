@@ -1,0 +1,256 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component.schema.json",
+  "metadata": {
+    "id": "civictheme-next-step",
+    "name": "Next Step",
+    "description": "Component for displaying prominent action or next step suggestion. Features a distinctive visual design with highlight stripe and call-to-action functionality.",
+    "version": "1.0.0",
+    "category": "molecules",
+    "subcategory": "call-to-action",
+    "status": "stable",
+    "created": "2024-01-01",
+    "modified": "2024-01-01",
+    "author": "CivicTheme",
+    "tags": ["next-step", "call-to-action", "link", "prompt", "highlight"]
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "title": "Theme",
+        "description": "Theme variation controlling the visual appearance",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "examples": ["light", "dark"]
+      },
+      "vertical_spacing": {
+        "type": "string",
+        "title": "Vertical Spacing",
+        "description": "Vertical spacing position for the component",
+        "enum": ["top", "bottom", "both"],
+        "examples": ["top", "bottom", "both"]
+      },
+      "attributes": {
+        "type": "string",
+        "title": "HTML Attributes",
+        "description": "Additional HTML attributes to apply to the root element",
+        "examples": ["data-step-id=\"signup\"", "id=\"next-step-1\""]
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes for styling variations",
+        "examples": ["ct-next-step--urgent", "custom-next-step"]
+      },
+      "link": {
+        "type": "object",
+        "title": "Next Step Link",
+        "description": "Link object for the call-to-action",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Link URL",
+            "description": "URL to navigate to for the next step action",
+            "format": "uri",
+            "examples": ["https://example.com/signup", "/contact", "/services/apply"]
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "title": "Open in New Window",
+            "description": "Whether to open the link in a new window/tab",
+            "default": false,
+            "examples": [true, false]
+          },
+          "is_external": {
+            "type": "boolean",
+            "title": "External Link",
+            "description": "Whether the link is external (affects styling and behavior)",
+            "default": false,
+            "examples": [true, false]
+          }
+        },
+        "examples": [
+          {
+            "url": "https://example.com",
+            "is_new_window": true,
+            "is_external": true
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "theme": "light",
+        "title": "Next steps title from knob",
+        "content": "Short summary explaining why this link is relevant.",
+        "link": {
+          "url": "https://example.com",
+          "is_new_window": true,
+          "is_external": true
+        },
+        "vertical_spacing": "both"
+      }
+    ]
+  },
+  "slots": {
+    "title": {
+      "title": "Next Step Title",
+      "description": "Main title for the next step action (required for component to render)",
+      "examples": ["Sign up for our newsletter", "Contact us today", "Apply now"]
+    },
+    "content": {
+      "title": "Next Step Content",
+      "description": "Descriptive content explaining the next step or call-to-action",
+      "examples": ["Get the latest updates delivered to your inbox", "Our team is ready to help you get started"]
+    },
+    "content_top": {
+      "title": "Top Content",
+      "description": "Content area at the top of the component for additional context",
+      "examples": ["<div class=\"urgency-note\">Limited time offer</div>"]
+    },
+    "content_bottom": {
+      "title": "Bottom Content",
+      "description": "Content area at the bottom for supplementary information",
+      "examples": ["<small>Terms and conditions apply</small>", "<p>Free consultation available</p>"]
+    }
+  },
+  "css": {
+    "classes": {
+      "root": "ct-next-step",
+      "elements": [
+        "ct-next-step__wrapper",
+        "ct-next-step__content-top",
+        "ct-next-step__inner",
+        "ct-next-step__title",
+        "ct-next-step__title__link",
+        "ct-next-step__content",
+        "ct-next-step__content-bottom"
+      ],
+      "modifiers": [
+        "ct-vertical-spacing-inset--top",
+        "ct-vertical-spacing-inset--bottom",
+        "ct-vertical-spacing-inset--both"
+      ]
+    },
+    "layout": {
+      "container": "Uses Bootstrap-like grid system (container, row, col)",
+      "highlight_stripe": "Features vertical highlight stripe on the left side",
+      "responsive": "Adjusts padding and spacing for different breakpoints"
+    },
+    "variables": {
+      "stripe-width": "$ct-next-step-stripe-width",
+      "border-radius": "$ct-next-step-border-radius"
+    },
+    "features": {
+      "highlight_stripe": "Vertical highlight stripe provides visual emphasis",
+      "bordered_design": "Solid border with themed styling",
+      "wide_link": "Title link covers entire component area for better usability"
+    }
+  },
+  "integration": {
+    "drupal": {
+      "module": "civictheme",
+      "template": "civictheme:next-step",
+      "library": "civictheme/next-step",
+      "dependencies": ["civictheme/link", "civictheme/heading", "civictheme/paragraph"],
+      "field_mapping": {
+        "node.field_next_step_title": "title",
+        "node.field_next_step_content": "content",
+        "node.field_next_step_link": "link"
+      }
+    },
+    "components_used": [
+      "civictheme:link",
+      "civictheme:heading",
+      "civictheme:paragraph"
+    ]
+  },
+  "accessibility": {
+    "requirements": [
+      "Title must be provided for component to render",
+      "Link should have proper focus states and keyboard navigation",
+      "Wide link area should be implemented for better usability",
+      "Sufficient color contrast for text and background"
+    ],
+    "aria": {
+      "properties": ["Wide link implementation for entire component clickability"],
+      "keyboard": "Full keyboard navigation through interactive elements"
+    },
+    "considerations": [
+      "Ensure the highlight stripe doesn't interfere with screen reader navigation",
+      "Provide clear indication of external links when applicable",
+      "Consider the semantic meaning of the component as a call-to-action"
+    ]
+  },
+  "design": {
+    "visual_hierarchy": "Prominent design intended to draw attention to important next steps",
+    "highlight_stripe": "Left-side colored stripe provides visual emphasis",
+    "typography": "Uses heading-5 typography for title prominence"
+  },
+  "usage": {
+    "guidelines": [
+      "Use for highlighting important next steps or calls-to-action",
+      "Provide clear, action-oriented title text",
+      "Include descriptive content to explain the value of the action",
+      "Consider placement at the end of content sections",
+      "Limit to one primary next step per page section"
+    ],
+    "examples": [
+      {
+        "title": "Basic Next Step",
+        "description": "Simple next step with title and link",
+        "code": "{% include 'civictheme:next-step' with { theme: 'light', title: 'Get started today', link: { url: '/signup' } } only %}"
+      },
+      {
+        "title": "Next Step with Content",
+        "description": "Next step with explanatory content",
+        "code": "{% include 'civictheme:next-step' with { theme: 'light', title: 'Contact our team', content: 'Our experts are ready to help you find the right solution.', link: { url: '/contact' } } only %}"
+      },
+      {
+        "title": "External Next Step",
+        "description": "Next step linking to external resource",
+        "code": "{% include 'civictheme:next-step' with { theme: 'light', title: 'Join our community', content: 'Connect with thousands of users on our forum.', link: { url: 'https://forum.example.com', is_external: true, is_new_window: true } } only %}"
+      }
+    ],
+    "best_practices": [
+      "Use clear, action-oriented language in titles",
+      "Explain the benefit or value of taking the next step",
+      "Keep content concise but informative",
+      "Use consistently across similar contexts",
+      "Test the visual prominence in page context"
+    ]
+  },
+  "testing": {
+    "unit_tests": [
+      "Component renders with required title",
+      "Link functionality works correctly",
+      "Vertical spacing classes apply properly",
+      "External and new window link attributes work"
+    ],
+    "accessibility_tests": [
+      "Keyboard navigation through interactive elements",
+      "Screen reader accessibility of component content",
+      "Focus management and wide link behavior",
+      "Color contrast meets accessibility standards"
+    ],
+    "visual_regression": [
+      "Light and dark theme variations",
+      "Various vertical spacing options",
+      "Long and short content scenarios",
+      "Responsive behavior across breakpoints"
+    ]
+  },
+  "extraction": {
+    "source": "CivicTheme uikit-main repository",
+    "files_analyzed": [
+      "next-step.component.yml",
+      "next-step.twig",
+      "next-step.scss",
+      "next-step.stories.js"
+    ],
+    "confidence": 0.95,
+    "last_updated": "2024-01-01",
+    "notes": "Complete component analysis including highlight stripe design, wide link functionality, and call-to-action patterns"
+  }
+}

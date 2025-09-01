@@ -1,0 +1,322 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "input",
+  "name": "Input",
+  "description": "Generic input form element with customizable appearance and states. A foundational component used by other form elements like textfield, email, number, etc.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/input/",
+    "extracted_from": {
+      "component_yml": "input.component.yml",
+      "template": "input.twig",
+      "styles": "input.scss",
+      "compiled_styles": "input.css",
+      "stories": "input.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none",
+    "note": "No dedicated documentation - foundational component used by other form elements"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)"
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "default": "text",
+      "options": ["color", "date", "email", "file", "image", "month", "number", "password", "range", "search", "tel", "time", "url", "week", "other"],
+      "description": "Input type (text, password, email, etc.)"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "DOM name attribute (required)"
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "DOM id attribute"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "The input value"
+    },
+    "placeholder": {
+      "type": "string",
+      "required": false,
+      "description": "Placeholder text"
+    },
+    "is_invalid": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the input is invalid"
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the input is disabled"
+    },
+    "is_required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the input is required"
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes"
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes"
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "input",
+      "template": "input.twig",
+      "libraries": ["civictheme/input"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-input",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark",
+          "ct-input--is-invalid"
+        ],
+        "elements": [],
+        "states": [
+          "hover",
+          "focus",
+          "disabled",
+          "invalid",
+          "required"
+        ]
+      },
+      "custom_properties": [
+        "--ct-input-light-color",
+        "--ct-input-light-border-color",
+        "--ct-input-light-background-color",
+        "--ct-input-light-outline-color",
+        "--ct-input-light-hover-color",
+        "--ct-input-light-hover-border-color",
+        "--ct-input-light-hover-background-color",
+        "--ct-input-light-focus-color",
+        "--ct-input-light-focus-border-color",
+        "--ct-input-light-focus-background-color",
+        "--ct-input-light-invalid-color",
+        "--ct-input-light-invalid-border-color",
+        "--ct-input-light-invalid-background-color",
+        "--ct-input-dark-color",
+        "--ct-input-dark-border-color",
+        "--ct-input-dark-background-color",
+        "--ct-input-dark-outline-color",
+        "--ct-input-dark-hover-color",
+        "--ct-input-dark-hover-border-color",
+        "--ct-input-dark-hover-background-color",
+        "--ct-input-dark-focus-color",
+        "--ct-input-dark-focus-border-color",
+        "--ct-input-dark-focus-background-color",
+        "--ct-input-dark-invalid-color",
+        "--ct-input-dark-invalid-border-color",
+        "--ct-input-dark-invalid-background-color"
+      ],
+      "typography": {
+        "font_family": "Lexend, sans-serif",
+        "font_size": "1rem",
+        "line_height": "1.25rem",
+        "font_weight": "400",
+        "letter_spacing": "-0.1px"
+      },
+      "dimensions": {
+        "padding": "0.8125rem 1rem",
+        "border_radius": "0.25rem",
+        "border_width": "0.0625rem",
+        "outline_width": "2px",
+        "outline_offset": "2px"
+      },
+      "type_specific": {
+        "color": {
+          "padding": "0.40625rem 0.5rem",
+          "width": "2.875rem"
+        },
+        "search": {
+          "appearance": "textfield",
+          "outline_offset": "-2px"
+        }
+      }
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "used_by": ["textfield", "textarea", "select", "email", "password", "number"],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Input",
+      "description": "Default text input",
+      "props": {
+        "theme": "light",
+        "type": "text",
+        "name": "basic-input",
+        "placeholder": "Enter text"
+      }
+    },
+    {
+      "name": "Email Input",
+      "description": "Email input with validation",
+      "props": {
+        "theme": "light",
+        "type": "email",
+        "name": "email-input",
+        "placeholder": "Enter your email",
+        "is_required": true
+      }
+    },
+    {
+      "name": "Password Input",
+      "description": "Password input field",
+      "props": {
+        "theme": "light",
+        "type": "password",
+        "name": "password-input",
+        "placeholder": "Enter password",
+        "is_required": true
+      }
+    },
+    {
+      "name": "Invalid Input",
+      "description": "Input in invalid state",
+      "props": {
+        "theme": "light",
+        "type": "email",
+        "name": "invalid-input",
+        "placeholder": "Enter your email",
+        "is_invalid": true,
+        "value": "invalid-email"
+      }
+    },
+    {
+      "name": "Disabled Input",
+      "description": "Disabled input field",
+      "props": {
+        "theme": "light",
+        "type": "text",
+        "name": "disabled-input",
+        "placeholder": "Cannot edit",
+        "is_disabled": true
+      }
+    },
+    {
+      "name": "Dark Theme Input",
+      "description": "Input with dark theme",
+      "props": {
+        "theme": "dark",
+        "type": "text",
+        "name": "dark-input",
+        "placeholder": "Enter text"
+      }
+    },
+    {
+      "name": "Number Input",
+      "description": "Number input field",
+      "props": {
+        "theme": "light",
+        "type": "number",
+        "name": "number-input",
+        "placeholder": "Enter number"
+      }
+    },
+    {
+      "name": "Search Input",
+      "description": "Search input field",
+      "props": {
+        "theme": "light",
+        "type": "search",
+        "name": "search-input",
+        "placeholder": "Search..."
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "As a foundational component for building other form inputs",
+      "When creating custom form controls that need consistent styling",
+      "For basic text, email, password, and other standard HTML input types",
+      "When you need a low-level input with CivicTheme styling applied"
+    ],
+    "when_not_to_use": [
+      "For high-level form fields (use Field component instead)",
+      "When you need labels, descriptions, and validation messages (use specific form components)",
+      "For complex input patterns (use specialized components like Select, Checkbox, etc.)",
+      "For standalone use without proper labeling and accessibility context"
+    ],
+    "best_practices": [
+      "Always provide proper labeling when using this component directly",
+      "Use semantic input types (email, tel, url, etc.) for better user experience",
+      "Implement proper validation and error states",
+      "Ensure keyboard accessibility and focus management",
+      "Consider using higher-level components like Textfield for complete form fields",
+      "Test with screen readers and other assistive technologies",
+      "Provide meaningful placeholder text that doesn't replace labels"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA (when properly implemented)",
+      "features": [
+        "Proper focus management with focus-visible",
+        "Support for required attribute",
+        "Support for disabled state",
+        "Semantic HTML input element",
+        "Proper color contrast in light and dark themes",
+        "Screen reader compatible"
+      ],
+      "considerations": [
+        "Always associate with proper labels",
+        "Use aria-invalid when in invalid state",
+        "Provide meaningful error messages",
+        "Ensure sufficient color contrast",
+        "Support keyboard navigation"
+      ]
+    },
+    "known_issues": [
+      "No built-in labeling or validation messaging (by design)",
+      "Requires additional accessibility implementation when used directly",
+      "Type-specific styling may need adjustments for some input types",
+      "Search input appearance may vary across browsers"
+    ],
+    "user_research": {
+      "confidence_rating": "Medium",
+      "findings": [
+        "Foundational component - research typically conducted on consuming components",
+        "Consistent styling improves user recognition across forms",
+        "Proper focus states essential for keyboard users"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": [
+      "No dedicated documentation available (expected for foundational component)"
+    ]
+  }
+}

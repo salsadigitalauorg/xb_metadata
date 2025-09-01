@@ -1,0 +1,334 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "tabs",
+  "name": "Tabs",
+  "description": "Component for tabbed content that allows users to switch between different views within a single context",
+  "category": "molecules",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/tabs/",
+    "extracted_from": {
+      "component_yml": "tabs.component.yml",
+      "template": "tabs.twig",
+      "styles": "tabs.scss",
+      "javascript": "tabs.js",
+      "stories": "tabs.stories.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/tabs.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)"
+    },
+    "vertical_spacing": {
+      "type": "enum",
+      "required": false,
+      "default": "none",
+      "options": ["none", "top", "bottom", "both"],
+      "description": "Vertical spacing for the tabs"
+    },
+    "panels": {
+      "type": "array",
+      "required": true,
+      "description": "Tab panels containing title, content, and selection state",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "required": true,
+            "description": "Panel title displayed on the tab"
+          },
+          "content": {
+            "type": "string",
+            "required": true,
+            "description": "Panel content (HTML allowed)"
+          },
+          "id": {
+            "type": "string",
+            "required": true,
+            "description": "Unique panel identifier for accessibility"
+          },
+          "is_selected": {
+            "type": "boolean",
+            "required": false,
+            "default": false,
+            "description": "Whether the panel is initially selected"
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "required": false,
+      "description": "Optional custom links (auto-generated from panels if not provided)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "required": true,
+            "description": "Link text"
+          },
+          "url": {
+            "type": "string",
+            "required": true,
+            "description": "Link URL (typically hash reference)"
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether link opens in new window"
+          },
+          "is_external": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether link is external"
+          },
+          "modifier_class": {
+            "type": "string",
+            "description": "Additional CSS classes for the link"
+          },
+          "attributes": {
+            "type": "string",
+            "description": "Additional HTML attributes for the link"
+          }
+        }
+      }
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes for the tabs container"
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes for the tabs container"
+    }
+  },
+  "slots": {
+    "content": {
+      "description": "Content within each tab panel (defined in panels array)",
+      "accepts": ["html"],
+      "required": true
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "tabs",
+      "template": "tabs.twig",
+      "libraries": ["civictheme/tabs"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-tabs",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark",
+          "ct-vertical-spacing--top",
+          "ct-vertical-spacing--bottom",
+          "ct-vertical-spacing--both"
+        ],
+        "elements": [
+          "ct-tabs__links",
+          "ct-tabs__panels",
+          "ct-tabs__panels__panel",
+          "ct-tabs__panel--selected",
+          "ct-tabs__tab--selected"
+        ],
+        "states": [
+          "selected",
+          "active",
+          "focus"
+        ]
+      },
+      "custom_properties": [
+        "$ct-tabs-link-border-radius",
+        "ct-component-var($root, $theme, links, stripe, border-color)",
+        "ct-component-var($root, $theme, links, background-color)",
+        "ct-component-var($root, $theme, links, border-color)",
+        "ct-component-var($root, $theme, links, active, background-color)",
+        "ct-component-var($root, $theme, links, active, border-color)",
+        "ct-component-var($root, $theme, panel, background-color)",
+        "ct-component-var($root, $theme, panel, border-color)"
+      ],
+      "breakpoints": {
+        "medium": "@include ct-breakpoint(m)"
+      }
+    }
+  },
+  "javascript": {
+    "class_name": "CivicThemeTabs",
+    "auto_init": true,
+    "selector": ".ct-tabs",
+    "methods": {
+      "init": {
+        "description": "Initialize tabs with event listeners and set initial selected state",
+        "parameters": ["selectedIndex"]
+      },
+      "clickEvent": {
+        "description": "Handle click events on tab links",
+        "parameters": ["event"]
+      },
+      "setSelected": {
+        "description": "Set the selected tab and panel, managing ARIA attributes",
+        "parameters": ["currentTab"]
+      },
+      "destroy": {
+        "description": "Clean up event listeners and remove ARIA attributes"
+      }
+    },
+    "events": ["click"],
+    "data_attributes": {
+      "tabs-panel": "Identifies the tabs container",
+      "tabs-tab": "Identifies individual tab links"
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:link", "civictheme:item-list"],
+    "contains": ["link", "content"],
+    "alternatives": ["accordion"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Tabs",
+      "description": "Standard tabs with two panels",
+      "props": {
+        "theme": "light",
+        "vertical_spacing": "none",
+        "panels": [
+          {
+            "title": "Panel title",
+            "content": "Panel content",
+            "id": "panel-1",
+            "is_selected": true
+          },
+          {
+            "title": "Panel title 2",
+            "content": "Panel content 2",
+            "id": "panel-2",
+            "is_selected": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Dark Theme Tabs",
+      "description": "Tabs with dark theme variation",
+      "props": {
+        "theme": "dark",
+        "vertical_spacing": "both",
+        "panels": [
+          {
+            "title": "Tab 1",
+            "content": "<p>First tab content with HTML</p>",
+            "id": "tab-1",
+            "is_selected": true
+          },
+          {
+            "title": "Tab 2",
+            "content": "<p>Second tab content</p>",
+            "id": "tab-2",
+            "is_selected": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Multiple Panels",
+      "description": "Tabs with multiple content panels",
+      "props": {
+        "theme": "light",
+        "vertical_spacing": "top",
+        "panels": [
+          {
+            "title": "Overview",
+            "content": "<p>Overview content with comprehensive details</p>",
+            "id": "overview",
+            "is_selected": true
+          },
+          {
+            "title": "Features",
+            "content": "<p>Feature list and descriptions</p>",
+            "id": "features",
+            "is_selected": false
+          },
+          {
+            "title": "Specifications",
+            "content": "<p>Technical specifications and requirements</p>",
+            "id": "specs",
+            "is_selected": false
+          }
+        ]
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Allow users to quickly switch between related content within the same page or section",
+      "Save screen space by displaying only one content panel at a time",
+      "Organise related content that users might want to compare or navigate between",
+      "Present content that serves the same purpose but differs in specific details"
+    ],
+    "when_not_to_use": [
+      "Users need to compare content across multiple panels simultaneously",
+      "The content in each panel is not closely related",
+      "The number of tabs would exceed what can be comfortably displayed on smaller screens",
+      "The user needs to complete a step-by-step process",
+      "The content is critical for all users to see"
+    ],
+    "best_practices": [
+      "Keep tabs to a single row - limit to 6-7 tabs maximum",
+      "Use clear, concise labels (1-2 words ideally)",
+      "Maintain consistent tab ordering during user sessions",
+      "Show active state clearly with visual distinction",
+      "Design for responsiveness and mobile experiences",
+      "Ensure tab content is of similar importance"
+    ],
+    "accessibility": {
+      "wcag_compliance": "WCAG 2.2 AA",
+      "attributes": [
+        "role=\"tab\"",
+        "role=\"tabpanel\"",
+        "aria-controls",
+        "aria-labelledby",
+        "aria-selected",
+        "aria-hidden"
+      ],
+      "keyboard_support": [
+        "Click events for tab navigation",
+        "Focus management between tabs"
+      ],
+      "screen_reader_support": "Full ARIA implementation for tab navigation"
+    },
+    "known_issues": [
+      "Mobile responsiveness: Tab labels may truncate on very small screens",
+      "Keyboard navigation may be unfamiliar to some users",
+      "Important content hidden behind inactive tabs may be missed"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users understand tab interface patterns intuitively",
+        "Clear visual distinction between active and inactive tabs improves usability",
+        "Users prefer concise tab labels that clearly indicate content",
+        "Mobile users may struggle with cramped tab interfaces"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

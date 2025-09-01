@@ -1,0 +1,246 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "chip",
+  "name": "Chip",
+  "description": "Interactive chip component for filters, tags and input elements. Chips allow users to select or filter content, providing a compact way to display categories or options.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/chip/",
+    "extracted_from": {
+      "component_yml": "chip.component.yml",
+      "template": "chip.twig", 
+      "styles": "chip.scss",
+      "javascript": "chip.js",
+      "stories": "chip.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "kind": {
+      "type": "enum",
+      "required": false,
+      "default": "default",
+      "options": ["default", "input"],
+      "description": "Chip kind (default, input)."
+    },
+    "size": {
+      "type": "enum",
+      "required": false,
+      "default": "regular",
+      "options": ["large", "regular", "small"],
+      "description": "Chip size (large, regular, small)."
+    },
+    "content": {
+      "type": "string",
+      "required": false,
+      "description": "Chip text.",
+      "examples": ["Chip label", "Filter option", "Tag name"]
+    },
+    "is_selected": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the chip is selected (for filter chips)."
+    },
+    "is_multiple": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether multiple selection is allowed."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "chip",
+      "template": "chip.twig",
+      "libraries": ["civictheme/chip"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-chip",
+        "modifiers": [
+          "ct-chip--default",
+          "ct-chip--input",
+          "ct-chip--large",
+          "ct-chip--regular",
+          "ct-chip--small",
+          "ct-chip--multiple",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-chip__input",
+          "ct-chip__dismiss"
+        ],
+        "states": [
+          "active",
+          "focus",
+          "hover",
+          "selected"
+        ]
+      },
+      "custom_properties": [
+        "$ct-chip-border-width",
+        "$ct-chip-light-color",
+        "$ct-chip-light-background-color",
+        "$ct-chip-light-border-color",
+        "$ct-chip-light-hover-color",
+        "$ct-chip-light-hover-background-color",
+        "$ct-chip-light-hover-border-color",
+        "$ct-chip-light-focus-color",
+        "$ct-chip-light-focus-background-color",
+        "$ct-chip-light-focus-border-color",
+        "$ct-chip-light-focus-outline-color",
+        "$ct-chip-light-selected-color",
+        "$ct-chip-light-selected-background-color",
+        "$ct-chip-light-selected-border-color",
+        "$ct-chip-light-selected-hover-color",
+        "$ct-chip-light-selected-hover-background-color",
+        "$ct-chip-light-selected-hover-border-color",
+        "$ct-chip-dark-color",
+        "$ct-chip-dark-background-color",
+        "$ct-chip-dark-border-color",
+        "$ct-chip-dark-hover-color",
+        "$ct-chip-dark-hover-background-color",
+        "$ct-chip-dark-hover-border-color",
+        "$ct-chip-dark-focus-color",
+        "$ct-chip-dark-focus-background-color",
+        "$ct-chip-dark-focus-border-color",
+        "$ct-chip-dark-focus-outline-color",
+        "$ct-chip-dark-selected-color",
+        "$ct-chip-dark-selected-background-color",
+        "$ct-chip-dark-selected-border-color",
+        "$ct-chip-dark-selected-hover-color",
+        "$ct-chip-dark-selected-hover-background-color",
+        "$ct-chip-dark-selected-hover-border-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:icon"],
+    "contains": [],
+    "alternatives": ["tag", "button"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Default Chip",
+      "description": "Basic chip with default styling",
+      "props": {
+        "theme": "light",
+        "kind": "default",
+        "size": "regular",
+        "content": "Chip label"
+      }
+    },
+    {
+      "name": "Input Chip",
+      "description": "Interactive chip for form inputs",
+      "props": {
+        "theme": "light",
+        "kind": "input",
+        "size": "regular",
+        "content": "Filter option",
+        "is_selected": false,
+        "is_multiple": true
+      }
+    },
+    {
+      "name": "Selected Chip",
+      "description": "Chip in selected state",
+      "props": {
+        "theme": "light",
+        "kind": "input",
+        "size": "regular",
+        "content": "Selected filter",
+        "is_selected": true,
+        "is_multiple": false
+      }
+    },
+    {
+      "name": "Large Dark Chip",
+      "description": "Large chip with dark theme",
+      "props": {
+        "theme": "dark",
+        "kind": "default",
+        "size": "large",
+        "content": "Large chip"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Create filter options for search or listing pages",
+      "Display selectable tags or categories",
+      "Show removable items in multi-select inputs",
+      "Provide compact interactive elements for forms",
+      "Create toggleable state indicators"
+    ],
+    "when_not_to_use": [
+      "For primary navigation elements - use buttons or links instead",
+      "When you need complex interactive functionality - consider specialized components",
+      "For purely decorative labels - use tags or badges instead",
+      "In place of radio buttons or checkboxes in traditional forms"
+    ],
+    "best_practices": [
+      "Use clear, concise labels that describe the filter or category",
+      "Provide clear visual feedback for selected and unselected states",
+      "Group related chips together with appropriate spacing",
+      "Use consistent sizing within the same context",
+      "Ensure sufficient contrast for accessibility",
+      "Consider using icons with labels when it enhances understanding",
+      "Provide clear indication when chips are removable (is_multiple=true)"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper form controls and keyboard navigation for input chips."
+    },
+    "known_issues": [],
+    "variations": [
+      "Default chips: Static display chips for categories or tags",
+      "Input chips: Interactive chips for form controls and filtering",
+      "Sizes: Available in large, regular, and small options",
+      "Selection states: Unselected, selected, hover, focus states",
+      "Themes: Light and dark theme variations",
+      "Multiple selection: Supports both single and multiple selection modes"
+    ],
+    "user_research": {
+      "confidence_rating": "Medium",
+      "findings": [
+        "Users understand chips as filterable or selectable elements",
+        "Clear visual distinction between selected and unselected states improves usability",
+        "Dismissible chips (with X icon) are expected for removable items",
+        "Consistent sizing helps users scan and interact with multiple options"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

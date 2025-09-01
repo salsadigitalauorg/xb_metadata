@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "social-links",
+  "title": "Social Links",
+  "description": "Component for social media links with icons",
+  "type": "object",
+  "category": "molecules",
+  "status": "stable",
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation",
+      "enum": ["light", "dark"],
+      "default": "light"
+    },
+    "with_border": {
+      "type": "boolean",
+      "description": "Whether icons have borders",
+      "default": false
+    },
+    "items": {
+      "type": "array",
+      "description": "Social media links",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": {
+            "type": "string",
+            "description": "Icon identifier (e.g., facebook, instagram, linkedin, x, youtube)"
+          },
+          "icon_html": {
+            "type": "string",
+            "description": "Custom HTML for icon (takes precedence over icon)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Link URL",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string",
+            "description": "Link title attribute for accessibility"
+          }
+        },
+        "required": ["url"],
+        "anyOf": [
+          {"required": ["icon"]},
+          {"required": ["icon_html"]}
+        ]
+      }
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes"
+    }
+  },
+  "required": ["items"],
+  "slots": {
+    "items_block": {
+      "description": "Override the default items rendering"
+    }
+  },
+  "css_classes": {
+    "base": "ct-social-links",
+    "modifiers": {
+      "with_border": "ct-social-links--with-border",
+      "theme_light": "ct-theme-light",
+      "theme_dark": "ct-theme-dark"
+    },
+    "elements": {
+      "button": "ct-social-links__button",
+      "list": "ct-social-links__list"
+    }
+  },
+  "accessibility": {
+    "features": [
+      "Uses button component for proper keyboard navigation",
+      "Title attributes provide descriptive text for screen readers",
+      "Links open in new windows with proper accessibility attributes"
+    ],
+    "guidelines": [
+      "Always provide meaningful title attributes",
+      "Ensure sufficient color contrast for theme variations",
+      "Consider providing text labels for better accessibility"
+    ]
+  },
+  "platform_integration": {
+    "drupal": {
+      "field_types": ["field_social_links", "field_collection"],
+      "view_modes": ["default", "teaser"],
+      "template_suggestions": [
+        "social-links--[view-mode].twig",
+        "social-links--[bundle].twig"
+      ]
+    }
+  },
+  "usage_examples": {
+    "basic": {
+      "description": "Basic social links without borders",
+      "props": {
+        "theme": "light",
+        "items": [
+          {
+            "title": "Facebook",
+            "icon": "facebook",
+            "url": "https://www.facebook.com"
+          },
+          {
+            "title": "Instagram", 
+            "icon": "instagram",
+            "url": "https://www.instagram.com"
+          }
+        ]
+      }
+    },
+    "with_borders": {
+      "description": "Social links with bordered icons",
+      "props": {
+        "theme": "light",
+        "with_border": true,
+        "items": [
+          {
+            "title": "LinkedIn",
+            "icon": "linkedin", 
+            "url": "https://www.linkedin.com"
+          }
+        ]
+      }
+    },
+    "custom_html": {
+      "description": "Using custom HTML for icons",
+      "props": {
+        "theme": "dark",
+        "items": [
+          {
+            "icon_html": "<img class=\"ct-button__icon\" width=\"16\" height=\"16\" src=\"./images/custom-icon.jpg\"/>",
+            "url": "https://www.example.com",
+            "title": "Custom Platform"
+          }
+        ]
+      }
+    }
+  },
+  "best_practices": [
+    "Always provide descriptive title attributes for accessibility",
+    "Use standard social media platform icons when available",
+    "Consider the visual hierarchy when choosing with_border option",
+    "Test color contrast in both light and dark themes",
+    "Limit the number of social links to avoid overwhelming users"
+  ],
+  "related_components": [
+    "button",
+    "item-list",
+    "icon"
+  ],
+  "extraction_metadata": {
+    "source_files": [
+      "/packages/sdc/components/02-molecules/social-links/social-links.component.yml",
+      "/packages/sdc/components/02-molecules/social-links/social-links.twig",
+      "/packages/sdc/components/02-molecules/social-links/social-links.scss",
+      "/packages/sdc/components/02-molecules/social-links/social-links.stories.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": "high",
+    "notes": [
+      "Component uses button component internally for each social link",
+      "Supports both icon identifiers and custom HTML for maximum flexibility",
+      "Links automatically open in new windows",
+      "Uses item-list component for horizontal layout"
+    ]
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component.schema.json",
+  "id": "single-filter",
+  "name": "Single Filter",
+  "description": "Basic filter component with selectable items and submit/reset buttons. Supports both single and multiple selection modes with form integration capabilities.",
+  "category": "molecules",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "library": "CivicTheme",
+  "metadata": {
+    "designTokens": ["theme", "spacing", "typography", "borders"],
+    "accessibility": {
+      "wcag": ["AA"],
+      "features": ["keyboard-navigation", "screen-reader-support", "form-controls", "focus-management"]
+    },
+    "responsive": true,
+    "themeable": true
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "title": "Theme",
+        "description": "Theme variation for the filter",
+        "enum": ["light", "dark"],
+        "default": "light"
+      },
+      "is_multiple": {
+        "type": "boolean",
+        "title": "Multiple Selection",
+        "description": "Whether to allow selection of multiple filter values",
+        "default": false
+      },
+      "attributes": {
+        "type": "string",
+        "title": "HTML Attributes",
+        "description": "Additional HTML attributes for the filter wrapper"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes for customization"
+      }
+    }
+  },
+  "slots": {
+    "content_top": {
+      "title": "Top Content",
+      "description": "Content area above the filter"
+    },
+    "title": {
+      "title": "Title",
+      "description": "Title for the filter section",
+      "default": "Filter results by:"
+    },
+    "form_attributes": {
+      "title": "Form Attributes",
+      "description": "Form attributes - if empty, no form wrapper will be rendered"
+    },
+    "form_hidden_fields": {
+      "title": "Form Hidden Fields",
+      "description": "Hidden form fields for the filter form"
+    },
+    "items": {
+      "title": "Filter Items",
+      "description": "Array of filter option objects",
+      "required": true,
+      "structure": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "title": "Option Text",
+              "description": "Display text for the filter option"
+            },
+            "name": {
+              "type": "string",
+              "title": "Input Name",
+              "description": "Form input name attribute"
+            },
+            "is_selected": {
+              "type": "boolean",
+              "title": "Selected State",
+              "description": "Whether the option is currently selected",
+              "default": false
+            },
+            "attributes": {
+              "type": "string",
+              "title": "Input Attributes",
+              "description": "Additional attributes for the input element"
+            }
+          }
+        }
+      }
+    },
+    "submit_text": {
+      "title": "Submit Button Text",
+      "description": "Text for the submit button",
+      "default": "Apply filter"
+    },
+    "reset_text": {
+      "title": "Reset Button Text",
+      "description": "Text for the reset button - if empty, reset button won't render"
+    },
+    "content_bottom": {
+      "title": "Bottom Content",
+      "description": "Content area below the filter"
+    }
+  },
+  "cssClasses": {
+    "root": "ct-single-filter",
+    "modifiers": {
+      "theme": {
+        "light": "ct-theme-light",
+        "dark": "ct-theme-dark"
+      }
+    },
+    "elements": {
+      "contentTop": "ct-single-filter__content-top",
+      "title": "ct-single-filter__title",
+      "wrapper": "ct-single-filter__wrapper",
+      "items": "ct-single-filter__items",
+      "list": "ct-single-filter__list",
+      "actions": "ct-single-filter__actions",
+      "submit": "ct-single-filter__submit",
+      "contentBottom": "ct-single-filter__content-bottom"
+    }
+  },
+  "designTokens": {
+    "spacing": ["ct-spacing()", "ct-spacing(3)", "ct-spacing(5)"],
+    "borders": {
+      "width": "ct-particle(0.125)",
+      "style": "solid"
+    },
+    "typography": {
+      "title": "ct-typography('label-regular')"
+    },
+    "layout": {
+      "mobile": {
+        "paddingTop": "ct-spacing(3)",
+        "paddingBottom": "ct-spacing(3)"
+      },
+      "desktop": {
+        "paddingTop": "ct-spacing(5)",
+        "paddingBottom": "ct-spacing(5)",
+        "display": "flex",
+        "justifyContent": "space-between",
+        "alignItems": "center"
+      }
+    }
+  },
+  "dependencies": [
+    "civictheme:chip",
+    "civictheme:item-list",
+    "civictheme:button"
+  ],
+  "platform": {
+    "drupal": {
+      "schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json",
+      "component_id": "civictheme:single-filter"
+    }
+  },
+  "examples": [
+    {
+      "name": "Default",
+      "description": "Basic single-select filter with submit and reset buttons",
+      "props": {
+        "theme": "light",
+        "is_multiple": false
+      },
+      "slots": {
+        "title": "Filter results by:",
+        "items": [
+          {
+            "text": "Option A",
+            "name": "option_name",
+            "is_selected": false
+          },
+          {
+            "text": "Option B",
+            "name": "option_name",
+            "is_selected": false
+          },
+          {
+            "text": "Option C",
+            "name": "option_name",
+            "is_selected": false
+          }
+        ],
+        "submit_text": "Apply",
+        "reset_text": "Clear all"
+      }
+    },
+    {
+      "name": "Multiple Selection",
+      "description": "Filter allowing multiple option selection",
+      "props": {
+        "theme": "light",
+        "is_multiple": true
+      },
+      "slots": {
+        "title": "Select multiple options:",
+        "items": [
+          {
+            "text": "Category A",
+            "name": "categories",
+            "is_selected": true
+          },
+          {
+            "text": "Category B",
+            "name": "categories",
+            "is_selected": false
+          },
+          {
+            "text": "Category C",
+            "name": "categories",
+            "is_selected": true
+          }
+        ],
+        "submit_text": "Apply Filters",
+        "reset_text": "Clear All"
+      }
+    },
+    {
+      "name": "With Form",
+      "description": "Filter integrated with form functionality",
+      "props": {
+        "theme": "light",
+        "is_multiple": false
+      },
+      "slots": {
+        "title": "Filter by category:",
+        "form_attributes": "action=\"/search\" method=\"get\"",
+        "form_hidden_fields": "<input type=\"hidden\" name=\"page\" value=\"1\">",
+        "items": [
+          {
+            "text": "All Categories",
+            "name": "category",
+            "is_selected": true,
+            "attributes": "value=\"all\""
+          },
+          {
+            "text": "News",
+            "name": "category",
+            "is_selected": false,
+            "attributes": "value=\"news\""
+          },
+          {
+            "text": "Events",
+            "name": "category",
+            "is_selected": false,
+            "attributes": "value=\"events\""
+          }
+        ],
+        "submit_text": "Filter",
+        "reset_text": "Reset"
+      }
+    },
+    {
+      "name": "Dark Theme",
+      "description": "Filter with dark theme variation",
+      "props": {
+        "theme": "dark",
+        "is_multiple": false
+      },
+      "slots": {
+        "title": "Filter options:",
+        "items": [
+          {
+            "text": "Option 1",
+            "name": "filter_option",
+            "is_selected": false
+          },
+          {
+            "text": "Option 2",
+            "name": "filter_option",
+            "is_selected": false
+          }
+        ],
+        "submit_text": "Apply"
+      }
+    }
+  ],
+  "accessibility": {
+    "notes": [
+      "Items array is required for the filter to render",
+      "Form controls are properly labeled and accessible",
+      "Keyboard navigation is supported for all interactive elements",
+      "Submit and reset buttons include appropriate icons for visual clarity",
+      "Form integration supports hidden fields and custom attributes",
+      "Filter state is maintained through form submissions"
+    ]
+  },
+  "bestPractices": [
+    "Provide clear and descriptive option text",
+    "Use meaningful form names for proper data handling",
+    "Consider using multiple selection for non-exclusive filters",
+    "Include reset functionality for better user experience",
+    "Test keyboard navigation thoroughly",
+    "Ensure proper form integration when using within forms"
+  ],
+  "extraction": {
+    "source": "CivicTheme UIKit",
+    "timestamp": "2025-08-10",
+    "version": "uikit-main",
+    "confidence": {
+      "props": 0.95,
+      "slots": 0.95,
+      "cssClasses": 0.9,
+      "examples": 0.85,
+      "designTokens": 0.8
+    },
+    "files_analyzed": [
+      "/single-filter/single-filter.component.yml",
+      "/single-filter/single-filter.twig",
+      "/single-filter/single-filter.scss",
+      "/single-filter/single-filter.stories.js",
+      "/single-filter/single-filter.stories.data.js"
+    ]
+  }
+}

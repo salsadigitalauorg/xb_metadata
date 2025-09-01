@@ -1,0 +1,305 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "checkbox",
+  "name": "Checkbox",
+  "description": "Checkbox form element with customizable appearance and states for binary selection within interfaces",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/checkbox/",
+    "extracted_from": {
+      "component_yml": "checkbox.component.yml",
+      "template": "checkbox.twig",
+      "styles": "checkbox.scss",
+      "stories": "checkbox.stories.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/atoms/check-box.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "DOM name attribute (required)"
+    },
+    "id": {
+      "type": "string",
+      "required": true,
+      "description": "DOM id attribute (required)"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "DOM value attribute"
+    },
+    "label": {
+      "type": "string",
+      "required": false,
+      "description": "Label content"
+    },
+    "is_checked": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the checkbox is checked"
+    },
+    "is_required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the checkbox is required"
+    },
+    "is_invalid": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the checkbox is invalid"
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the checkbox is disabled"
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes"
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes"
+    }
+  },
+  "slots": {
+    "label": {
+      "description": "Label content slot, rendered via civictheme:label include",
+      "accepts": ["string"],
+      "required": false
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "checkbox",
+      "template": "checkbox.twig",
+      "libraries": ["civictheme/checkbox"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-checkbox",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark",
+          "ct-checkbox--is-invalid"
+        ],
+        "elements": [
+          "ct-checkbox__label"
+        ],
+        "states": [
+          "checked",
+          "hover",
+          "focus",
+          "disabled",
+          "invalid"
+        ]
+      },
+      "custom_properties": [
+        "$ct-checkbox-border-radius",
+        "$ct-checkbox-animation-duration",
+        "$ct-checkbox-outline-width",
+        "$ct-checkbox-outline-offset",
+        "$ct-checkbox-disabled-opacity"
+      ],
+      "dimensions": {
+        "width": "$_label-font-size * 1.625",
+        "height": "$_label-font-size * 1.625",
+        "border_width": "ct-particle(0.125)",
+        "hover_border_width": "$_border-width * 2",
+        "checked_border_width": "$_hover-border-width"
+      },
+      "typography": "label-small",
+      "spacing": {
+        "label_margin": "ct-spacing()",
+        "vertical_alignment": "math.div(math.max($_label-font-size, $_label-line_height) - $_height, 2)"
+      }
+    }
+  },
+  "javascript": {
+    "events": [
+      "change",
+      "focus",
+      "blur"
+    ],
+    "animation": {
+      "enabled": "$ct-animation-enabled",
+      "duration": "$ct-checkbox-animation-duration",
+      "check_grow": "check-grow animation with scale transform"
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:label"],
+    "contains": ["label"],
+    "alternatives": ["radio", "select"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Default Checkbox",
+      "description": "Basic checkbox with label",
+      "props": {
+        "theme": "light",
+        "label": "This is a checkbox",
+        "name": "checkbox-1",
+        "id": "checkbox-1",
+        "value": "yes",
+        "is_checked": false
+      }
+    },
+    {
+      "name": "Checked Checkbox",
+      "description": "Pre-selected checkbox",
+      "props": {
+        "theme": "light",
+        "label": "Pre-selected option",
+        "name": "checkbox-2",
+        "id": "checkbox-2",
+        "value": "selected",
+        "is_checked": true
+      }
+    },
+    {
+      "name": "Required Checkbox",
+      "description": "Required checkbox for forms",
+      "props": {
+        "theme": "light",
+        "label": "I agree to the terms and conditions",
+        "name": "terms",
+        "id": "terms",
+        "value": "agreed",
+        "is_required": true
+      }
+    },
+    {
+      "name": "Invalid Checkbox",
+      "description": "Checkbox in invalid state",
+      "props": {
+        "theme": "light",
+        "label": "Required selection",
+        "name": "required",
+        "id": "required",
+        "value": "required",
+        "is_required": true,
+        "is_invalid": true
+      }
+    },
+    {
+      "name": "Disabled Checkbox",
+      "description": "Non-interactive checkbox",
+      "props": {
+        "theme": "light",
+        "label": "Disabled option",
+        "name": "disabled",
+        "id": "disabled",
+        "value": "disabled",
+        "is_disabled": true
+      }
+    },
+    {
+      "name": "Dark Theme Checkbox",
+      "description": "Checkbox with dark theme",
+      "props": {
+        "theme": "dark",
+        "label": "Dark theme checkbox",
+        "name": "dark",
+        "id": "dark",
+        "value": "dark"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Users need to select one or more options from a list",
+      "Present a binary choice (yes/no, on/off, true/false)",
+      "Confirm user agreement to terms, conditions, or specific actions",
+      "Enable users to toggle features or settings independently",
+      "Creating forms that require multi-selection functionality"
+    ],
+    "when_not_to_use": [
+      "Users should select only one option from a list (use Radio buttons instead)",
+      "The action is immediate and would be better represented by a toggle switch",
+      "The selection requires more complex interaction than simple yes/no choice",
+      "The option would be better represented as part of a larger, more complex component"
+    ],
+    "best_practices": [
+      "Always provide clear, concise labels that describe the purpose or outcome",
+      "Group related checkboxes together visually and semantically",
+      "Consider appropriate default states carefully - limit pre-selection to user benefit",
+      "Ensure checked and unchecked states are visually distinct with sufficient contrast",
+      "Provide clear visual feedback for hover, focus, checked, and disabled states",
+      "Align checkboxes consistently within forms, typically with labels to the right",
+      "Allow sufficient spacing between multiple checkboxes to prevent accidental clicks",
+      "Clearly indicate when selection is required but not made using both color and text",
+      "Ensure keyboard operability and provide sufficient information for screen readers"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA (with exceptions)",
+      "wcag_issues": [
+        "2.5.8 Target Size (Minimum): The size of targets for pointer inputs does not consistently meet the 24x24 CSS pixel minimum requirement"
+      ],
+      "wcag_passed": [
+        "1.4.3 Contrast (Minimum): Contrast meets the minimum 4.5:1 requirement",
+        "1.4.4 Resize text: Text remains visible and readable when resized up to 200%",
+        "1.4.11 Non-text Contrast: All interface elements have a colour contrast of 3:1 with adjacent colours",
+        "1.4.12 Text Spacing: Text remains visible with custom spacing requirements",
+        "2.1.1 Keyboard: Checkboxes are accessible using keyboard-only navigation",
+        "2.4.7 Focus Visible: Focus is clearly visible when navigating with a keyboard"
+      ],
+      "features": [
+        "Keyboard navigation support",
+        "Screen reader compatible",
+        "Focus management with visible focus indicators",
+        "High contrast support",
+        "Consistent identification and labeling"
+      ]
+    },
+    "known_issues": [
+      "Target size compliance: Does not consistently meet WCAG 2.2 requirement for minimum target size (24x24 CSS pixels)",
+      "Mobile touch areas: On smaller mobile devices, touch targets may be difficult to activate precisely",
+      "Custom styling limitations: When heavily customised, may lose native accessibility features in certain browsers"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "rounds_conducted": 2,
+      "users_tested": 12,
+      "findings": [
+        "Users expect visual feedback when hovering over or focusing on checkboxes",
+        "Clear visual distinction between checked and unchecked states is critical",
+        "Users appreciate when related checkboxes are visually grouped",
+        "Error states need to be clearly communicated both visually and textually"
+      ]
+    },
+    "variations": [
+      "Default: Basic unchecked state",
+      "Checked: Selected state with check mark display",
+      "Required: Form validation requiring selection",
+      "Invalid: Error state with visual indicators",
+      "Disabled: Non-interactive state with reduced opacity"
+    ]
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

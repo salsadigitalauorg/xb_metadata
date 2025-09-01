@@ -1,0 +1,216 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "video",
+  "name": "Video",
+  "description": "HTML5 video component with multiple source and configuration options for displaying video content with fallback support and accessibility features.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/video/",
+    "extracted_from": {
+      "component_yml": "video.component.yml",
+      "template": "video.twig",
+      "stories": "video.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": "",
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "title": {
+      "type": "string",
+      "required": false,
+      "description": "Video title."
+    },
+    "has_controls": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the video should have controls."
+    },
+    "sources": {
+      "type": "array",
+      "required": false,
+      "description": "Video sources.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Source URL."
+          },
+          "type": {
+            "type": "string",
+            "description": "MIME type (like 'video/mp4')."
+          }
+        }
+      }
+    },
+    "poster": {
+      "type": "string",
+      "required": false,
+      "description": "Video poster URL."
+    },
+    "width": {
+      "type": "string",
+      "required": false,
+      "description": "Video width."
+    },
+    "height": {
+      "type": "string",
+      "required": false,
+      "description": "Video height."
+    },
+    "fallback_text": {
+      "type": "string",
+      "required": false,
+      "default": "Your browser doesn't support HTML5 video.",
+      "description": "Message for browsers not supporting HTML5 video."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "video",
+      "template": "video.twig",
+      "libraries": ["civictheme/video"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-video",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [],
+        "states": []
+      },
+      "custom_properties": []
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": ["civictheme:video-player"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Video with Controls",
+      "description": "HTML5 video with multiple sources and controls enabled",
+      "props": {
+        "theme": "light",
+        "title": "Demo Video",
+        "has_controls": true,
+        "poster": "demo/videos/demo_poster.png",
+        "sources": [
+          {
+            "url": "demo/videos/demo.webm",
+            "type": "video/webm"
+          },
+          {
+            "url": "demo/videos/demo.mp4",
+            "type": "video/mp4"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Autoplay Video without Controls",
+      "description": "Video that plays automatically without user controls",
+      "props": {
+        "theme": "light",
+        "sources": [
+          {
+            "url": "demo/videos/background.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "has_controls": false,
+        "attributes": "autoplay muted loop"
+      }
+    },
+    {
+      "name": "Responsive Video",
+      "description": "Video with responsive dimensions",
+      "props": {
+        "theme": "light",
+        "title": "Responsive Demo",
+        "has_controls": true,
+        "sources": [
+          {
+            "url": "demo/videos/responsive.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "width": "100%",
+        "height": "auto"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Display video content directly in the page",
+      "Create background videos for hero sections",
+      "Embed instructional or educational videos",
+      "Show product demonstrations or tutorials",
+      "Display video testimonials or case studies",
+      "When you need full control over video styling and behavior"
+    ],
+    "when_not_to_use": [
+      "For streaming video content - use video-player component instead",
+      "When you need advanced video player features (playlists, quality selection)",
+      "For videos hosted on external platforms (YouTube, Vimeo) - use iframe instead",
+      "When bandwidth or performance is a major concern"
+    ],
+    "best_practices": [
+      "Always provide multiple source formats for browser compatibility",
+      "Include meaningful poster images for better user experience",
+      "Use appropriate video compression to balance quality and file size",
+      "Provide fallback text for accessibility and unsupported browsers",
+      "Consider autoplay policies and user preferences (mute autoplay videos)",
+      "Use descriptive titles for screen readers",
+      "Test video performance across different devices and connections"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA (with proper implementation)",
+      "wcag_issues": [],
+      "notes": "Videos should include captions, transcripts, and audio descriptions when applicable. The title attribute helps screen readers identify video content."
+    },
+    "known_issues": [
+      "Autoplay behavior varies across browsers and user settings",
+      "Large video files can impact page loading performance",
+      "Some mobile browsers may not support all video formats or features"
+    ],
+    "variations": [
+      "Basic video: Standard HTML5 video with controls",
+      "Background video: Autoplay video without controls for decorative purposes",
+      "Responsive video: Video that adapts to container size",
+      "Multi-format video: Video with multiple source formats for compatibility"
+    ]
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T00:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

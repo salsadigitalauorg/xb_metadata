@@ -1,0 +1,133 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component-schema.json",
+  "id": "mobile-navigation-close",
+  "name": "Mobile Navigation Close",
+  "description": "Close button component for the mobile navigation panel, providing accessible way to exit mobile navigation.",
+  "category": "atom",
+  "status": "stable",
+  "metadata": {
+    "version": "1.8.0",
+    "platform": "drupal",
+    "framework": "twig",
+    "designSystem": "CivicTheme",
+    "accessibility": {
+      "wcagCompliant": true,
+      "wcagLevel": "AA",
+      "screenReaderSupport": true,
+      "keyboardNavigation": true
+    },
+    "responsive": true,
+    "maintainer": "CivicTheme Team",
+    "interactive": true
+  },
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation controlling color scheme and styling",
+      "enum": ["light", "dark"],
+      "default": "light",
+      "category": "appearance"
+    },
+    "text": {
+      "type": "string",
+      "description": "Text displayed on close button",
+      "default": "Close",
+      "category": "content"
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes for button element",
+      "category": "technical"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes for custom styling",
+      "category": "styling"
+    }
+  },
+  "cssClasses": {
+    "root": "ct-mobile-navigation-close",
+    "modifiers": [
+      {
+        "name": "ct-theme-light",
+        "description": "Light theme styling"
+      },
+      {
+        "name": "ct-theme-dark",
+        "description": "Dark theme styling"
+      }
+    ],
+    "elements": [
+      {
+        "name": "ct-mobile-navigation-close__button",
+        "description": "Close button element"
+      }
+    ]
+  },
+  "behavior": {
+    "flyout": {
+      "trigger": "data-flyout-close-all-trigger",
+      "closeAll": true
+    },
+    "button": {
+      "type": "tertiary",
+      "kind": "button",
+      "size": "small",
+      "icon": "close",
+      "icon_placement": "after"
+    }
+  },
+  "dependencies": [
+    "civictheme:button"
+  ],
+  "platform": {
+    "drupal": {
+      "type": "sdc",
+      "machineName": "mobile_navigation_close",
+      "category": "atom",
+      "dependencies": ["civictheme:button"]
+    }
+  },
+  "examples": [
+    {
+      "name": "Default Close Button",
+      "description": "Standard mobile navigation close button",
+      "props": {
+        "theme": "light",
+        "text": "Close"
+      }
+    },
+    {
+      "name": "Custom Close Button",
+      "description": "Customized close button",
+      "props": {
+        "theme": "dark",
+        "text": "Exit",
+        "modifier_class": "custom-close"
+      }
+    }
+  ],
+  "accessibility": {
+    "requirements": [
+      "Button must be keyboard accessible",
+      "Button must close all navigation panels",
+      "Focus must return to trigger element after closing",
+      "Button must have accessible name/label",
+      "Button must work with screen readers"
+    ]
+  },
+  "extraction": {
+    "timestamp": "2024-12-19T10:52:00Z",
+    "source": "CivicTheme UIKit v1.9.0",
+    "confidence": {
+      "props": 0.95,
+      "styling": 0.88,
+      "behavior": 0.90,
+      "accessibility": 0.90
+    },
+    "extractedFrom": [
+      "mobile-navigation-close.component.yml",
+      "mobile-navigation-close.twig"
+    ]
+  }
+}

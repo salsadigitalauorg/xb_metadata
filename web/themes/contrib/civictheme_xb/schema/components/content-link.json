@@ -1,0 +1,204 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "content-link",
+  "name": "Content Link",
+  "description": "Link component with text content and configurable states. Provides accessible link functionality with support for external links, new window opening, and theme variations.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/content-link/",
+    "extracted_from": {
+      "component_yml": "content-link.component.yml",
+      "template": "content-link.twig", 
+      "styles": "content-link.scss",
+      "stories": "content-link.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "text": {
+      "type": "string",
+      "required": false,
+      "description": "Link text.",
+      "examples": ["Link text", "Read more", "View details"]
+    },
+    "url": {
+      "type": "url",
+      "required": false,
+      "description": "Link URL.",
+      "examples": ["https://example.com", "/internal-page", "#section"]
+    },
+    "title": {
+      "type": "string",
+      "required": false,
+      "description": "Link title for accessibility."
+    },
+    "is_new_window": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to open in a new window."
+    },
+    "is_external": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the link is external."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "content_link",
+      "template": "content-link.twig",
+      "libraries": ["civictheme/content-link"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-content-link",
+        "modifiers": [
+          "ct-content-link--external",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [],
+        "states": [
+          "hover",
+          "focus",
+          "active",
+          "visited"
+        ]
+      },
+      "custom_properties": [
+        "$ct-content-link-light-color",
+        "$ct-content-link-light-hover-color",
+        "$ct-content-link-light-focus-color",
+        "$ct-content-link-dark-color",
+        "$ct-content-link-dark-hover-color",
+        "$ct-content-link-dark-focus-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:text-icon"],
+    "contains": [],
+    "alternatives": ["link", "button"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Content Link",
+      "description": "Simple content link with text",
+      "props": {
+        "theme": "light",
+        "text": "Link text",
+        "url": "https://example.com",
+        "title": "Link title"
+      }
+    },
+    {
+      "name": "External Link",
+      "description": "External link with new window opening",
+      "props": {
+        "theme": "light",
+        "text": "Visit external site",
+        "url": "https://external-site.com",
+        "title": "Opens in new window",
+        "is_new_window": true,
+        "is_external": true
+      }
+    },
+    {
+      "name": "Dark Theme Link",
+      "description": "Content link with dark theme",
+      "props": {
+        "theme": "dark",
+        "text": "Dark theme link",
+        "url": "/internal-page",
+        "title": "Internal page link"
+      }
+    },
+    {
+      "name": "Internal Section Link",
+      "description": "Link to internal page section",
+      "props": {
+        "theme": "light",
+        "text": "Go to section",
+        "url": "#section-anchor",
+        "title": "Jump to section"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Create links within content areas that need consistent styling",
+      "Link to external websites with proper external indicators",
+      "Provide accessible links with proper ARIA labels",
+      "Create internal navigation links with theme consistency",
+      "Link to downloadable resources or documents"
+    ],
+    "when_not_to_use": [
+      "For primary call-to-action elements - use buttons instead",
+      "In place of navigation menu items - use navigation components",
+      "For complex interactive elements - consider specialized components",
+      "When you need button-like styling - use button component"
+    ],
+    "best_practices": [
+      "Always provide meaningful link text that describes the destination",
+      "Use descriptive titles for accessibility",
+      "Clearly indicate external links with is_external prop",
+      "Use appropriate theme variation for the context",
+      "Provide clear visual feedback for interactive states",
+      "Ensure sufficient color contrast for readability",
+      "Use consistent styling throughout the application"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper ARIA labels for new window links and external link indicators."
+    },
+    "known_issues": [],
+    "variations": [
+      "Theme variations: Light and dark theme support",
+      "External links: With proper indicators and new window handling",
+      "Internal links: For same-site navigation",
+      "Anchor links: For same-page navigation to sections",
+      "Interactive states: Hover, focus, active, and visited states"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect consistent link styling throughout the site",
+        "External link indicators help users understand navigation context",
+        "Clear hover and focus states improve usability",
+        "Meaningful link text improves accessibility and SEO"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "table",
+  "name": "Table",
+  "description": "Table component for tabular data with styling options including headers, footers, captions, and different display modes for accessible data presentation.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/table/",
+    "extracted_from": {
+      "component_yml": "table.component.yml",
+      "template": "table.twig",
+      "styles": "table.scss",
+      "stories": "table.stories.js",
+      "javascript": "table.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": "",
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "caption": {
+      "type": "string",
+      "required": false,
+      "description": "Table caption."
+    },
+    "caption_position": {
+      "type": "enum",
+      "required": false,
+      "default": "before",
+      "options": ["before", "after"],
+      "description": "Caption position (before, after)."
+    },
+    "header": {
+      "type": "array",
+      "required": false,
+      "description": "Header cells.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rows": {
+      "type": "array",
+      "required": false,
+      "description": "Table rows.",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "footer": {
+      "type": "array",
+      "required": false,
+      "description": "Footer cells.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "is_striped": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to show table with striped rows."
+    },
+    "is_data_table": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to show as a data table."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "table",
+      "template": "table.twig",
+      "libraries": ["civictheme/table"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-table",
+        "modifiers": [
+          "ct-table--striped",
+          "ct-table--data",
+          "ct-table--caption-before",
+          "ct-table--caption-after",
+          "ct-table--wrapper",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [],
+        "states": []
+      },
+      "custom_properties": []
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Table",
+      "description": "Simple table with headers and data rows",
+      "props": {
+        "theme": "light",
+        "caption": "Sample Data Table",
+        "caption_position": "before",
+        "header": ["Name", "Role", "Department", "Status"],
+        "rows": [
+          ["John Smith", "Developer", "Engineering", "Active"],
+          ["Jane Doe", "Designer", "UX/UI", "Active"],
+          ["Bob Johnson", "Manager", "Operations", "Active"]
+        ]
+      }
+    },
+    {
+      "name": "Striped Data Table",
+      "description": "Table with alternating row colors and footer",
+      "props": {
+        "theme": "light",
+        "caption": "Employee Directory",
+        "header": ["Employee", "Position", "Team"],
+        "rows": [
+          ["Alice Brown", "Senior Developer", "Frontend"],
+          ["Charlie Wilson", "Product Manager", "Product"],
+          ["Diana Lee", "UX Researcher", "Design"]
+        ],
+        "footer": ["Total: 3", "", ""],
+        "is_striped": true,
+        "is_data_table": true
+      }
+    },
+    {
+      "name": "Table with Links",
+      "description": "Table containing interactive links in cells",
+      "props": {
+        "theme": "light",
+        "caption": "Resource Links",
+        "header": ["Resource", "Description", "Category"],
+        "rows": [
+          ["<a href='#'>Documentation</a>", "Complete user guide", "Help"],
+          ["<a href='#'>API Reference</a>", "Developer documentation", "Technical"],
+          ["<a href='#'>Support</a>", "Contact support team", "Help"]
+        ],
+        "is_data_table": true
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Display tabular data with rows and columns",
+      "Present comparative information in structured format",
+      "Show lists of items with multiple attributes",
+      "Create data tables for reports and analytics",
+      "Display directory information (contacts, employees, resources)"
+    ],
+    "when_not_to_use": [
+      "For layout purposes - use CSS Grid or Flexbox instead",
+      "For single-column lists - use list component instead",
+      "For complex data visualization - consider charts or graphs",
+      "On very small screens where tables become difficult to read"
+    ],
+    "best_practices": [
+      "Always include meaningful headers for accessibility",
+      "Use captions to describe the table's purpose",
+      "Consider striped rows for better readability of large datasets",
+      "Ensure tables are responsive and readable on mobile devices",
+      "Use appropriate data attributes for mobile responsiveness",
+      "Keep cell content concise and scannable",
+      "Use consistent data formatting within columns"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Tables are inherently accessible when properly structured with headers, captions, and scope attributes. The component includes data-title attributes for responsive mobile display."
+    },
+    "known_issues": [
+      "Large tables may require horizontal scrolling on mobile devices",
+      "Complex nested content in cells can affect mobile responsiveness"
+    ],
+    "variations": [
+      "Basic table: Simple rows and columns with headers",
+      "Striped table: Alternating row background colors for readability",
+      "Data table: Enhanced styling for data-heavy content",
+      "Caption positioning: Caption before or after table content",
+      "With footer: Tables that include summary or total rows"
+    ]
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T00:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

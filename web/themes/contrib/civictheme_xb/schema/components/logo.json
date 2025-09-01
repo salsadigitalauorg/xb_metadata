@@ -1,0 +1,286 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "logo",
+  "name": "Logo",
+  "description": "Component for displaying site logo with multiple display options. Supports responsive logo variations, different layout types, and configurable branding elements for primary and secondary logos.",
+  "category": "molecules",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/logo/",
+    "extracted_from": {
+      "component_yml": "logo.component.yml",
+      "template": "logo.twig", 
+      "styles": "logo.scss",
+      "stories": "logo.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "default": "default",
+      "options": ["default", "stacked", "inline", "inline-stacked"],
+      "description": "Logo display layout type."
+    },
+    "logos": {
+      "type": "object",
+      "required": false,
+      "description": "Logo configuration object with primary and secondary logo options.",
+      "properties": {
+        "primary": {
+          "type": "object",
+          "description": "Primary logo configuration",
+          "properties": {
+            "mobile": {
+              "type": "object",
+              "properties": {
+                "url": {"type": "string", "description": "Mobile logo image URL"},
+                "alt": {"type": "string", "description": "Alt text for mobile logo"}
+              }
+            },
+            "desktop": {
+              "type": "object", 
+              "properties": {
+                "url": {"type": "string", "description": "Desktop logo image URL"},
+                "alt": {"type": "string", "description": "Alt text for desktop logo"}
+              }
+            }
+          }
+        },
+        "secondary": {
+          "type": "object",
+          "description": "Secondary logo configuration",
+          "properties": {
+            "mobile": {
+              "type": "object",
+              "properties": {
+                "url": {"type": "string", "description": "Mobile secondary logo URL"},
+                "alt": {"type": "string", "description": "Alt text for mobile secondary logo"}
+              }
+            },
+            "desktop": {
+              "type": "object",
+              "properties": {
+                "url": {"type": "string", "description": "Desktop secondary logo URL"},
+                "alt": {"type": "string", "description": "Alt text for desktop secondary logo"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "url": {
+      "type": "url",
+      "required": false,
+      "description": "Optional URL that wraps the logo (typically homepage)."
+    },
+    "title": {
+      "type": "string",
+      "required": false,
+      "default": "Click to go to the homepage",
+      "description": "Optional logo title attribute for accessibility."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "logo",
+      "template": "logo.twig",
+      "libraries": ["civictheme/logo"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-logo",
+        "modifiers": [
+          "ct-logo--default",
+          "ct-logo--stacked",
+          "ct-logo--inline",
+          "ct-logo--inline-stacked",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-logo__wrapper",
+          "ct-logo__primary",
+          "ct-logo__secondary",
+          "ct-logo__image"
+        ],
+        "states": [
+          "hover",
+          "focus"
+        ]
+      },
+      "custom_properties": []
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:image"],
+    "contains": ["image"],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Logo",
+      "description": "Simple logo with homepage link",
+      "props": {
+        "theme": "light",
+        "type": "default",
+        "url": "/",
+        "title": "Click to go to the homepage",
+        "logos": {
+          "primary": {
+            "desktop": {
+              "url": "/images/logo-desktop.svg",
+              "alt": "Site Logo"
+            },
+            "mobile": {
+              "url": "/images/logo-mobile.svg", 
+              "alt": "Site Logo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Stacked Logo Layout",
+      "description": "Logo with stacked layout for vertical presentation",
+      "props": {
+        "theme": "light",
+        "type": "stacked",
+        "url": "/",
+        "logos": {
+          "primary": {
+            "desktop": {
+              "url": "/images/logo-primary.svg",
+              "alt": "Primary Logo"
+            }
+          },
+          "secondary": {
+            "desktop": {
+              "url": "/images/logo-secondary.svg",
+              "alt": "Secondary Logo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Inline Logo Layout",
+      "description": "Logo with inline layout for horizontal presentation",
+      "props": {
+        "theme": "dark",
+        "type": "inline",
+        "url": "/",
+        "logos": {
+          "primary": {
+            "desktop": {
+              "url": "/images/logo-primary-dark.svg",
+              "alt": "Primary Logo"
+            }
+          },
+          "secondary": {
+            "desktop": {
+              "url": "/images/logo-secondary-dark.svg",
+              "alt": "Secondary Logo"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Responsive Logo",
+      "description": "Logo with different images for mobile and desktop",
+      "props": {
+        "theme": "light",
+        "type": "default",
+        "url": "/",
+        "logos": {
+          "primary": {
+            "desktop": {
+              "url": "/images/logo-desktop-full.svg",
+              "alt": "Company Full Logo"
+            },
+            "mobile": {
+              "url": "/images/logo-mobile-compact.svg",
+              "alt": "Company Logo"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Display site or organization branding in headers",
+      "Create clickable homepage navigation element",
+      "Present primary and secondary logos together",
+      "Provide responsive logo experience across devices",
+      "Establish visual brand identity throughout the site"
+    ],
+    "when_not_to_use": [
+      "For decorative images that aren't branding - use image component",
+      "In content areas where branding isn't appropriate",
+      "When simple text branding would be more appropriate",
+      "For complex logo arrangements requiring custom layouts"
+    ],
+    "best_practices": [
+      "Provide appropriate alt text for all logo variations",
+      "Use vector formats (SVG) for scalability when possible",
+      "Test logo visibility across different backgrounds and themes",
+      "Ensure logos are appropriately sized for mobile devices",
+      "Link logos to homepage unless there's a specific reason not to",
+      "Consider loading performance with multiple logo images",
+      "Maintain brand consistency across all logo variations"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper semantic markup with meaningful alt text and focus states for logo links."
+    },
+    "known_issues": [],
+    "variations": [
+      "Layout types: Default, stacked, inline, inline-stacked arrangements",
+      "Device responsiveness: Separate mobile and desktop logo options",
+      "Logo hierarchy: Primary and secondary logo support",
+      "Theme variations: Light and dark theme optimized logos",
+      "Link behavior: Optional homepage linking with accessibility features"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect logos to link to the homepage",
+        "Responsive logos improve brand recognition across devices",
+        "Clear alt text helps screen reader users understand branding",
+        "Consistent logo placement aids site navigation"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

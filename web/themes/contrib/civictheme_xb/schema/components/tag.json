@@ -1,0 +1,248 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "tag",
+  "name": "Tag",
+  "description": "Tag component for categorization elements with various styles. Provides visual labels for content categorization with support for different types, icons, and optional link functionality.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/tag/",
+    "extracted_from": {
+      "component_yml": "tag.component.yml",
+      "template": "tag.twig", 
+      "styles": "tag.scss",
+      "stories": "tag.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "default": "primary",
+      "options": ["primary", "secondary", "tertiary"],
+      "description": "Tag type determining visual style."
+    },
+    "content": {
+      "type": "string",
+      "required": false,
+      "description": "Tag content text.",
+      "examples": ["Category", "News", "Featured", "Important"]
+    },
+    "icon": {
+      "type": "string",
+      "required": false,
+      "description": "Icon name to display with the tag."
+    },
+    "icon_placement": {
+      "type": "enum",
+      "required": false,
+      "default": "after",
+      "options": ["before", "after"],
+      "description": "Icon position relative to content."
+    },
+    "url": {
+      "type": "url",
+      "required": false,
+      "description": "Optional URL to convert tag to a link."
+    },
+    "is_new_window": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to open link in a new window (only if URL is provided)."
+    },
+    "is_external": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the link is external."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "tag",
+      "template": "tag.twig",
+      "libraries": ["civictheme/tag"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-tag",
+        "modifiers": [
+          "ct-tag--primary",
+          "ct-tag--secondary",
+          "ct-tag--tertiary",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-tag__icon"
+        ],
+        "states": [
+          "hover",
+          "focus",
+          "active"
+        ]
+      },
+      "custom_properties": [
+        "$ct-tag-light-primary-color",
+        "$ct-tag-light-primary-background-color",
+        "$ct-tag-light-primary-border-color",
+        "$ct-tag-light-secondary-color",
+        "$ct-tag-light-secondary-background-color",
+        "$ct-tag-light-secondary-border-color",
+        "$ct-tag-light-tertiary-color",
+        "$ct-tag-light-tertiary-background-color",
+        "$ct-tag-light-tertiary-border-color",
+        "$ct-tag-dark-primary-color",
+        "$ct-tag-dark-primary-background-color",
+        "$ct-tag-dark-primary-border-color",
+        "$ct-tag-dark-secondary-color",
+        "$ct-tag-dark-secondary-background-color",
+        "$ct-tag-dark-secondary-border-color",
+        "$ct-tag-dark-tertiary-color",
+        "$ct-tag-dark-tertiary-background-color",
+        "$ct-tag-dark-tertiary-border-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:icon"],
+    "contains": [],
+    "alternatives": ["chip", "button"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Primary Tag",
+      "description": "Basic primary tag with content",
+      "props": {
+        "theme": "light",
+        "type": "primary",
+        "content": "Category"
+      }
+    },
+    {
+      "name": "Tag with Icon",
+      "description": "Tag with icon placement",
+      "props": {
+        "theme": "light",
+        "type": "secondary",
+        "content": "Featured",
+        "icon": "star",
+        "icon_placement": "before"
+      }
+    },
+    {
+      "name": "Linked Tag",
+      "description": "Tag that functions as a link",
+      "props": {
+        "theme": "light",
+        "type": "tertiary",
+        "content": "News",
+        "url": "/news",
+        "icon": "arrow-right",
+        "icon_placement": "after"
+      }
+    },
+    {
+      "name": "External Link Tag",
+      "description": "Tag linking to external content",
+      "props": {
+        "theme": "light",
+        "type": "primary",
+        "content": "External Resource",
+        "url": "https://example.com",
+        "is_external": true,
+        "is_new_window": true,
+        "icon": "external-link",
+        "icon_placement": "after"
+      }
+    },
+    {
+      "name": "Dark Theme Tag",
+      "description": "Tag with dark theme styling",
+      "props": {
+        "theme": "dark",
+        "type": "secondary",
+        "content": "Important",
+        "icon": "exclamation",
+        "icon_placement": "before"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Label content with categories or types",
+      "Create visual indicators for content status or importance",
+      "Provide clickable category navigation",
+      "Display metadata about content items",
+      "Create filterable content tags",
+      "Show content classifications or properties"
+    ],
+    "when_not_to_use": [
+      "For interactive form elements - use chips or buttons instead",
+      "As primary navigation elements - use proper navigation components",
+      "For complex interactive functionality - consider specialized components",
+      "When tags would clutter the interface with too many elements"
+    ],
+    "best_practices": [
+      "Use consistent tag types throughout the application",
+      "Choose appropriate tag types based on content hierarchy and importance",
+      "Keep tag text concise and descriptive",
+      "Use icons sparingly and only when they add clarity",
+      "Maintain sufficient contrast for accessibility",
+      "Group related tags together logically",
+      "Consider the visual weight of tags in the overall design"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper semantic markup for both static tags and linked tags with appropriate focus states."
+    },
+    "known_issues": [],
+    "variations": [
+      "Tag types: Primary, secondary, and tertiary visual styles",
+      "Interactive states: Static tags vs. linked tags",
+      "Icon support: Optional icons with configurable placement",
+      "Theme variations: Light and dark theme support",
+      "Link functionality: Internal and external link support with new window options"
+    ],
+    "user_research": {
+      "confidence_rating": "Medium",
+      "findings": [
+        "Users use tags for quick content categorization and navigation",
+        "Consistent tag styling helps users understand content organization",
+        "Clickable tags should have clear interactive indicators",
+        "Icon usage in tags should be purposeful and not decorative"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

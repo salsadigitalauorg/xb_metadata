@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "tag-list",
+  "title": "Tag List",
+  "description": "Component for displaying a list of tags",
+  "type": "object",
+  "category": "molecules",
+  "status": "stable",
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation",
+      "enum": ["light", "dark"],
+      "default": "light"
+    },
+    "vertical_spacing": {
+      "type": "string",
+      "description": "Vertical spacing around the tag list",
+      "enum": ["none", "top", "bottom", "both"],
+      "default": "none"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Array of tags to display",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Simple tag text"
+          },
+          {
+            "type": "object",
+            "description": "Tag object with advanced options",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Tag text"
+              },
+              "url": {
+                "type": "string",
+                "description": "Tag URL (makes tag clickable)",
+                "format": "uri"
+              },
+              "is_new_window": {
+                "type": "boolean",
+                "description": "Whether to open the tag URL in a new window",
+                "default": false
+              }
+            },
+            "required": ["text"]
+          }
+        ]
+      }
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes"
+    }
+  },
+  "required": ["tags"],
+  "slots": {
+    "content_top": {
+      "description": "Content area above the tag list"
+    },
+    "content_bottom": {
+      "description": "Content area below the tag list"
+    }
+  },
+  "blocks": {
+    "content_top_block": {
+      "description": "Override the default top content rendering"
+    },
+    "content_block": {
+      "description": "Override the default tag list rendering"
+    },
+    "content_bottom_block": {
+      "description": "Override the default bottom content rendering"
+    }
+  },
+  "css_classes": {
+    "base": "ct-tag-list",
+    "modifiers": {
+      "vertical_spacing_top": "ct-vertical-spacing--top",
+      "vertical_spacing_bottom": "ct-vertical-spacing--bottom", 
+      "vertical_spacing_both": "ct-vertical-spacing--both",
+      "theme_light": "ct-theme-light",
+      "theme_dark": "ct-theme-dark"
+    },
+    "elements": {
+      "content_top": "ct-tag-list__content-top",
+      "content": "ct-tag-list__content",
+      "content_bottom": "ct-tag-list__content-bottom"
+    }
+  },
+  "accessibility": {
+    "features": [
+      "Uses semantic list structure for screen readers",
+      "Tags maintain proper focus order when clickable",
+      "Theme variations maintain sufficient contrast"
+    ],
+    "guidelines": [
+      "Keep tag text concise and descriptive",
+      "Ensure clickable tags have clear affordance",
+      "Test keyboard navigation for linked tags",
+      "Verify color contrast in both theme variants"
+    ]
+  },
+  "platform_integration": {
+    "drupal": {
+      "field_types": ["field_entity_reference", "field_taxonomy_term_reference", "field_text"],
+      "view_modes": ["tag_list", "inline", "default"],
+      "template_suggestions": [
+        "tag-list--[view-mode].twig",
+        "tag-list--[bundle].twig"
+      ]
+    }
+  },
+  "usage_examples": {
+    "simple": {
+      "description": "Simple tag list with text strings",
+      "props": {
+        "theme": "light",
+        "tags": ["Tag 1", "Tag 2", "Tag 3"],
+        "vertical_spacing": "none"
+      }
+    },
+    "with_links": {
+      "description": "Tag list with clickable tags",
+      "props": {
+        "theme": "light",
+        "vertical_spacing": "both",
+        "tags": [
+          {
+            "text": "Category A",
+            "url": "/taxonomy/term/1"
+          },
+          {
+            "text": "Category B", 
+            "url": "/taxonomy/term/2",
+            "is_new_window": false
+          }
+        ]
+      }
+    },
+    "with_content": {
+      "description": "Tag list with additional content areas",
+      "props": {
+        "theme": "dark",
+        "tags": ["Featured", "Popular", "New"],
+        "vertical_spacing": "top",
+        "content_top": "<h3>Related Topics</h3>",
+        "content_bottom": "<p><a href=\"/all-tags\">View all tags</a></p>"
+      }
+    }
+  },
+  "design_tokens": {
+    "spacing": [
+      "Uses ct-vertical-spacing utility classes for margin control",
+      "Item-list component provides spacing between individual tags"
+    ],
+    "layout": [
+      "Tags arranged horizontally using item-list component",
+      "Size set to 'small' for compact display",
+      "Content areas stack vertically above and below tag list"
+    ]
+  },
+  "best_practices": [
+    "Use consistent tag naming conventions across the site",
+    "Limit the number of tags to avoid overwhelming users",
+    "Consider the semantic meaning when choosing clickable vs display-only tags",
+    "Group related tags together logically",
+    "Use vertical spacing appropriately based on context",
+    "Test tag lists with varying content lengths"
+  ],
+  "related_components": [
+    "tag",
+    "item-list"
+  ],
+  "extraction_metadata": {
+    "source_files": [
+      "/packages/sdc/components/02-molecules/tag-list/tag-list.component.yml",
+      "/packages/sdc/components/02-molecules/tag-list/tag-list.twig",
+      "/packages/sdc/components/02-molecules/tag-list/tag-list.stories.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": "high",
+    "notes": [
+      "Component uses individual tag components internally",
+      "Uses item-list component for layout with small size setting",
+      "Supports both string and object formats for tags array",
+      "Content areas provide flexibility for additional context",
+      "No dedicated SCSS file - styling handled by tag and item-list components"
+    ]
+  }
+}

@@ -1,0 +1,341 @@
+{
+  "extraction_timestamp": "2025-08-07T10:00:00Z",
+  "extraction_method": "SDC_SCANNER_v1",
+  "statistics": {
+    "total_components": 68,
+    "components_with_docs": 58,
+    "components_without_docs": 10,
+    "extraction_coverage": "100%",
+    "documentation_coverage": "85%"
+  },
+  "categories": {
+    "00-base": {
+      "count": 7,
+      "documented": 0,
+      "path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/00-base/"
+    },
+    "01-atoms": {
+      "count": 21,
+      "documented": 20,
+      "path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/"
+    },
+    "02-molecules": {
+      "count": 26,
+      "documented": 24,
+      "path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/"
+    },
+    "03-organisms": {
+      "count": 13,
+      "documented": 13,
+      "nested_components": 3,
+      "path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/"
+    },
+    "04-templates": {
+      "count": 1,
+      "documented": 1,
+      "path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/04-templates/"
+    }
+  },
+  "components": [
+    {
+      "id": "button",
+      "name": "Button",
+      "category": "atoms",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/button/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/atoms/button.md",
+      "has_documentation": true,
+      "documentation_quality": "HIGH",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": true,
+        "stories": true
+      }
+    },
+    {
+      "id": "checkbox",
+      "name": "Checkbox",
+      "category": "atoms",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/checkbox/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/atoms/check-box.md",
+      "has_documentation": true,
+      "documentation_quality": "GOOD",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "heading",
+      "name": "Heading",
+      "category": "atoms",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/heading/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/atoms/heading.md",
+      "has_documentation": true,
+      "documentation_quality": "HIGH",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "link",
+      "name": "Link",
+      "category": "atoms",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/link/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/atoms/link.md",
+      "has_documentation": true,
+      "documentation_quality": "HIGH",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "image",
+      "name": "Image",
+      "category": "atoms",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/image/",
+      "doc_path": null,
+      "has_documentation": false,
+      "documentation_quality": null,
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": false,
+        "css": false,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "accordion",
+      "name": "Accordion",
+      "category": "molecules",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/accordion/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/accordion.md",
+      "has_documentation": true,
+      "documentation_quality": "ISSUE",
+      "documentation_issue": "Contains text-list content instead of accordion information",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "breadcrumb",
+      "name": "Breadcrumb",
+      "category": "molecules",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/breadcrumb/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/breadcrumb.md",
+      "has_documentation": true,
+      "documentation_quality": "HIGH",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "search",
+      "name": "Search",
+      "category": "molecules",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/search/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/search.md",
+      "has_documentation": true,
+      "documentation_quality": "HIGH",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "tabs",
+      "name": "Tabs",
+      "category": "molecules",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/tabs/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/tabs.md",
+      "has_documentation": true,
+      "documentation_quality": "HIGH",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": true,
+        "stories": true
+      }
+    },
+    {
+      "id": "banner",
+      "name": "Banner",
+      "category": "organisms",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/banner/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/organisms/banner.md",
+      "has_documentation": true,
+      "documentation_quality": "HIGH",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "header",
+      "name": "Header",
+      "category": "organisms",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/header/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/organisms/header.md",
+      "has_documentation": true,
+      "documentation_quality": "HIGH",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "footer",
+      "name": "Footer",
+      "category": "organisms",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/footer/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/organisms/footer.md",
+      "has_documentation": true,
+      "documentation_quality": "GOOD",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    },
+    {
+      "id": "navigation",
+      "name": "Navigation",
+      "category": "organisms",
+      "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/navigation/",
+      "doc_path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/organisms/navigation.md",
+      "has_documentation": true,
+      "documentation_quality": "GOOD",
+      "files_found": {
+        "component_yml": true,
+        "twig": true,
+        "scss": true,
+        "css": true,
+        "js": false,
+        "stories": true
+      }
+    }
+  ],
+  "components_without_docs": [
+    {
+      "id": "datetime",
+      "category": "00-base",
+      "reason": "Base components documented conceptually only"
+    },
+    {
+      "id": "grid",
+      "category": "00-base",
+      "reason": "Base components documented conceptually only"
+    },
+    {
+      "id": "icon",
+      "category": "00-base",
+      "reason": "Base components documented conceptually only"
+    },
+    {
+      "id": "item-list",
+      "category": "00-base",
+      "reason": "Base components documented conceptually only"
+    },
+    {
+      "id": "layout",
+      "category": "00-base",
+      "reason": "Base components documented conceptually only"
+    },
+    {
+      "id": "menu",
+      "category": "00-base",
+      "reason": "Base components documented conceptually only"
+    },
+    {
+      "id": "text-icon",
+      "category": "00-base",
+      "reason": "Base components documented conceptually only"
+    },
+    {
+      "id": "video",
+      "category": "atoms",
+      "reason": "Missing documentation file"
+    },
+    {
+      "id": "social-links",
+      "category": "molecules",
+      "reason": "Missing documentation file"
+    },
+    {
+      "id": "webform",
+      "category": "organisms",
+      "reason": "Missing documentation file"
+    }
+  ],
+  "documentation_issues": [
+    {
+      "component": "accordion",
+      "file": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/accordion.md",
+      "issue": "Contains text-list content instead of accordion information",
+      "severity": "HIGH",
+      "manual_review_needed": true
+    }
+  ],
+  "file_type_statistics": {
+    "component_yml": 68,
+    "twig": 68,
+    "stories": 68,
+    "scss": 61,
+    "css": 48,
+    "js": 14,
+    "utils_js": 3,
+    "stories_data": 13,
+    "stories_scss": 6
+  },
+  "extraction_recommendations": [
+    "Start with HIGH quality documented components (button, heading, banner, header) for best extraction results",
+    "Components with documentation issues (accordion) require manual review",
+    "Base components (00-base) need conceptual handling as they lack individual docs",
+    "Missing documentation components can still be extracted from code with MEDIUM confidence"
+  ]
+}

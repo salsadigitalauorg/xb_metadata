@@ -1,0 +1,337 @@
+{
+  "$schema": "https://schemas.dsis.dev/component/v1.0.0/schema.json",
+  "id": "layout",
+  "name": "Layout",
+  "description": "Advanced responsive page layout component with CSS Grid and optional masonry layout. Supports up to 4 sidebar positions (top-left, top-right, bottom-left, bottom-right) with intelligent grid positioning and JavaScript-enhanced height management.",
+  "category": "base",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "platform": {
+    "drupal": {
+      "version": "^10 || ^11",
+      "sdc": true,
+      "namespace": "civictheme",
+      "schema_version": "v1"
+    }
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "hide_sidebar_left": {
+        "type": "boolean",
+        "default": false,
+        "title": "Hide Left Sidebar",
+        "description": "Whether to hide both left sidebar positions"
+      },
+      "hide_sidebar_right": {
+        "type": "boolean",
+        "default": false,
+        "title": "Hide Right Sidebar",
+        "description": "Whether to hide both right sidebar positions"
+      },
+      "is_contained": {
+        "type": "boolean",
+        "default": false,
+        "title": "Is Contained",
+        "description": "Whether to use container vs container-fluid layout"
+      },
+      "vertical_spacing": {
+        "type": "string",
+        "enum": ["none", "top", "bottom", "both"],
+        "default": "none",
+        "title": "Vertical Spacing",
+        "description": "Controls vertical spacing application"
+      },
+      "sidebar_top_left_attributes": {
+        "type": "string",
+        "title": "Top Left Sidebar Attributes",
+        "description": "HTML attributes for the top left sidebar aside element"
+      },
+      "sidebar_top_right_attributes": {
+        "type": "string",
+        "title": "Top Right Sidebar Attributes",
+        "description": "HTML attributes for the top right sidebar aside element"
+      },
+      "content_attributes": {
+        "type": "string",
+        "title": "Content Attributes",
+        "description": "HTML attributes for the main content section element"
+      },
+      "sidebar_bottom_left_attributes": {
+        "type": "string",
+        "title": "Bottom Left Sidebar Attributes",
+        "description": "HTML attributes for the bottom left sidebar aside element"
+      },
+      "sidebar_bottom_right_attributes": {
+        "type": "string",
+        "title": "Bottom Right Sidebar Attributes",
+        "description": "HTML attributes for the bottom right sidebar aside element"
+      },
+      "attributes": {
+        "type": "string",
+        "title": "Additional Attributes",
+        "description": "Additional HTML attributes to apply to the main element"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes to customize appearance"
+      }
+    }
+  },
+  "slots": {
+    "content_top": {
+      "title": "Content Top",
+      "description": "Content area displayed above the grid layout",
+      "type": "html"
+    },
+    "sidebar_top_left": {
+      "title": "Top Left Sidebar",
+      "description": "Top left sidebar content area",
+      "type": "html"
+    },
+    "sidebar_top_right": {
+      "title": "Top Right Sidebar",
+      "description": "Top right sidebar content area",
+      "type": "html"
+    },
+    "content": {
+      "title": "Main Content",
+      "description": "Primary content area in the center of the layout",
+      "type": "html",
+      "required": true
+    },
+    "sidebar_bottom_left": {
+      "title": "Bottom Left Sidebar",
+      "description": "Bottom left sidebar content area",
+      "type": "html"
+    },
+    "sidebar_bottom_right": {
+      "title": "Bottom Right Sidebar",
+      "description": "Bottom right sidebar content area",
+      "type": "html"
+    },
+    "content_bottom": {
+      "title": "Content Bottom",
+      "description": "Content area displayed below the grid layout",
+      "type": "html"
+    }
+  },
+  "css": {
+    "root_class": "ct-layout",
+    "modifiers": [
+      {
+        "class": "ct-layout--no-sidebar-left",
+        "description": "Hides left sidebar positions"
+      },
+      {
+        "class": "ct-layout--no-sidebar-right",
+        "description": "Hides right sidebar positions"
+      },
+      {
+        "class": "ct-layout--no-top-left",
+        "description": "No content in top left position"
+      },
+      {
+        "class": "ct-layout--no-top-right",
+        "description": "No content in top right position"
+      },
+      {
+        "class": "ct-layout--no-bottom-left",
+        "description": "No content in bottom left position"
+      },
+      {
+        "class": "ct-layout--no-bottom-right",
+        "description": "No content in bottom right position"
+      },
+      {
+        "class": "ct-vertical-spacing-top",
+        "description": "Applies top vertical spacing"
+      },
+      {
+        "class": "ct-vertical-spacing-bottom",
+        "description": "Applies bottom vertical spacing"
+      },
+      {
+        "class": "ct-vertical-spacing-both",
+        "description": "Applies both top and bottom vertical spacing"
+      }
+    ],
+    "elements": [
+      {
+        "class": "ct-layout__inner",
+        "description": "CSS Grid container with configurable columns and masonry support"
+      },
+      {
+        "class": "ct-layout__main",
+        "description": "Main content section with responsive grid positioning"
+      },
+      {
+        "class": "ct-layout__sidebar_top_left",
+        "description": "Top left sidebar aside element"
+      },
+      {
+        "class": "ct-layout__sidebar_top_right",
+        "description": "Top right sidebar aside element"
+      },
+      {
+        "class": "ct-layout__sidebar_bottom_left",
+        "description": "Bottom left sidebar aside element"
+      },
+      {
+        "class": "ct-layout__sidebar_bottom_right",
+        "description": "Bottom right sidebar aside element"
+      }
+    ],
+    "variables": [
+      "$ct-layout-columns",
+      "$ct-layout-row-gap",
+      "$ct-layout-column-gap",
+      "$ct-layout-column-gap-left-only",
+      "$ct-layout-column-gap-right-only",
+      "$ct-layout-breakpoint",
+      "$ct-layout-sidebar-left-columns",
+      "$ct-layout-sidebar-right-columns"
+    ],
+    "css_custom_properties": [
+      "--js-masonry-enabled",
+      "--stl (sidebar top left grid order)",
+      "--str (sidebar top right grid order)",
+      "--m (main content grid order)",
+      "--sbl (sidebar bottom left grid order)",
+      "--sbr (sidebar bottom right grid order)"
+    ]
+  },
+  "javascript": {
+    "class": "CivicThemeLayout",
+    "functionality": [
+      "CSS Grid masonry layout enhancement",
+      "Dynamic height calculation and adjustment",
+      "ResizeObserver for responsive height management",
+      "Intelligent sidebar positioning",
+      "Performance-optimized redraw handling"
+    ],
+    "features": [
+      "Detects masonry support and fallback handling",
+      "Observes child element size changes",
+      "Calculates optimal sidebar positioning",
+      "Handles responsive layout changes",
+      "Prevents duplicate initialization"
+    ],
+    "requirements": [
+      "All 4 sidebar elements must be present for masonry activation",
+      "CSS Grid template rows set to 'masonry' or --js-masonry-enabled custom property"
+    ]
+  },
+  "blocks": [
+    "content_top_block",
+    "content_block",
+    "sidebar_top_left_block",
+    "sidebar_top_right_block",
+    "sidebar_bottom_left_block",
+    "sidebar_bottom_right_block",
+    "content_bottom_block"
+  ],
+  "layout_logic": {
+    "container_selection": "Automatically becomes 'container' when sidebars are present",
+    "vertical_spacing_override": "Automatically sets to 'top' when sidebars are present",
+    "grid_positioning": "Uses CSS custom properties for dynamic grid order calculation",
+    "responsive_behavior": "Mobile: stacked vertical layout, Desktop: complex grid layout"
+  },
+  "dependencies": [],
+  "examples": [
+    {
+      "name": "Two Column Layout",
+      "description": "Main content with left sidebar only",
+      "props": {
+        "is_contained": true,
+        "hide_sidebar_right": true,
+        "vertical_spacing": "top",
+        "content": "<h1>Main Content</h1><p>Primary page content goes here.</p>",
+        "sidebar_top_left": "<nav>Navigation Menu</nav>",
+        "sidebar_bottom_left": "<aside>Related Links</aside>"
+      }
+    },
+    {
+      "name": "Three Column Layout",
+      "description": "Main content with both left and right sidebars",
+      "props": {
+        "is_contained": true,
+        "vertical_spacing": "both",
+        "content": "<article>Article content</article>",
+        "sidebar_top_left": "<nav>Main Navigation</nav>",
+        "sidebar_top_right": "<aside>Quick Links</aside>",
+        "sidebar_bottom_left": "<section>Recent Posts</section>",
+        "sidebar_bottom_right": "<section>Advertisement</section>"
+      }
+    },
+    {
+      "name": "Full Width Layout",
+      "description": "Main content without sidebars",
+      "props": {
+        "is_contained": false,
+        "hide_sidebar_left": true,
+        "hide_sidebar_right": true,
+        "content_top": "<header>Page Header</header>",
+        "content": "<main>Full width content</main>",
+        "content_bottom": "<footer>Page Footer</footer>"
+      }
+    }
+  ],
+  "accessibility": {
+    "guidelines": [
+      "Uses semantic main, section, and aside elements",
+      "Maintains logical reading order on mobile devices",
+      "Sidebar content hidden from print layouts",
+      "Proper landmark roles for main content area",
+      "Keyboard navigation preserved across layout changes"
+    ],
+    "wcag_compliance": [
+      "WCAG 2.1 AA - 1.3.1 Info and Relationships (semantic structure)",
+      "WCAG 2.1 AA - 1.3.2 Meaningful Sequence",
+      "WCAG 2.1 AA - 2.4.1 Bypass Blocks (through landmark roles)"
+    ],
+    "aria_support": "Standard landmark navigation through main and aside elements"
+  },
+  "best_practices": [
+    "Use semantic HTML within content slots",
+    "Test layout with varying content heights",
+    "Consider mobile-first responsive behavior",
+    "Use sidebar hiding props for responsive design",
+    "Ensure sufficient contrast in sidebar content",
+    "Test print layouts with hidden sidebars",
+    "Validate layout with different content combinations"
+  ],
+  "performance": {
+    "javascript": "Uses ResizeObserver for efficient layout updates",
+    "css": "CSS Grid with native masonry fallback where supported",
+    "responsive": "Breakpoint-based layout switching",
+    "optimization": "RequestAnimationFrame for smooth redraws"
+  },
+  "related_components": [],
+  "technical_notes": [
+    "Complex CSS Grid implementation with 324 lines of responsive rules",
+    "JavaScript masonry enhancement requires all 4 sidebar elements",
+    "Uses CSS custom properties for dynamic grid order management",
+    "Responsive column gaps vary based on sidebar presence",
+    "Print styles hide all sidebar content"
+  ],
+  "extraction_meta": {
+    "source_files": [
+      "/packages/sdc/components/00-base/layout/layout.component.yml",
+      "/packages/sdc/components/00-base/layout/layout.twig",
+      "/packages/sdc/components/00-base/layout/layout.scss",
+      "/packages/sdc/components/00-base/layout/layout.stories.js",
+      "/packages/sdc/components/00-base/layout/layout.js"
+    ],
+    "extraction_date": "2025-08-10",
+    "confidence_level": 0.95,
+    "notes": [
+      "Component has stable status in source",
+      "Highly complex layout system with advanced CSS Grid usage",
+      "Comprehensive JavaScript enhancement for masonry layouts",
+      "Extensive responsive behavior with breakpoint-specific rules"
+    ]
+  }
+}

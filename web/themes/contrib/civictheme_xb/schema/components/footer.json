@@ -1,0 +1,204 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "footer",
+  "name": "Footer",
+  "description": "Footer component with multiple content sections for site footer. Provides structured layout for site-wide footer information including navigation, legal content, and branding elements.",
+  "category": "organisms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/footer/",
+    "extracted_from": {
+      "component_yml": "footer.component.yml",
+      "template": "footer.twig", 
+      "styles": "footer.scss",
+      "stories": "footer.stories.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/organisms/footer.md",
+    "coverage": "good"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "background_image": {
+      "type": "string",
+      "required": false,
+      "description": "Background image URL for footer styling."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {
+    "content_top1": {
+      "description": "First content slot in the top footer section."
+    },
+    "content_top2": {
+      "description": "Second content slot in the top footer section."
+    },
+    "content_middle1": {
+      "description": "First content slot in the middle footer section."
+    },
+    "content_middle2": {
+      "description": "Second content slot in the middle footer section."
+    },
+    "content_middle3": {
+      "description": "Third content slot in the middle footer section."
+    },
+    "content_middle4": {
+      "description": "Fourth content slot in the middle footer section."
+    },
+    "content_middle5": {
+      "description": "Fifth content slot in the middle footer section."
+    },
+    "content_bottom1": {
+      "description": "First content slot in the bottom footer section."
+    },
+    "content_bottom2": {
+      "description": "Second content slot in the bottom footer section."
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "footer",
+      "template": "footer.twig",
+      "libraries": ["civictheme/footer"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-footer",
+        "modifiers": [
+          "ct-footer--with-background-image",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-footer__wrapper",
+          "ct-footer__top",
+          "ct-footer__middle",
+          "ct-footer__bottom",
+          "ct-footer__section"
+        ],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-footer-light-background-color",
+        "$ct-footer-light-border-color",
+        "$ct-footer-light-text-color",
+        "$ct-footer-dark-background-color",
+        "$ct-footer-dark-border-color",
+        "$ct-footer-dark-text-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": ["navigation", "logo", "social-links", "paragraph", "heading"],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Footer",
+      "description": "Simple footer with navigation and copyright",
+      "props": {
+        "theme": "light",
+        "content_middle1": "Primary navigation links",
+        "content_middle2": "Secondary navigation links", 
+        "content_bottom1": "Copyright and legal information"
+      }
+    },
+    {
+      "name": "Full Footer",
+      "description": "Complete footer with all content sections",
+      "props": {
+        "theme": "dark",
+        "content_top1": "Site logo and description",
+        "content_top2": "Contact information",
+        "content_middle1": "Main navigation",
+        "content_middle2": "Services",
+        "content_middle3": "Resources",
+        "content_middle4": "Support",
+        "content_middle5": "Social media links",
+        "content_bottom1": "Copyright notice",
+        "content_bottom2": "Terms and privacy links"
+      }
+    },
+    {
+      "name": "Footer with Background",
+      "description": "Footer with background image styling",
+      "props": {
+        "theme": "light",
+        "background_image": "/images/footer-bg.jpg",
+        "content_middle1": "Navigation links",
+        "content_bottom1": "Copyright information"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Create consistent site-wide footer across all pages",
+      "Provide secondary navigation and utility links",
+      "Display legal information and copyright notices",
+      "Show contact information and social media links",
+      "Present organizational branding and additional resources"
+    ],
+    "when_not_to_use": [
+      "For page-specific footer content - use content sections instead",
+      "As primary navigation - use header navigation components",
+      "For content that changes frequently - consider dynamic content areas",
+      "When a simple copyright notice would suffice"
+    ],
+    "best_practices": [
+      "Organize content logically in the three-tier structure (top, middle, bottom)",
+      "Use appropriate content hierarchy with the most important information prominently placed",
+      "Ensure all footer links are accessible and properly labeled",
+      "Maintain consistent styling with the overall site design",
+      "Include essential legal information and accessibility statements",
+      "Test footer usability across different screen sizes",
+      "Consider loading performance with background images"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper semantic footer markup with navigation landmarks and accessible link structures."
+    },
+    "known_issues": [],
+    "variations": [
+      "Content sections: Top (2 slots), middle (5 slots), bottom (2 slots)",
+      "Background options: With or without background image styling", 
+      "Theme variations: Light and dark theme support",
+      "Content types: Navigation, branding, legal, contact, social media",
+      "Layout flexibility: Responsive grid system for different screen sizes"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect consistent footer content across site pages",
+        "Footer navigation provides important secondary access to site sections",
+        "Contact information and legal links are commonly sought in footers",
+        "Social media links in footers help users connect with organizations",
+        "Clear visual hierarchy in footers improves content findability"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

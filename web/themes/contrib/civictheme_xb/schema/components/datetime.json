@@ -1,0 +1,191 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "datetime",
+  "name": "DateTime",
+  "description": "Date/time component with configurable formatting options. Provides semantic datetime markup with support for start/end time ranges and ISO format accessibility features.",
+  "category": "base",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/00-base/datetime/",
+    "extracted_from": {
+      "component_yml": "datetime.component.yml",
+      "template": "datetime.twig",
+      "stories": "datetime.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "start": {
+      "type": "string",
+      "required": false,
+      "description": "Human-readable formatted start time.",
+      "examples": ["March 15, 2024", "2:30 PM", "March 15, 2024 at 2:30 PM"]
+    },
+    "start_iso": {
+      "type": "string",
+      "required": false,
+      "description": "Start time in ISO 8601 format for machine readability.",
+      "examples": ["2024-03-15", "2024-03-15T14:30:00", "2024-03-15T14:30:00-05:00"]
+    },
+    "end": {
+      "type": "string",
+      "required": false,
+      "description": "Human-readable formatted end time.",
+      "examples": ["March 16, 2024", "4:30 PM", "March 15, 2024 at 4:30 PM"]
+    },
+    "end_iso": {
+      "type": "string",
+      "required": false,
+      "description": "End time in ISO 8601 format for machine readability.",
+      "examples": ["2024-03-16", "2024-03-15T16:30:00", "2024-03-15T16:30:00-05:00"]
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "datetime",
+      "template": "datetime.twig",
+      "libraries": ["civictheme/datetime"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-datetime",
+        "modifiers": [],
+        "elements": [
+          "ct-datetime__start",
+          "ct-datetime__end",
+          "ct-datetime__separator"
+        ],
+        "states": []
+      },
+      "custom_properties": []
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Single Date",
+      "description": "Display a single date",
+      "props": {
+        "start": "March 15, 2024",
+        "start_iso": "2024-03-15"
+      }
+    },
+    {
+      "name": "Single Time",
+      "description": "Display a specific time",
+      "props": {
+        "start": "2:30 PM",
+        "start_iso": "2024-03-15T14:30:00"
+      }
+    },
+    {
+      "name": "Date and Time",
+      "description": "Display date with time",
+      "props": {
+        "start": "March 15, 2024 at 2:30 PM",
+        "start_iso": "2024-03-15T14:30:00-05:00"
+      }
+    },
+    {
+      "name": "Date Range",
+      "description": "Display a date range",
+      "props": {
+        "start": "March 15, 2024",
+        "start_iso": "2024-03-15",
+        "end": "March 16, 2024",
+        "end_iso": "2024-03-16"
+      }
+    },
+    {
+      "name": "Time Range",
+      "description": "Display a time range on the same day",
+      "props": {
+        "start": "2:30 PM",
+        "start_iso": "2024-03-15T14:30:00",
+        "end": "4:30 PM", 
+        "end_iso": "2024-03-15T16:30:00"
+      }
+    },
+    {
+      "name": "Event Duration",
+      "description": "Display event with start and end date/time",
+      "props": {
+        "start": "March 15, 2024 at 2:30 PM",
+        "start_iso": "2024-03-15T14:30:00-05:00",
+        "end": "March 15, 2024 at 4:30 PM",
+        "end_iso": "2024-03-15T16:30:00-05:00"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Display event dates and times",
+      "Show publication or modification dates",
+      "Present deadline or due dates",
+      "Display time ranges or durations",
+      "Provide semantic datetime information for accessibility and SEO"
+    ],
+    "when_not_to_use": [
+      "For purely decorative date displays - consider using text components",
+      "When datetime information is not semantically meaningful",
+      "For complex date calculations or manipulations - use specialized libraries",
+      "When simple text would be more appropriate than structured datetime"
+    ],
+    "best_practices": [
+      "Always provide ISO format for machine readability and accessibility",
+      "Use clear, human-readable formatting for the display text",
+      "Include timezone information when relevant",
+      "Consider internationalization for date formats",
+      "Use appropriate datetime attributes for semantic markup",
+      "Test with screen readers to ensure accessibility",
+      "Provide consistent date formatting throughout the application"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper semantic datetime markup with machine-readable ISO formats for assistive technologies."
+    },
+    "known_issues": [],
+    "variations": [
+      "Single datetime: Just start time/date",
+      "Date ranges: Start and end dates",
+      "Time ranges: Start and end times",
+      "Mixed formats: Dates, times, or combined date-time formats",
+      "Timezone support: Optional timezone specification in ISO format"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect consistent date formatting throughout applications",
+        "Clear time zone indication prevents confusion for events",
+        "Range displays help users understand duration or scope",
+        "Machine-readable formats improve accessibility and SEO"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

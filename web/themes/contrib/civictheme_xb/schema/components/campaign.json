@@ -1,0 +1,369 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component-schema.json",
+  "id": "campaign",
+  "name": "Campaign",
+  "description": "Full-width featured content block designed to prominently showcase important content with heading, date, image, lead copy, and calls to action.",
+  "category": "organism",
+  "status": "stable",
+  "metadata": {
+    "version": "1.7.0",
+    "platform": "drupal",
+    "framework": "twig",
+    "designSystem": "CivicTheme",
+    "accessibility": {
+      "wcagCompliant": true,
+      "wcagLevel": "AA",
+      "screenReaderSupport": true,
+      "keyboardNavigation": true
+    },
+    "responsive": true,
+    "maintainer": "CivicTheme Team"
+  },
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation controlling color scheme and styling",
+      "enum": ["light", "dark"],
+      "default": "light",
+      "category": "appearance"
+    },
+    "image_position": {
+      "type": "string",
+      "description": "Position of image relative to content area",
+      "enum": ["left", "right"],
+      "default": "right",
+      "category": "layout"
+    },
+    "vertical_spacing": {
+      "type": "string",
+      "description": "Vertical spacing configuration for campaign component",
+      "enum": ["top", "bottom", "both"],
+      "category": "layout"
+    },
+    "image": {
+      "type": "object",
+      "description": "Campaign hero image object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Image URL for campaign visual"
+        },
+        "alt": {
+          "type": "string",
+          "description": "Alternative text for image accessibility"
+        }
+      },
+      "required": ["url", "alt"],
+      "category": "media"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Array of campaign topic tags for categorization",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Tag display text"
+          },
+          "url": {
+            "type": "string",
+            "description": "Optional URL for clickable tag"
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "description": "Whether tag opens in new window"
+          }
+        },
+        "required": ["text"]
+      },
+      "category": "content"
+    },
+    "links": {
+      "type": "array",
+      "description": "Array of call-to-action links for the campaign",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Link text displayed to user"
+          },
+          "url": {
+            "type": "string",
+            "description": "Target URL for the link"
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "description": "Whether to open in new window"
+          },
+          "is_external": {
+            "type": "boolean",
+            "description": "Whether link is external to current site"
+          }
+        },
+        "required": ["text", "url"]
+      },
+      "category": "interaction"
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes for campaign container",
+      "category": "technical"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes for custom styling",
+      "category": "styling"
+    }
+  },
+  "slots": [
+    {
+      "name": "content_top",
+      "description": "Top content area above the main campaign content",
+      "required": false
+    },
+    {
+      "name": "title",
+      "description": "Campaign heading/title content",
+      "required": false
+    },
+    {
+      "name": "date",
+      "description": "Campaign date or temporal information",
+      "required": false
+    },
+    {
+      "name": "content",
+      "description": "Main campaign description/body content",
+      "required": false
+    },
+    {
+      "name": "content_bottom",
+      "description": "Bottom content area below main campaign content",
+      "required": false
+    }
+  ],
+  "blocks": [
+    {
+      "name": "content_top_block",
+      "description": "Container for top supplementary content"
+    },
+    {
+      "name": "tags_block",
+      "description": "Container for campaign topic tags"
+    },
+    {
+      "name": "content_block",
+      "description": "Main content block with title, date, and description"
+    },
+    {
+      "name": "links_block",
+      "description": "Container for call-to-action buttons"
+    },
+    {
+      "name": "content_bottom_block",
+      "description": "Container for bottom supplementary content"
+    },
+    {
+      "name": "image_block",
+      "description": "Container for campaign hero image"
+    }
+  ],
+  "cssClasses": {
+    "root": "ct-campaign",
+    "modifiers": [
+      {
+        "name": "ct-theme-light",
+        "description": "Light theme styling"
+      },
+      {
+        "name": "ct-theme-dark",
+        "description": "Dark theme styling"
+      },
+      {
+        "name": "ct-campaign--image-left",
+        "description": "Image positioned on left side"
+      },
+      {
+        "name": "ct-campaign--image-right",
+        "description": "Image positioned on right side"
+      },
+      {
+        "name": "ct-vertical-spacing-inset--top",
+        "description": "Top vertical spacing"
+      },
+      {
+        "name": "ct-vertical-spacing-inset--bottom",
+        "description": "Bottom vertical spacing"
+      },
+      {
+        "name": "ct-vertical-spacing-inset--both",
+        "description": "Top and bottom vertical spacing"
+      }
+    ],
+    "elements": [
+      {
+        "name": "ct-campaign__inner",
+        "description": "Inner content container"
+      },
+      {
+        "name": "ct-campaign__content-top",
+        "description": "Top content area"
+      },
+      {
+        "name": "ct-campaign__tags",
+        "description": "Tags list container"
+      },
+      {
+        "name": "ct-campaign__title",
+        "description": "Campaign title element"
+      },
+      {
+        "name": "ct-campaign__date",
+        "description": "Campaign date element"
+      },
+      {
+        "name": "ct-campaign__content",
+        "description": "Main content area"
+      },
+      {
+        "name": "ct-campaign__links",
+        "description": "Call-to-action links container"
+      },
+      {
+        "name": "ct-campaign__content-bottom",
+        "description": "Bottom content area"
+      },
+      {
+        "name": "ct-campaign__image",
+        "description": "Hero image container"
+      }
+    ]
+  },
+  "dependencies": [
+    "civictheme:tag-list",
+    "civictheme:heading",
+    "civictheme:tag",
+    "civictheme:paragraph",
+    "civictheme:button",
+    "civictheme:item-list",
+    "civictheme:image"
+  ],
+  "platform": {
+    "drupal": {
+      "type": "sdc",
+      "machineName": "campaign",
+      "category": "organism",
+      "dependencies": ["civictheme:tag-list", "civictheme:heading", "civictheme:tag", "civictheme:paragraph", "civictheme:button", "civictheme:item-list", "civictheme:image"]
+    }
+  },
+  "examples": [
+    {
+      "name": "Campaign",
+      "description": "Full campaign component with all elements",
+      "props": {
+        "theme": "light",
+        "title": "Campaign heading which runs across two or three lines",
+        "content": "Quis non in nostrud incididunt voluptate ea enim cillum ex ut reprehenderit proident enim officia velit.",
+        "date": "11 Dec 2024",
+        "image": {
+          "url": "./demo/images/demo4.jpg",
+          "alt": "Image alt text"
+        },
+        "image_position": "left",
+        "tags": ["Tag 1"],
+        "links": [
+          {
+            "text": "Link 1",
+            "url": "https://example.com/link",
+            "is_new_window": false,
+            "is_external": false
+          },
+          {
+            "text": "Link 2",
+            "url": "https://example.com/link-2",
+            "is_new_window": false,
+            "is_external": false
+          }
+        ],
+        "vertical_spacing": "both"
+      }
+    }
+  ],
+  "accessibility": {
+    "requirements": [
+      "Image must have meaningful alt text",
+      "Text contrast must meet WCAG AA standards (4.5:1)",
+      "All interactive elements must be keyboard accessible",
+      "Focus indicators must be clearly visible",
+      "Component must be navigable using screen readers"
+    ],
+    "wcagCriteria": [
+      {
+        "criterion": "1.1.1",
+        "level": "A",
+        "description": "Non-text Content",
+        "status": "Pass"
+      },
+      {
+        "criterion": "1.4.3",
+        "level": "AA",
+        "description": "Contrast (Minimum)",
+        "status": "Pass"
+      },
+      {
+        "criterion": "1.4.4",
+        "level": "AA",
+        "description": "Resize text",
+        "status": "Pass"
+      },
+      {
+        "criterion": "2.1.1",
+        "level": "A",
+        "description": "Keyboard",
+        "status": "Pass"
+      },
+      {
+        "criterion": "2.4.7",
+        "level": "AA",
+        "description": "Focus Visible",
+        "status": "Pass"
+      }
+    ]
+  },
+  "bestPractices": [
+    "Select high-quality, relevant images that support the campaign message",
+    "Maintain proper visual hierarchy with prominent heading and supporting copy",
+    "Keep headings and lead copy concise and compelling",
+    "Include clear, action-oriented buttons that direct users to relevant content",
+    "Ensure component adapts appropriately for mobile viewing",
+    "Maintain appropriate spacing and balance between text and imagery",
+    "Use consistent styling for recurring campaigns",
+    "Include relevant topic tags for context and categorization",
+    "Ensure text maintains sufficient contrast against background"
+  ],
+  "knownIssues": [
+    "Mobile responsiveness: Side-by-side layout shifts to stacked on smaller screens",
+    "Content maintenance: Featured campaigns require regular review and updating",
+    "Visual balance: Images of varying dimensions may need additional styling",
+    "Potential clutter: Multiple tags, dates, and buttons may appear cluttered"
+  ],
+  "extraction": {
+    "timestamp": "2024-12-19T10:35:00Z",
+    "source": "CivicTheme UIKit v1.9.0",
+    "confidence": {
+      "props": 0.95,
+      "styling": 0.90,
+      "behavior": 0.85,
+      "accessibility": 0.90
+    },
+    "extractedFrom": [
+      "campaign.component.yml",
+      "campaign.twig",
+      "campaign.scss",
+      "campaign.stories.js",
+      "campaign.md documentation"
+    ]
+  }
+}

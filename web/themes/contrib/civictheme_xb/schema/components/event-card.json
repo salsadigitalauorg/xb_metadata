@@ -1,0 +1,342 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component.schema.json",
+  "metadata": {
+    "id": "civictheme-event-card",
+    "name": "Event Card",
+    "description": "Card component for displaying event information with date, location, and details. Features image display, event metadata, and flexible content areas.",
+    "version": "1.0.0",
+    "category": "molecules",
+    "subcategory": "list",
+    "status": "stable",
+    "created": "2024-01-01",
+    "modified": "2024-01-01",
+    "author": "CivicTheme",
+    "tags": ["event", "card", "date", "location", "list", "calendar"]
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "title": "Theme",
+        "description": "Theme variation controlling the visual appearance",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "examples": ["light", "dark"]
+      },
+      "image": {
+        "type": "object",
+        "title": "Event Image",
+        "description": "Optional event image with URL and alt text",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Image URL",
+            "description": "URL path to the event image",
+            "format": "uri",
+            "examples": ["./demo/images/demo1.jpg", "/path/to/event-image.jpg"]
+          },
+          "alt": {
+            "type": "string",
+            "title": "Alt Text",
+            "description": "Alternative text for the image (required for accessibility)",
+            "examples": ["Conference speakers on stage", "Workshop participants"]
+          }
+        },
+        "examples": [
+          {
+            "url": "./demo/images/demo1.jpg",
+            "alt": "Image alt text"
+          }
+        ]
+      },
+      "date_iso": {
+        "type": "string",
+        "title": "ISO Start Date",
+        "description": "Event start date and time in ISO 8601 format for machine readability",
+        "format": "date-time",
+        "examples": ["2023-01-20T11:00:00", "2024-03-15T09:30:00Z"]
+      },
+      "date": {
+        "type": "string",
+        "title": "Display Date",
+        "description": "Human-readable event start date and time",
+        "examples": ["20 Jan 2023 11:00", "March 15, 2024 at 9:30 AM"]
+      },
+      "date_end_iso": {
+        "type": "string",
+        "title": "ISO End Date",
+        "description": "Event end date and time in ISO 8601 format for machine readability",
+        "format": "date-time",
+        "examples": ["2023-01-21T15:00:00", "2024-03-15T17:00:00Z"]
+      },
+      "date_end": {
+        "type": "string",
+        "title": "Display End Date",
+        "description": "Human-readable event end date and time",
+        "examples": ["21 Jan 2023 15:00", "March 15, 2024 at 5:00 PM"]
+      },
+      "link": {
+        "type": "object",
+        "title": "Event Link",
+        "description": "Optional link to the full event details page",
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Link URL",
+            "description": "URL to the event details page",
+            "format": "uri",
+            "examples": ["https://example.com/event", "/events/123"]
+          },
+          "is_new_window": {
+            "type": "boolean",
+            "title": "Open in New Window",
+            "description": "Whether to open the link in a new window/tab",
+            "default": false,
+            "examples": [false, true]
+          }
+        },
+        "examples": [
+          {
+            "url": "https://example.com/event",
+            "is_new_window": false
+          }
+        ]
+      },
+      "tags": {
+        "type": "array",
+        "title": "Event Tags",
+        "description": "Array of tags associated with the event for categorization",
+        "items": {
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "Simple tag text"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "title": "Tag Text",
+                  "description": "Display text for the tag",
+                  "examples": ["Workshop", "Online Event", "Free"]
+                },
+                "url": {
+                  "type": "string",
+                  "title": "Tag URL",
+                  "description": "Optional URL for the tag to link to filtered results",
+                  "format": "uri",
+                  "examples": ["/events?tag=workshop", "/events/category/online"]
+                },
+                "is_new_window": {
+                  "type": "boolean",
+                  "title": "Open in New Window",
+                  "description": "Whether to open tag link in new window",
+                  "default": false
+                }
+              },
+              "required": ["text"]
+            }
+          ]
+        },
+        "examples": [
+          ["Tag 1", "Tag 2"],
+          [
+            {
+              "text": "Workshop",
+              "url": "/events?tag=workshop"
+            },
+            {
+              "text": "Online Event",
+              "url": "/events/online"
+            }
+          ]
+        ]
+      },
+      "attributes": {
+        "type": "string",
+        "title": "HTML Attributes",
+        "description": "Additional HTML attributes to apply to the root element",
+        "examples": ["data-event-id=\"123\"", "id=\"event-card-1\""]
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes for styling variations",
+        "examples": ["ct-event-card--featured", "custom-event-style"]
+      }
+    },
+    "examples": [
+      {
+        "theme": "light",
+        "date": "20 Jan 2023 11:00",
+        "date_end": "21 Jan 2023 15:00",
+        "title": "Event name which runs across two or three lines",
+        "location": "Suburb, State – 16:00–17:00",
+        "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "link": {
+          "url": "https://example.com/event",
+          "is_new_window": false
+        },
+        "image": {
+          "url": "./demo/images/demo1.jpg",
+          "alt": "Image alt text"
+        },
+        "tags": ["Tag 1", "Tag 2"]
+      }
+    ]
+  },
+  "slots": {
+    "image_over": {
+      "title": "Image Overlay",
+      "description": "Content to overlay on top of the event image (badges, labels, etc.)",
+      "examples": ["<span class=\"badge\">Featured</span>", "New Event"]
+    },
+    "content_top": {
+      "title": "Top Content Area",
+      "description": "Content area at the top of the card content section",
+      "examples": ["<div class=\"event-category\">Workshop</div>"]
+    },
+    "title": {
+      "title": "Event Title",
+      "description": "Main title/name of the event",
+      "examples": ["Annual Conference 2024", "Web Development Workshop"]
+    },
+    "content_middle": {
+      "title": "Middle Content Area",
+      "description": "Content area between title and location for additional details",
+      "examples": ["<p>Special guest speakers</p>"]
+    },
+    "location": {
+      "title": "Event Location",
+      "description": "Location information for the event",
+      "examples": ["Melbourne Convention Centre", "Online via Zoom", "123 Main St, Sydney"]
+    },
+    "summary": {
+      "title": "Event Summary",
+      "description": "Brief description or summary of the event",
+      "examples": ["Join us for an interactive workshop on modern web development techniques."]
+    },
+    "content_bottom": {
+      "title": "Bottom Content Area",
+      "description": "Content area at the bottom of the card for additional information",
+      "examples": ["<div class=\"event-pricing\">Free admission</div>"]
+    }
+  },
+  "css": {
+    "classes": {
+      "root": "ct-event-card",
+      "modifiers": [
+        "ct-event-card--with-image",
+        "ct-event-card--image-over"
+      ],
+      "elements": [
+        "ct-event-card__image",
+        "ct-event-card__image__over",
+        "ct-event-card__content",
+        "ct-event-card__content-top",
+        "ct-event-card__date",
+        "ct-event-card__title",
+        "ct-event-card__title__link",
+        "ct-event-card__middle",
+        "ct-event-card__location",
+        "ct-event-card__summary",
+        "ct-event-card__tags",
+        "ct-event-card__tags__link",
+        "ct-event-card__content-bottom"
+      ]
+    },
+    "variables": {
+      "border-radius": "$ct-event-card-border-radius",
+      "stripe-height": "$ct-event-card-stripe-height",
+      "image-height-mobile": "$ct-event-card-image-height-mobile",
+      "image-width-mobile": "$ct-event-card-image-width-mobile",
+      "image-height-desktop": "$ct-event-card-image-height-desktop",
+      "image-width-desktop": "$ct-event-card-image-width-desktop"
+    }
+  },
+  "integration": {
+    "drupal": {
+      "module": "civictheme",
+      "template": "civictheme:event-card",
+      "library": "civictheme/event-card",
+      "field_mapping": {
+        "node.field_event_image": "image",
+        "node.field_event_date": "date",
+        "node.field_event_date_end": "date_end",
+        "node.title": "title",
+        "node.field_event_location": "location",
+        "node.field_event_summary": "summary",
+        "node.field_event_tags": "tags"
+      }
+    }
+  },
+  "accessibility": {
+    "requirements": [
+      "Image alt text must be provided for all images",
+      "Event dates should include both human-readable and ISO formats",
+      "Links should have appropriate focus states",
+      "Calendar icon provides semantic meaning for date information"
+    ],
+    "aria": {
+      "roles": [],
+      "properties": ["aria-hidden on decorative link", "tabindex on secondary link"]
+    },
+    "keyboard": ["Tab navigation through interactive elements", "Enter/Space to activate links"]
+  },
+  "seo": {
+    "structured_data": {
+      "type": "Event",
+      "properties": ["name", "startDate", "endDate", "location", "description", "image"]
+    }
+  },
+  "performance": {
+    "loading": "Images should use appropriate loading strategies",
+    "optimization": "Consider lazy loading for images below the fold"
+  },
+  "usage": {
+    "guidelines": [
+      "Use for displaying event information in lists or grids",
+      "Include essential event details: date, title, location",
+      "Provide clear, descriptive alt text for event images",
+      "Use consistent date formatting across events"
+    ],
+    "examples": [
+      {
+        "title": "Basic Event Card",
+        "description": "Simple event with date, title, and link",
+        "code": "{% include 'civictheme:event-card' with { theme: 'light', date: '20 Jan 2023 11:00', title: 'Community Workshop', link: { url: '/events/123' } } only %}"
+      },
+      {
+        "title": "Full Event Card",
+        "description": "Complete event with image, dates, location, and tags",
+        "code": "{% include 'civictheme:event-card' with { theme: 'light', image: { url: '/image.jpg', alt: 'Workshop photo' }, date: '20 Jan 2023 11:00', date_end: '20 Jan 2023 15:00', title: 'Annual Conference', location: 'Convention Centre', summary: 'Join us for our annual conference.', tags: ['Conference', 'Annual'] } only %}"
+      }
+    ],
+    "best_practices": [
+      "Always provide alt text for event images",
+      "Use semantic date formats with ISO alternatives",
+      "Keep event titles concise but descriptive",
+      "Include location information for physical events",
+      "Use tags to help users find related events"
+    ]
+  },
+  "testing": {
+    "unit_tests": ["Component renders with required props", "Image displays when provided", "Links work correctly"],
+    "accessibility_tests": ["Alt text present for images", "Date formats are accessible", "Keyboard navigation works"],
+    "visual_regression": ["Light and dark themes", "With and without images", "Long text handling"]
+  },
+  "extraction": {
+    "source": "CivicTheme uikit-main repository",
+    "files_analyzed": [
+      "event-card.component.yml",
+      "event-card.twig", 
+      "event-card.scss",
+      "event-card.stories.js"
+    ],
+    "confidence": 0.95,
+    "last_updated": "2024-01-01",
+    "notes": "Complete component analysis with all props, slots, and styling information extracted from source files"
+  }
+}

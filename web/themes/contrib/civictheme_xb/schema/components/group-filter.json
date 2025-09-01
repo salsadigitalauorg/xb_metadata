@@ -1,0 +1,282 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component.schema.json",
+  "metadata": {
+    "id": "civictheme-group-filter",
+    "name": "Group Filter",
+    "description": "Component for multiple filters in a group with a single submit button. Enables users to apply multiple filter criteria simultaneously using popover-based filter controls.",
+    "version": "1.0.0",
+    "category": "molecules",
+    "subcategory": "list",
+    "status": "stable",
+    "created": "2024-01-01",
+    "modified": "2024-01-01",
+    "author": "CivicTheme",
+    "tags": ["filter", "form", "group", "search", "popover", "submission"]
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "title": "Theme",
+        "description": "Theme variation controlling the visual appearance",
+        "enum": ["light", "dark"],
+        "default": "light",
+        "examples": ["light", "dark"]
+      },
+      "title": {
+        "type": "string",
+        "title": "Filter Title",
+        "description": "Title text displayed above the filters",
+        "default": "Filter results by:",
+        "examples": ["Filter results by:", "Refine your search:", "Apply filters:"]
+      },
+      "form_attributes": {
+        "type": "string",
+        "title": "Form Attributes",
+        "description": "HTML attributes for the form element. If empty, no form wrapper is rendered",
+        "examples": ["method=\"GET\" action=\"/search\"", "id=\"filter-form\" class=\"search-form\""]
+      },
+      "form_hidden_fields": {
+        "type": "string",
+        "title": "Hidden Form Fields",
+        "description": "HTML for hidden form fields to include in the form submission",
+        "examples": ["<input type=\"hidden\" name=\"search_api_fulltext\" value=\"example\">"]
+      },
+      "filters": {
+        "type": "array",
+        "title": "Filter Items",
+        "description": "Array of filter objects, each containing a title and content",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "title": "Filter Title",
+              "description": "Display text for the filter trigger button",
+              "examples": ["Category", "Date Range", "Location", "Price"]
+            },
+            "content": {
+              "type": "string",
+              "title": "Filter Content",
+              "description": "HTML content displayed in the popover when filter is activated",
+              "examples": ["<input type=\"checkbox\" name=\"category[]\" value=\"news\"> News"]
+            }
+          },
+          "required": ["title", "content"]
+        },
+        "examples": [
+          [
+            {
+              "title": "Filter 1",
+              "content": "<div class=\"filter-options\">Filter content here</div>"
+            },
+            {
+              "title": "Filter 2", 
+              "content": "<input type=\"checkbox\" name=\"option\" value=\"1\"> Option 1"
+            }
+          ]
+        ]
+      },
+      "submit_text": {
+        "type": "string",
+        "title": "Submit Button Text",
+        "description": "Text displayed on the submit button",
+        "default": "Apply filters",
+        "examples": ["Apply filters", "Submit", "Search", "Filter Results"]
+      },
+      "group_id": {
+        "type": "string",
+        "title": "Group ID",
+        "description": "Unique identifier for the filter group (auto-generated if not provided)",
+        "examples": ["main-filters", "sidebar-filters", "search-filters"]
+      },
+      "attributes": {
+        "type": "string",
+        "title": "HTML Attributes",
+        "description": "Additional HTML attributes to apply to the root element",
+        "examples": ["data-filter-group=\"main\"", "id=\"primary-filters\""]
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes for styling variations",
+        "examples": ["ct-group-filter--compact", "custom-filter-style"]
+      }
+    },
+    "required": ["filters"],
+    "examples": [
+      {
+        "theme": "light",
+        "title": "Filter results by:",
+        "filters": [
+          {
+            "title": "Filter 1",
+            "content": "<input type=\"checkbox\" name=\"filter1\" value=\"option1\"> Option 1"
+          },
+          {
+            "title": "Filter 2",
+            "content": "<input type=\"radio\" name=\"filter2\" value=\"option2\"> Option 2"
+          }
+        ],
+        "submit_text": "Submit",
+        "form_attributes": "method=\"GET\" action=\"/search\""
+      }
+    ]
+  },
+  "slots": {
+    "content_top": {
+      "title": "Top Content Area",
+      "description": "Content area above the filters for additional information or instructions",
+      "examples": ["<p>Use the filters below to narrow your search results.</p>"]
+    },
+    "content_bottom": {
+      "title": "Bottom Content Area",
+      "description": "Content area below the filters for additional actions or information",
+      "examples": ["<a href=\"/advanced-search\">Advanced search options</a>"]
+    }
+  },
+  "css": {
+    "classes": {
+      "root": "ct-group-filter",
+      "elements": [
+        "ct-group-filter__content-top",
+        "ct-group-filter__title",
+        "ct-group-filter__row",
+        "ct-group-filter__filters",
+        "ct-group-filter__submit",
+        "ct-group-filter__content-bottom"
+      ],
+      "modifiers": [
+        "ct-theme-light",
+        "ct-theme-dark"
+      ]
+    },
+    "layout": {
+      "responsive": "Changes from column layout on mobile to row layout on medium breakpoints",
+      "flexbox": "Uses flexbox for alignment and spacing",
+      "grid": "Uses Bootstrap-like grid system (container, row, col)"
+    },
+    "variables": {
+      "border-color": "ct-component-var($root, $theme, border-color)",
+      "title-color": "ct-component-var($root, $theme, title, color)"
+    }
+  },
+  "behavior": {
+    "javascript": {
+      "component": "ct-group-filter",
+      "data_attributes": [
+        "data-component-name=\"ct-group-filter\"",
+        "data-group-filter-element",
+        "data-group-filter-filters"
+      ],
+      "functionality": [
+        "Popover interaction for filter controls",
+        "Form submission handling",
+        "Filter state management"
+      ]
+    },
+    "interactions": [
+      "Click filter trigger to open popover",
+      "Apply filters using submit button",
+      "Close popover when clicking outside or pressing Escape"
+    ]
+  },
+  "integration": {
+    "drupal": {
+      "module": "civictheme",
+      "template": "civictheme:group-filter",
+      "library": "civictheme/group-filter",
+      "dependencies": ["civictheme/popover", "civictheme/button", "civictheme/item-list"],
+      "field_mapping": {
+        "views.exposed_form": "filters",
+        "views.form_submit": "submit_text"
+      }
+    },
+    "components_used": [
+      "civictheme:popover",
+      "civictheme:button",
+      "civictheme:item-list"
+    ]
+  },
+  "accessibility": {
+    "requirements": [
+      "Filter triggers should be keyboard accessible",
+      "Popover content must be accessible to screen readers",
+      "Submit button should have appropriate focus states",
+      "Form elements within filters should be properly labeled"
+    ],
+    "aria": {
+      "properties": ["Popover triggers use appropriate ARIA attributes"],
+      "keyboard": "Full keyboard navigation through filter triggers and form elements"
+    },
+    "considerations": [
+      "Ensure filter content is accessible when opened in popovers",
+      "Provide clear labels for all form controls",
+      "Consider screen reader announcements for filter state changes"
+    ]
+  },
+  "performance": {
+    "loading": "Component loads with page, JavaScript enhances functionality",
+    "optimization": "Minimal DOM manipulation, efficient event handling"
+  },
+  "usage": {
+    "guidelines": [
+      "Use for complex filtering scenarios with multiple criteria",
+      "Provide clear, descriptive titles for each filter",
+      "Include form attributes for proper form submission",
+      "Consider mobile experience with responsive layout"
+    ],
+    "examples": [
+      {
+        "title": "Basic Group Filter",
+        "description": "Simple filter group with checkbox options",
+        "code": "{% include 'civictheme:group-filter' with { theme: 'light', filters: [{ title: 'Category', content: '<input type=\"checkbox\" name=\"cat\" value=\"news\"> News' }] } only %}"
+      },
+      {
+        "title": "Form-wrapped Filter",
+        "description": "Filter group within a form for submission",
+        "code": "{% include 'civictheme:group-filter' with { theme: 'light', form_attributes: 'method=\"GET\" action=\"/search\"', filters: [...], submit_text: 'Search' } only %}"
+      }
+    ],
+    "best_practices": [
+      "Always provide meaningful titles for filters",
+      "Include proper form attributes for server submission",
+      "Use semantic HTML within filter content",
+      "Test responsive behavior on mobile devices",
+      "Provide clear feedback when filters are applied"
+    ]
+  },
+  "testing": {
+    "unit_tests": [
+      "Component renders with required filters",
+      "Form wrapper only appears when form_attributes provided",
+      "Submit button displays correct text",
+      "Popover functionality works correctly"
+    ],
+    "accessibility_tests": [
+      "Keyboard navigation through all interactive elements",
+      "Screen reader accessibility of popover content",
+      "Focus management when opening/closing popovers"
+    ],
+    "visual_regression": [
+      "Light and dark theme variations",
+      "Mobile vs desktop layout",
+      "Various filter combinations",
+      "Long filter titles and content"
+    ]
+  },
+  "extraction": {
+    "source": "CivicTheme uikit-main repository",
+    "files_analyzed": [
+      "group-filter.component.yml",
+      "group-filter.twig",
+      "group-filter.scss",
+      "group-filter.stories.js",
+      "group-filter.stories.data.js"
+    ],
+    "confidence": 0.95,
+    "last_updated": "2024-01-01",
+    "notes": "Complete component analysis including JavaScript behavior, responsive design, and form integration patterns"
+  }
+}

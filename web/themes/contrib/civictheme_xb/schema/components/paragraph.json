@@ -1,0 +1,231 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "paragraph",
+  "name": "Paragraph",
+  "description": "Paragraph is a fundamental text element that presents content in structured blocks, enabling clear communication of information using CivicTheme's typography system.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/paragraph/",
+    "extracted_from": {
+      "component_yml": "paragraph.component.yml",
+      "template": "paragraph.twig",
+      "styles": "paragraph.scss",
+      "stories": "paragraph.stories.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/atoms/paragraph.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "content": {
+      "type": "string",
+      "required": false,
+      "description": "Paragraph content."
+    },
+    "size": {
+      "type": "enum",
+      "required": false,
+      "default": "regular",
+      "options": ["extra-large", "large", "regular", "small"],
+      "description": "Paragraph size (extra-large, large, regular, small)."
+    },
+    "allow_html": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to allow HTML in content."
+    },
+    "no_margin": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Disable default margin."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "paragraph",
+      "template": "paragraph.twig",
+      "libraries": ["civictheme/paragraph"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-paragraph",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark",
+          "ct-paragraph--extra-large",
+          "ct-paragraph--large",
+          "ct-paragraph--regular",
+          "ct-paragraph--small",
+          "ct-paragraph--no-margin"
+        ],
+        "elements": [],
+        "states": []
+      },
+      "custom_properties": [],
+      "typography": {
+        "font_family": "Lexend",
+        "line_length": "12-15 words per line",
+        "line_height": "1.5 times traditional height"
+      }
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": ["heading", "list"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Default",
+      "description": "Basic paragraph with default settings",
+      "props": {
+        "theme": "light",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "size": "regular"
+      }
+    },
+    {
+      "name": "Large paragraph",
+      "description": "Paragraph with large size for lead content",
+      "props": {
+        "theme": "light",
+        "content": "This is a lead paragraph with larger text size for introduction content.",
+        "size": "large"
+      }
+    },
+    {
+      "name": "Extra Large paragraph",
+      "description": "Paragraph with extra-large size for prominent content",
+      "props": {
+        "theme": "light",
+        "content": "This is an extra-large paragraph for maximum emphasis.",
+        "size": "extra-large"
+      }
+    },
+    {
+      "name": "Small paragraph",
+      "description": "Paragraph with small size for secondary content",
+      "props": {
+        "theme": "light",
+        "content": "This is a small paragraph for captions or secondary information.",
+        "size": "small"
+      }
+    },
+    {
+      "name": "Dark theme",
+      "description": "Paragraph with dark theme variation",
+      "props": {
+        "theme": "dark",
+        "content": "This paragraph uses the dark theme variation.",
+        "size": "regular"
+      }
+    },
+    {
+      "name": "No margin",
+      "description": "Paragraph with margin removed",
+      "props": {
+        "theme": "light",
+        "content": "This paragraph has no bottom margin.",
+        "size": "regular",
+        "no_margin": true
+      }
+    },
+    {
+      "name": "With HTML",
+      "description": "Paragraph allowing HTML content",
+      "props": {
+        "theme": "light",
+        "content": "This paragraph contains <strong>bold text</strong> and <em>italic text</em>.",
+        "size": "regular",
+        "allow_html": true
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Main body content across web pages",
+      "Descriptive text within components like cards, callouts, and banners",
+      "Explanatory information alongside forms and interactive elements",
+      "Terms and conditions, privacy policies, and other legal content",
+      "Instructional content and step-by-step guides"
+    ],
+    "when_not_to_use": [
+      "A heading would be more appropriate for section titles or page headings",
+      "A list (ordered or unordered) would better present information in a scannable format",
+      "Information can be better presented through tables, graphics, or other visual formats",
+      "Content requires special formatting such as code snippets or blockquotes"
+    ],
+    "best_practices": [
+      "Keep paragraphs concise—ideally 3-5 sentences—to improve readability and comprehension",
+      "Start with the most important information and use paragraphs to group related ideas together",
+      "Write in plain language, avoiding jargon and complex terminology where possible",
+      "Use the right size and weight variant for the context",
+      "Ensure paragraph text remains readable across all device sizes",
+      "Maintain adequate spacing between paragraphs to create visual separation",
+      "Maintain consistent styling of paragraphs throughout your site"
+    ],
+    "accessibility": {
+      "wcag_compliance": "WCAG 2.2 AA",
+      "wcag_passed": [
+        "1.4.3 Contrast (Minimum): Pass - Level AA",
+        "1.4.4 Resize text: Pass - Level AA",
+        "2.1.1 Keyboard: Pass - Level A",
+        "1.4.12 Text Spacing: Pass - Level AA"
+      ],
+      "features": [
+        "Sufficient contrast for all text",
+        "Can be resized up to 200% without loss of content",
+        "Maintains readability when text spacing is adjusted",
+        "Uses Lexend font family for improved reading fluency"
+      ]
+    },
+    "known_issues": [
+      "Line height considerations in some contexts may need adjustment",
+      "Mobile text scaling on extremely small screens may need further size adjustments",
+      "Multilingual support may need additional considerations for different writing systems"
+    ],
+    "variations": [
+      "Size variants: Extra large, Large, Regular, Small",
+      "Theme variants: Light, Dark",
+      "Margin variants: Default margin, No margin",
+      "Content variants: Plain text, HTML content"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Lexend font family research showing effectiveness for reading fluency",
+        "Reading patterns and optimal line length research supporting 12-15 words per line",
+        "Well-established typography and readability standards validation"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

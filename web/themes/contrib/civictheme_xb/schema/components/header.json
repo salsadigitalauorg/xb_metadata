@@ -1,0 +1,287 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "header",
+  "name": "Header",
+  "description": "Header component with multiple content sections for site header. Creates a consistent, branded navigation area at the top of each page, providing users with identity information and primary site navigation.",
+  "category": "organisms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/header/",
+    "extracted_from": {
+      "component_yml": "header.component.yml",
+      "template": "header.twig",
+      "styles": "header.scss",
+      "stories": "header.stories.js",
+      "stories_data": "header.stories.data.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/organisms/header.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)"
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes"
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes"
+    }
+  },
+  "slots": {
+    "content_top1": {
+      "description": "Top section first content slot",
+      "accepts": ["html"],
+      "required": false,
+      "responsive_behavior": "hide-xxs show-m"
+    },
+    "content_top2": {
+      "description": "Top section second content slot (utility area)",
+      "accepts": ["html"],
+      "required": false,
+      "typical_content": "Site tagline, utility information",
+      "layout": "col-xxs-12 col-m-4",
+      "responsive_behavior": "hide-xxs show-m"
+    },
+    "content_top3": {
+      "description": "Top section third content slot (secondary navigation)",
+      "accepts": ["html"],
+      "required": false,
+      "typical_content": "Secondary navigation, utility links",
+      "layout": "col-xxs-12 col-m-8",
+      "alignment": "flex-end",
+      "responsive_behavior": "hide-xxs show-m"
+    },
+    "content_middle1": {
+      "description": "Middle section first content slot",
+      "accepts": ["html"],
+      "required": false,
+      "layout": "col-xxs-12"
+    },
+    "content_middle2": {
+      "description": "Middle section second content slot (logo area)",
+      "accepts": ["html"],
+      "required": false,
+      "typical_content": "Logo, brand identity",
+      "layout": "col--no-grow",
+      "alignment": "flex align-items-center"
+    },
+    "content_middle3": {
+      "description": "Middle section third content slot (primary navigation)",
+      "accepts": ["html"],
+      "required": false,
+      "typical_content": "Primary navigation, search, mobile menu trigger",
+      "layout": "col",
+      "alignment": "flex justify-content-end"
+    },
+    "content_bottom1": {
+      "description": "Bottom section content slot",
+      "accepts": ["html"],
+      "required": false,
+      "typical_content": "Additional navigation or utility elements",
+      "layout": "col-xxs-12"
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "header",
+      "template": "header.twig",
+      "libraries": ["civictheme/header"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-header",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-header__top",
+          "ct-header__middle",
+          "ct-header__bottom",
+          "ct-header__content-top1",
+          "ct-header__content-top2",
+          "ct-header__content-top3",
+          "ct-header__content-middle1",
+          "ct-header__content-middle2",
+          "ct-header__content-middle3",
+          "ct-header__content-bottom1"
+        ],
+        "responsive": [
+          "hide-xxs",
+          "show-m",
+          "show-m-flex"
+        ],
+        "layout": [
+          "container",
+          "row",
+          "row--no-wrap",
+          "col-xxs-12",
+          "col-m-4",
+          "col-m-8",
+          "col",
+          "col--no-grow"
+        ]
+      },
+      "custom_properties": [
+        "--ct-header-border-color",
+        "--ct-header-background-color",
+        "--ct-header-top-background-color",
+        "--ct-header-top-color"
+      ],
+      "spacing": [
+        "ct-spacing()",
+        "ct-spacing(2)"
+      ]
+    }
+  },
+  "layout": {
+    "structure": "three-tier",
+    "sections": {
+      "top": {
+        "visibility": "hide-xxs show-m",
+        "padding": "ct-spacing() (top and bottom)",
+        "layout": "container > row > columns",
+        "content_areas": ["utility", "secondary_nav"]
+      },
+      "middle": {
+        "visibility": "always",
+        "padding": "ct-spacing(2) (top and bottom)",
+        "layout": "container > row--no-wrap > flexible columns",
+        "content_areas": ["logo", "primary_nav", "search", "mobile_trigger"]
+      },
+      "bottom": {
+        "visibility": "conditional",
+        "layout": "container > row > col-xxs-12",
+        "content_areas": ["additional_nav"]
+      }
+    }
+  },
+  "relationships": {
+    "requires": [
+      "civictheme:logo",
+      "civictheme:navigation", 
+      "civictheme:search",
+      "civictheme:mobile-navigation",
+      "civictheme:button",
+      "civictheme:paragraph"
+    ],
+    "contains": [
+      "logo",
+      "navigation",
+      "search",
+      "mobile-navigation",
+      "button",
+      "paragraph"
+    ],
+    "alternatives": ["banner"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Default Header",
+      "description": "Basic header with light theme",
+      "props": {
+        "theme": "light"
+      },
+      "slots": {
+        "content_top2": "A design system by Salsa Digital",
+        "content_top3": "Secondary navigation",
+        "content_middle2": "Logo component",
+        "content_middle3": "Primary navigation + Search + Mobile trigger"
+      }
+    },
+    {
+      "name": "Dark Header",
+      "description": "Header with dark theme variation",
+      "props": {
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "Multiline Header",
+      "description": "Header with bottom navigation section",
+      "props": {
+        "theme": "light"
+      },
+      "slots": {
+        "content_bottom1": "Additional navigation in bottom section"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "You need to establish a consistent branded presence across all pages of your website or application",
+      "Users need easy access to primary navigation and search functionality",
+      "You need to provide clear orientation and wayfinding for users",
+      "You want to maintain visual consistency throughout your digital experience"
+    ],
+    "when_not_to_use": [
+      "Creating a single-page microsite or landing page where navigation is unnecessary or handled through page scrolling",
+      "Designing for specific kiosk applications where screen real estate is extremely limited",
+      "Creating a standalone embedded widget that will be used within another site's context",
+      "Designing a print view or other media where page navigation is not required"
+    ],
+    "best_practices": [
+      "Place the header at the top of every page across your site, maintaining the same core elements",
+      "Ensure the header adapts appropriately to different screen sizes and devices",
+      "Make all navigation items keyboard accessible with sufficient colour contrast",
+      "Keep the header clean and focused—include only essential navigation and functionality",
+      "The header should clearly reflect your organisation's brand identity",
+      "Create clear visual distinction between the header and page content",
+      "Position the logo in the top left (for left-to-right languages)",
+      "Organize navigation items in a logical manner using common patterns"
+    ],
+    "accessibility": {
+      "wcag_compliance": "WCAG 2.2 AA",
+      "wcag_tested": [
+        "1.4.1", "1.4.3", "1.3.1", "1.4.4", "2.1.1", "2.4.3",
+        "2.4.4", "2.4.6", "2.4.7", "3.2.2", "3.2.3", "3.2.4",
+        "4.1.2", "1.4.11", "1.4.12"
+      ],
+      "features": [
+        "Keyboard navigation support",
+        "Screen reader compatible with banner role",
+        "Focus management across sections",
+        "High contrast support",
+        "Responsive behavior maintains accessibility"
+      ]
+    },
+    "responsive": {
+      "mobile": "Collapses top section, shows mobile menu trigger",
+      "tablet": "Shows partial top section, maintains middle layout", 
+      "desktop": "Shows all sections with full layout"
+    },
+    "known_issues": [
+      "Mobile navigation complexity: On very small mobile screens, complex navigation structures with multiple levels can become difficult to navigate effectively",
+      "Long navigation items: Sites with many primary navigation items or long text labels may experience layout issues on medium-sized screens",
+      "Utility navigation visibility: Some users may overlook the utility navigation positioned above the primary header area"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Testing with over 50 users across both government and non-government websites has revealed strong performance in brand recognition, navigation clarity, mobile usability, and search discoverability",
+        "Brand recognition and recall improved with inline logo placement",
+        "Navigation clarity enhanced with inline layout approach",
+        "Mobile usability benefits from responsive adaptation strategy",
+        "Search discoverability improved within header context"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

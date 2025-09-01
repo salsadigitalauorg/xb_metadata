@@ -1,0 +1,273 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "list",
+  "name": "List",
+  "description": "List component for item collections with filtering and pagination. Provides comprehensive functionality for displaying searchable, filterable, and paginated content collections.",
+  "category": "organisms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/list/",
+    "extracted_from": {
+      "component_yml": "list.component.yml",
+      "template": "list.twig", 
+      "styles": "list.scss",
+      "stories": "list.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "vertical_spacing": {
+      "type": "enum",
+      "required": false,
+      "options": ["top", "bottom", "both"],
+      "description": "Vertical spacing position for the list container."
+    },
+    "with_background": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to display the list with a background."
+    },
+    "link_above": {
+      "type": "object",
+      "required": false,
+      "description": "Link object displayed above the list content.",
+      "properties": {
+        "text": {"type": "string", "description": "Link text"},
+        "url": {"type": "string", "description": "Link URL"},
+        "is_new_window": {"type": "boolean", "description": "Open in new window"},
+        "is_external": {"type": "boolean", "description": "External link"}
+      }
+    },
+    "link_below": {
+      "type": "object",
+      "required": false,
+      "description": "Link object displayed below the list content.",
+      "properties": {
+        "text": {"type": "string", "description": "Link text"},
+        "url": {"type": "string", "description": "Link URL"},
+        "is_new_window": {"type": "boolean", "description": "Open in new window"},
+        "is_external": {"type": "boolean", "description": "External link"}
+      }
+    },
+    "rows_above": {
+      "type": "array",
+      "required": false,
+      "description": "Content rows displayed above the main list.",
+      "items": {
+        "type": "string",
+        "description": "HTML content for above rows"
+      }
+    },
+    "rows_below": {
+      "type": "array",
+      "required": false,
+      "description": "Content rows displayed below the main list.",
+      "items": {
+        "type": "string",
+        "description": "HTML content for below rows"
+      }
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {
+    "title": {
+      "description": "List title or heading content."
+    },
+    "content": {
+      "description": "Main list content area."
+    },
+    "filters": {
+      "description": "Exposed filters and search controls."
+    },
+    "results_count": {
+      "description": "Results count and summary information."
+    },
+    "rows": {
+      "description": "Main list rows and items content."
+    },
+    "empty": {
+      "description": "Content displayed when no results are found."
+    },
+    "pagination": {
+      "description": "Pagination controls for multi-page lists."
+    },
+    "footer": {
+      "description": "Footer content area for additional information."
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "list",
+      "template": "list.twig",
+      "libraries": ["civictheme/list"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-list",
+        "modifiers": [
+          "ct-list--with-background",
+          "ct-vertical-spacing-inset--top",
+          "ct-vertical-spacing-inset--bottom",
+          "ct-vertical-spacing-inset--both",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-list__wrapper",
+          "ct-list__header",
+          "ct-list__title",
+          "ct-list__content",
+          "ct-list__filters",
+          "ct-list__results-count",
+          "ct-list__above-link",
+          "ct-list__rows-above",
+          "ct-list__rows",
+          "ct-list__empty",
+          "ct-list__rows-below",
+          "ct-list__below-link",
+          "ct-list__pagination",
+          "ct-list__footer"
+        ],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-list-light-background-color",
+        "$ct-list-light-border-color",
+        "$ct-list-dark-background-color",
+        "$ct-list-dark-border-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:heading", "civictheme:paragraph", "civictheme:link", "civictheme:pagination"],
+    "contains": ["heading", "paragraph", "link", "pagination", "search", "filters"],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic List",
+      "description": "Simple list with title and rows",
+      "props": {
+        "theme": "light",
+        "title": "News Articles",
+        "rows": ["<article>Article 1</article>", "<article>Article 2</article>", "<article>Article 3</article>"]
+      }
+    },
+    {
+      "name": "Filtered List",
+      "description": "List with filters and search functionality",
+      "props": {
+        "theme": "light",
+        "title": "Product Catalog",
+        "filters": "Filter controls here",
+        "results_count": "Showing 25 of 150 items",
+        "rows": ["Product items here"],
+        "pagination": "Pagination controls here"
+      }
+    },
+    {
+      "name": "List with Background",
+      "description": "List component with background styling",
+      "props": {
+        "theme": "light",
+        "title": "Featured Content",
+        "with_background": true,
+        "vertical_spacing": "both",
+        "link_above": {
+          "text": "View all features",
+          "url": "/features"
+        },
+        "rows": ["Featured item rows"],
+        "link_below": {
+          "text": "Load more items",
+          "url": "/load-more"
+        }
+      }
+    },
+    {
+      "name": "Empty List",
+      "description": "List with no results state",
+      "props": {
+        "theme": "light",
+        "title": "Search Results",
+        "filters": "Search and filter controls",
+        "empty": "No results found. Please try adjusting your search criteria."
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Display collections of content items (articles, products, events)",
+      "Create searchable and filterable content listings",
+      "Present paginated results with navigation controls",
+      "Build directory or catalog interfaces",
+      "Organize large datasets into manageable views"
+    ],
+    "when_not_to_use": [
+      "For simple, static lists - use basic list components instead",
+      "When items don't need filtering or pagination",
+      "For navigation menus - use navigation components",
+      "When content is better presented in other formats (grids, cards)"
+    ],
+    "best_practices": [
+      "Provide clear list titles that describe the content type",
+      "Include result counts to help users understand the scope",
+      "Implement accessible filter and search controls",
+      "Provide meaningful empty states with helpful guidance",
+      "Use consistent item formatting throughout the list",
+      "Implement proper loading states for dynamic content",
+      "Ensure pagination is accessible and keyboard navigable"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper semantic markup for list structures with accessible filter controls and pagination."
+    },
+    "known_issues": [],
+    "variations": [
+      "Background options: With or without background styling",
+      "Spacing: Top, bottom, or both vertical spacing",
+      "Content sections: Above/below links and rows for additional content",
+      "Filter integration: Exposed filters and search controls",
+      "Pagination: Built-in pagination support for large datasets",
+      "Empty states: Customizable no-results messaging"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect filter and search functionality in content lists",
+        "Clear result counts help users understand search effectiveness",
+        "Pagination controls should be easily accessible and understandable",
+        "Empty states should provide helpful guidance for next steps",
+        "Consistent list item formatting improves scanability"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

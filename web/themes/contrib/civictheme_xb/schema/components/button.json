@@ -1,0 +1,316 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "button",
+  "name": "Button",
+  "description": "A Button is an interactive element that triggers an action when clicked or tapped, providing a clear call-to-action for users. Buttons provide users with the ability to submit an action or follow a link to another location.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/button/",
+    "extracted_from": {
+      "component_yml": "button.component.yml",
+      "template": "button.twig", 
+      "styles": "button.scss",
+      "javascript": "button.js",
+      "stories": "button.stories.js",
+      "mixins": "../00-base/mixins/_button.scss"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/atoms/button.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "kind": {
+      "type": "enum",
+      "required": false,
+      "default": "button",
+      "options": ["submit", "reset", "button", "link"],
+      "description": "Button kind (submit, reset, button, link)."
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "options": ["primary", "secondary", "tertiary"],
+      "description": "Button type (primary, secondary, tertiary)."
+    },
+    "size": {
+      "type": "enum",
+      "required": false,
+      "default": "regular",
+      "options": ["large", "regular", "small"],
+      "description": "Button size (large, regular, small)."
+    },
+    "icon": {
+      "type": "string",
+      "required": false,
+      "description": "Icon name."
+    },
+    "icon_placement": {
+      "type": "enum",
+      "required": false,
+      "default": "after",
+      "options": ["before", "after"],
+      "description": "Icon position (before or after)."
+    },
+    "icon_group_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Disable icon and last word grouping."
+    },
+    "icon_single_only": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Only show 1 icon (if both icon and is_external are present, external takes preference)."
+    },
+    "text": {
+      "type": "string",
+      "required": false,
+      "description": "Button text.",
+      "examples": ["My title", "Submit application", "Learn more"]
+    },
+    "url": {
+      "type": "url",
+      "required": false,
+      "description": "URL for the link button."
+    },
+    "allow_html": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Allow HTML in text."
+    },
+    "is_new_window": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Open in a new window."
+    },
+    "is_external": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Indicates if the link is external."
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Indicates if the button is disabled."
+    },
+    "is_dismissable": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Indicates if the button can be dismissed."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "button",
+      "template": "button.twig",
+      "libraries": ["civictheme/button"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-button",
+        "modifiers": [
+          "ct-button--primary",
+          "ct-button--secondary", 
+          "ct-button--tertiary",
+          "ct-button--large",
+          "ct-button--regular",
+          "ct-button--small",
+          "ct-button--button",
+          "ct-button--link",
+          "ct-button--reset", 
+          "ct-button--submit",
+          "ct-button--dismiss",
+          "ct-button--external",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-button__icon"
+        ],
+        "states": [
+          "active",
+          "focus",
+          "disabled"
+        ]
+      },
+      "custom_properties": [
+        "$ct-button-border-width",
+        "$ct-button-border-radius",
+        "$ct-button-outline-offset",
+        "$ct-button-outline-width",
+        "$ct-button-animation-duration",
+        "$ct-button-light-primary-color",
+        "$ct-button-light-primary-background-color",
+        "$ct-button-light-primary-border-color",
+        "$ct-button-light-primary-hover-color",
+        "$ct-button-light-primary-hover-background-color",
+        "$ct-button-light-primary-focus-outline-color",
+        "$ct-button-dark-primary-color",
+        "$ct-button-dark-primary-background-color",
+        "$ct-button-dark-secondary-color",
+        "$ct-button-dark-secondary-background-color",
+        "$ct-button-light-tertiary-color",
+        "$ct-button-dark-tertiary-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:icon", "civictheme:text-icon"],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Primary Button",
+      "description": "Default primary button with regular size",
+      "props": {
+        "theme": "light",
+        "type": "primary",
+        "kind": "button",
+        "size": "regular",
+        "text": "My title"
+      }
+    },
+    {
+      "name": "Secondary Link Button",
+      "description": "Secondary button styled as a link",
+      "props": {
+        "theme": "light",
+        "type": "secondary", 
+        "kind": "link",
+        "size": "regular",
+        "text": "Learn more",
+        "url": "/example"
+      }
+    },
+    {
+      "name": "Large Primary Button with Icon",
+      "description": "Large primary button with an icon",
+      "props": {
+        "theme": "light",
+        "type": "primary",
+        "kind": "button", 
+        "size": "large",
+        "text": "Get started",
+        "icon": "arrow-right",
+        "icon_placement": "after"
+      }
+    },
+    {
+      "name": "External Link Button",
+      "description": "Button for external links with appropriate styling",
+      "props": {
+        "theme": "light",
+        "type": "tertiary",
+        "kind": "link",
+        "size": "regular",
+        "text": "Visit external site",
+        "url": "https://example.com",
+        "is_external": true,
+        "is_new_window": true
+      }
+    },
+    {
+      "name": "Disabled Button",
+      "description": "Button in disabled state",
+      "props": {
+        "theme": "light",
+        "type": "primary",
+        "kind": "button",
+        "size": "regular",
+        "text": "Disabled action",
+        "is_disabled": true
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Submit a form",
+      "Trigger an action like opening a modal, starting a process, or revealing hidden content",
+      "Navigate to another page or section of the site", 
+      "Download a file",
+      "Confirm an action or decision",
+      "When the action is a key task or primary user journey on the page"
+    ],
+    "when_not_to_use": [
+      "The action is of secondary importance on the page - consider using a link instead",
+      "You need to create a link within a paragraph of text - use a text link instead",
+      "You need to create a complex interactive element - consider using a more specialised component",
+      "The action would be better represented by a different component like a dropdown menu, toggle switch, or checkbox"
+    ],
+    "best_practices": [
+      "Use clear, concise, and action-oriented text that describes what will happen when the button is clicked",
+      "Use primary buttons for the most important actions, secondary buttons for alternative options, and tertiary buttons for less important functions",
+      "Choose the appropriate button size (large, regular, small) based on the context and importance of the action",
+      "Place buttons consistently throughout the interface to create predictable patterns for users",
+      "Ensure sufficient space between buttons and other elements to prevent accidental clicks, especially on mobile devices",
+      "Provide clear visual feedback for all interactive states (hover, focus, pressed/active, disabled)",
+      "If using icons within buttons, ensure they enhance understanding and provide visual reinforcement of the action",
+      "Maintain sufficient colour contrast between the button and its background, as well as between the button text and button background",
+      "Ensure buttons work well across all screen sizes and devices"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA (with exceptions)",
+      "wcag_issues": [
+        "2.5.8 Target Size (Minimum): The size of targets for pointer inputs does not meet the minimum 24×24 CSS pixel requirement"
+      ],
+      "notes": "This component meets most accessibility requirements but needs improvement to meet the WCAG 2.2 target size criteria."
+    },
+    "known_issues": [
+      "Target size compliance: The button component does not currently meet WCAG 2.2 criterion 2.5.8 for minimum target size (24x24 CSS pixels)",
+      "Mobile responsiveness: On very small screens, buttons with lengthy text may break to multiple lines, affecting visual consistency",
+      "Icon alignment: In certain browser and screen size combinations, icon alignment within buttons may shift slightly from the intended design"
+    ],
+    "variations": [
+      "Primary buttons: Used for the most important actions on a page",
+      "Secondary buttons: Used for alternative or secondary actions", 
+      "Tertiary buttons: Used for less important functions or in space-constrained situations",
+      "Button sizes: Available in large, regular, and small options",
+      "Icon placement: Options include icons to the right, left, or no icon",
+      "Button states: Default, focus, hover, pressed, and disabled",
+      "Directional variants: Forward (right arrow), back (left arrow), and external (external link icon)"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect buttons to look and behave in familiar ways, with clear visual affordances that indicate they can be clicked",
+        "Primary buttons with strong visual styling receive higher engagement rates",
+        "Users prefer buttons with clear, action-oriented labels",
+        "Buttons with appropriate size and spacing reduce error rates, especially on mobile devices"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

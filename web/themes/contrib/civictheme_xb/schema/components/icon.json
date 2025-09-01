@@ -1,0 +1,189 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "icon",
+  "name": "Icon",
+  "description": "Icon component for SVG icons. Provides accessible SVG icon display with configurable sizes and symbols from the CivicTheme icon library.",
+  "category": "base",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/00-base/icon/",
+    "extracted_from": {
+      "component_yml": "icon.component.yml",
+      "template": "icon.twig",
+      "styles": "icon.scss",
+      "stories": "icon.stories.js",
+      "utils": "icon.utils.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "symbol": {
+      "type": "string",
+      "required": true,
+      "description": "Icon name/symbol identifier (required).",
+      "examples": ["arrow-right", "download", "external-link", "search", "close", "menu"]
+    },
+    "size": {
+      "type": "string",
+      "required": false,
+      "description": "Icon size variant.",
+      "examples": ["small", "medium", "large", "extra-large"]
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    },
+    "assets_dir": {
+      "type": "string",
+      "required": false,
+      "default": "@civictheme/../assets",
+      "description": "Directory path containing icon asset files."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "icon",
+      "template": "icon.twig",
+      "libraries": ["civictheme/icon"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-icon",
+        "modifiers": [
+          "ct-icon--small",
+          "ct-icon--medium",
+          "ct-icon--large",
+          "ct-icon--extra-large"
+        ],
+        "elements": [],
+        "states": []
+      },
+      "custom_properties": [
+        "$ct-icon-size-small",
+        "$ct-icon-size-medium", 
+        "$ct-icon-size-large",
+        "$ct-icon-size-extra-large",
+        "$ct-icon-color-primary",
+        "$ct-icon-color-secondary"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": [],
+    "alternatives": [],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Icon",
+      "description": "Simple icon with default size",
+      "props": {
+        "symbol": "arrow-right"
+      }
+    },
+    {
+      "name": "Large Icon",
+      "description": "Icon with large size",
+      "props": {
+        "symbol": "download",
+        "size": "large"
+      }
+    },
+    {
+      "name": "Small Navigation Icon",
+      "description": "Small icon for navigation elements",
+      "props": {
+        "symbol": "menu",
+        "size": "small"
+      }
+    },
+    {
+      "name": "External Link Icon",
+      "description": "Icon indicating external links",
+      "props": {
+        "symbol": "external-link",
+        "size": "medium"
+      }
+    },
+    {
+      "name": "Search Icon",
+      "description": "Search functionality icon",
+      "props": {
+        "symbol": "search",
+        "size": "medium"
+      }
+    },
+    {
+      "name": "Close Button Icon",
+      "description": "Close or dismiss icon",
+      "props": {
+        "symbol": "close",
+        "size": "small"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Enhance buttons and links with visual indicators",
+      "Create intuitive navigation elements",
+      "Indicate file types or external links",
+      "Provide visual cues for actions (search, close, download)",
+      "Improve interface recognition and usability"
+    ],
+    "when_not_to_use": [
+      "As the sole means of conveying important information - always provide text alternatives",
+      "For decorative purposes only - consider if the icon adds meaningful value",
+      "When a text label would be clearer than an icon",
+      "For complex concepts that don't have universally understood icons"
+    ],
+    "best_practices": [
+      "Use consistent icon sizing throughout the interface",
+      "Choose icons with clear, recognizable meanings",
+      "Provide appropriate alt text or ARIA labels when icons convey meaning",
+      "Use icons consistently for the same actions across the application",
+      "Ensure icons have sufficient color contrast",
+      "Test icon recognition with users when possible",
+      "Consider cultural differences in icon interpretation"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper SVG markup with accessibility attributes. Ensure meaningful icons have appropriate ARIA labels or text alternatives."
+    },
+    "known_issues": [],
+    "variations": [
+      "Size options: Small, medium, large, extra-large variants",
+      "Symbol library: Extensive collection of common interface icons",
+      "Asset management: Configurable asset directory for icon files",
+      "Styling: Inherits color from parent elements or explicit styling",
+      "Context usage: Navigation, buttons, links, status indicators"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users recognize common icons more quickly than text labels",
+        "Consistent icon usage improves interface learnability",
+        "Icons with text labels have the highest comprehension rates",
+        "Size and contrast significantly impact icon usability",
+        "Cultural context affects icon interpretation"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

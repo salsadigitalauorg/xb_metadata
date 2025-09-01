@@ -1,0 +1,237 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component.schema.json",
+  "id": "service-card",
+  "name": "Service Card",
+  "description": "Card component for displaying service information with multiple links. Features centered content layout with highlight stripe design and flexible content areas.",
+  "category": "molecules",
+  "status": "stable",
+  "version": "1.0.0",
+  "framework": "twig",
+  "library": "CivicTheme",
+  "metadata": {
+    "designTokens": ["theme", "spacing", "typography", "elevation"],
+    "accessibility": {
+      "wcag": ["AA"],
+      "features": ["keyboard-navigation", "screen-reader-support", "focus-management"]
+    },
+    "responsive": true,
+    "themeable": true
+  },
+  "props": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "title": "Theme",
+        "description": "Theme variation for the card",
+        "enum": ["light", "dark"],
+        "default": "light"
+      },
+      "links": {
+        "type": "array",
+        "title": "Links",
+        "description": "Array of link objects for the card",
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string",
+              "title": "Link Text",
+              "description": "Text content of the link"
+            },
+            "url": {
+              "type": "string",
+              "title": "Link URL",
+              "description": "URL for the link"
+            },
+            "is_new_window": {
+              "type": "boolean",
+              "title": "New Window",
+              "description": "Whether to open link in new window",
+              "default": false
+            },
+            "is_external": {
+              "type": "boolean",
+              "title": "External Link",
+              "description": "Whether the link is external",
+              "default": false
+            }
+          }
+        }
+      },
+      "attributes": {
+        "type": "string",
+        "title": "HTML Attributes",
+        "description": "Additional HTML attributes for the card wrapper"
+      },
+      "modifier_class": {
+        "type": "string",
+        "title": "Modifier Classes",
+        "description": "Additional CSS classes for customization"
+      }
+    }
+  },
+  "slots": {
+    "content_top": {
+      "title": "Top Content",
+      "description": "Content area above the title"
+    },
+    "title": {
+      "title": "Title",
+      "description": "Card title - required for card to render",
+      "required": true
+    },
+    "content_bottom": {
+      "title": "Bottom Content",
+      "description": "Content area at the bottom of the card"
+    }
+  },
+  "cssClasses": {
+    "root": "ct-service-card",
+    "modifiers": {
+      "theme": {
+        "light": "ct-theme-light",
+        "dark": "ct-theme-dark"
+      }
+    },
+    "elements": {
+      "content": "ct-service-card__content",
+      "contentTop": "ct-service-card__content-top",
+      "title": "ct-service-card__title",
+      "links": "ct-service-card__links",
+      "contentBottom": "ct-service-card__content-bottom"
+    }
+  },
+  "designTokens": {
+    "spacing": ["ct-spacing(2)", "ct-spacing(3)", "ct-spacing(4)"],
+    "borderRadius": ["$ct-service-card-border-radius"],
+    "elevation": ["ct-elevation-interaction()"],
+    "stripe": {
+      "height": "$ct-service-card-stripe-height"
+    },
+    "layout": {
+      "textAlign": "center"
+    },
+    "responsive": {
+      "mobile": "ct-spacing(3)",
+      "desktop": "ct-spacing(4)"
+    }
+  },
+  "dependencies": [
+    "civictheme:heading",
+    "civictheme:link",
+    "civictheme:item-list"
+  ],
+  "platform": {
+    "drupal": {
+      "schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json",
+      "component_id": "civictheme:service-card"
+    }
+  },
+  "examples": [
+    {
+      "name": "Default",
+      "description": "Basic service card with multiple links",
+      "props": {
+        "theme": "light",
+        "title": "Services category title across one or two lines",
+        "links": [
+          {
+            "text": "Link text",
+            "url": "https://example.com",
+            "is_new_window": false,
+            "is_external": false
+          },
+          {
+            "text": "Link title 2",
+            "url": "https://example.com",
+            "is_new_window": false,
+            "is_external": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Dark Theme",
+      "description": "Service card with dark theme",
+      "props": {
+        "theme": "dark",
+        "title": "Dark themed service card",
+        "links": [
+          {
+            "text": "Service Link",
+            "url": "https://example.com"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Single Link",
+      "description": "Service card with single link",
+      "props": {
+        "theme": "light",
+        "title": "Single Service Category",
+        "links": [
+          {
+            "text": "Main Service Link",
+            "url": "https://example.com",
+            "is_external": true,
+            "is_new_window": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "With Extra Content",
+      "description": "Service card with additional content areas",
+      "props": {
+        "theme": "light",
+        "title": "Service with Extra Content",
+        "links": [
+          {
+            "text": "Primary Link",
+            "url": "https://example.com"
+          }
+        ]
+      },
+      "slots": {
+        "content_top": "Additional information above title",
+        "content_bottom": "Extra details below links"
+      }
+    }
+  ],
+  "accessibility": {
+    "notes": [
+      "Title is required for the card to render",
+      "Links are displayed in a vertical list for better readability",
+      "Content is centered for visual hierarchy",
+      "Card maintains proper focus order for keyboard navigation",
+      "Links support new window and external link indicators"
+    ]
+  },
+  "bestPractices": [
+    "Use descriptive titles that clearly indicate the service category",
+    "Keep link text concise and action-oriented",
+    "Group related services under a single card",
+    "Consider using external link indicators for off-site links",
+    "Limit the number of links per card for better usability"
+  ],
+  "extraction": {
+    "source": "CivicTheme UIKit",
+    "timestamp": "2025-08-10",
+    "version": "uikit-main",
+    "confidence": {
+      "props": 0.95,
+      "slots": 0.95,
+      "cssClasses": 0.9,
+      "examples": 0.85,
+      "designTokens": 0.8
+    },
+    "files_analyzed": [
+      "/service-card/service-card.component.yml",
+      "/service-card/service-card.twig",
+      "/service-card/service-card.scss",
+      "/service-card/service-card.stories.js"
+    ]
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "figure",
+  "name": "Figure",
+  "description": "A container component that presents and formats visual content such as images along with optional captions to enhance understanding and context.",
+  "category": "molecules",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/02-molecules/figure/",
+    "extracted_from": {
+      "component_yml": "figure.component.yml",
+      "template": "figure.twig",
+      "styles": "figure.scss",
+      "stories": "figure.stories.js"
+    }
+  },
+  "documentation": {
+    "available": true,
+    "path": "/Users/ahmed/Code/Salsa/CivicTheme/docs-main/components/molecules/figure.md",
+    "coverage": "comprehensive"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "description": "Image URL."
+    },
+    "alt": {
+      "type": "string",
+      "required": true,
+      "description": "Image alt text for accessibility."
+    },
+    "width": {
+      "type": "string",
+      "required": false,
+      "description": "Image width attribute."
+    },
+    "height": {
+      "type": "string",
+      "required": false,
+      "description": "Image height attribute."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes for the figure element."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes for styling customization."
+    }
+  },
+  "slots": {
+    "caption": {
+      "description": "Image caption content that provides additional context or description.",
+      "accepts": ["html"],
+      "required": false
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "figure",
+      "template": "figure.twig",
+      "libraries": ["civictheme/figure"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-figure",
+        "modifiers": [
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-figure__image",
+          "ct-figure__caption"
+        ],
+        "states": []
+      },
+      "custom_properties": [
+        "--ct-figure-border-radius",
+        "--ct-figure-light-caption-color",
+        "--ct-figure-dark-caption-color"
+      ],
+      "scss_variables": [
+        "$ct-figure-border-radius",
+        "$ct-figure-light-caption-color",
+        "$ct-figure-dark-caption-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:image", "civictheme:icon"],
+    "contains": ["image", "icon"],
+    "alternatives": ["image"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Figure",
+      "description": "Figure with image and caption",
+      "props": {
+        "theme": "light",
+        "url": "./demo/images/demo1.jpg",
+        "alt": "Demonstration image showing figure component",
+        "width": "600"
+      },
+      "slots": {
+        "caption": "Figure image caption providing context about the image content."
+      }
+    },
+    {
+      "name": "Figure without Caption",
+      "description": "Figure with image only, no caption",
+      "props": {
+        "theme": "light",
+        "url": "./demo/images/demo2.jpg",
+        "alt": "Image without caption"
+      }
+    },
+    {
+      "name": "Dark Theme Figure",
+      "description": "Figure with dark theme styling",
+      "props": {
+        "theme": "dark",
+        "url": "./demo/images/demo3.jpg",
+        "alt": "Dark theme figure example"
+      },
+      "slots": {
+        "caption": "Dark theme figure caption."
+      }
+    },
+    {
+      "name": "Figure with Dimensions",
+      "description": "Figure with specified width and height",
+      "props": {
+        "theme": "light",
+        "url": "./demo/images/demo4.jpg",
+        "alt": "Figure with specific dimensions",
+        "width": "800",
+        "height": "450"
+      },
+      "slots": {
+        "caption": "Figure with specified dimensions for better layout control."
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Display content images that require captions or additional context",
+      "Present visual content in a consistent, accessible format across your website",
+      "Showcase images that need to be enlarged for better viewing of details",
+      "Format images within content areas where the visual needs to stand apart from surrounding text",
+      "Provide proper attribution or citation for visual content"
+    ],
+    "when_not_to_use": [
+      "The image is purely decorative and requires no caption or context",
+      "The visual content would be better served as a background image",
+      "You need a complex gallery of multiple images (use a gallery component instead)",
+      "The image is part of a more complex component such as a card or banner",
+      "You need interactive image features beyond simple enlargement"
+    ],
+    "best_practices": [
+      "Provide concise, informative captions that add context rather than repeating surrounding content",
+      "Use appropriately sized and optimised images to balance quality with performance",
+      "Ensure the figure and its caption maintain their relationship and readability across all screen sizes",
+      "Always include alternative text for images to ensure screen reader users understand the content",
+      "Position figures to complement the surrounding content flow rather than disrupting it"
+    ],
+    "accessibility": {
+      "wcag_compliance": "WCAG 2.2 AA",
+      "features": [
+        "Semantic figure/figcaption structure",
+        "Required alt text for images",
+        "Proper focus management",
+        "Screen reader compatible"
+      ],
+      "tested_criteria": [
+        "1.1.1 Non-text Content (Level A)",
+        "1.4.3 Contrast Minimum (Level AA)",
+        "1.4.4 Resize text (Level AA)",
+        "2.1.1 Keyboard (Level A)",
+        "2.4.7 Focus Visible (Level AA)",
+        "1.4.12 Text Spacing (Level AA)"
+      ]
+    },
+    "known_issues": [
+      "Image loading performance: Large images may impact page load times",
+      "Mobile responsiveness: Very wide images may cause horizontal scrolling on small screens",
+      "Caption positioning: Long captions may affect layout consistency"
+    ],
+    "user_research": {
+      "confidence_rating": "Moderate",
+      "findings": [
+        "Responsive media in default body location was limited in width (~670px desktop), making it less immersive",
+        "Limited space made it difficult to view and understand finer details of media content",
+        "When enlarged, content becomes primary focus in separate modal that hides potential distractions"
+      ]
+    },
+    "variations": [
+      "Light theme: Appropriate contrast for light backgrounds",
+      "Dark theme: Appropriate contrast for dark backgrounds",
+      "With caption: Figure including descriptive caption",
+      "Without caption: Simple image presentation"
+    ]
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-07T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

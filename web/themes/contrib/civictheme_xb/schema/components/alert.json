@@ -1,0 +1,233 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "alert",
+  "name": "Alert",
+  "description": "Component for alert messages with different types and themes. Provides accessible notification functionality for information, success, warning, and error messages.",
+  "category": "organisms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/03-organisms/alert/",
+    "extracted_from": {
+      "component_yml": "alert.component.yml",
+      "template": "alert.twig", 
+      "styles": "alert.scss",
+      "javascript": "alert.js",
+      "stories": "alert.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "options": ["information", "error", "warning", "success"],
+      "description": "Alert type determining the visual style and semantic meaning."
+    },
+    "id": {
+      "type": "string",
+      "required": false,
+      "description": "Unique identifier for the alert component."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {
+    "title": {
+      "description": "Alert title or heading text."
+    },
+    "description": {
+      "description": "Main alert content and description."
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "alert",
+      "template": "alert.twig",
+      "libraries": ["civictheme/alert"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-alert",
+        "modifiers": [
+          "ct-alert--information",
+          "ct-alert--error",
+          "ct-alert--warning", 
+          "ct-alert--success",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-alert__wrapper",
+          "ct-alert__icon",
+          "ct-alert__content",
+          "ct-alert__title",
+          "ct-alert__description",
+          "ct-alert__close"
+        ],
+        "states": [
+          "dismissible"
+        ]
+      },
+      "custom_properties": [
+        "$ct-alert-light-information-background-color",
+        "$ct-alert-light-information-border-color",
+        "$ct-alert-light-information-color",
+        "$ct-alert-light-error-background-color",
+        "$ct-alert-light-error-border-color",
+        "$ct-alert-light-error-color",
+        "$ct-alert-light-warning-background-color",
+        "$ct-alert-light-warning-border-color",
+        "$ct-alert-light-warning-color",
+        "$ct-alert-light-success-background-color",
+        "$ct-alert-light-success-border-color",
+        "$ct-alert-light-success-color",
+        "$ct-alert-dark-information-background-color",
+        "$ct-alert-dark-information-border-color",
+        "$ct-alert-dark-information-color",
+        "$ct-alert-dark-error-background-color",
+        "$ct-alert-dark-error-border-color",
+        "$ct-alert-dark-error-color",
+        "$ct-alert-dark-warning-background-color",
+        "$ct-alert-dark-warning-border-color",
+        "$ct-alert-dark-warning-color",
+        "$ct-alert-dark-success-background-color",
+        "$ct-alert-dark-success-border-color",
+        "$ct-alert-dark-success-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:icon", "civictheme:heading", "civictheme:paragraph"],
+    "contains": ["icon", "heading", "paragraph"],
+    "alternatives": ["message", "banner"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Information Alert",
+      "description": "Informational alert for general notices",
+      "props": {
+        "theme": "light",
+        "type": "information",
+        "id": "info-alert",
+        "title": "Information",
+        "description": "This is an informational message for users."
+      }
+    },
+    {
+      "name": "Success Alert",
+      "description": "Success alert for positive feedback",
+      "props": {
+        "theme": "light",
+        "type": "success",
+        "id": "success-alert",
+        "title": "Success!",
+        "description": "Your action has been completed successfully."
+      }
+    },
+    {
+      "name": "Warning Alert",
+      "description": "Warning alert for cautionary messages",
+      "props": {
+        "theme": "light",
+        "type": "warning",
+        "id": "warning-alert",
+        "title": "Warning",
+        "description": "Please review this information before proceeding."
+      }
+    },
+    {
+      "name": "Error Alert",
+      "description": "Error alert for critical messages",
+      "props": {
+        "theme": "light",
+        "type": "error",
+        "id": "error-alert",
+        "title": "Error",
+        "description": "An error occurred while processing your request."
+      }
+    },
+    {
+      "name": "Dark Theme Alert",
+      "description": "Alert with dark theme styling",
+      "props": {
+        "theme": "dark",
+        "type": "information",
+        "id": "dark-alert",
+        "title": "Dark Theme Alert",
+        "description": "This alert uses the dark theme variation."
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Display system notifications and feedback messages",
+      "Show form validation results and errors",
+      "Communicate important information that requires user attention",
+      "Provide success confirmation for completed actions",
+      "Alert users to warnings or potential issues"
+    ],
+    "when_not_to_use": [
+      "For general content that doesn't require special attention",
+      "As a replacement for proper form validation inline messages",
+      "For decorative elements - use callouts or banners instead",
+      "When the message doesn't fit into standard alert categories"
+    ],
+    "best_practices": [
+      "Use appropriate alert types for the message context",
+      "Provide clear, actionable titles and descriptions",
+      "Make alerts dismissible when appropriate",
+      "Position alerts where users expect to see them",
+      "Ensure sufficient color contrast for accessibility",
+      "Use consistent alert styling throughout the application",
+      "Consider screen reader users with proper ARIA attributes"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper ARIA live regions for dynamic alerts and semantic markup for different alert types."
+    },
+    "known_issues": [],
+    "variations": [
+      "Alert types: Information, success, warning, error with distinct styling",
+      "Theme variations: Light and dark theme support",
+      "Dismissibility: Optional close functionality",
+      "Content flexibility: Title and description slots",
+      "Icon integration: Automatic appropriate icons for each alert type"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect consistent color coding for different alert types",
+        "Clear, concise alert messages improve user comprehension",
+        "Dismissible alerts give users control over their interface",
+        "Proper positioning improves alert visibility and effectiveness",
+        "Consistent alert styling helps users quickly understand message importance"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

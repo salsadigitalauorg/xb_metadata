@@ -1,0 +1,133 @@
+{
+  "$schema": "https://schemas.dsis.dev/v1.0/component-schema.json",
+  "id": "mobile-navigation-trigger",
+  "name": "Mobile Navigation Trigger",
+  "description": "Button component for triggering the mobile navigation panel, providing accessible entry point to mobile menu system.",
+  "category": "atom",
+  "status": "stable",
+  "metadata": {
+    "version": "1.8.0",
+    "platform": "drupal",
+    "framework": "twig",
+    "designSystem": "CivicTheme",
+    "accessibility": {
+      "wcagCompliant": true,
+      "wcagLevel": "AA",
+      "screenReaderSupport": true,
+      "keyboardNavigation": true
+    },
+    "responsive": true,
+    "maintainer": "CivicTheme Team",
+    "interactive": true
+  },
+  "props": {
+    "theme": {
+      "type": "string",
+      "description": "Theme variation controlling color scheme and styling",
+      "enum": ["light", "dark"],
+      "default": "light",
+      "category": "appearance"
+    },
+    "text": {
+      "type": "string",
+      "description": "Button text displayed alongside icon",
+      "default": "Menu",
+      "category": "content"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon symbol name for menu trigger",
+      "default": "bars",
+      "category": "appearance"
+    },
+    "attributes": {
+      "type": "string",
+      "description": "Additional HTML attributes for button element",
+      "category": "technical"
+    },
+    "modifier_class": {
+      "type": "string",
+      "description": "Additional CSS classes for custom styling",
+      "category": "styling"
+    }
+  },
+  "cssClasses": {
+    "root": "ct-mobile-navigation-trigger",
+    "modifiers": [
+      {
+        "name": "ct-theme-light",
+        "description": "Light theme styling"
+      },
+      {
+        "name": "ct-theme-dark",
+        "description": "Dark theme styling"
+      }
+    ]
+  },
+  "behavior": {
+    "flyout": {
+      "trigger": "data-flyout-open-trigger",
+      "target": ".ct-mobile-navigation",
+      "ariaExpanded": "false"
+    },
+    "responsive": {
+      "hideOnDesktop": true,
+      "breakpoint": "$ct-mobile-navigation-breakpoint"
+    }
+  },
+  "dependencies": [
+    "civictheme:button"
+  ],
+  "platform": {
+    "drupal": {
+      "type": "sdc",
+      "machineName": "mobile_navigation_trigger",
+      "category": "atom",
+      "dependencies": ["civictheme:button"]
+    }
+  },
+  "examples": [
+    {
+      "name": "Default Trigger",
+      "description": "Standard mobile navigation trigger button",
+      "props": {
+        "theme": "light",
+        "text": "Menu",
+        "icon": "bars"
+      }
+    },
+    {
+      "name": "Custom Trigger",
+      "description": "Customized mobile navigation trigger",
+      "props": {
+        "theme": "dark",
+        "text": "Navigation",
+        "icon": "bars",
+        "modifier_class": "custom-nav-trigger"
+      }
+    }
+  ],
+  "accessibility": {
+    "requirements": [
+      "Button must be keyboard accessible",
+      "ARIA expanded state must be properly managed",
+      "Button must have accessible name/label",
+      "Focus indicators must be clearly visible",
+      "Button must work with screen readers"
+    ]
+  },
+  "extraction": {
+    "timestamp": "2024-12-19T10:50:00Z",
+    "source": "CivicTheme UIKit v1.9.0",
+    "confidence": {
+      "props": 0.95,
+      "styling": 0.90,
+      "behavior": 0.95,
+      "accessibility": 0.90
+    },
+    "extractedFrom": [
+      "mobile-navigation-trigger.component.yml",
+      "mobile-navigation-trigger.twig"
+    ]
+  }
+}

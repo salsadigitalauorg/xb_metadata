@@ -1,0 +1,253 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "radio",
+  "name": "Radio",
+  "description": "Radio button form element with customizable appearance and states. Provides accessible radio button functionality for single-selection scenarios with proper labeling and state management.",
+  "category": "atoms",
+  "status": "stable",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/01-atoms/radio/",
+    "extracted_from": {
+      "component_yml": "radio.component.yml",
+      "template": "radio.twig", 
+      "styles": "radio.scss",
+      "stories": "radio.stories.js"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "none"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "DOM name attribute (required for grouping radio buttons).",
+      "examples": ["radio-name", "color-option", "size-selection"]
+    },
+    "id": {
+      "type": "string",
+      "required": true,
+      "description": "DOM id attribute (required for label association).",
+      "examples": ["radio-id", "color-red", "size-large"]
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "DOM value attribute.",
+      "examples": ["123", "red", "large"]
+    },
+    "label": {
+      "type": "string",
+      "required": false,
+      "description": "Label content displayed next to the radio button.",
+      "examples": ["Radio label", "Red", "Large size"]
+    },
+    "is_checked": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the radio button is checked."
+    },
+    "is_required": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the radio button is required."
+    },
+    "is_invalid": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the radio button is invalid."
+    },
+    "is_disabled": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the radio button is disabled."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    }
+  },
+  "slots": {},
+  "platforms": {
+    "drupal": {
+      "machine_name": "radio",
+      "template": "radio.twig",
+      "libraries": ["civictheme/radio"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-radio",
+        "modifiers": [
+          "ct-radio--is-invalid",
+          "ct-theme-light",
+          "ct-theme-dark"
+        ],
+        "elements": [
+          "ct-radio__label"
+        ],
+        "states": [
+          "checked",
+          "required",
+          "disabled",
+          "focus",
+          "hover"
+        ]
+      },
+      "custom_properties": [
+        "$ct-radio-light-color",
+        "$ct-radio-light-background-color",
+        "$ct-radio-light-border-color",
+        "$ct-radio-light-checked-color",
+        "$ct-radio-light-checked-background-color",
+        "$ct-radio-light-focus-outline-color",
+        "$ct-radio-light-invalid-border-color",
+        "$ct-radio-dark-color",
+        "$ct-radio-dark-background-color",
+        "$ct-radio-dark-border-color",
+        "$ct-radio-dark-checked-color",
+        "$ct-radio-dark-checked-background-color",
+        "$ct-radio-dark-focus-outline-color",
+        "$ct-radio-dark-invalid-border-color"
+      ]
+    }
+  },
+  "relationships": {
+    "requires": ["civictheme:label"],
+    "contains": [],
+    "alternatives": ["checkbox", "chip"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Basic Radio Button",
+      "description": "Simple radio button with label",
+      "props": {
+        "theme": "light",
+        "label": "Radio label",
+        "name": "radio-name",
+        "id": "radio-id",
+        "value": "123"
+      }
+    },
+    {
+      "name": "Checked Radio Button",
+      "description": "Pre-selected radio button",
+      "props": {
+        "theme": "light",
+        "label": "Selected option",
+        "name": "radio-group",
+        "id": "radio-checked",
+        "value": "selected",
+        "is_checked": true
+      }
+    },
+    {
+      "name": "Required Radio Button",
+      "description": "Required radio button for forms",
+      "props": {
+        "theme": "light",
+        "label": "Required selection",
+        "name": "required-radio",
+        "id": "radio-required",
+        "value": "required",
+        "is_required": true
+      }
+    },
+    {
+      "name": "Invalid Radio Button",
+      "description": "Radio button with validation error",
+      "props": {
+        "theme": "light",
+        "label": "Invalid option",
+        "name": "radio-group",
+        "id": "radio-invalid",
+        "value": "invalid",
+        "is_invalid": true
+      }
+    },
+    {
+      "name": "Disabled Radio Button",
+      "description": "Disabled radio button state",
+      "props": {
+        "theme": "light",
+        "label": "Disabled option",
+        "name": "radio-group",
+        "id": "radio-disabled",
+        "value": "disabled",
+        "is_disabled": true
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Allow users to select one option from a group of mutually exclusive choices",
+      "Create preference settings with multiple options",
+      "Build survey forms with single-answer questions",
+      "Provide filter options where only one can be active",
+      "Create configuration forms with exclusive settings"
+    ],
+    "when_not_to_use": [
+      "When users need to select multiple options - use checkboxes instead",
+      "For binary yes/no choices - consider toggle switches or single checkboxes",
+      "When there are too many options - consider select dropdowns",
+      "For actions rather than selections - use buttons",
+      "For complex multi-step selections - consider specialized components"
+    ],
+    "best_practices": [
+      "Always group related radio buttons with the same name attribute",
+      "Provide clear, descriptive labels for each option",
+      "Use meaningful values that will be processed by the form",
+      "Ensure one option is pre-selected when appropriate",
+      "Group radio buttons visually with fieldsets and legends",
+      "Maintain consistent spacing and alignment within groups",
+      "Provide clear error states and validation messages"
+    ],
+    "accessibility": {
+      "wcag_compliance": "AA",
+      "wcag_issues": [],
+      "notes": "Component provides proper form control semantics, keyboard navigation, and screen reader support through label association."
+    },
+    "known_issues": [],
+    "variations": [
+      "States: Default, checked, required, invalid, disabled",
+      "Theme variations: Light and dark theme support",
+      "Grouping: Multiple radio buttons with shared name attributes",
+      "Label positioning: Labels positioned next to radio buttons",
+      "Focus states: Keyboard navigation and focus indicators"
+    ],
+    "user_research": {
+      "confidence_rating": "High",
+      "findings": [
+        "Users expect radio buttons for mutually exclusive choices",
+        "Clear labeling reduces form completion errors",
+        "Visual grouping helps users understand related options",
+        "Pre-selected defaults can improve form completion rates",
+        "Clear invalid states help users correct form errors"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-08-10T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}
