@@ -27,7 +27,9 @@ ddev start
 ddev composer install
 ddev drush si -y
 
-# Install recipe
+# Install recipes
+ddev drush recipe /var/www/html/recipes/xb_demo
+ddev drush recipe /var/www/html/recipes/xb_page
 ddev drush recipe /var/www/html/recipes/civictheme_xb_demo
 ddev drush cr
 
