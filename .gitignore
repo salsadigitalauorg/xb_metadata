@@ -1,6 +1,9 @@
 # Composer dependencies
 vendor/
 
+# Milvus dir
+.ddev/milvus/
+
 # Node.js dependencies
 node_modules/
 
