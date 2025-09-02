@@ -36,6 +36,10 @@ ddev drush cr
 # Enable AI modules
 ddev drush en xb_ai ai_agents
 
+# For Media Agent
+First setup the OpenAI provider in this case - see below.
+ddev drush recipe /var/www/html/recipes/xb_media_search
+
 # Now log in
 ddev drush user:login xb/xb_page/2/editor
 ```
