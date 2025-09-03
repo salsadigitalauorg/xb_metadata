@@ -1,0 +1,14 @@
+{
+  "name": "drupal/xb_media_search",
+  "description": "Adds a media search component that can find images via agentic search.",
+  "type": "drupal-recipe",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": ">=10.4",
+    "drupal/ai_vdb_provider_postgres": "^1.0@alpha",
+    "drupal/search_api": "^1.38",
+    "drupal/token": "^1.15",
+    "league/commonmark": "^2.4"
+  },
+  "version": "1.x-dev"
+}

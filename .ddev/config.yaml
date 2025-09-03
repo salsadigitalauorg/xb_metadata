@@ -13,7 +13,10 @@ use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
 corepack_enable: true
-
+hooks:
+  post-start:
+    # Install the pgvector extension in the Postgres container
+    - exec: psql --user db --host pgvector -c "CREATE EXTENSION vector;"
 # Key features of DDEV's config.yaml:
 
 # name: <projectname> # Name of the project, automatically provides
@@ -60,7 +63,7 @@ corepack_enable: true
 
 # host_xhgui_port: 8142
 # Can be used to change the host binding port of the xhgui
-# application. Rarely used; only when port conflict and 
+# application. Rarely used; only when port conflict and
 # bind_all_ports is used (normally with router disabled)
 
 # xhprof_enabled: false  # Set to true to enable Xhprof and "ddev start" or "ddev restart"
