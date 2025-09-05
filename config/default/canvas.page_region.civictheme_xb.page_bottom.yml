@@ -1,0 +1,10 @@
+uuid: bbfda43d-9a26-422c-8e3c-94f5c5156ffa
+langcode: en
+status: true
+dependencies:
+  theme:
+    - civictheme_xb
+id: civictheme_xb.page_bottom
+region: page_bottom
+theme: civictheme_xb
+component_tree: {  }

@@ -1,0 +1,44 @@
+uuid: 483a5b99-7152-499c-917f-58c6e522dcd8
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - civictheme_xb
+active_version: 29218e680b1ffb12
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        gap:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: small
+          expression: ℹ︎list_string␟value
+        vertical:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: top
+          expression: ℹ︎list_string␟value
+    fallback_metadata:
+      slot_definitions:
+        column_one:
+          title: 'Column one'
+          description: 'First column slot.'
+label: 'Columns - 1'
+id: sdc.civictheme_xb.layout-1-col
+provider: civictheme_xb
+source: sdc
+source_local_id: 'civictheme_xb:layout-1-col'
+category: Other

@@ -1,0 +1,23 @@
+uuid: 3d9f0e3b-bd89-4ac2-8e81-2336f03e50ec
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - civictheme_xb
+_core:
+  default_config_hash: pbbed0hdqGDF-_QWVVTWRAwgDIotFuAvWH5mWUZu0fA
+id: civictheme_xb_search_form_wide
+theme: civictheme_xb
+region: secondary_menu
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }

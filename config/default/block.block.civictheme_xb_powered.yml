@@ -1,0 +1,22 @@
+uuid: 85ad087a-fa04-4454-b3ec-8606748ecc7f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - civictheme_xb
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: civictheme_xb_powered
+theme: civictheme_xb
+region: sidebar_first
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

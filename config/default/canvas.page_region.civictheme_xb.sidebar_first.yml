@@ -1,0 +1,35 @@
+uuid: 58321bb9-0913-432d-aedd-1f8e90760c09
+langcode: en
+status: false
+dependencies:
+  config:
+    - canvas.component.block.help_block
+    - canvas.component.block.page_title_block
+    - canvas.component.block.system_powered_by_block
+  theme:
+    - civictheme_xb
+id: civictheme_xb.sidebar_first
+region: sidebar_first
+theme: civictheme_xb
+component_tree:
+  -
+    uuid: 58916ebf-1930-4da0-acec-06dd0631b2ce
+    component_id: block.help_block
+    component_version: 620979b5a309a407
+    inputs:
+      label: Help
+      label_display: '0'
+  -
+    uuid: 3cad88c0-7e24-42bc-b220-6094bf54983b
+    component_id: block.page_title_block
+    component_version: 62af221149ae4887
+    inputs:
+      label: 'Page title'
+      label_display: '0'
+  -
+    uuid: 85ad087a-fa04-4454-b3ec-8606748ecc7f
+    component_id: block.system_powered_by_block
+    component_version: 3332388cade78d20
+    inputs:
+      label: 'Powered by Drupal'
+      label_display: '0'

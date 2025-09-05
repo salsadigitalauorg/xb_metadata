@@ -1,0 +1,22 @@
+uuid: 58916ebf-1930-4da0-acec-06dd0631b2ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - civictheme_xb
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: civictheme_xb_help
+theme: civictheme_xb
+region: sidebar_first
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

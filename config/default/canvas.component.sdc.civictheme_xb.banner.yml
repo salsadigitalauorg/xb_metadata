@@ -1,0 +1,126 @@
+uuid: 2bd3429d-6c35-448c-bb1e-43ca4aa54919
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.image.field_media_image
+    - image.style.canvas_parametrized_width
+    - media.type.image
+  module:
+    - file
+    - media
+    - media_library
+    - options
+  theme:
+    - civictheme_xb
+active_version: 1d785c814a9659be
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        background_image:
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: media
+          field_instance_settings:
+            handler: 'default:media'
+            handler_settings:
+              target_bundles:
+                image: image
+          field_widget: media_library_widget
+          default_value: {  }
+          expression: 'ℹ︎entity_reference␟{src↝entity␜␜entity:media:image␝field_media_image␞␟src_with_alternate_widths,alt↝entity␜␜entity:media:image␝field_media_image␞␟alt,width↝entity␜␜entity:media:image␝field_media_image␞␟width,height↝entity␜␜entity:media:image␝field_media_image␞␟height}'
+        background_image_blend_mode:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: normal
+          expression: ℹ︎string␟value
+        content:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        featured_image:
+          field_type: entity_reference
+          field_storage_settings:
+            target_type: media
+          field_instance_settings:
+            handler: 'default:media'
+            handler_settings:
+              target_bundles:
+                image: image
+          field_widget: media_library_widget
+          default_value: {  }
+          expression: 'ℹ︎entity_reference␟{src↝entity␜␜entity:media:image␝field_media_image␞␟src_with_alternate_widths,alt↝entity␜␜entity:media:image␝field_media_image␞␟alt,width↝entity␜␜entity:media:image␝field_media_image␞␟width,height↝entity␜␜entity:media:image␝field_media_image␞␟height}'
+        is_decorative:
+          field_type: boolean
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: boolean_checkbox
+          default_value: null
+          expression: ℹ︎boolean␟value
+        modifier_class:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        site_section:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        theme:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: light
+          expression: ℹ︎list_string␟value
+        title:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Banner title'
+          expression: ℹ︎string␟value
+    fallback_metadata:
+      slot_definitions:
+        content_top1:
+          title: 'Content Top 1'
+          description: 'Top section content.'
+        content_top2:
+          title: 'Content Top 2'
+          description: 'Second top section content.'
+        content_top3:
+          title: 'Content Top 3'
+          description: 'Third top section content.'
+        content_middle:
+          title: 'Content Middle'
+          description: 'Middle section content.'
+        content_bottom:
+          title: 'Content Bottom'
+          description: 'Bottom section content.'
+        content_below:
+          title: 'Content Below'
+          description: 'Below banner section content.'
+label: Banner
+id: sdc.civictheme_xb.banner
+provider: civictheme_xb
+source: sdc
+source_local_id: 'civictheme_xb:banner'
+category: Other

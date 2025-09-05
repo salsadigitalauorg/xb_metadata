@@ -1,0 +1,22 @@
+uuid: 016db8d6-ca06-4114-a659-fe45868ebada
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - civictheme_xb
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: civictheme_xb_content
+theme: civictheme_xb
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

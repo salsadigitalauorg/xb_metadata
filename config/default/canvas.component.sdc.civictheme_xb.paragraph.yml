@@ -1,0 +1,66 @@
+uuid: e25b671e-de97-4a15-a15a-3abef763555f
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - civictheme_xb
+active_version: 09612a5273f49214
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        content:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: Paragraph
+          expression: ℹ︎string␟value
+        modifier_class:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        no_margin:
+          field_type: boolean
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: boolean_checkbox
+          default_value:
+            -
+              value: false
+          expression: ℹ︎boolean␟value
+        size:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: regular
+          expression: ℹ︎list_string␟value
+        theme:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: light
+          expression: ℹ︎list_string␟value
+    fallback_metadata:
+      slot_definitions: {  }
+label: Paragraph
+id: sdc.civictheme_xb.paragraph
+provider: civictheme_xb
+source: sdc
+source_local_id: 'civictheme_xb:paragraph'
+category: Other

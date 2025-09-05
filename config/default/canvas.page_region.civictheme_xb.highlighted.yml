@@ -1,0 +1,46 @@
+uuid: 9c283824-baa2-4f32-8cde-1ed31e7ecf1f
+langcode: en
+status: false
+dependencies:
+  config:
+    - canvas.component.block.local_actions_block
+    - canvas.component.block.local_tasks_block
+    - canvas.component.block.system_messages_block
+  theme:
+    - civictheme_xb
+id: civictheme_xb.highlighted
+region: highlighted
+theme: civictheme_xb
+component_tree:
+  -
+    uuid: b01c969f-70f3-49fa-9852-b0c884fe2155
+    component_id: block.system_messages_block
+    component_version: b92f802cf68eb83e
+    inputs:
+      label: 'Status messages'
+      label_display: '0'
+  -
+    uuid: 8e49c234-ae76-4181-8583-22b3fce6c91d
+    component_id: block.local_actions_block
+    component_version: 5400750e38fff980
+    inputs:
+      label: 'Primary admin actions'
+      label_display: '0'
+  -
+    uuid: 0c3144bb-8653-47ba-bd24-36518ae52c49
+    component_id: block.local_tasks_block
+    component_version: 7ce07cbe2a7fa7ce
+    inputs:
+      label: 'Primary tabs'
+      label_display: '0'
+      primary: true
+      secondary: false
+  -
+    uuid: 9690d09d-8f5e-499e-a284-1cc2c01ffc1d
+    component_id: block.local_tasks_block
+    component_version: 7ce07cbe2a7fa7ce
+    inputs:
+      label: 'Secondary tabs'
+      label_display: '0'
+      primary: false
+      secondary: true
