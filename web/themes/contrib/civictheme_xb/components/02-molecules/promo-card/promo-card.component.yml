@@ -15,7 +15,7 @@ props:
       examples:
         - light
     image:
-      $ref: json-schema-definitions://experience_builder.module/image
+      $ref: json-schema-definitions://canvas.module/image
       type: ['object', 'null']
       title: Image
     # image:
@@ -65,9 +65,9 @@ props:
         - Promo card summary
     link_url:
       type: ['string', 'null']
-      format: uri
+      format: uri-reference
       title: URL
-      description: Link URL.
+      description: Link URL (absolute or relative).
     link_is_new_window:
       type: ['boolean', 'null']
       title: New Window

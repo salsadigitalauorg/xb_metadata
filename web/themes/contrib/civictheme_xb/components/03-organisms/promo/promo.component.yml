@@ -56,9 +56,9 @@ props:
       description: Link text.
     link_url:
       type: ['string', 'null']
-      format: uri
+      format: uri-reference
       title: Link URL
-      description: Link URL.
+      description: Link URL (absolute or relative).
     link_is_new_window:
       type: ['boolean', 'null']
       title: Link New Window

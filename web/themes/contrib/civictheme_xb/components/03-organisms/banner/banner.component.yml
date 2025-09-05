@@ -58,7 +58,7 @@ props:
     #       title: Active Is Link
     #       description: Whether the active item is a link.
     featured_image:
-      $ref: json-schema-definitions://experience_builder.module/image
+      $ref: json-schema-definitions://canvas.module/image
       type: ['object', 'null']
       title: Featured Image
       # examples:
@@ -78,7 +78,7 @@ props:
     #       title: Alt text
     #       description: Image alt text.
     background_image:
-      $ref: json-schema-definitions://experience_builder.module/image
+      $ref: json-schema-definitions://canvas.module/image
       type: ['object', 'null']
       title: Background Image
       # examples:

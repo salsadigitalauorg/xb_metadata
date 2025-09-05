@@ -1,0 +1,241 @@
+{
+  "$schema": "../schemas/component.schema.json",
+  "id": "container",
+  "name": "Container",
+  "description": "A foundational layout component that provides structured content containment with flexible theming, spacing, and responsive visibility controls.",
+  "category": "base",
+  "status": "experimental",
+  "source": {
+    "sdc_path": "/Users/ahmed/Code/Salsa/CivicTheme/uikit-main/packages/sdc/components/00-base/container/",
+    "extracted_from": {
+      "component_yml": "container.component.yml",
+      "template": "container.twig",
+      "styles": "container.scss"
+    }
+  },
+  "documentation": {
+    "available": false,
+    "path": null,
+    "coverage": "basic"
+  },
+  "props": {
+    "theme": {
+      "type": "enum",
+      "required": false,
+      "default": "light",
+      "options": ["light", "dark"],
+      "description": "Theme variation (light or dark)."
+    },
+    "is_contained": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether the content is contained in a container."
+    },
+    "with_background": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Whether to display with a background."
+    },
+    "vertical_spacing": {
+      "type": "enum",
+      "required": false,
+      "default": null,
+      "options": ["top", "bottom", "both"],
+      "description": "Vertical spacing for the container (top, bottom, or both)."
+    },
+    "vertical_spacing_inner": {
+      "type": "enum",
+      "required": false,
+      "default": null,
+      "options": ["top", "bottom", "both"],
+      "description": "Inner vertical spacing for the container (top, bottom, or both)."
+    },
+    "visibility": {
+      "type": "enum",
+      "required": false,
+      "default": "always",
+      "options": ["always", "mobile only", "tablet only", "mobile and tablet", "tablet and up", "desktop and up"],
+      "description": "Responsive visibility settings for the container."
+    },
+    "modifier_class": {
+      "type": "string",
+      "required": false,
+      "description": "Additional CSS classes."
+    },
+    "attributes": {
+      "type": "string",
+      "required": false,
+      "description": "Additional HTML attributes."
+    }
+  },
+  "slots": {
+    "content": {
+      "description": "Main content area.",
+      "accepts": ["html"],
+      "required": false
+    }
+  },
+  "platforms": {
+    "drupal": {
+      "machine_name": "container",
+      "template": "container.twig",
+      "libraries": ["civictheme/container"]
+    },
+    "css": {
+      "classes": {
+        "base_class": "ct-container",
+        "modifiers": [
+          "ct-container--with-background"
+        ],
+        "elements": [
+          "ct-container__inner"
+        ],
+        "states": []
+      },
+      "theme_support": {
+        "light": "Light theme variant with appropriate color schemes",
+        "dark": "Dark theme variant with appropriate color schemes"
+      },
+      "breakpoints": {
+        "mobile": "Base styles with responsive visibility controls",
+        "tablet": "Medium breakpoint adjustments for visibility",
+        "desktop": "Large screen visibility and layout optimizations"
+      }
+    }
+  },
+  "relationships": {
+    "requires": [],
+    "contains": ["content"],
+    "alternatives": ["layout", "grid"],
+    "incompatible": []
+  },
+  "examples": [
+    {
+      "name": "Default Container",
+      "description": "Standard container with contained content",
+      "props": {
+        "theme": "light",
+        "is_contained": true,
+        "with_background": false,
+        "vertical_spacing": "both",
+        "visibility": "always"
+      },
+      "slots": {
+        "content": "<p>This content is contained within the container layout.</p>"
+      }
+    },
+    {
+      "name": "Container with Background",
+      "description": "Container with background styling and inner spacing",
+      "props": {
+        "theme": "light",
+        "is_contained": true,
+        "with_background": true,
+        "vertical_spacing": "both",
+        "vertical_spacing_inner": "both"
+      },
+      "slots": {
+        "content": "<p>Container with background and inner spacing.</p>"
+      }
+    },
+    {
+      "name": "Mobile-only Container",
+      "description": "Container visible only on mobile devices",
+      "props": {
+        "theme": "light",
+        "is_contained": true,
+        "visibility": "mobile only"
+      },
+      "slots": {
+        "content": "<p>This container is only visible on mobile devices.</p>"
+      }
+    },
+    {
+      "name": "Dark Theme Container",
+      "description": "Container with dark theme variation",
+      "props": {
+        "theme": "dark",
+        "is_contained": true,
+        "with_background": true,
+        "vertical_spacing": "both"
+      },
+      "slots": {
+        "content": "<p>Dark themed container content.</p>"
+      }
+    }
+  ],
+  "intelligence": {
+    "when_to_use": [
+      "Provide consistent content width and alignment across different screen sizes",
+      "Create visual separation and structure for page layouts",
+      "Apply theme-appropriate background styling to content sections",
+      "Control responsive visibility of content sections",
+      "Standardize vertical spacing between content sections"
+    ],
+    "when_not_to_use": [
+      "Complex grid layouts where specific column arrangements are needed",
+      "Content that requires custom breakpoint behavior beyond the standard visibility options",
+      "Sections that need unique spacing or alignment that conflicts with the container's standardized approach",
+      "When the content needs to break out of container constraints for full-width display"
+    ],
+    "best_practices": [
+      "Use consistent container settings across similar content sections to maintain visual coherence",
+      "Choose appropriate vertical spacing to create clear content hierarchy without excessive whitespace",
+      "Consider the impact of responsive visibility settings on content accessibility and user experience",
+      "Use background styling sparingly to avoid overwhelming the visual hierarchy of the page",
+      "Test container behavior across different screen sizes to ensure content remains accessible and well-formatted",
+      "Combine with grid components when more complex layouts are needed within the container",
+      "Use contained vs fluid layouts appropriately based on the content type and design requirements"
+    ],
+    "accessibility": {
+      "wcag_compliance": "WCAG 2.2 AA",
+      "criteria_met": [
+        {
+          "criterion": "Reflow",
+          "level": "AA",
+          "status": "Pass",
+          "notes": "Container adapts appropriately to different viewport sizes and zoom levels"
+        },
+        {
+          "criterion": "Resize text",
+          "level": "AA",
+          "status": "Pass",
+          "notes": "Text remains readable when resized up to 200%"
+        },
+        {
+          "criterion": "Contrast (Minimum)",
+          "level": "AA",
+          "status": "Pass",
+          "notes": "Background styling maintains sufficient contrast with content"
+        }
+      ]
+    },
+    "known_issues": [
+      "Responsive visibility: Complex visibility requirements may not be fully covered by the predefined options",
+      "Nested containers: Multiple levels of container nesting may create unexpected spacing or layout issues",
+      "Background styling: May not provide sufficient contrast in all theme combinations"
+    ],
+    "variations": [
+      "Contained Layout: Content is constrained to standard container width",
+      "Fluid Layout: Content spans full width of parent container",
+      "With Background: Container includes theme-appropriate background styling",
+      "Responsive Visibility: Container appears/disappears based on screen size",
+      "Custom Spacing: Various vertical spacing combinations for flexible layout control"
+    ],
+    "user_research": {
+      "confidence_rating": "Medium",
+      "findings": [
+        "Consistent container usage improves user perception of site professionalism and structure",
+        "Responsive visibility controls help optimize content hierarchy across different devices",
+        "Background styling, when used appropriately, helps users distinguish content sections"
+      ]
+    }
+  },
+  "extraction_metadata": {
+    "extracted_at": "2025-09-05T10:00:00Z",
+    "confidence_level": "HIGH",
+    "issues": []
+  }
+}

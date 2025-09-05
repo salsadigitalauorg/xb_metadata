@@ -15,7 +15,7 @@ props:
       examples:
         - light
     image:
-      $ref: json-schema-definitions://experience_builder.module/image
+      $ref: json-schema-definitions://canvas.module/image
       type: ['object', 'null']
       title: Image
     image_position:
