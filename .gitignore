@@ -1,6 +1,9 @@
 # Composer dependencies
 vendor/
 
+# Backup files
+.data
+
 # Milvus dir
 .ddev/milvus/
 
