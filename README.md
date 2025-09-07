@@ -42,9 +42,33 @@ Now open the link Drush generated at the end to go right into Experience Builder
 
 ## AI Provider Setup 🤖
 
-To use the AI-powered features, you'll need to setup an AI provider. Install and configure one of the following modules:
+This project ships with the OpenAI provider preconfigured via the `civictheme_canvas_demo` recipe. It uses the Drupal Key module to read the API key from a DDEV environment variable.
 
-- **OpenAI Provider**: [ai_provider_openai](https://www.drupal.org/project/ai_provider_openai)
-- **Amazee.io Provider**: [ai_provider_amazeeio](https://www.drupal.org/project/ai_provider_amazeeio)
+What’s included:
+- A Key entity with ID `openai` that uses the Key module’s Environment provider to read `OPENAI_API_KEY`.
+- `ai_provider_openai.settings` points `api_key` to that Key (`openai`).
+- DDEV is configured to expose `OPENAI_API_KEY` into the web container.
 
-Follow the documentation for your chosen provider to configure API keys and settings.
+Setup instructions:
+1) Copy the example env file and set your key
+```bash
+cp .ddev/.env.example .ddev/.env
+echo "OPENAI_API_KEY=sk-your-real-key" >> .ddev/.env
+```
+
+2) Restart DDEV to load the variable
+```bash
+ddev restart
+```
+
+3) Import recipe config (if not already applied) and clear caches
+```bash
+ddev drush recipe /var/www/html/recipes/civictheme_canvas_demo
+ddev drush cr
+```
+
+That’s it — Canvas media search and other AI features will use your OpenAI key securely via the Key module.
+
+Notes and references:
+- DDEV customization & environment variables: https://docs.ddev.com/en/stable/users/extend/customization-extendibility/
+- Securing environment variables with Drupal Key module: https://blog.horizontaldigital.com/securing-environment-variables-drupal-key-module

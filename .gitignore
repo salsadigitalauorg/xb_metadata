@@ -31,7 +31,8 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
-key.key.openai.yml
+.ddev/.env
+config/default/key.key.openai.yml
 # Ignore everything in web by default
 web/*
 
