@@ -1,0 +1,22 @@
+uuid: d614945f-6416-4a3b-9a67-5552c74bc2d9
+langcode: en
+status: false
+dependencies:
+  config:
+    - canvas.component.block.system_branding_block
+  theme:
+    - civictheme_xb
+id: civictheme_xb.header
+region: header
+theme: civictheme_xb
+component_tree:
+  -
+    uuid: 89e68dd9-63b9-4aee-a1e1-0bf7402f8ace
+    component_id: block.system_branding_block
+    component_version: 247a23298360adb2
+    inputs:
+      label: 'Site branding'
+      label_display: '0'
+      use_site_logo: true
+      use_site_name: true
+      use_site_slogan: true

@@ -1,0 +1,1546 @@
+component_context:
+  block:
+    enabled: 0
+    data: |
+      block.announce_block:
+        id: block.announce_block
+        name: 'Announcements Feed'
+        description: 'Announcements Feed'
+      block.help_block:
+        id: block.help_block
+        name: Help
+        description: Help
+      block.local_actions_block:
+        id: block.local_actions_block
+        name: 'Primary admin actions'
+        description: 'Primary admin actions'
+      block.local_tasks_block:
+        id: block.local_tasks_block
+        name: Tabs
+        description: Tabs
+      block.navigation_link:
+        id: block.navigation_link
+        name: Link
+        description: Link
+      block.navigation_shortcuts:
+        id: block.navigation_shortcuts
+        name: 'Navigation Shortcuts'
+        description: 'Navigation Shortcuts'
+      block.navigation_user:
+        id: block.navigation_user
+        name: User
+        description: User
+      block.page_title_block:
+        id: block.page_title_block
+        name: 'Page title'
+        description: 'Page title'
+      block.search_form_block:
+        id: block.search_form_block
+        name: 'Search form'
+        description: 'Search form'
+      block.shortcuts:
+        id: block.shortcuts
+        name: Shortcuts
+        description: Shortcuts
+      block.system_branding_block:
+        id: block.system_branding_block
+        name: 'Site branding'
+        description: 'Site branding'
+      block.system_breadcrumb_block:
+        id: block.system_breadcrumb_block
+        name: Breadcrumbs
+        description: Breadcrumbs
+      block.system_clear_cache_block:
+        id: block.system_clear_cache_block
+        name: 'Clear cache'
+        description: 'Clear cache'
+      block.system_menu_block.account:
+        id: block.system_menu_block.account
+        name: 'User account menu'
+        description: 'User account menu'
+      block.system_menu_block.admin:
+        id: block.system_menu_block.admin
+        name: Administration
+        description: Administration
+      block.system_menu_block.content:
+        id: block.system_menu_block.content
+        name: Content
+        description: Content
+      block.system_menu_block.footer:
+        id: block.system_menu_block.footer
+        name: Footer
+        description: Footer
+      block.system_menu_block.main:
+        id: block.system_menu_block.main
+        name: 'Main navigation'
+        description: 'Main navigation'
+      block.system_menu_block.navigation-user-links:
+        id: block.system_menu_block.navigation-user-links
+        name: 'Navigation user links'
+        description: 'Navigation user links'
+      block.system_menu_block.tools:
+        id: block.system_menu_block.tools
+        name: Tools
+        description: Tools
+      block.system_messages_block:
+        id: block.system_messages_block
+        name: Messages
+        description: Messages
+      block.system_powered_by_block:
+        id: block.system_powered_by_block
+        name: 'Powered by Drupal'
+        description: 'Powered by Drupal'
+      block.user_login_block:
+        id: block.user_login_block
+        name: 'User login'
+        description: 'User login'
+      block.views_block.comments_recent-block_1:
+        id: block.views_block.comments_recent-block_1
+        name: 'Recent comments'
+        description: 'Recent comments'
+      block.views_block.content_recent-block_1:
+        id: block.views_block.content_recent-block_1
+        name: 'Recent content'
+        description: 'Recent content'
+      block.views_block.who_s_new-block_1:
+        id: block.views_block.who_s_new-block_1
+        name: "Who's new"
+        description: "Who's new"
+      block.views_block.who_s_online-who_s_online_block:
+        id: block.views_block.who_s_online-who_s_online_block
+        name: "Who's online"
+        description: "Who's online"
+  sdc:
+    enabled: 1
+    data: |
+      sdc.civictheme_xb.banner:
+        id: sdc.civictheme_xb.banner
+        name: Banner
+        description: "A versatile full-width component that introduces a page's content with supporting visuals, text, and navigation elements, creating an engaging entry point for users.\r\n\"when_to_use\": [\r\n      \"Create a strong visual introduction to a page's content\",\r\n      \"Communicate the main purpose or theme of a page\",\r\n      \"Provide contextual navigation through breadcrumbs\",\r\n      \"Include primary and secondary call-to-action buttons for key user journeys\",\r\n      \"Establish visual hierarchy at the top of a page\"\r\n    ],\r\n    \"when_not_to_use\": [\r\n      \"The page requires a minimalist introduction without visual emphasis\",\r\n      \"Space is at a premium and a full-width banner would push important content below the fold\",\r\n      \"The page serves a purely functional purpose where a visual banner might distract users from completing tasks\",\r\n      \"Multiple banners would be needed on a single page, creating visual competition and confusion\"\r\n    ],\r\n    \"best_practices\": [\r\n      \"Ensure the heading clearly communicates the page's purpose, with supporting text that provides necessary context while remaining concise\",\r\n      \"Use background images that enhance rather than compete with content. Images should maintain sufficient contrast with text elements\",\r\n      \"Ensure the banner adapts appropriately across devices, with readable text and properly scaled imagery on all screen sizes\",\r\n      \"Limit buttons to a maximum of two, with clear hierarchy between primary and secondary actions. Button text should be action-oriented\",\r\n      \"When using breadcrumbs within the banner, ensure they provide clear navigational context while maintaining visual distinction from other banner elements\",\r\n      \"Maintain sufficient colour contrast between text and background. If using background images, ensure they don't interfere with text legibility\",\r\n      \"Optimise images for quick loading, especially on mobile devices, to avoid negatively impacting performance metrics\"\r\n    ],"
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          is_decorative:
+            name: Decorative
+            description: 'Whether to show as decorative.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          background_image_blend_mode:
+            name: 'Background Image Blend Mode'
+            description: "Background image blending type. Defaults to 'normal'."
+            type:
+              - string
+              - 'null'
+            default: normal
+          content:
+            name: Content
+            description: 'Main content.'
+            type:
+              - string
+              - 'null'
+            default: null
+          site_section:
+            name: 'Site Section'
+            description: 'Site section name.'
+            type:
+              - string
+              - 'null'
+            default: null
+          title:
+            name: Title
+            description: 'Banner title.'
+            type:
+              - string
+              - 'null'
+            default: 'Banner title'
+          modifier_class:
+            name: 'Modifier Class'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+          featured_image:
+            name: 'Featured Image'
+            description: 'No description available'
+            type:
+              - object
+              - 'null'
+            default: null
+          background_image:
+            name: 'Background Image'
+            description: 'No description available'
+            type:
+              - object
+              - 'null'
+            default: null
+        slots:
+          content_top1:
+            name: 'Content Top 1'
+            description: 'Top section content.'
+          content_top2:
+            name: 'Content Top 2'
+            description: 'Second top section content.'
+          content_top3:
+            name: 'Content Top 3'
+            description: 'Third top section content.'
+          content_middle:
+            name: 'Content Middle'
+            description: 'Middle section content.'
+          content_bottom:
+            name: 'Content Bottom'
+            description: 'Bottom section content.'
+          content_below:
+            name: 'Content Below'
+            description: 'Below banner section content.'
+      sdc.civictheme_xb.button:
+        id: sdc.civictheme_xb.button
+        name: Button
+        description: "A Button is an interactive element that triggers an action when clicked or tapped, providing a clear call-to-action for users. Buttons provide users with the ability to submit an action or follow a link to another location.\r\n\"when_to_use\": [\r\n      \"Submit a form\",\r\n      \"Trigger an action like opening a modal, starting a process, or revealing hidden content\",\r\n      \"Navigate to another page or section of the site\", \r\n      \"Download a file\",\r\n      \"Confirm an action or decision\",\r\n      \"When the action is a key task or primary user journey on the page\"\r\n    ],\r\n    \"when_not_to_use\": [\r\n      \"The action is of secondary importance on the page - consider using a link instead\",\r\n      \"You need to create a link within a paragraph of text - use a text link instead\",\r\n      \"You need to create a complex interactive element - consider using a more specialised component\",\r\n      \"The action would be better represented by a different component like a dropdown menu, toggle switch, or checkbox\"\r\n    ],\r\n    \"best_practices\": [\r\n      \"Use clear, concise, and action-oriented text that describes what will happen when the button is clicked\",\r\n      \"Use primary buttons for the most important actions, secondary buttons for alternative options, and tertiary buttons for less important functions\",\r\n      \"Choose the appropriate button size (large, regular, small) based on the context and importance of the action\",\r\n      \"Place buttons consistently throughout the interface to create predictable patterns for users\",\r\n      \"Ensure sufficient space between buttons and other elements to prevent accidental clicks, especially on mobile devices\",\r\n      \"Provide clear visual feedback for all interactive states (hover, focus, pressed/active, disabled)\",\r\n      \"If using icons within buttons, ensure they enhance understanding and provide visual reinforcement of the action\",\r\n      \"Maintain sufficient colour contrast between the button and its background, as well as between the button text and button background\",\r\n      \"Ensure buttons work well across all screen sizes and devices\"\r\n    ],"
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          kind:
+            name: Kind
+            description: 'Button kind (submit, reset, button, link).'
+            type:
+              - string
+              - 'null'
+            default: link
+            enum:
+              - submit
+              - reset
+              - button
+              - link
+          type:
+            name: Type
+            description: 'Button type (primary, secondary, tertiary).'
+            type:
+              - string
+              - 'null'
+            default: primary
+            enum:
+              - primary
+              - secondary
+              - tertiary
+          size:
+            name: Size
+            description: 'Button size (large, regular, small).'
+            type:
+              - string
+              - 'null'
+            default: regular
+            enum:
+              - large
+              - regular
+              - small
+          icon:
+            name: Icon
+            description: 'Icon name.'
+            type:
+              - string
+              - 'null'
+            default: null
+            enum:
+              - account
+              - approve
+              - bars
+              - bullet
+              - calendar-1
+              - calendar-2
+              - call
+              - cancel
+              - checked
+              - close-outline
+              - close
+              - down-arrow-1
+              - down-arrow-2
+              - down-arrow-large
+              - download-file
+              - download
+              - exclamation-mark-1
+              - exclamation-mark-2
+              - exclamation-mark-3
+              - eye
+              - facebook
+              - help
+              - image
+              - information-mark
+              - instagram
+              - left-arrow-outline
+              - left-arrow
+              - linkedin
+              - magnifier
+              - map
+              - megaphone
+              - message
+              - mortarboard
+              - newspaper
+              - pdf-file
+              - progress
+              - right-arrow-1
+              - right-arrow-2
+              - select-box
+              - share
+              - square
+              - to-do
+              - twitter
+              - up-arrow-large
+              - up-arrow
+              - upper-arrow
+              - upper-right-arrow
+              - watch
+              - word-file
+              - x
+              - youtube
+              - null
+          icon_placement:
+            name: 'Icon placement'
+            description: 'Icon position (before or after).'
+            type:
+              - string
+              - 'null'
+            default: after
+            enum:
+              - before
+              - after
+          icon_group_disabled:
+            name: 'Disable icon grouping'
+            description: 'Disable icon and last word grouping.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          icon_single_only:
+            name: 'Single icon only'
+            description: 'Only show 1 icon (if both icon and is_external are present, external takes preference).'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          text:
+            name: Text
+            description: 'Button text.'
+            type:
+              - string
+              - 'null'
+            default: 'Button text'
+          url:
+            name: URL
+            description: 'URL for the link button (absolute or relative).'
+            type:
+              - string
+              - 'null'
+            default: null
+          is_new_window:
+            name: 'New window'
+            description: 'Open in a new window.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          is_external:
+            name: 'External link'
+            description: 'Indicates if the link is external.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          modifier_class:
+            name: 'Modifier classes'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+        slots: 'No slots'
+      sdc.civictheme_xb.callout:
+        id: sdc.civictheme_xb.callout
+        name: Callout
+        description: "Content component for highlighting important information with title, content and links. Provides a prominent way to draw attention to key messages or call-to-action content.\r\n\"relationships\": {\r\n    \"requires\": [\"civictheme:heading\", \"civictheme:paragraph\", \"civictheme:button\", \"civictheme:link\"],\r\n    \"contains\": [\"heading\", \"paragraph\", \"button\", \"link\"],\r\n    \"alternatives\": [\"banner\", \"promo\"],\r\n    \"incompatible\": []\r\n  },\r\n  \"examples\": [\r\n    {\r\n      \"name\": \"Basic Callout\",\r\n      \"description\": \"Simple callout with title and content\",\r\n      \"props\": {\r\n        \"theme\": \"light\",\r\n        \"title\": \"Important Notice\",\r\n        \"content\": \"This is an important message that needs to stand out from the rest of the content.\"\r\n      }\r\n    },\r\n    {\r\n      \"name\": \"Callout with Links\",\r\n      \"description\": \"Callout with call-to-action links\",\r\n      \"props\": {\r\n        \"theme\": \"light\",\r\n        \"title\": \"Get Started Today\",\r\n        \"content\": \"Join thousands of users who are already benefiting from our service.\",\r\n        \"links\": [\r\n          {\r\n            \"text\": \"Sign Up Now\",\r\n            \"url\": \"/signup\"\r\n          },\r\n          {\r\n            \"text\": \"Learn More\",\r\n            \"url\": \"/about\"\r\n          }\r\n        ]\r\n      }\r\n    },\r\n    {\r\n      \"name\": \"Dark Theme Callout\",\r\n      \"description\": \"Callout with dark theme styling\",\r\n      \"props\": {\r\n        \"theme\": \"dark\",\r\n        \"title\": \"Special Offer\",\r\n        \"content\": \"Limited time offer - don't miss out on this exclusive opportunity.\",\r\n        \"vertical_spacing\": \"both\",\r\n        \"links\": [\r\n          {\r\n            \"text\": \"Claim Offer\",\r\n            \"url\": \"/offer\"\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  ],\r\n  \"intelligence\": {\r\n    \"when_to_use\": [\r\n      \"Highlight important announcements or messages\",\r\n      \"Create prominent call-to-action sections\",\r\n      \"Draw attention to special offers or promotions\",\r\n      \"Emphasize key information within content\",\r\n      \"Provide secondary navigation or next steps\"\r\n    ],\r\n    \"when_not_to_use\": [\r\n      \"For general content - use regular text components\",\r\n      \"As primary navigation - use navigation components\",\r\n      \"For complex forms or interactions - use specialized components\",\r\n      \"When the content doesn't need special emphasis\"\r\n    ],\r\n    \"best_practices\": [\r\n      \"Use clear, concise titles that grab attention\",\r\n      \"Keep content focused and action-oriented\",\r\n      \"Limit the number of links to avoid decision paralysis\",\r\n      \"Use appropriate vertical spacing to separate from other content\",\r\n      \"Ensure sufficient contrast for readability\",\r\n      \"Test call-to-action effectiveness with users\",\r\n      \"Use consistently throughout the site for similar types of content\"\r\n    ],\r\n    \"accessibility\": {\r\n      \"wcag_compliance\": \"AA\",\r\n      \"wcag_issues\": [],\r\n      \"notes\": \"Component provides proper semantic markup for highlighted content with accessible link structures.\"\r\n    },\r\n    \"known_issues\": [],\r\n    \"variations\": [\r\n      \"Content types: Text-only, with links, with multiple content areas\",\r\n      \"Spacing: Top, bottom, or both vertical spacing options\",\r\n      \"Theme variations: Light and dark theme support\",\r\n      \"Link types: Internal and external links with various behaviors\",\r\n      \"Content slots: Flexible content areas for different use cases\"\r\n    ],"
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          vertical_spacing:
+            name: 'Vertical spacing'
+            description: 'Vertical spacing position (top, bottom, both).'
+            type:
+              - string
+              - 'null'
+            default: null
+            enum:
+              - top
+              - bottom
+              - both
+          title:
+            name: Content
+            description: 'Heading content.'
+            type:
+              - string
+              - 'null'
+            default: Heading
+          content:
+            name: Content
+            description: Content.
+            type:
+              - string
+              - 'null'
+            default: Content
+          modifier_class:
+            name: 'Modifier classes'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+        slots:
+          content_top:
+            name: 'Top content'
+            description: 'Callout top content.'
+          content_bottom:
+            name: 'Bottom content'
+            description: 'Callout bottom content.'
+      sdc.civictheme_xb.campaign:
+        id: sdc.civictheme_xb.campaign
+        name: Campaign
+        description: "Full-width featured content block designed to prominently showcase important content with heading, date, image, lead copy, and calls to action.\r\n\"bestPractices\": [\r\n    \"Select high-quality, relevant images that support the campaign message\",\r\n    \"Maintain proper visual hierarchy with prominent heading and supporting copy\",\r\n    \"Keep headings and lead copy concise and compelling\",\r\n    \"Include clear, action-oriented buttons that direct users to relevant content\",\r\n    \"Ensure component adapts appropriately for mobile viewing\",\r\n    \"Maintain appropriate spacing and balance between text and imagery\",\r\n    \"Use consistent styling for recurring campaigns\",\r\n    \"Include relevant topic tags for context and categorization\",\r\n    \"Ensure text maintains sufficient contrast against background\"\r\n  ],"
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          image:
+            name: Image
+            description: 'No description available'
+            type:
+              - object
+              - 'null'
+            default: null
+          image_position:
+            name: 'Image Position'
+            description: 'Image position relative to content (left or right).'
+            type:
+              - string
+              - 'null'
+            default: left
+            enum:
+              - left
+              - right
+          vertical_spacing:
+            name: 'Vertical Spacing'
+            description: 'Campaign vertical spacing (top, bottom, or both).'
+            type:
+              - string
+              - 'null'
+            default: both
+            enum:
+              - top
+              - bottom
+              - both
+          title:
+            name: Title
+            description: 'Campaign title.'
+            type:
+              - string
+              - 'null'
+            default: 'Campaign title'
+          date:
+            name: Date
+            description: Date.
+            type:
+              - string
+              - 'null'
+            default: null
+          content:
+            name: Content
+            description: 'Campaign main content.'
+            type:
+              - string
+              - 'null'
+            default: 'Campaign content'
+          modifier_class:
+            name: 'Modifier Class'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+        slots:
+          content_top:
+            name: 'Content Top'
+            description: 'Top content.'
+          content_bottom:
+            name: 'Content Bottom'
+            description: 'Bottom campaign content.'
+      sdc.civictheme_xb.container:
+        id: sdc.civictheme_xb.container
+        name: Container
+        description: "A foundational layout component that provides structured content containment with flexible theming, spacing, and responsive visibility controls.\r\n\"props\": {\r\n    \"theme\": {\r\n      \"type\": \"enum\",\r\n      \"required\": false,\r\n      \"default\": \"light\",\r\n      \"options\": [\"light\", \"dark\"],\r\n      \"description\": \"Theme variation (light or dark).\"\r\n    },\r\n    \"is_contained\": {\r\n      \"type\": \"boolean\",\r\n      \"required\": false,\r\n      \"default\": false,\r\n      \"description\": \"Whether the content is contained in a container.\"\r\n    },\r\n    \"with_background\": {\r\n      \"type\": \"boolean\",\r\n      \"required\": false,\r\n      \"default\": false,\r\n      \"description\": \"Whether to display with a background.\"\r\n    },\r\n    \"vertical_spacing\": {\r\n      \"type\": \"enum\",\r\n      \"required\": false,\r\n      \"default\": null,\r\n      \"options\": [\"top\", \"bottom\", \"both\"],\r\n      \"description\": \"Vertical spacing for the container (top, bottom, or both).\"\r\n    },\r\n    \"vertical_spacing_inner\": {\r\n      \"type\": \"enum\",\r\n      \"required\": false,\r\n      \"default\": null,\r\n      \"options\": [\"top\", \"bottom\", \"both\"],\r\n      \"description\": \"Inner vertical spacing for the container (top, bottom, or both).\"\r\n    },\r\n    \"visibility\": {\r\n      \"type\": \"enum\",\r\n      \"required\": false,\r\n      \"default\": \"always\",\r\n      \"options\": [\"always\", \"mobile only\", \"tablet only\", \"mobile and tablet\", \"tablet and up\", \"desktop and up\"],\r\n      \"description\": \"Responsive visibility settings for the container.\"\r\n    },\r\n    \"modifier_class\": {\r\n      \"type\": \"string\",\r\n      \"required\": false,\r\n      \"description\": \"Additional CSS classes.\"\r\n    },\r\n    \"attributes\": {\r\n      \"type\": \"string\",\r\n      \"required\": false,\r\n      \"description\": \"Additional HTML attributes.\"\r\n    }\r\n  },\r\n  \"slots\": {\r\n    \"content\": {\r\n      \"description\": \"Main content area.\",\r\n      \"accepts\": [\"html\"],\r\n      \"required\": false\r\n    }\r\n  },\r\n\"examples\": [\r\n    {\r\n      \"name\": \"Default Container\",\r\n      \"description\": \"Standard container with contained content\",\r\n      \"props\": {\r\n        \"theme\": \"light\",\r\n        \"is_contained\": true,\r\n        \"with_background\": false,\r\n        \"vertical_spacing\": \"both\",\r\n        \"visibility\": \"always\"\r\n      },\r\n      \"slots\": {\r\n        \"content\": \"<p>This content is contained within the container layout.</p>\"\r\n      }\r\n    },\r\n    {\r\n      \"name\": \"Container with Background\",\r\n      \"description\": \"Container with background styling and inner spacing\",\r\n      \"props\": {\r\n        \"theme\": \"light\",\r\n        \"is_contained\": true,\r\n        \"with_background\": true,\r\n        \"vertical_spacing\": \"both\",\r\n        \"vertical_spacing_inner\": \"both\"\r\n      },\r\n      \"slots\": {\r\n        \"content\": \"<p>Container with background and inner spacing.</p>\"\r\n      }\r\n    },\r\n    {\r\n      \"name\": \"Mobile-only Container\",\r\n      \"description\": \"Container visible only on mobile devices\",\r\n      \"props\": {\r\n        \"theme\": \"light\",\r\n        \"is_contained\": true,\r\n        \"visibility\": \"mobile only\"\r\n      },\r\n      \"slots\": {\r\n        \"content\": \"<p>This container is only visible on mobile devices.</p>\"\r\n      }\r\n    },\r\n    {\r\n      \"name\": \"Dark Theme Container\",\r\n      \"description\": \"Container with dark theme variation\",\r\n      \"props\": {\r\n        \"theme\": \"dark\",\r\n        \"is_contained\": true,\r\n        \"with_background\": true,\r\n        \"vertical_spacing\": \"both\"\r\n      },\r\n      \"slots\": {\r\n        \"content\": \"<p>Dark themed container content.</p>\"\r\n      }\r\n    }\r\n  ],\r\n  \"intelligence\": {\r\n    \"when_to_use\": [\r\n      \"Provide consistent content width and alignment across different screen sizes\",\r\n      \"Create visual separation and structure for page layouts\",\r\n      \"Apply theme-appropriate background styling to content sections\",\r\n      \"Control responsive visibility of content sections\",\r\n      \"Standardize vertical spacing between content sections\"\r\n    ],\r\n    \"when_not_to_use\": [\r\n      \"Complex grid layouts where specific column arrangements are needed\",\r\n      \"Content that requires custom breakpoint behavior beyond the standard visibility options\",\r\n      \"Sections that need unique spacing or alignment that conflicts with the container's standardized approach\",\r\n      \"When the content needs to break out of container constraints for full-width display\"\r\n    ],\r\n    \"best_practices\": [\r\n      \"Use consistent container settings across similar content sections to maintain visual coherence\",\r\n      \"Choose appropriate vertical spacing to create clear content hierarchy without excessive whitespace\",\r\n      \"Consider the impact of responsive visibility settings on content accessibility and user experience\",\r\n      \"Use background styling sparingly to avoid overwhelming the visual hierarchy of the page\",\r\n      \"Test container behavior across different screen sizes to ensure content remains accessible and well-formatted\",\r\n      \"Combine with grid components when more complex layouts are needed within the container\",\r\n      \"Use contained vs fluid layouts appropriately based on the content type and design requirements\"\r\n    ],\r\n    \"accessibility\": {\r\n      \"wcag_compliance\": \"WCAG 2.2 AA\",\r\n      \"criteria_met\": [\r\n        {\r\n          \"criterion\": \"Reflow\",\r\n          \"level\": \"AA\",\r\n          \"status\": \"Pass\",\r\n          \"notes\": \"Container adapts appropriately to different viewport sizes and zoom levels\"\r\n        },\r\n        {\r\n          \"criterion\": \"Resize text\",\r\n          \"level\": \"AA\",\r\n          \"status\": \"Pass\",\r\n          \"notes\": \"Text remains readable when resized up to 200%\"\r\n        },\r\n        {\r\n          \"criterion\": \"Contrast (Minimum)\",\r\n          \"level\": \"AA\",\r\n          \"status\": \"Pass\",\r\n          \"notes\": \"Background styling maintains sufficient contrast with content\"\r\n        }\r\n      ]\r\n    },\r\n    \"known_issues\": [\r\n      \"Responsive visibility: Complex visibility requirements may not be fully covered by the predefined options\",\r\n      \"Nested containers: Multiple levels of container nesting may create unexpected spacing or layout issues\",\r\n      \"Background styling: May not provide sufficient contrast in all theme combinations\"\r\n    ],\r\n    \"variations\": [\r\n      \"Contained Layout: Content is constrained to standard container width\",\r\n      \"Fluid Layout: Content spans full width of parent container\",\r\n      \"With Background: Container includes theme-appropriate background styling\",\r\n      \"Responsive Visibility: Container appears/disappears based on screen size\",\r\n      \"Custom Spacing: Various vertical spacing combinations for flexible layout control\"\r\n    ],\r\n    \"user_research\": {\r\n      \"confidence_rating\": \"Medium\",\r\n      \"findings\": [\r\n        \"Consistent container usage improves user perception of site professionalism and structure\",\r\n        \"Responsive visibility controls help optimize content hierarchy across different devices\",\r\n        \"Background styling, when used appropriately, helps users distinguish content sections\"\r\n      ]\r\n    }\r\n  },\r\n  \"extraction_metadata\": {\r\n    \"extracted_at\": \"2025-09-05T10:00:00Z\",\r\n    \"confidence_level\": \"HIGH\",\r\n    \"issues\": []\r\n  }"
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          is_contained:
+            name: Contained
+            description: 'Whether the content is contained in a container.'
+            type:
+              - boolean
+              - 'null'
+            default: true
+          with_background:
+            name: 'With Background'
+            description: 'Whether to display with a background.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          vertical_spacing:
+            name: 'Vertical Spacing (Outer)'
+            description: 'Vertical spacing for the promo (top, bottom, or both).'
+            type:
+              - string
+              - 'null'
+            default: both
+            enum:
+              - top
+              - bottom
+              - both
+          vertical_spacing_inner:
+            name: 'Vertical Spacing (Inner)'
+            description: 'Vertical spacing for the promo (top, bottom, or both).'
+            type:
+              - string
+              - 'null'
+            default: null
+            enum:
+              - top
+              - bottom
+              - both
+          visibility:
+            name: Visible
+            description: Visibility
+            type:
+              - string
+              - 'null'
+            default: always
+            enum:
+              - always
+              - 'mobile only'
+              - 'tablet only'
+              - 'mobile and tablet'
+              - 'tablet and up'
+              - 'desktop and up'
+          modifier_class:
+            name: 'Modifier class'
+            description: 'Additional classes.'
+            type: string
+            default: null
+        slots:
+          content:
+            name: Content
+            description: 'Content slot.'
+      sdc.civictheme_xb.flexible-grid:
+        id: sdc.civictheme_xb.flexible-grid
+        name: 'Flexible Grid'
+        description: 'Flexible Grid'
+        group: Base
+        props:
+          vertical:
+            name: 'Align items'
+            description: 'Vertical alignment: top, center, bottom.'
+            type: string
+            default: top
+            enum:
+              - top
+              - center
+              - bottom
+          horizontal:
+            name: 'Justify items'
+            description: 'Horizontal alignment: left, center, right, space-between. Note: space-between only works with col: none.'
+            type: string
+            default: left
+            enum:
+              - left
+              - center
+              - right
+              - space-between
+          direction:
+            name: 'Direction of items'
+            description: 'Place items: Across the page, Down the page.'
+            type: string
+            default: across
+            enum:
+              - across
+              - down
+          gap:
+            name: 'Gap between items'
+            description: 'The space between columns or content.'
+            type: string
+            default: medium
+            enum:
+              - none
+              - small
+              - medium
+              - large
+          wrap:
+            name: Wrap
+            description: 'When using col: none, this will allow components to wrap.'
+            type: string
+            default: wrap
+            enum:
+              - wrap
+              - nowrap
+          modifier_class:
+            name: 'Modifier class'
+            description: 'Additional classes.'
+            type: string
+            default: null
+        slots:
+          content:
+            name: Content
+            description: 'Flexible content slot.'
+      sdc.civictheme_xb.heading:
+        id: sdc.civictheme_xb.heading
+        name: Heading
+        description: 'Heading component for titles and section headings'
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          content:
+            name: Content
+            description: 'Heading content.'
+            type:
+              - string
+              - 'null'
+            default: Heading
+          level:
+            name: Level
+            description: 'Heading level (1-6).'
+            type:
+              - integer
+              - 'null'
+            default: 2
+            enum:
+              - 1
+              - 2
+              - 3
+              - 4
+              - 5
+              - 6
+          modifier_class:
+            name: 'Modifier classes'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+        slots: 'No slots'
+      sdc.civictheme_xb.icon:
+        id: sdc.civictheme_xb.icon
+        name: Icon
+        description: 'Icon component for SVG icons'
+        group: ''
+        props:
+          symbol:
+            name: Symbol
+            description: 'Icon name (required).'
+            type:
+              - string
+              - 'null'
+            default: right-arrow-2
+            enum:
+              - account
+              - approve
+              - bars
+              - bullet
+              - calendar-1
+              - calendar-2
+              - call
+              - cancel
+              - checked
+              - close-outline
+              - close
+              - down-arrow-1
+              - down-arrow-2
+              - down-arrow-large
+              - download-file
+              - download
+              - exclamation-mark-1
+              - exclamation-mark-2
+              - exclamation-mark-3
+              - eye
+              - facebook
+              - help
+              - image
+              - information-mark
+              - instagram
+              - left-arrow-outline
+              - left-arrow
+              - linkedin
+              - magnifier
+              - map
+              - megaphone
+              - message
+              - mortarboard
+              - newspaper
+              - pdf-file
+              - progress
+              - right-arrow-1
+              - right-arrow-2
+              - select-box
+              - share
+              - square
+              - to-do
+              - twitter
+              - up-arrow-large
+              - up-arrow
+              - upper-arrow
+              - upper-right-arrow
+              - watch
+              - word-file
+              - x
+              - youtube
+              - null
+          size:
+            name: Size
+            description: 'Icon size.'
+            type:
+              - string
+              - 'null'
+            default: regular
+            enum:
+              - extra-large
+              - large
+              - regular
+              - small
+              - extra-small
+          modifier_class:
+            name: 'Modifier classes'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+          assets_dir:
+            name: 'Assets directory'
+            description: 'Directory containing icon assets.'
+            type:
+              - string
+              - 'null'
+            default: '@civictheme/../assets'
+        slots: 'No slots'
+      sdc.civictheme_xb.image:
+        id: sdc.civictheme_xb.image
+        name: Image
+        description: 'Basic image component'
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          image:
+            name: Image
+            description: 'No description available'
+            type:
+              - object
+              - 'null'
+            default:
+              src: 'https://placehold.co/600x400.png'
+              alt: 'Placeholder image'
+          width:
+            name: Width
+            description: 'Image width.'
+            type:
+              - string
+              - 'null'
+            default: 100%
+          height:
+            name: Height
+            description: 'Image height.'
+            type:
+              - string
+              - 'null'
+            default: null
+          modifier_class:
+            name: 'Modifier classes'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+        slots: 'No slots'
+      sdc.civictheme_xb.layout-1-col:
+        id: sdc.civictheme_xb.layout-1-col
+        name: 'Columns - 1'
+        description: 'Columns - 1'
+        group: ''
+        props:
+          gap:
+            name: 'Gap between items'
+            description: 'No description available'
+            type: string
+            default: small
+            enum:
+              - none
+              - small
+              - medium
+              - large
+          vertical:
+            name: 'Vertical alignment'
+            description: 'Vertical alignment: top, center, bottom.'
+            type: string
+            default: top
+            enum:
+              - top
+              - center
+              - bottom
+        slots:
+          column_one:
+            name: 'Column one'
+            description: 'First column slot.'
+      sdc.civictheme_xb.layout-2-col:
+        id: sdc.civictheme_xb.layout-2-col
+        name: 'Columns - 2'
+        description: 'Columns - 2'
+        group: ''
+        props:
+          gap:
+            name: 'Gap between items'
+            description: 'No description available'
+            type: string
+            default: small
+            enum:
+              - none
+              - small
+              - medium
+              - large
+          vertical:
+            name: 'Vertical alignment'
+            description: 'Vertical alignment: top, center, bottom.'
+            type: string
+            default: top
+            enum:
+              - top
+              - center
+              - bottom
+        slots:
+          column_one:
+            name: 'Column one'
+            description: 'First column slot.'
+          column_two:
+            name: 'Column two'
+            description: 'Second column slot.'
+      sdc.civictheme_xb.layout-3-col:
+        id: sdc.civictheme_xb.layout-3-col
+        name: 'Columns - 3'
+        description: 'Columns - 3'
+        group: ''
+        props:
+          gap:
+            name: 'Gap between items'
+            description: 'No description available'
+            type: string
+            default: small
+            enum:
+              - none
+              - small
+              - medium
+              - large
+          vertical:
+            name: 'Vertical alignment'
+            description: 'Vertical alignment: top, center, bottom.'
+            type: string
+            default: top
+            enum:
+              - top
+              - center
+              - bottom
+        slots:
+          column_one:
+            name: 'Column one'
+            description: 'First column slot.'
+          column_two:
+            name: 'Column two'
+            description: 'Second column slot.'
+          column_three:
+            name: 'Column three'
+            description: 'Third column slot.'
+      sdc.civictheme_xb.link:
+        id: sdc.civictheme_xb.link
+        name: Link
+        description: 'Link component with configurable styles and states'
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          text:
+            name: Text
+            description: 'Link text.'
+            type:
+              - string
+              - 'null'
+            default: 'Link text'
+          url:
+            name: URL
+            description: 'Link URL (absolute or relative).'
+            type:
+              - string
+              - 'null'
+            default: null
+          title:
+            name: Title
+            description: 'Title attribute for the link.'
+            type:
+              - string
+              - 'null'
+            default: null
+          is_new_window:
+            name: 'New window'
+            description: 'Open link in a new window.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          is_external:
+            name: External
+            description: 'Indicates if the link is external.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          icon:
+            name: Icon
+            description: 'Icon name.'
+            type:
+              - string
+              - 'null'
+            default: null
+            enum:
+              - account
+              - approve
+              - bars
+              - bullet
+              - calendar-1
+              - calendar-2
+              - call
+              - cancel
+              - checked
+              - close-outline
+              - close
+              - down-arrow-1
+              - down-arrow-2
+              - down-arrow-large
+              - download-file
+              - download
+              - exclamation-mark-1
+              - exclamation-mark-2
+              - exclamation-mark-3
+              - eye
+              - facebook
+              - help
+              - image
+              - information-mark
+              - instagram
+              - left-arrow-outline
+              - left-arrow
+              - linkedin
+              - magnifier
+              - map
+              - megaphone
+              - message
+              - mortarboard
+              - newspaper
+              - pdf-file
+              - progress
+              - right-arrow-1
+              - right-arrow-2
+              - select-box
+              - share
+              - square
+              - to-do
+              - twitter
+              - up-arrow-large
+              - up-arrow
+              - upper-arrow
+              - upper-right-arrow
+              - watch
+              - word-file
+              - x
+              - youtube
+              - null
+          icon_placement:
+            name: 'Icon placement'
+            description: 'Icon position (before or after).'
+            type:
+              - string
+              - 'null'
+            default: after
+            enum:
+              - before
+              - after
+          icon_group_disabled:
+            name: 'Disable icon grouping'
+            description: 'Disable icon and last word grouping.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          icon_single_only:
+            name: 'Single icon only'
+            description: 'Only show 1 icon (if both icon and is_external are present, external takes preference).'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          modifier_class:
+            name: 'Modifier classes'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+        slots: 'No slots'
+      sdc.civictheme_xb.paragraph:
+        id: sdc.civictheme_xb.paragraph
+        name: Paragraph
+        description: 'Paragraph component for text content'
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          content:
+            name: Content
+            description: 'Paragraph content.'
+            type:
+              - string
+              - 'null'
+            default: Paragraph
+          size:
+            name: Size
+            description: 'Paragraph size (extra-large, large, regular, small).'
+            type:
+              - string
+              - 'null'
+            default: regular
+            enum:
+              - extra-large
+              - large
+              - regular
+              - small
+          no_margin:
+            name: 'No margin'
+            description: 'Disable default margin.'
+            type:
+              - boolean
+              - 'null'
+            default: false
+          modifier_class:
+            name: 'Modifier classes'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+        slots: 'No slots'
+      sdc.civictheme_xb.promo:
+        id: sdc.civictheme_xb.promo
+        name: Promo
+        description: 'Promotional component with title, content, and call-to-action link'
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          is_contained:
+            name: Contained
+            description: 'Whether the content is contained in a container.'
+            type:
+              - boolean
+              - 'null'
+            default: true
+          vertical_spacing:
+            name: 'Vertical Spacing'
+            description: 'Vertical spacing for the promo (top, bottom, or both).'
+            type:
+              - string
+              - 'null'
+            default: both
+            enum:
+              - top
+              - bottom
+              - both
+          with_background:
+            name: 'With Background'
+            description: 'Whether to display with a background.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          modifier_class:
+            name: 'Modifier Class'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+          title:
+            name: Title
+            description: 'Title text.'
+            type:
+              - string
+              - 'null'
+            default: 'Promo title'
+          content:
+            name: Content
+            description: 'Main content text.'
+            type:
+              - string
+              - 'null'
+            default: Content
+          link_text:
+            name: 'Link Text'
+            description: 'Link text.'
+            type:
+              - string
+              - 'null'
+            default: null
+          link_url:
+            name: 'Link URL'
+            description: 'Link URL (absolute or relative).'
+            type:
+              - string
+              - 'null'
+            default: null
+          link_is_new_window:
+            name: 'Link New Window'
+            description: 'Whether to open link in a new window.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          link_is_external:
+            name: 'Link External'
+            description: 'Whether the link is external.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+        slots:
+          content_top:
+            name: 'Content Top'
+            description: 'Top content area.'
+          content_bottom:
+            name: 'Content Bottom'
+            description: 'Bottom promo content.'
+      sdc.civictheme_xb.promo-card:
+        id: sdc.civictheme_xb.promo-card
+        name: 'Promo Card'
+        description: 'Card component for displaying promotional content with image, title, summary, date, and tags'
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          image:
+            name: Image
+            description: 'No description available'
+            type:
+              - object
+              - 'null'
+            default: null
+          date_iso:
+            name: 'ISO Date'
+            description: 'Start date and time in ISO format.'
+            type:
+              - string
+              - 'null'
+            default: null
+          date:
+            name: Date
+            description: 'Start date and time.'
+            type:
+              - string
+              - 'null'
+            default: null
+          date_end_iso:
+            name: 'ISO End Date'
+            description: 'End time in ISO format.'
+            type:
+              - string
+              - 'null'
+            default: null
+          date_end:
+            name: 'End Date'
+            description: 'Formatted end time.'
+            type:
+              - string
+              - 'null'
+            default: null
+          subtitle:
+            name: Subtitle
+            description: 'Subtitle text.'
+            type:
+              - string
+              - 'null'
+            default: null
+          title:
+            name: Title
+            description: 'Card title text.'
+            type:
+              - string
+              - 'null'
+            default: 'Promo card title'
+          summary:
+            name: Summary
+            description: 'Card summary.'
+            type:
+              - string
+              - 'null'
+            default: 'Promo card summary'
+          link_url:
+            name: URL
+            description: 'Link URL (absolute or relative).'
+            type:
+              - string
+              - 'null'
+            default: null
+          link_is_new_window:
+            name: 'New Window'
+            description: 'Whether to open the link in a new window.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          modifier_class:
+            name: 'Modifier Class'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+        slots:
+          content_top:
+            name: 'Content Top'
+            description: 'Top content area.'
+          content_middle:
+            name: 'Content Middle'
+            description: 'Middle content area.'
+          content_bottom:
+            name: 'Content Bottom'
+            description: 'Bottom content area.'
+      sdc.civictheme_xb.subject-card:
+        id: sdc.civictheme_xb.subject-card
+        name: 'Subject Card'
+        description: 'Card component for displaying a subject with image and title'
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          modifier_class:
+            name: 'Modifier Class'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+          image:
+            name: Image
+            description: 'No description available'
+            type:
+              - object
+              - 'null'
+            default: null
+          title:
+            name: Title
+            description: 'Card title.'
+            type:
+              - string
+              - 'null'
+            default: 'Subject card title'
+          link_url:
+            name: URL
+            description: 'Link URL (absolute or relative).'
+            type:
+              - string
+              - 'null'
+            default: null
+          link_is_new_window:
+            name: 'New Window'
+            description: 'Whether to open the link in a new window.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+        slots:
+          image_over:
+            name: 'Image Over'
+            description: 'Image overlay content.'
+      sdc.civictheme_xb.tag:
+        id: sdc.civictheme_xb.tag
+        name: Tag
+        description: 'Tag component for categorization elements with various styles'
+        group: ''
+        props:
+          theme:
+            name: Theme
+            description: 'Theme variation (light or dark).'
+            type:
+              - string
+              - 'null'
+            default: light
+            enum:
+              - light
+              - dark
+          type:
+            name: Type
+            description: 'Tag type (primary, secondary, tertiary).'
+            type:
+              - string
+              - 'null'
+            default: primary
+            enum:
+              - primary
+              - secondary
+              - tertiary
+          content:
+            name: Content
+            description: 'Tag content.'
+            type:
+              - string
+              - 'null'
+            default: Tag
+          icon:
+            name: Icon
+            description: 'Icon name.'
+            type:
+              - string
+              - 'null'
+            default: null
+            enum:
+              - account
+              - approve
+              - bars
+              - bullet
+              - calendar-1
+              - calendar-2
+              - call
+              - cancel
+              - checked
+              - close-outline
+              - close
+              - down-arrow-1
+              - down-arrow-2
+              - down-arrow-large
+              - download-file
+              - download
+              - exclamation-mark-1
+              - exclamation-mark-2
+              - exclamation-mark-3
+              - eye
+              - facebook
+              - help
+              - image
+              - information-mark
+              - instagram
+              - left-arrow-outline
+              - left-arrow
+              - linkedin
+              - magnifier
+              - map
+              - megaphone
+              - message
+              - mortarboard
+              - newspaper
+              - pdf-file
+              - progress
+              - right-arrow-1
+              - right-arrow-2
+              - select-box
+              - share
+              - square
+              - to-do
+              - twitter
+              - up-arrow-large
+              - up-arrow
+              - upper-arrow
+              - upper-right-arrow
+              - watch
+              - word-file
+              - x
+              - youtube
+              - null
+          icon_placement:
+            name: 'Icon placement'
+            description: 'Icon position (before, after).'
+            type:
+              - string
+              - 'null'
+            default: after
+            enum:
+              - before
+              - after
+          url:
+            name: URL
+            description: 'Optional URL to convert to a link (absolute or relative).'
+            type:
+              - string
+              - 'null'
+            default: null
+          is_new_window:
+            name: 'New window'
+            description: 'Whether to open in a new window (only if URL is provided).'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          is_external:
+            name: External
+            description: 'Whether the link is external.'
+            type:
+              - boolean
+              - 'null'
+            default: null
+          modifier_class:
+            name: 'Modifier classes'
+            description: 'Additional CSS classes.'
+            type:
+              - string
+              - 'null'
+            default: null
+        slots: 'No slots'
+      sdc.navigation.title:
+        id: sdc.navigation.title
+        name: Title
+        description: Title
+        group: ''
+        props:
+          modifiers:
+            name: 'Modifier classes.'
+            description: 'Title modifiers. https://en.bem.info/methodology/css/#modifiers'
+            type: array
+            default: null
+          extra_classes:
+            name: 'Extra classes.'
+            description: 'External modifiers added from the placement context. https://en.bem.info/methodology/css/#mixes'
+            type: array
+            default: null
+          html_tag:
+            name: 'HTML tag for title'
+            description: 'No description available'
+            type: string
+            default: h2
+            enum:
+              - h1
+              - h2
+              - h3
+              - h4
+              - h5
+              - h6
+              - span
+          icon:
+            name: Icon
+            description: 'No description available'
+            type: string
+            default: null
+        slots:
+          content:
+            name: Content
+            description: 'Content of title.'

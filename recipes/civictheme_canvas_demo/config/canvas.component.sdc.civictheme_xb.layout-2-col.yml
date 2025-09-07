@@ -1,0 +1,47 @@
+uuid: 52c96d18-ec4a-463c-ae63-141e6b6a88e6
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - civictheme_xb
+active_version: 3081b6e620b74d06
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        gap:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: small
+          expression: ℹ︎list_string␟value
+        vertical:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: top
+          expression: ℹ︎list_string␟value
+    fallback_metadata:
+      slot_definitions:
+        column_one:
+          title: 'Column one'
+          description: 'First column slot.'
+        column_two:
+          title: 'Column two'
+          description: 'Second column slot.'
+label: 'Columns - 2'
+id: sdc.civictheme_xb.layout-2-col
+provider: civictheme_xb
+source: sdc
+source_local_id: 'civictheme_xb:layout-2-col'
+category: Other

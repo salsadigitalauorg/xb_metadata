@@ -1,0 +1,81 @@
+uuid: 6b502cb7-3161-4eda-8d53-3e31c7d84e1d
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - civictheme_xb
+active_version: a1b028c590479355
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        direction:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: across
+          expression: ℹ︎list_string␟value
+        gap:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: medium
+          expression: ℹ︎list_string␟value
+        horizontal:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: left
+          expression: ℹ︎list_string␟value
+        modifier_class:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        vertical:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: top
+          expression: ℹ︎list_string␟value
+        wrap:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: wrap
+          expression: ℹ︎list_string␟value
+    fallback_metadata:
+      slot_definitions:
+        content:
+          title: Content
+          description: 'Flexible content slot.'
+label: 'Flexible Grid'
+id: sdc.civictheme_xb.flexible-grid
+provider: civictheme_xb
+source: sdc
+source_local_id: 'civictheme_xb:flexible-grid'
+category: Base

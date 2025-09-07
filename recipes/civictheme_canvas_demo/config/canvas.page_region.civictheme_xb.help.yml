@@ -1,0 +1,10 @@
+uuid: 6208a38c-e385-480d-bbda-a912d1f36392
+langcode: en
+status: false
+dependencies:
+  theme:
+    - civictheme_xb
+id: civictheme_xb.help
+region: help
+theme: civictheme_xb
+component_tree: {  }

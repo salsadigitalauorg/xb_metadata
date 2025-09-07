@@ -1,0 +1,19 @@
+uuid: 94a56488-01fa-4221-b0c8-490f0672b1c6
+langcode: en
+status: false
+dependencies:
+  config:
+    - canvas.component.block.system_breadcrumb_block
+  theme:
+    - civictheme_xb
+id: civictheme_xb.breadcrumb
+region: breadcrumb
+theme: civictheme_xb
+component_tree:
+  -
+    uuid: b8bddba1-f6c9-4a4e-8db3-73362936f697
+    component_id: block.system_breadcrumb_block
+    component_version: cec23aa503e2a02f
+    inputs:
+      label: Breadcrumbs
+      label_display: '0'

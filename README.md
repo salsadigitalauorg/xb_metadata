@@ -27,18 +27,13 @@ ddev start
 ddev composer install
 ddev drush si -y
 
-# Install recipes
-ddev drush recipe /var/www/html/recipes/xb_demo
-ddev drush recipe /var/www/html/recipes/xb_page
-ddev drush recipe /var/www/html/recipes/civictheme_xb_demo
+# Install the aggregated recipe (includes xb_demo, xb_page, civictheme_xb_demo, xb_media_search and AI config)
+ddev drush recipe /var/www/html/recipes/civictheme_canvas_demo
 ddev drush cr
 
-# Enable AI modules
-ddev drush en xb_ai ai_agents ai_provider_openai ai_agents_explorer
-
 # For Media Agent
-First setup the OpenAI provider in this case - see below.
-ddev drush recipe /var/www/html/recipes/xb_media_search
+Media Search is included via the aggregated recipe. Ensure the OpenAI provider is configured (see below), then clear caches:
+ddev drush cr
 
 # Now log in
 ddev drush user:login xb/xb_page/2/editor

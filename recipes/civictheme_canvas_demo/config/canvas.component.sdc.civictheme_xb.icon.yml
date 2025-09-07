@@ -1,0 +1,55 @@
+uuid: dc0eafb2-d8eb-44e1-9278-7be171ffdda9
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - civictheme_xb
+active_version: 33169db821e2a176
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        assets_dir:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        modifier_class:
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        size:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: regular
+          expression: ℹ︎list_string␟value
+        symbol:
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: right-arrow-2
+          expression: ℹ︎list_string␟value
+    fallback_metadata:
+      slot_definitions: {  }
+label: Icon
+id: sdc.civictheme_xb.icon
+provider: civictheme_xb
+source: sdc
+source_local_id: 'civictheme_xb:icon'
+category: Other
