@@ -1,0 +1,10 @@
+host: pgvector
+port: 5432
+username: db
+password: postgres_key
+dependencies:
+  config:
+    - key.key.postgres_key
+default_database: db
+_core:
+  default_config_hash: zEgXHS20RKg5hj3QNhMcDQxhQd1gVO3_mE6qxdKWSfA
