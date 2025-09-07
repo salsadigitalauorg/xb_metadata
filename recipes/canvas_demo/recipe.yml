@@ -1,6 +1,6 @@
-name: Experience Builder Demo
+name: Canvas Demo
 type: Demo
-description: A demonstration of the next-generation Experience Builder for Drupal.
+description: A demonstration of Drupal Canvas.
 recipes:
   - core/recipes/administrator_role
   - core/recipes/core_recommended_maintenance
