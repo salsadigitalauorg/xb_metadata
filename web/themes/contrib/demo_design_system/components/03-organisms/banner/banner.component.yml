@@ -68,7 +68,7 @@ props:
         - false
 
     featured_image:
-      $ref: json-schema-definitions://experience_builder.module/image
+      $ref: json-schema-definitions://canvas.module/image
       type: object
       title: Featured image
       examples:

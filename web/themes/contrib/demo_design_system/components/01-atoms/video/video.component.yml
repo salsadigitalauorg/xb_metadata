@@ -84,7 +84,7 @@ props:
 
     fallback_text:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Fallback text
       description: Message for browsers not supporting HTML5 video.
       examples:

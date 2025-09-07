@@ -21,7 +21,7 @@ props:
     #@todo remove this if it'll be done with slot
     #summary:
     #type: string
-    #$ref: json-schema-definitions://experience_builder.module/textarea
+    #$ref: json-schema-definitions://canvas.module/textarea
     #title: Summary
     #description: Text summary.
     #examples:
@@ -43,7 +43,7 @@ props:
         - blue-stripe
 
     image:
-      $ref: json-schema-definitions://experience_builder.module/image
+      $ref: json-schema-definitions://canvas.module/image
       type: object
       title: Image
       examples:

@@ -22,7 +22,7 @@ props:
 
     content:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Content
       description: Content.
       examples:

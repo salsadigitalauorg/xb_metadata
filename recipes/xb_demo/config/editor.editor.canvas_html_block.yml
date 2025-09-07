@@ -8,7 +8,7 @@ dependencies:
   enforced:
     module:
       - canvas
-format: xb_html_block
+format: canvas_html_block
 editor: ckeditor5
 settings:
   toolbar:

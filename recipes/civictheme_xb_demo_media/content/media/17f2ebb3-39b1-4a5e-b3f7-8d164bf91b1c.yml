@@ -13,7 +13,6 @@ default:
   uid:
     -
       target_id: 1
-      target_uuid: ''
   name:
     -
       value: 'CT 930 Wide .png'
@@ -46,5 +45,3 @@ default:
       title: ''
       width: 930
       height: 498
-      srcset_candidate_uri_template: '/sites/default/files/styles/xb_parametrized_width--{width}/public/2025-08/CT%20930%20Wide%20.png.webp?itok=Z3u4gj6N'
-      src_with_alternate_widths: '/sites/default/files/2025-08/CT%20930%20Wide%20.png?alternateWidths=/sites/default/files/styles/xb_parametrized_width--%7Bwidth%7D/public/2025-08/CT%2520930%2520Wide%2520.png.webp%3Fitok%3DZ3u4gj6N'

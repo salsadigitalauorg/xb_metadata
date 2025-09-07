@@ -52,7 +52,7 @@ props:
 
     filters:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Filters
       description: Exposed filters.
       examples:
@@ -67,7 +67,7 @@ props:
 
     rows_above:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Rows above
       description: Content above rows.
       examples:
@@ -75,7 +75,7 @@ props:
 
     rows:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Rows
       description: Rows content.
       examples:
@@ -83,7 +83,7 @@ props:
 
     rows_below:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Rows below
       description: Content below rows.
       examples:
@@ -91,7 +91,7 @@ props:
 
     empty:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Empty
       description: Empty results content.
       examples:

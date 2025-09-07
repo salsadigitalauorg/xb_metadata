@@ -7,7 +7,6 @@ default:
   uid:
     -
       target_id: 1
-      target_uuid: ''
   filename:
     -
       value: 'Starshot Updates.png'

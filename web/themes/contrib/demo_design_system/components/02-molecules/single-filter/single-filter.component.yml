@@ -24,7 +24,7 @@ props:
 
     form_attributes:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Form attributes
       description: Form attributes. If empty - the form will not be printed.
       examples:
@@ -32,7 +32,7 @@ props:
 
     form_hidden_fields:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Form hidden fields
       description: Form hidden fields.
       examples:

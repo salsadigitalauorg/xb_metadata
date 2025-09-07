@@ -13,7 +13,6 @@ default:
   uid:
     -
       target_id: 1
-      target_uuid: ''
   name:
     -
       value: Background.png
@@ -46,5 +45,3 @@ default:
       title: ''
       width: 1440
       height: 852
-      srcset_candidate_uri_template: '/sites/default/files/styles/xb_parametrized_width--{width}/public/2025-08/Background.png.webp?itok=h2pXdZ2f'
-      src_with_alternate_widths: '/sites/default/files/2025-08/Background.png?alternateWidths=/sites/default/files/styles/xb_parametrized_width--%7Bwidth%7D/public/2025-08/Background.png.webp%3Fitok%3Dh2pXdZ2f'

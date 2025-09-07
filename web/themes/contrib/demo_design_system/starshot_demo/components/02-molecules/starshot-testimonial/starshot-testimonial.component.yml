@@ -13,7 +13,7 @@ props:
   properties:
     quote:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       contentMediaType: text/html
       x-formatting-context: block
       title: Quote
@@ -23,14 +23,14 @@ props:
 
     cite:
       type: string
-      $ref: json-schema-definitions://experience_builder.module/textarea
+      $ref: json-schema-definitions://canvas.module/textarea
       title: Person
       description: The person info below the quote.
       examples:
         - 'Joyce Peralta, Manager, Digital Communications at McGill University'
 
     image:
-      $ref: json-schema-definitions://experience_builder.module/image
+      $ref: json-schema-definitions://canvas.module/image
       type: object
       title: The image on the right.
       examples:

@@ -14,7 +14,7 @@ dependencies:
     - options
   theme:
     - civictheme_xb
-active_version: 0c3cdbb7140be449
+active_version: 19b7148c70eabd25
 versioned_properties:
   active:
     settings:

@@ -13,7 +13,6 @@ default:
   uid:
     -
       target_id: 1
-      target_uuid: ''
   name:
     -
       value: 'Starshot Updates.png'
@@ -46,5 +45,3 @@ default:
       title: ''
       width: 600
       height: 600
-      srcset_candidate_uri_template: '/sites/default/files/styles/xb_parametrized_width--{width}/public/2025-08/Starshot%20Updates.png.webp?itok=ZTPoqFr4'
-      src_with_alternate_widths: '/sites/default/files/2025-08/Starshot%20Updates.png?alternateWidths=/sites/default/files/styles/xb_parametrized_width--%7Bwidth%7D/public/2025-08/Starshot%2520Updates.png.webp%3Fitok%3DZTPoqFr4'
