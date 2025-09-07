@@ -1,9 +1,0 @@
-uuid: 5fa98b89-7c86-422f-9f1c-d2dd4a7b0b96
-langcode: en
-status: true
-dependencies: {  }
-name: Base
-configEntityTypeId: component
-weight: 0
-items:
-  - sdc.civictheme_xb.flexible-grid

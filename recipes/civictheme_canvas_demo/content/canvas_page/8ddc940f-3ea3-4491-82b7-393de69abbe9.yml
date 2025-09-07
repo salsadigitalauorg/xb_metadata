@@ -17,7 +17,7 @@ default:
       target_uuid: ''
   title:
     -
-      value: 'CivicTheme XB Demo'
+      value: 'CivicTheme Canvas Demo'
   components:
     -
       uuid: d75a4675-41ea-4b85-8381-27f31450b56b

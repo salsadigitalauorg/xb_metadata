@@ -3,15 +3,7 @@ type: Configuration
 description: Imports AI/Canvas key configuration for the local environment.
 recipes:
   - core/recipes/image_media_type
-install:
-  - gin
-  - civictheme_xb
-  - ai
-  - ai_agents
-  - ai_provider_openai
-  - canvas
-  - canvas_ai
-  - key
+  - canvas_media_search
 config:
   strict: false
   actions:

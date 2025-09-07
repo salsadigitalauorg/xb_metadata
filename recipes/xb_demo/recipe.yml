@@ -2,23 +2,17 @@ name: Experience Builder Demo
 type: Demo
 description: A demonstration of the next-generation Experience Builder for Drupal.
 recipes:
+  - core/recipes/image_media_type
   - core/recipes/administrator_role
   - core/recipes/core_recommended_maintenance
   - core/recipes/core_recommended_performance
-  - drupal_cms_admin_ui
-  - drupal_cms_anti_spam
-  - drupal_cms_authentication
-  - drupal_cms_page
-  - drupal_cms_privacy_basic
-  - starshot_demo_blocks
 install:
   - block
   - metatag
-  - webform
-  - experience_builder
-  - xb_stark
   - gin
-  - starshot_demo
+  - canvas
+  - linkit
+  - webform
   - automated_cron
   - dashboard
   - eca_base
@@ -37,11 +31,9 @@ install:
 config:
   strict: false
   import:
-    experience_builder: '*'
     image:
       - image.style.large
       - image.style.thumbnail
-    starshot_demo: '*'
     metatag: '*'
     webform: '*'
     user:
@@ -50,9 +42,6 @@ config:
       - core.entity_view_mode.user.compact
       - views.view.user_admin_people
   actions:
-    # Disable all components XB generated during installation.
-    experience_builder.component.sdc.experience_builder.*:
-      disable: []
     gin.settings:
       simpleConfigUpdate:
         secondary_toolbar_frontend: false
