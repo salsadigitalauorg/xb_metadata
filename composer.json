@@ -10,7 +10,7 @@
         },
         "xb_demo": {
             "type": "path",
-            "url": "recipes/xb_demo"
+            "url": "recipes/canvas_demo"
         },
         "xb_page": {
             "type": "path",
@@ -22,6 +22,7 @@
         "cweagans/composer-patches": "^2@beta",
         "drupal/ai": "1.2.x-dev@dev",
         "drupal/ai_agents": "1.2.x-dev@dev",
+        "drupal/ai_provider_anthropic": "1.2.x-dev@dev",
         "drupal/ai_provider_openai": "^1.1",
         "drupal/ai_vdb_provider_postgres": "^1.0@alpha",
         "drupal/bpmn_io": "^2.0.6",

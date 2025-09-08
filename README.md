@@ -2,14 +2,14 @@
 
 <img src="https://github.com/user-attachments/assets/c7c3283b-2580-4434-8cce-771cb02aa1f7" width="300" align="right" />
 
-This project is a **proof of concept** demonstrating the customization of Drupal's Experience Builder module and its xb_ai submodule for CivicTheme's design system metadata integration.
+This project is a **proof of concept** demonstrating the customization of Drupal's Experience Builder module and its canvas_ai submodule for CivicTheme's design system metadata integration.
 
 ## Project Overview
 
 This repository showcases how Experience Builder can be extended to integrate with CivicTheme's design system metadata, providing enhanced AI-powered page building capabilities. The project includes:
 
 - Customized Experience Builder module integration
-- xb_ai submodule enhancements for design system metadata
+- canvas_ai submodule enhancements for design system metadata
 - CivicTheme design system integration
 - Metadata-driven component suggestions and layouts
 
@@ -27,16 +27,18 @@ ddev start
 ddev composer install
 ddev drush si -y
 
-# Install the aggregated recipe (includes xb_demo, xb_page, civictheme_xb_demo, xb_media_search and AI config)
+# Install Drupal recipes
+ddev drush recipe /var/www/html/recipes/canvas_demp
 ddev drush recipe /var/www/html/recipes/civictheme_canvas_demo
 ddev drush cr
 
 # For Media Agent
-Media Search is included via the aggregated recipe. Ensure the OpenAI provider is configured (see below), then clear caches:
+# Ensure the OpenAI provider is configured (see below)
+ddev drush recipe /var/www/html/recipes/canvas_media_search
 ddev drush cr
 
 # Now log in
-ddev drush user:login xb/xb_page/2/editor
+ddev drush user:login canvas/editor/canvas_page/1
 ```
 Now open the link Drush generated at the end to go right into Experience Builder.
 
@@ -60,14 +62,6 @@ echo "OPENAI_API_KEY=sk-your-real-key" >> .ddev/.env
 ```bash
 ddev restart
 ```
-
-3) Import recipe config (if not already applied) and clear caches
-```bash
-ddev drush recipe /var/www/html/recipes/civictheme_canvas_demo
-ddev drush cr
-```
-
-That’s it — Canvas media search and other AI features will use your OpenAI key securely via the Key module.
 
 Notes and references:
 - DDEV customization & environment variables: https://docs.ddev.com/en/stable/users/extend/customization-extendibility/
