@@ -37,6 +37,12 @@ ddev drush cr
 ddev drush recipe /var/www/html/recipes/canvas_media_search
 ddev drush cr
 
+# Build Canvas App (if using dev version)
+cd web/modules/contrib/canvas/ui/
+npm i
+npm run build
+ddev drush cr
+
 # Now log in
 ddev drush user:login canvas/editor/canvas_page/1
 ```
