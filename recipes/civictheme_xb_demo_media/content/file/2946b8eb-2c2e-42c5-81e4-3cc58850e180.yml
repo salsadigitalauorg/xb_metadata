@@ -9,11 +9,11 @@ default:
       target_id: 1
   filename:
     -
-      value: 'Starshot Updates.png'
+      value: 'Starshot-Updates.png'
   uri:
     -
-      value: 'public://2025-08/Starshot Updates.png'
-      url: /sites/default/files/2025-08/Starshot%20Updates.png
+      value: 'public://2025-08/Starshot-Updates.png'
+      url: /sites/default/files/2025-08/Starshot-Updates.png
   filemime:
     -
       value: image/png

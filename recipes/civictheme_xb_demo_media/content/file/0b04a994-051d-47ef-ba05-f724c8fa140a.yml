@@ -9,11 +9,11 @@ default:
       target_id: 1
   filename:
     -
-      value: 'CT 930 Wide .png'
+      value: 'CT-930-Wide.png'
   uri:
     -
-      value: 'public://2025-08/CT 930 Wide .png'
-      url: /sites/default/files/2025-08/CT%20930%20Wide%20.png
+      value: 'public://2025-08/CT-930-Wide.png'
+      url: /sites/default/files/2025-08/CT-930-Wide.png
   filemime:
     -
       value: image/png
