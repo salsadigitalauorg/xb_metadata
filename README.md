@@ -28,7 +28,7 @@ ddev composer install
 ddev drush si -y
 
 # Install Drupal recipes
-ddev drush recipe /var/www/html/recipes/canvas_demp
+ddev drush recipe /var/www/html/recipes/canvas_demo
 ddev drush recipe /var/www/html/recipes/civictheme_canvas_demo
 ddev drush cr
 
