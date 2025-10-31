@@ -24,7 +24,6 @@ props:
 
     description:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Description
       description: Data panel description.
       examples:

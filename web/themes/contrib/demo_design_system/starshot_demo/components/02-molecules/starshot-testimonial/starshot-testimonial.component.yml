@@ -13,7 +13,6 @@ props:
   properties:
     quote:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       contentMediaType: text/html
       x-formatting-context: block
       title: Quote
@@ -23,7 +22,6 @@ props:
 
     cite:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Person
       description: The person info below the quote.
       examples:

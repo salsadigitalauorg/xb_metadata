@@ -21,7 +21,6 @@ props:
     #@todo remove this if it'll be done with slot
     #summary:
     #type: string
-    #$ref: json-schema-definitions://canvas.module/textarea
     #title: Summary
     #description: Text summary.
     #examples:
