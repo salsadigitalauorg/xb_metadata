@@ -54,7 +54,6 @@ props:
 
     caption:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Caption
       description: Caption for the image.
       examples:

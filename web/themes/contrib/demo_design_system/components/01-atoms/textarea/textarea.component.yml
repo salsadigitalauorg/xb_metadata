@@ -33,7 +33,6 @@ props:
 
     value:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Value
       description: The value.
       examples:
@@ -41,7 +40,6 @@ props:
 
     placeholder:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Placeholder
       description: Placeholder text.
       examples:

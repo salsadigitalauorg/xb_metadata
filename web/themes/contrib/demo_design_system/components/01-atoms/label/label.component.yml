@@ -37,7 +37,6 @@ props:
 
     content:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Content
       description: The label's content.
       examples:

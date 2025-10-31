@@ -37,7 +37,6 @@ props:
 
     description:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Description
       description: Description text.
       examples:

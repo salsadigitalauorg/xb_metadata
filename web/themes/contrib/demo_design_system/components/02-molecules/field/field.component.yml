@@ -54,7 +54,6 @@ props:
 
     description:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Description
       description: Description. Optional.
       examples:
@@ -69,7 +68,6 @@ props:
 
     value:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Value
       description: DOM value. Optional, propagated.
       examples:

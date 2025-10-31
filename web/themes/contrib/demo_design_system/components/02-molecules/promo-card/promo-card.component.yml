@@ -53,7 +53,6 @@ props:
 
     summary:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Summary
       description: Summary.
       examples:

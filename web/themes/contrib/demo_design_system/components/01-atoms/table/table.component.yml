@@ -27,7 +27,6 @@ props:
 
     caption:
       type: string
-      $ref: json-schema-definitions://canvas.module/textarea
       title: Caption
       description: Table caption.
       examples:
